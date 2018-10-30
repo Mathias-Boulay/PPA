@@ -211,6 +211,12 @@ if !instance_exists(object_pause){
         pause = gamepad_button_check_pressed(ID,gp_start) || os_is_paused();
         debugbutton = gamepad_button_check_pressed(ID,gp_stickr)
         
+        //Mapper la croix directionelle:
+        if gamepad_button_check(ID,gp_padl){move = -1;}
+        if gamepad_button_check(ID,gp_padr){move = 1;}
+        if gamepad_button_check(ID,gp_padu){looking = -1;}
+        if gamepad_button_check(ID,gp_padd){looking = 1;}
+        
         //Si demandé, on active la pause:
         if pause{
             if !instance_exists(object_left_button){

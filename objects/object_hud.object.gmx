@@ -74,7 +74,7 @@ alarm_set(0,60);
           <argument>
             <kind>1</kind>
             <string>///Decrement time
-global.time_left --;
+if !instance_exists(object_pause){ global.time_left --;}
 alarm_set(0,60);
 </string>
           </argument>

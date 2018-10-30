@@ -325,12 +325,12 @@ else{
                     ini_open(working_directory + "\settings\settings.ini");
                     if y &lt; 120+view_yview[0]{
                         global.music_volume += sign(gamepad_axis_value(0,gp_axislh));
-                        if global.music_volume &gt; 9{global.music_volume = 0;}else{if global.music_volume &lt; 0{global.music_volume = 9;}}
+                        if global.music_volume &gt; 9{global.music_volume = 9;}else{if global.music_volume &lt; 0{global.music_volume = 0;}}
                         ini_write_real("sounds","music_volume",global.music_volume);
                         }
                     else{
                         global.sfx_volume += sign(gamepad_axis_value(0,gp_axislh));
-                        if global.sfx_volume &gt; 9{global.sfx_volume = 0;}else{if global.sfx_volume &lt; 0{global.sfx_volume = 9;}}
+                        if global.sfx_volume &gt; 9{global.sfx_volume = 9;}else{if global.sfx_volume &lt; 0{global.sfx_volume = 0;}}
                         ini_write_real("sounds","sfx_volume",global.sfx_volume);
                         }
                     ini_close();
