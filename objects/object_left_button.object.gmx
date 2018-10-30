@@ -58,7 +58,7 @@ mid_dependency = instance_create(x+1,y,object_mid_button);
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="3" enumb="2">
       <action>
         <libid>1</libid>
         <id>603</id>

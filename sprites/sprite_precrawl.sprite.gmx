@@ -8,7 +8,7 @@
   <sepmasks>0</sepmasks>
   <bboxmode>0</bboxmode>
   <bbox_left>6</bbox_left>
-  <bbox_right>41</bbox_right>
+  <bbox_right>42</bbox_right>
   <bbox_top>16</bbox_top>
   <bbox_bottom>50</bbox_bottom>
   <HTile>0</HTile>
@@ -31,5 +31,8 @@
     <frame index="8">images\sprite_precrawl_8.png</frame>
     <frame index="9">images\sprite_precrawl_9.png</frame>
     <frame index="10">images\sprite_precrawl_10.png</frame>
+    <frame index="11">images\sprite_precrawl_11.png</frame>
+    <frame index="12">images\sprite_precrawl_12.png</frame>
+    <frame index="13">images\sprite_precrawl_13.png</frame>
   </frames>
 </sprite>
