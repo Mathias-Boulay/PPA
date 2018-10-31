@@ -25,8 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-Can_navigate = true;
+            <string>alarm_set(0,10);
+Can_navigate = false;
 right_dependency = instance_create(x+60,y,object_right_button);
 mid_dependency = instance_create(x+1,y,object_mid_button);
 
@@ -126,7 +126,7 @@ if instance_exists(object_pause)
                     }
                 }
             }
-        if gamepad_button_check_pressed(0,gp_face1) || gamepad_button_check_pressed(0,gp_start)
+        if (gamepad_button_check_pressed(0,gp_face1) || gamepad_button_check_pressed(0,gp_start)) &amp;&amp; Can_navigate
             {
             if place_meeting(x+5,y,object_options)
                 {
