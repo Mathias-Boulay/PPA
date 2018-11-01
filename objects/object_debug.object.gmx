@@ -109,8 +109,8 @@ if object_player.debug &gt;= 1
     draw_text(view_xview[0]+100,view_yview[0]+135,'Rionys ='+string(object_player.rionys));
     draw_text(view_xview[0]+100,view_yview[0]+150,'Can_jump ='+string(object_player.Can_jump));
     draw_text(view_xview[0]+100,view_yview[0]+165,'image_angle= '+string(object_player.image_angle));
-    draw_text(view_xview[0]+100,view_yview[0]+180,'ROOM_SPEED ='+string(room_speed));
-    
+    draw_text(view_xview[0]+100,view_yview[0]+180,'place_left ='+string(object_player.next_left));
+    draw_text(view_xview[0]+100,view_yview[0]+195,'place_right ='+string(object_player.next_right)); 
     
     
     

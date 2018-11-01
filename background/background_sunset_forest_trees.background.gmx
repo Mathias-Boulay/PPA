@@ -13,7 +13,7 @@
     <TextureGroup0>0</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
-  <width>905</width>
+  <width>964</width>
   <height>1280</height>
-  <data>images\background_sunset_forest_2.png</data>
+  <data>images\background_sunset_forest_trees.png</data>
 </background>

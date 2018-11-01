@@ -48,18 +48,49 @@
             <string>///Initialisation de l'environnement:
 show_debug_message("DRAWER ----------------------------------------------------------------------");
 show_debug_message("INITIALISATION DE L'ENVIRONNEMENT--------------------------------------------");
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Phase Backgrounds/Foregrounds:
+
+show_debug_message("BACKGROUNDS LOADING PHASE--------------------------------------------");
+Number = ini_read_real(global.selected_part,"BackgroundsNumber",0);
+
 //Creation du tableau vide:
-for(i=0;i&lt;=7;i++){
+for(i=0;i&lt;=Number;i++){
     for(j=0;j&lt;=7;j++){
         global.backgrounds[i,j] = "";
         }
     }
 
-show_debug_message("BACKGROUNDS LOADING PHASE--------------------------------------------");
-Number = ini_read_real(global.selected_part,"BackgroundsNumber",0);
 for(i=1;i&lt;=Number;i++){
     original= ini_read_string(global.selected_part,string(i-1)+"-background","(0,0,sample,0)");
     original = string_replace(original,"(","");
+    //Création du tableau des sprites vide:
+    third_dimension = string_count("/",original);
+    for(j=0;j=third_dimension;j++){
+        global.backgrounds_sprites[i-1,j] = "";
+        }
+    
+    
     //Définition des variables
     for(j=1;j&gt;-1;j++){ //For xaxis:
         if string_char_at(original,1) != ","{
@@ -87,18 +118,36 @@ for(i=1;i&lt;=Number;i++){
             j = -10;
             }
         }
+    
     for(j=1;j&gt;-1;j++){ //For Asset:
-        if string_char_at(original,1) != ","{
-            global.backgrounds[i-1,2] += string_copy(original,1,1);
+        if string_char_at(original,1) != "/"{
+            global.backgrounds_sprites[i-1,j-1] += string_copy(original,1,1);
             original = string_replace(original,string_char_at(original,1),"");
             }
         else{
-            original = string_replace(original,",","");
-            show_debug_message("global.backgrounds[i-1,2]= "+global.backgrounds[i-1,2]);
+            original = string_replace(original,"/","");
+            global.backgrounds_sprites[i-1,j-1] = asset_get_index("background_"+global.backgrounds_sprites[i-1,j-1]);
+            show_debug_message("global.backgrounds_sprites= "+string(global.backgrounds_sprites[i-1,j-1]));
             show_debug_message("original= "+original);
-            global.backgrounds[i-1,2] = asset_get_index("background_"+global.backgrounds[i-1,2]);
-            show_debug_message("background_index= "+string(global.backgrounds[i-1,2]));
-            j = -10;
+            if string_char_at(original,1) = ":"{
+                //Do something to get the second info, the speed.
+                original = string_replace(original,":","");
+                for(k=1;k&gt;-1;k++){
+                    if string_char_at(original,1) != ","{
+                        global.backgrounds[i-1,2] += string_copy(original,1,1);
+                        original = string_replace(original,string_char_at(original,1),"");
+                        }
+                    else{
+                        //End of all
+                        original = string_replace(original,",","");
+                        show_debug_message("original= "+original);
+                        show_debug_message("global.backgrounds[i-1,2]= "+global.backgrounds[i-1,2]);
+                        global.backgrounds[i-1,2] = real(global.backgrounds[i-1,2]);
+                        k=-10;
+                        j=-10;
+                        }
+                    }
+                }
             }
         }
     for(j=1;j&gt;-1;j++){ //For fore/back:

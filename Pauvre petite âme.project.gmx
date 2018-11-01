@@ -35,6 +35,22 @@
         <sprite>sprites\sprite_sunset_forest_walls</sprite>
         <sprite>sprites\sprite_sunset_forest_bird</sprite>
         <sprite>sprites\sprite_sunset_forest_clouds</sprite>
+        <sprite>sprites\sprite_sunset_forest_panels</sprite>
+        <sprite>sprites\sprite_sunset_forest_mushrooms</sprite>
+        <sprites name="Animals with an AI">
+          <sprite>sprites\sprite_fox_idle</sprite>
+          <sprite>sprites\sprite_fox_run</sprite>
+          <sprite>sprites\sprite_fow_dead</sprite>
+          <sprite>sprites\sprite_panda_idle</sprite>
+          <sprite>sprites\sprite_panda_run</sprite>
+          <sprite>sprites\sprite_panda_dead</sprite>
+          <sprite>sprites\sprite_pig_idle</sprite>
+          <sprite>sprites\sprite_pig_run</sprite>
+          <sprite>sprites\sprite_pig_dead</sprite>
+          <sprite>sprites\sprite_cat_idle</sprite>
+          <sprite>sprites\sprite_cat_run</sprite>
+          <sprite>sprites\sprite_cat_dead</sprite>
+        </sprites>
       </sprites>
     </sprites>
     <sprites name="Title-menus">
@@ -153,6 +169,7 @@
       <sprite>sprites\sprite_death_predown</sprite>
       <sprite>sprites\sprite_deathdown</sprite>
       <sprite>sprites\sprite_precrawl</sprite>
+      <sprite>sprites\sprite_divefall</sprite>
     </sprites>
     <sprites name="ennemies">
       <sprite>sprites\sprite_emo_ghost</sprite>
@@ -241,11 +258,17 @@
       <background>background\background_sample_mountains</background>
     </backgrounds>
     <backgrounds name="Sunset Forest">
-      <background>background\background_sunset_forest_2</background>
-      <background>background\background_sunset_forest_3</background>
-      <background>background\background_sunset_forest_4</background>
-      <background>background\background_sunset_forest_5</background>
+      <background>background\background_sunset_forest_leaves</background>
+      <background>background\background_sunset_forest_trees</background>
+      <background>background\background_sunset_forest_trees_2</background>
+      <background>background\background_sunset_forest_mountains</background>
+      <background>background\background_sunset_forest_mountains_2</background>
+      <background>background\background_sunset_forest_mountains_3</background>
       <background>background\background_sunset_forest_last</background>
+      <background>background\background_sunset_forest_stars</background>
+      <background>background\background_sunset_forest_stars_2</background>
+      <background>background\background_sunset_forest_stars_3</background>
+      <background>background\background_sunset_forest_stars_4</background>
     </backgrounds>
   </backgrounds>
   <paths name="paths">
