@@ -48,7 +48,6 @@
             <string>///Initialisation de l'environnement:
 show_debug_message("DRAWER ----------------------------------------------------------------------");
 show_debug_message("INITIALISATION DE L'ENVIRONNEMENT--------------------------------------------");
-
 </string>
           </argument>
         </arguments>
@@ -216,12 +215,246 @@ for(i=1;i&lt;=Number;i++){
             }
         }
     background_visible[i-1] = true;
-    background_index[i-1] = global.backgrounds[i-1,2];
+    background_index[i-1] = global.backgrounds_sprites[i-1,0];
+    actual_background[i-1]=0;
+    alarm_set(i-1,global.backgrounds[i-1,2]);
     background_foreground[i-1] = global.backgrounds[i-1,3];
     background_htiled[i-1] = global.backgrounds[i-1,4];
     background_vtiled[i-1] = global.backgrounds[i-1,5];
            
     }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="7">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Animation pour le background 6:
+actual_background[6] += 6;
+if array_length_2d(backgrounds_sprites,6)-1 &lt; actual_background[6]{
+    actual_background[6] = 0;
+    }
+background_index[6]=backgrounds_sprites[6,actual_background[6]];
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="6">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Animation pour le background 6:
+actual_background[6] += 6;
+if array_length_2d(backgrounds_sprites,6)-1 &lt; actual_background[6]{
+    actual_background[6] = 0;
+    }
+background_index[6]=backgrounds_sprites[6,actual_background[6]];
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="5">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Animation pour le background 5:
+actual_background[5] += 5;
+if array_length_2d(backgrounds_sprites,5)-1 &lt; actual_background[5]{
+    actual_background[5] = 0;
+    }
+background_index[5]=backgrounds_sprites[5,actual_background[5]];
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Animation pour le background 4:
+actual_background[4] += 4;
+if array_length_2d(backgrounds_sprites,4)-1 &lt; actual_background[4]{
+    actual_background[4] = 0;
+    }
+background_index[4]=backgrounds_sprites[4,actual_background[4]];
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Animation pour le background 3:
+actual_background[3] += 3;
+if array_length_2d(backgrounds_sprites,3)-1 &lt; actual_background[3]{
+    actual_background[3] = 0;
+    }
+background_index[3]=backgrounds_sprites[3,actual_background[3]];
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Animation pour le background 2:
+actual_background[2] += 2;
+if array_length_2d(backgrounds_sprites,2)-1 &lt; actual_background[2]{
+    actual_background[2] = 0;
+    }
+background_index[2]=backgrounds_sprites[2,actual_background[2]];
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Animation pour le background 1:
+actual_background[1] += 1;
+if array_length_2d(backgrounds_sprites,1)-1 &lt; actual_background[1]{
+    actual_background[1] = 0;
+    }
+background_index[1]=backgrounds_sprites[1,actual_background[1]];
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Animation pour le background 0:
+actual_background[0] += 1;
+if array_length_2d(backgrounds_sprites,0)-1 &lt; actual_background[0]{
+    actual_background[0] = 0;
+    }
+background_index[0]=backgrounds_sprites[0,actual_background[0]];
+
 </string>
           </argument>
         </arguments>
