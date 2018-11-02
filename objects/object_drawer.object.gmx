@@ -253,6 +253,7 @@ if array_length_2d(global.backgrounds_sprites,7)-1 &lt; actual_background[7]{
     actual_background[7] = 0;
     }
 background_index[7]=global.backgrounds_sprites[7,actual_background[7]];
+alarm_set(7,global.backgrounds[7,2]);
 
 </string>
           </argument>
@@ -282,6 +283,7 @@ if array_length_2d(global.backgrounds_sprites,6)-1 &lt; actual_background[6]{
     actual_background[6] = 0;
     }
 background_index[6]=global.backgrounds_sprites[6,actual_background[6]];
+alarm_set(6,global.backgrounds[6,2]);
 
 </string>
           </argument>
@@ -311,6 +313,7 @@ if array_length_2d(global.backgrounds_sprites,5)-1 &lt; actual_background[5]{
     actual_background[5] = 0;
     }
 background_index[5]=global.backgrounds_sprites[5,actual_background[5]];
+alarm_set(5,global.backgrounds[5,2]);
 
 </string>
           </argument>
@@ -340,6 +343,7 @@ if array_length_2d(global.backgrounds_sprites,4)-1 &lt; actual_background[4]{
     actual_background[4] = 0;
     }
 background_index[4]=global.backgrounds_sprites[4,actual_background[4]];
+alarm_set(4,global.backgrounds[4,2]);
 
 </string>
           </argument>
@@ -369,6 +373,7 @@ if array_length_2d(global.backgrounds_sprites,3)-1 &lt; actual_background[3]{
     actual_background[3] = 0;
     }
 background_index[3]=global.backgrounds_sprites[3,actual_background[3]];
+alarm_set(3,global.backgrounds[3,2]);
 
 </string>
           </argument>
@@ -398,6 +403,7 @@ if array_length_2d(global.backgrounds_sprites,2)-1 &lt; actual_background[2]{
     actual_background[2] = 0;
     }
 background_index[2]=global.backgrounds_sprites[2,actual_background[2]];
+alarm_set(2,global.backgrounds[2,2]);
 
 </string>
           </argument>
@@ -427,6 +433,7 @@ if array_length_2d(global.backgrounds_sprites,1)-1 &lt; actual_background[1]{
     actual_background[1] = 0;
     }
 background_index[1]=global.backgrounds_sprites[1,actual_background[1]];
+alarm_set(1,global.backgrounds[1,2]);
 
 </string>
           </argument>
@@ -456,6 +463,7 @@ if array_length_2d(global.backgrounds_sprites,0)-1 &lt; actual_background[0]{
     actual_background[0] = 0;
     }
 background_index[0]=global.backgrounds_sprites[0,actual_background[0]];
+alarm_set(0,global.backgrounds[0,2]);
 
 </string>
           </argument>
