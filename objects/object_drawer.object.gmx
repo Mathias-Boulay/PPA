@@ -216,7 +216,7 @@ for(i=1;i&lt;=Number;i++){
             j = -10;
             }
         }
-    background_visible[i-1] = true;
+    //background_visible[i-1] = true;
     background_index[i-1] = global.backgrounds_sprites[i-1,0];
     actual_background[i-1]=0;
     alarm_set(i-1,global.backgrounds[i-1,2]);

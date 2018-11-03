@@ -170,6 +170,7 @@
       <sprite>sprites\sprite_deathdown</sprite>
       <sprite>sprites\sprite_precrawl</sprite>
       <sprite>sprites\sprite_divefall</sprite>
+      <sprite>sprites\sprite_rolling</sprite>
     </sprites>
     <sprites name="ennemies">
       <sprite>sprites\sprite_emo_ghost</sprite>
