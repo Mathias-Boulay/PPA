@@ -564,6 +564,36 @@ else{
                                 }
                             }
                         }
+                    else{
+                        if object_white_book.STATUS = "OPTIONS-MAPPING"{
+                            
+                            //Collisions:
+                            if collision_line(x-50,y,x+50,y,object_vibrations,false,false) != noone{
+                                //Collisions spécifique à une option. Faudra l'aide d'un replacement par contre..
+                                if (!place_meeting(x-5,y,object_franglish)){x--;}
+                                if (place_meeting(x-5,y,object_franglish)){x++;}
+                                }
+                            else{
+                                //Collisions normales:
+                                if (!place_meeting(x+5,y,object_franglish)){x++;}
+                                if (place_meeting(x+5,y,object_franglish)){x--;}
+                                }
+                                
+                            if abs(gamepad_axis_value(0,gp_axislv)) &gt; 0.6{
+                                //if collision_line(x-50,y+sign(gamepad_axis_value(0,gp_axislv))*28,x+50,y+sign(gamepad_axis_value(0,gp_axislv))*28,object_try,false,false) != noone{
+                                x += 28*sign(gamepad_axis_value(0,gp_axislv));
+                                }
+                            if abs(gamepad_axis_value(0,gp_axislh)) &gt; 0.6{
+                                y += 28*sign(gamepad_axis_value(0,gp_axislh));
+                                }
+                                
+                                
+                            //Vérification des positions:
+                            //if collision_line(x-50,
+                            }
+                            
+                        
+                        }
                     }
                 }
             }

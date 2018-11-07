@@ -171,6 +171,7 @@
       <sprite>sprites\sprite_precrawl</sprite>
       <sprite>sprites\sprite_divefall</sprite>
       <sprite>sprites\sprite_rolling</sprite>
+      <sprite>sprites\sprite_TPose</sprite>
     </sprites>
     <sprites name="ennemies">
       <sprite>sprites\sprite_emo_ghost</sprite>
@@ -367,6 +368,10 @@
         <object>objects\object_copy_save</object>
         <object>objects\object_back_save</object>
         <object>objects\object_confirmation</object>
+        <object>objects\object_voir_controlles</object>
+        <object>objects\object_modifier</object>
+        <object>objects\object_vibrations</object>
+        <object>objects\object_try</object>
       </objects>
     </objects>
     <objects name="Construction Stuff">

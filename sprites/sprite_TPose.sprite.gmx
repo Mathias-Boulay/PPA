@@ -7,9 +7,9 @@
   <coltolerance>0</coltolerance>
   <sepmasks>0</sepmasks>
   <bboxmode>0</bboxmode>
-  <bbox_left>16</bbox_left>
+  <bbox_left>14</bbox_left>
   <bbox_right>39</bbox_right>
-  <bbox_top>21</bbox_top>
+  <bbox_top>13</bbox_top>
   <bbox_bottom>50</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
@@ -20,11 +20,6 @@
   <width>51</width>
   <height>51</height>
   <frames>
-    <frame index="0">images\sprite_waiting_phase_3_0.png</frame>
-    <frame index="1">images\sprite_waiting_phase_3_1.png</frame>
-    <frame index="2">images\sprite_waiting_phase_3_2.png</frame>
-    <frame index="3">images\sprite_waiting_phase_3_3.png</frame>
-    <frame index="4">images\sprite_waiting_phase_3_4.png</frame>
-    <frame index="5">images\sprite_waiting_phase_3_5.png</frame>
+    <frame index="0">images\sprite_TPose_0.png</frame>
   </frames>
 </sprite>

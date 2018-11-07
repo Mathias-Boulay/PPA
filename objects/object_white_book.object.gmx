@@ -94,7 +94,7 @@ if STATUS = "OPTIONS-VIDEO"{
         instance_create(269+view_xview[0],120+view_yview[0],object_fullscreen);
         instance_create(269+view_xview[0],161+view_yview[0],object_quality);
         instance_create(175+view_xview[0],200+view_yview[0],object_retour);
-        left_video = instance_create(286+view_xview[0],92+view_yview[0],object_leftbutton_main_menu);      
+        left_video=instance_create(286+view_xview[0],92+view_yview[0],object_leftbutton_main_menu);      
         }
     }
 else{
@@ -249,8 +249,36 @@ else{
         instance_destroy(object_level_selector);
         instance_destroy(object_lv);
         }
-    }        
+    }
+
+if STATUS = "OPTIONS-MAPPING"{
+    if !instance_exists(object_try){
+        //Then create some objects;
+        instance_create(178+view_xview[0],154+view_yview[0],object_vibrations)
+        instance_create(66+view_xview[0],130+view_yview[0],object_voir_controlles);
+        instance_create(258+view_xview[0],127+view_yview[0],object_modifier);
+        instance_create(264+view_xview[0],158+view_yview[0],object_try);
+        instance_create(260+view_xview[0],286+view_yview[0],object_retour);
+        left_mapping = instance_create(60+view_xview[0],139+view_yview[0],object_leftbutton_main_menu);
+        }
+    }
+else{
+    if instance_exists(object_try){
+        //Then delete everything;
+        instance_destroy(left_mapping);
+        instance_destroy(object_vibrations);
+        instance_destroy(object_voir_controlles);
+        instance_destroy(object_modifier);
+        instance_destroy(object_try);
+        instance_destroy(object_retour);
+        }
+    }
+
+
+        
     
+    
+        
 </string>
           </argument>
         </arguments>
@@ -319,6 +347,30 @@ else{
                     }
                 else{
                     if STATUS = "OPTIONS-MAPPING"{
+                        image_index = 0;
+                        draw_sprite(sprite_cadre,0,view_xview[0]+51,view_yview[0]+18);
+                        draw_sprite(sprite_cadre,0,view_xview[0]+221,view_yview[0]+18);
+                        //Background polaro gauche:
+                        draw_sprite(sprite_background_polaro,0,view_xview[0]+57,view_yview[0]+23);
+                        draw_sprite_ext(sprite_background_polaro,0,view_xview[0]+196,view_yview[0]+23,-1,1,0,c_white,1);
+                        draw_sprite_ext(sprite_background_polaro,0,view_xview[0]+57,view_yview[0]+97,1,-1,0,c_white,1);
+                        draw_sprite_ext(sprite_background_polaro,0,view_xview[0]+196,view_yview[0]+97,-1,-1,0,c_white,1);
+                        
+                        //Background polaro droit:
+                        draw_sprite(sprite_background_polaro,0,view_xview[0]+227,view_yview[0]+23);
+                        draw_sprite_ext(sprite_background_polaro,0,view_xview[0]+366,view_yview[0]+23,-1,1,0,c_white,1);
+                        draw_sprite_ext(sprite_background_polaro,0,view_xview[0]+227,view_yview[0]+97,1,-1,0,c_white,1);
+                        draw_sprite_ext(sprite_background_polaro,0,view_xview[0]+366,view_yview[0]+97,-1,-1,0,c_white,1);
+                        
+                        draw_sprite(sprite_small_controller,0,view_xview[0]+79,view_yview[0]+27);
+                        draw_sprite(sprite_keyboard,0,view_xview[0]+232,view_yview[0]+34);
+                        
+                        draw_set_font(global.font_title);
+                        draw_set_halign(fa_center);
+                        draw_text(125,91,"Controller");
+                        draw_text(296,91,"Keyboard");
+                        draw_set_halign(fa_left);
+                        draw_text(52,150,"Vibrations");
                         
                         }
                     else{

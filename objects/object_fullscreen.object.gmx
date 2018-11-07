@@ -30,6 +30,7 @@ image_speed = 0;
 
 //Apply the good sprite depending of the settings:
 if window_get_fullscreen(){image_index = 1;}else{image_index = 0;}
+    
 </string>
           </argument>
         </arguments>
@@ -54,6 +55,7 @@ if window_get_fullscreen(){image_index = 1;}else{image_index = 0;}
             <kind>1</kind>
             <string>///Apply the good sprite depending of the settings:
 if window_get_fullscreen(){image_index = 1;}else{image_index = 0;}
+
 </string>
           </argument>
         </arguments>

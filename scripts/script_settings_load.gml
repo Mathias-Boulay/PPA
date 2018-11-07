@@ -10,7 +10,8 @@ global.music_volume = ini_read_real("sounds","music_volume",9);
 global.sfx_volume = ini_read_real("sounds","sfx_volume",9);
 //Langage variable:
 global.langage = ini_read_string("langage","selected_langage","franglish");
-
+//Controls variable:
+global.vibrate = ini_read_string("controls","vibrate","on");
 
 //Apply windows_size/fullscreen:
 if global.fullscreen = "true"{    
@@ -22,7 +23,7 @@ else{
     }
 //Center the window
 with(object_deadzone){
-    //alarm_set(0,1);
+    alarm_set(0,1);
     }
 
 

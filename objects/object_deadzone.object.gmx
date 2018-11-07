@@ -63,6 +63,9 @@ if !file_exists(working_directory + "\settings\settings.ini"){
     //Langage section:
     ini_write_string("langage","selected_langage","franglish");
     
+    //Vibration ?
+    ini_write_string("controls","vibrate","on");
+    
     
     //Controls section:
     //Doesn't work yet.
@@ -98,7 +101,7 @@ script_settings_load();
           <argument>
             <kind>1</kind>
             <string>///Center the window
-window_center();
+if object_white_book.STATUS = "TITLE"{window_center();}
 </string>
           </argument>
         </arguments>
