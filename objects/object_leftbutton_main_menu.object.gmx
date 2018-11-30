@@ -3,7 +3,7 @@
   <spriteName>sprite_select_main</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-52</depth>
+  <depth>-1002</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -81,7 +81,8 @@ if object_white_book.STATUS != "SELECT_SAVE"{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>Can_navigate = true;
+            <string>///Can_navigate = true;
+Can_navigate = true;
 </string>
           </argument>
         </arguments>
@@ -104,7 +105,8 @@ if object_white_book.STATUS != "SELECT_SAVE"{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if object_white_book.STATUS = "TITLE"{    //Si l'on est sur ce putin d'écran titre
+            <string>
+if object_white_book.STATUS = "TITLE"{    //Si l'on est sur ce putin d'écran titre
     if (!place_meeting(x+5,y,object_play)){x ++;}
     if place_meeting(x+5,y,object_play){x --;}
     //move the left part of the button
@@ -136,7 +138,8 @@ if object_white_book.STATUS != "SELECT_SAVE"{
         else{
             if place_meeting(x+10,y,object_options_main_menu){
                 //options menu
-                object_white_book.STATUS = "OPTIONS";
+                //object_white_book.STATUS = "OPTIONS";
+                script_fade_status("OPTIONS");
                 }
             else{
                 if place_meeting(x+10,y,object_album){
@@ -144,7 +147,7 @@ if object_white_book.STATUS != "SELECT_SAVE"{
                     }
                 else{
                     //play
-                    object_white_book.STATUS = "SELECT_SAVE";
+                    script_fade_status("SELECT_SAVE");
                     object_white_book.page = 0;
                     }
                 }
@@ -182,28 +185,28 @@ else{
         if gamepad_button_check_pressed(0,gp_face1) || gamepad_button_check_pressed(0,gp_start){
             if place_meeting(x+10,y,object_controlles){
                 //mappings
-                object_white_book.STATUS = "OPTIONS-MAPPING";
+                script_fade_status("OPTIONS-MAPPING");
                 }
             else{
                 if place_meeting(x+10,y,object_sound){
                     //sounds options menu
-                    object_white_book.STATUS = "OPTIONS-SON";
+                    script_fade_status("OPTIONS-SON");
                     }
                 else{
                     if place_meeting(x+10,y,object_langage){
                         //langage
-                        object_white_book.STATUS = "OPTIONS-LANGAGE";
+                        script_fade_status("OPTIONS-LANGAGE");
                         }
                     else{
                         //video options menu
-                        object_white_book.STATUS = "OPTIONS-VIDEO";
+                        script_fade_status("OPTIONS-VIDEO");
                         }
                     }
                 }
             }
         if gamepad_button_check_pressed(0,gp_face2){
             if room = room_title{
-                object_white_book.STATUS = "TITLE";
+                script_fade_status("TITLE");
                 }
             else{
                 instance_destroy(object_white_book);
@@ -225,17 +228,9 @@ else{
                     }
                 }
             else{
-                if object_quality.image_index != 1{
-                    repeat(4){
-                        if (!place_meeting(x+10,y,object_resolution)){x --;}
-                        if place_meeting(x+10,y,object_resolution){x ++;}
-                        }
-                    }
-                else{
-                    repeat(4){
-                        if (!place_meeting(x-5,y,object_resolution)){x --;}
-                        if place_meeting(x-5,y,object_resolution){x ++;}
-                        }
+                repeat(4){
+                    if (!place_meeting(x-5,y,object_resolution)){x --;}
+                    if place_meeting(x-5,y,object_resolution){x ++;}
                     }
                 }
             
@@ -292,7 +287,7 @@ else{
             
                 
             if gamepad_button_check_pressed(0,gp_face2){
-                object_white_book.STATUS = "OPTIONS";
+                script_fade_status("OPTIONS");
                 }
             }
         else{
@@ -337,7 +332,7 @@ else{
                     script_settings_load();      
                     }
                 if gamepad_button_check_pressed(0,gp_face2){
-                    object_white_book.STATUS = "OPTIONS";
+                    script_fade_status("OPTIONS");
                     }
                 }
             else{
@@ -407,7 +402,7 @@ else{
                         ini_close();
                         script_settings_load();
                         }
-                    if gamepad_button_check_pressed(0,gp_face2){object_white_book.STATUS = "OPTIONS";}
+                    if gamepad_button_check_pressed(0,gp_face2){script_fade_status("OPTIONS");}
                     }
                 else{
                     if object_white_book.STATUS = "SELECT_SAVE"{
@@ -526,7 +521,7 @@ else{
                                                 }
                                             else{
                                                 object_white_book.page = 0;
-                                                object_white_book.STATUS = "SELECT_LEVEL";
+                                                script_fade_status("SELECT_LEVEL");
                                                 instance_destroy(object_savepaper);
                                                 instance_destroy(object_back_save);
                                                 instance_destroy(object_delete_save);
@@ -568,50 +563,188 @@ else{
                         if object_white_book.STATUS = "OPTIONS-MAPPING"{
                             
                             //Collisions:
-                            if collision_line(x-50,y,x+50,y,object_vibrations,false,false) != noone{
+                            if place_meeting(x-15,y,object_vibrations){
                                 //Collisions spécifique à une option. Faudra l'aide d'un replacement par contre..
-                                if (!place_meeting(x-5,y,object_franglish)){x--;}
-                                if (place_meeting(x-5,y,object_franglish)){x++;}
+                                repeat(4){
+                                    if (!place_meeting(x-5,y,object_vibrations)){x--;}
+                                    if (place_meeting(x-5,y,object_vibrations)){x++;}
+                                        }
+                                    }
+                                else{
+                                    repeat(4){
+                                        //Collisions normales:
+                                        if (!place_meeting(x+5,y,object_try)){x++;}
+                                        if (place_meeting(x+5,y,object_try)){x--;}
+                                        }
+                                    }
+                            if Can_navigate{//Déplacement horizontal
+                                if abs(gamepad_axis_value(0,gp_axislh)) &gt; 0.6{
+                                    Can_navigate =false;
+                                    alarm_set(0,15);
+                                    if place_meeting(x+15,y,object_voir_controlles){
+                                        x = view_xview[0]+251;
+                                        right_dependency.x = view_xview[0]+342;
+                                        }
+                                    else{
+                                        if place_meeting(x+15,y,object_modifier){
+                                            x=view_xview[0]+57;
+                                            right_dependency.x = view_xview[0]+195;
+                                            }
+                                        else{
+                                            if place_meeting(x-15,y,object_vibrations){
+                                                Can_navigate = true;
+                                                //On fait rien parce que l'on doit configurer l'option vibration
+                                                //x= view_xview[0]+259;
+                                                //right_dependency.x = view_xview[0]+333;
+                                                }
+                                            else{
+                                                //On se place sur l'objet d'essai
+                                                x = view_xview[0]+200;
+                                                right_dependency.x = view_xview[0]+154;
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
-                            else{
-                                //Collisions normales:
-                                if (!place_meeting(x+5,y,object_franglish)){x++;}
-                                if (place_meeting(x+5,y,object_franglish)){x--;}
+                            if Can_navigate{//Déplacement vertical
+                                if abs(gamepad_axis_value(0,gp_axislv)) &gt; 0.6{
+                                    Can_navigate =false;
+                                    alarm_set(0,15);
+                                    if place_meeting(x+15,y,object_voir_controlles){
+                                        //Aller sur l'object vibrations 
+                                        x = view_xview[0]+200;
+                                        right_dependency.x = view_xview[0]+154;
+                                        y=view_yview[0]+166;
+                                        }
+                                    else{
+                                        if place_meeting(x-15,y,object_vibrations){
+                                            //Aller sur l'object voir contrôle
+                                            x= view_xview[0]+57;
+                                            y = view_yview[0]+139;
+                                            right_dependency.x = view_xview[0]+195;
+                                            }
+                                        else{
+                                            if place_meeting(x+15,y,object_modifier){
+                                                //Aller sur l'object try
+                                                x= view_xview[0]+259;
+                                                y = view_yview[0]+166;
+                                                right_dependency.x = view_xview[0]+333;
+                                                }
+                                            else{
+                                                //Aller sur l'objet modifier
+                                                x = view_xview[0]+251;
+                                                y = view_yview[0]+141;
+                                                right_dependency.x = view_xview[0]+342;
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                                 
-                            if abs(gamepad_axis_value(0,gp_axislv)) &gt; 0.6{
-                                //if collision_line(x-50,y+sign(gamepad_axis_value(0,gp_axislv))*28,x+50,y+sign(gamepad_axis_value(0,gp_axislv))*28,object_try,false,false) != noone{
-                                x += 28*sign(gamepad_axis_value(0,gp_axislv));
-                                }
-                            if abs(gamepad_axis_value(0,gp_axislh)) &gt; 0.6{
-                                y += 28*sign(gamepad_axis_value(0,gp_axislh));
-                                }
                                 
                                 
-                            //Vérification des positions:
-                            //if collision_line(x-50,
-                            }
+                                
+                            if gamepad_button_check_pressed(0,gp_face2){
+                                script_fade_status("OPTIONS");
+                                }
                             
-                        
+                            if gamepad_button_check_pressed(0,gp_face1){    
+                                //Vérifier où l'on est et effectuer des actions en conséquences:
+                                if place_meeting(x-15,y,object_vibrations){
+                                    //Activer ou désactiver les vibrations;
+                                    ini_open(working_directory + "\settings\settings.ini");
+                                    if global.vibrate = "on"{
+                                        global.vibrate = "off";
+                                        }
+                                    else{
+                                        global.vibrate = "on";
+                                        }
+                                    ini_write_string("controls","vibrate",global.vibrate);
+                                    }
+                                else{
+                                    if place_meeting(x+15,y,object_voir_controlles){
+                                        //Changer le status du livre pour voir les contrôles.
+                                        script_fade_status("OPTIONS_SEE_CONTROLS");
+                                        }
+                                    else{
+                                        if place_meeting(x+15,y,object_modifier){
+                                            //Go écran de mappage des contrôles
+                                            script_fade_status("OPTIONS_SET_CONTROLS");
+                                            }
+                                        else{
+                                            //Doit être disponible hors jeu uniquement bien que je ne vois encore aucun moyen de pouvoir imlémenter ceci.
+                                            if instance_number(object_player) = 0{
+                                                //Essayer les contrôles;
+                                                }
+                                            else{   
+                                                //Jouer un son de refus
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                
+                                
+                            if Can_navigate{
+                                if place_meeting(x-15,y,object_vibrations){
+                                    if gamepad_axis_value(0,gp_axislh) &gt; 0.6{
+                                        Can_navigate = false;
+                                        alarm_set(0,15);
+                                        //Go on;
+                                        if global.vibrate != "on"{
+                                            ini_open(working_directory + "\settings\settings.ini");
+                                            global.vibrate = "on";
+                                            ini_write_string("controls","vibrate",global.vibrate);
+                                            ini_close();
+                                            }
+                                            
+                                        }
+                                    else{
+                                        if gamepad_axis_value(0,gp_axislh) &lt; -0.6{
+                                            Can_navigate = false;
+                                            alarm_set(0,15);
+                                            //Go off;
+                                            if global.vibrate != "off"{
+                                                ini_open(working_directory + "\settings\settings.ini");
+                                                global.vibrate = "off";
+                                                ini_write_string("controls","vibrate",global.vibrate);
+                                                ini_close();
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                
+                                
+                                
+                                
+                                
+                                
+                            }
+                        else{
+                            //Surement un emplacement pour la modification des contrôles au clavier
+                            }
                         }
                     }
                 }
             }
         }
     }
+     
     
-                  
-            
         
-
-      
-   
-   
-   
-
-
+                      
                 
             
+    
+          
+       
+       
+       
+    
+    
+                    
+                
 
 </string>
           </argument>

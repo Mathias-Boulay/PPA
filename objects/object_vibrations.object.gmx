@@ -3,7 +3,7 @@
   <spriteName>sprite_fullscreen</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-51</depth>
+  <depth>-1001</depth>
   <persistent>0</persistent>
   <parentName>object_try</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,11 +25,36 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Set the image_speed to 0;
-image_speed = 0;
-
-if global.vibrate{image_index = 1;}else{image_index = 0;}
-  
+            <string>//Apply the good sprite depending of the settings:
+///On prend notre sprite depuis les ressources incluses afin de pouvoir manipuler sa zone de collision dynamiquement:
+draw_set_font(global.font_title);
+play = sprite_duplicate(sprite_fullscreen);
+sprite_collision_mask(play,false,2,0,0,100,18,1,0);
+sprite_index = play;
+    
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>sprite_delete(play);
 </string>
           </argument>
         </arguments>
@@ -53,7 +78,48 @@ if global.vibrate{image_index = 1;}else{image_index = 0;}
           <argument>
             <kind>1</kind>
             <string>///Apply the good sprite depending of the settings:
-if global.vibrate{image_index = 1;}else{image_index = 0;}
+///Set the good sprite depending of the settings:
+if global.vibrate="off"{
+    sprite_collision_mask(play,false,2,50-(string_width(object_white_book.texts[34])/2),0,100-(50-(string_width(object_white_book.texts[34])/2)),18,1,0);
+    }
+else{
+    sprite_collision_mask(play,false,2,50-(string_width(object_white_book.texts[35])/2),0,100-(50-(string_width(object_white_book.texts[35])/2)),18,1,0);
+    }
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_self();
+
+draw_set_font(global.font_title);
+draw_set_valign(fa_bottom);
+draw_set_halign(fa_center);
+if global.vibrate="off"{
+    draw_text(x,y+sprite_height+5,object_white_book.texts[34]);
+    }
+else{
+    draw_text(x,y+sprite_height+5,object_white_book.texts[35]);
+    }
+
 </string>
           </argument>
         </arguments>

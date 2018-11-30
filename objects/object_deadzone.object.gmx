@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>//Initialise basic font:
 global.font_normal = font_add_sprite_ext(sprite_font_normal,"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ",true,1);
-global.font_title = font_add_sprite_ext(sprite_font_title,"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789* |▯",true,1);
+global.font_title = font_add_sprite_ext(sprite_font_title,"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789* |▯ô",true,1);
 global.font_short = font_add_sprite_ext(sprite_font_short,"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/: ",true,1);
 
 //First launch ? 
@@ -76,6 +76,9 @@ if !file_exists(working_directory + "\settings\settings.ini"){
 
 //Load the settings:
 script_settings_load();
+
+//Then let the game live !
+instance_create(23,4,object_white_book);
     
 
 </string>

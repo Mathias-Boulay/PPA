@@ -3,7 +3,7 @@
   <spriteName>sprite_back_save</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-52</depth>
+  <depth>-1002</depth>
   <persistent>0</persistent>
   <parentName>object_play_save</parentName>
   <maskName>&lt;undefined&gt;</maskName>

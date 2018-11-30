@@ -54,9 +54,6 @@
     <instance objName="object_LevelBuilder_old" x="64" y="160" name="inst_A91100D9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="object_player_old" x="160" y="32" name="inst_E5358C57" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="object_debug" x="192" y="32" name="inst_D45DA08C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="object_mimi_ghost" x="320" y="32" name="inst_5F8136D1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="object_oldy_ghost" x="320" y="0" name="inst_759C282E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="object_ghost_spawner" x="160" y="96" name="inst_3C769CC4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="object_deadzone" x="32" y="32" name="inst_DCD2BD7E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>

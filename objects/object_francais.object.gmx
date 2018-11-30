@@ -3,7 +3,7 @@
   <spriteName>sprite_francais</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-51</depth>
+  <depth>-1002</depth>
   <persistent>0</persistent>
   <parentName>object_franglish</parentName>
   <maskName>&lt;undefined&gt;</maskName>

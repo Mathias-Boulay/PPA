@@ -3,7 +3,7 @@
   <spriteName>sprite_white_book</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-50</depth>
+  <depth>-1000</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,9 +25,16 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if room = room_title{STATUS = "TITLE";}else{STATUS = "OPTIONS";}
+            <string>///Récupération des strings necessaire pour intéragir dans les menus:
+if room = room_title{STATUS = "TITLE";}else{STATUS = "OPTIONS";}
 image_speed = 0;
 page = 0;
+//Cela risque d'être long si mal géré
+//En cas de fichier resté ouvert, on le ferme, en espérant ne pas faire de la merde avec le système de sauvegarde.
+ini_close();
+for(i=0;i&lt;38;i++){
+    texts[i] = script_word(i);
+    }
 </string>
           </argument>
         </arguments>
@@ -255,9 +262,9 @@ if STATUS = "OPTIONS-MAPPING"{
     if !instance_exists(object_try){
         //Then create some objects;
         instance_create(178+view_xview[0],154+view_yview[0],object_vibrations)
-        instance_create(66+view_xview[0],130+view_yview[0],object_voir_controlles);
-        instance_create(258+view_xview[0],127+view_yview[0],object_modifier);
-        instance_create(264+view_xview[0],158+view_yview[0],object_try);
+        instance_create(126+view_xview[0],130+view_yview[0],object_voir_controlles);
+        instance_create(297+view_xview[0],127+view_yview[0],object_modifier);
+        instance_create(297+view_xview[0],158+view_yview[0],object_try);
         instance_create(260+view_xview[0],286+view_yview[0],object_retour);
         left_mapping = instance_create(60+view_xview[0],139+view_yview[0],object_leftbutton_main_menu);
         }
@@ -271,6 +278,12 @@ else{
         instance_destroy(object_modifier);
         instance_destroy(object_try);
         instance_destroy(object_retour);
+        }
+    }
+
+if STATUS = "OPTIONS_SEE_CONTROLS"{
+    if gamepad_button_check_pressed(0,gp_face2){
+        script_fade_status("OPTIONS-MAPPING");
         }
     }
 
@@ -318,6 +331,7 @@ else{
         image_index = 0;
         draw_sprite(sprite_options_title,0,53+view_xview[0],29+view_yview[0]);
         draw_sprite(sprite_shai_artwork,0,61+view_xview[0],76+view_yview[0]);
+        draw_set_halign(fa_left);
         }
     else{
         if STATUS = "OPTIONS-VIDEO"{
@@ -325,9 +339,10 @@ else{
             draw_set_valign(fa_top);
             draw_sprite(sprite_video_title_option,0,135+view_xview[0],27+view_yview[0]);
             draw_set_font(global.font_title);
-            draw_text(94+view_xview[0],78+view_yview[0],"Resolution");
-            draw_text(94+view_xview[0],116+view_yview[0],"Fullscreen");
-            draw_text(94+view_xview[0],154+view_yview[0],"Quality");
+            draw_set_halign(fa_left);
+            draw_text(94+view_xview[0],78+view_yview[0],texts[0]);
+            draw_text(94+view_xview[0],116+view_yview[0],texts[1]);
+            draw_text(94+view_xview[0],154+view_yview[0],texts[2]);
             }
         else{
             if STATUS = "OPTIONS-SON"{
@@ -366,11 +381,12 @@ else{
                         draw_sprite(sprite_keyboard,0,view_xview[0]+232,view_yview[0]+34);
                         
                         draw_set_font(global.font_title);
+                        draw_set_valign(fa_top);
                         draw_set_halign(fa_center);
-                        draw_text(125,91,"Controller");
-                        draw_text(296,91,"Keyboard");
+                        draw_text(125,91,texts[3]);
+                        draw_text(296,91,texts[4]);
                         draw_set_halign(fa_left);
-                        draw_text(52,150,"Vibrations");
+                        draw_text(52,150,texts[5]);
                         
                         }
                     else{
@@ -380,6 +396,37 @@ else{
                         else{
                             if STATUS = "SELECT_LEVEL"{
                                 image_index =0;
+                                }
+                            else{
+                                if STATUS = "OPTIONS_SEE_CONTROLS"{
+                                    image_index = 1;
+                                    draw_sprite(sprite_indications_mapping,0,view_xview[0]+212,view_yview[0]+120);
+                                    draw_sprite(sprite_retour,0,view_xview[0]+175,view_yview[0]+200);
+                                    
+                                    //Afficher le texte en fonction des langues:
+                                    draw_set_font(global.font_short);
+                                    draw_set_halign(fa_center);
+                                    draw_set_valign(fa_bottom);
+                                    
+                                    //Afficher le texte à l'aide d'un script qui se charge de loader dans la bonne langue:
+                                    draw_text(view_xview[0]+98,view_yview[0]+34,texts[6]);
+                                    draw_text(view_xview[0]+98,view_yview[0]+53,texts[7]);
+                                    
+                                    draw_text(view_xview[0]+209,view_yview[0]+40,texts[8]);
+                                    
+                                    draw_text(view_xview[0]+325,view_yview[0]+34,texts[9]);
+                                    draw_text(view_xview[0]+325,view_yview[0]+53,texts[7]);
+                                    
+                                    draw_text(view_xview[0]+345,view_yview[0]+102,texts[10]);
+                                    draw_text(view_xview[0]+345,view_yview[0]+123,texts[11]);
+                                    draw_text(view_xview[0]+345,view_yview[0]+144,texts[12]);
+                                    draw_text(view_xview[0]+345,view_yview[0]+165,texts[13]);
+                                    
+                                    draw_text(view_xview[0]+90,view_yview[0]+128,texts[14]);
+                                    draw_text(view_xview[0]+90,view_yview[0]+169,texts[15]);
+                                    draw_text(view_xview[0]+90,view_yview[0]+199,texts[16]);
+                                    
+                                    }
                                 }
                             }
                         }

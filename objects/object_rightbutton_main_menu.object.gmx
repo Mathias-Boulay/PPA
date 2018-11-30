@@ -3,7 +3,7 @@
   <spriteName>sprite_select_right_main</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-52</depth>
+  <depth>-1002</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -80,6 +80,14 @@ else{
                             }
                         }
                     }
+                else{
+                    if object_white_book.STATUS = "OPTIONS-MAPPING"{
+                        repeat(4){
+                            if (!place_meeting(x-5,y,object_vibrations)){x--;}
+                            if (place_meeting(x-5,y,object_vibrations)){x++;}
+                            }
+                        }
+                    }
                 }
             }  
         }
@@ -143,18 +151,10 @@ else{
                     }
                 }
             else{
-                if object_quality.image_index != 1{
-                    repeat(4){
-                        if(place_meeting(x-10,y,object_resolution)){x--;}
-                        if(!place_meeting(x-10,y,object_resolution)){x++;}
-                        }
+                repeat(4){
+                    if(place_meeting(x+5,y,object_resolution)){x--;}
+                    if(!place_meeting(x+5,y,object_resolution)){x++;}
                     }
-                else{
-                    repeat(4){
-                        if(place_meeting(x+5,y,object_resolution)){x--;}
-                        if(!place_meeting(x+5,y,object_resolution)){x++;}
-                        }
-                    }  
                 }
             }
         else{
@@ -177,6 +177,24 @@ else{
                         if(!place_meeting(x-5,y,object_franglish)){
                             x--;
                             }
+                        }
+                    }
+                else{
+                    if object_white_book.STATUS = "OPTIONS-MAPPING"{
+                        if !place_meeting(x+15,y,object_vibrations){
+                            //Collisions spécifique à une option. Faudra l'aide d'un replacement par contre..
+                            repeat(4){
+                                if (!place_meeting(x-5,y,object_try)){x--;}
+                                if (place_meeting(x-5,y,object_try)){x++;}
+                                    }
+                                }
+                            else{
+                                repeat(4){
+                                    //Collisions normales:
+                                    if (!place_meeting(x+5,y,object_vibrations)){x++;}
+                                    if (place_meeting(x+5,y,object_vibrations)){x--;}
+                                    }
+                                }
                         }
                     }
                 }    

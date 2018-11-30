@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="1" name="datafiles">
+  <datafiles number="4" name="datafiles">
     <datafile>
       <name>Sunset Forest.ini</name>
       <exists>-1</exists>
@@ -20,6 +20,23 @@
         </Config>
       </ConfigOptions>
       <filename>Sunset Forest.ini</filename>
+    </datafile>
+    <datafile>
+      <name>language.ini</name>
+      <exists>-1</exists>
+      <size>89</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>language.ini</filename>
     </datafile>
   </datafiles>
   <NewExtensions/>
@@ -51,6 +68,7 @@
           <sprite>sprites\sprite_cat_run</sprite>
           <sprite>sprites\sprite_cat_dead</sprite>
         </sprites>
+        <sprite>sprites\sprite_leaves</sprite>
       </sprites>
     </sprites>
     <sprites name="Title-menus">
@@ -273,11 +291,23 @@
     </backgrounds>
   </backgrounds>
   <paths name="paths">
-    <path>paths\path_ghost</path>
-    <path>paths\path_handled_camera</path>
+    <paths name="leaves' paths">
+      <path>paths\path_leaves_0</path>
+      <path>paths\path_leaves_0_bis</path>
+      <path>paths\path_leaves_1</path>
+      <path>paths\path_leaves_1_bis</path>
+      <path>paths\path_leaves_2</path>
+      <path>paths\path_leaves_2_bis</path>
+      <path>paths\path_leaves_3</path>
+      <path>paths\path_leaves_3_bis</path>
+      <path>paths\path_leaves_end</path>
+      <path>paths\path_leaves_end_bis</path>
+    </paths>
   </paths>
   <scripts name="scripts">
     <script>scripts\script_settings_load.gml</script>
+    <script>scripts\script_fade_status.gml</script>
+    <script>scripts\script_word.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font_debug</font>
@@ -299,12 +329,9 @@
     <object>objects\object_fond_shop</object>
     <object>objects\object_case</object>
     <object>objects\object_heart</object>
-    <object>objects\object_emo_ghost</object>
-    <object>objects\object_oldy_ghost</object>
-    <object>objects\object_mimi_ghost</object>
     <object>objects\object_hit</object>
-    <object>objects\object_ghost_spawner</object>
     <object>objects\object_wall_platforms</object>
+    <object>objects\object_leaves</object>
     <objects name="Menus">
       <objects name="Pause_menu">
         <object>objects\object_pause</object>
@@ -383,6 +410,7 @@
       <object>objects\object_player_old</object>
       <object>objects\object_player</object>
     </objects>
+    <object>objects\object90</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_title</room>

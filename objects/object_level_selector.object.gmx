@@ -3,7 +3,7 @@
   <spriteName>sprite_level_select</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-52</depth>
+  <depth>-1002</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -73,7 +73,8 @@ image_index = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>lv_index = collision_point(x+(sprite_width/2),y+(sprite_height/2),object_lv,false,true);
+            <string>///Remise en place de l'objet si l'on est dans la vide.
+lv_index = collision_point(x+(sprite_width/2),y+(sprite_height/2),object_lv,false,true);
 if lv_index.image_index &gt; 5 {
     x = xprevious;
     }
@@ -229,7 +230,7 @@ if gamepad_button_check_pressed(0,gp_face1){
         }
     }
 if gamepad_button_check_pressed(0,gp_face2){
-    object_white_book.STATUS = "SELECT_SAVE";
+    script_fade_status("SELECT_SAVE");
     object_white_book.page = 0;
     }
 
