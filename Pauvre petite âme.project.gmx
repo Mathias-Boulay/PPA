@@ -317,8 +317,9 @@
     <object>objects\object_deadzone</object>
     <object>objects\object_debug</object>
     <object>objects\object_platform</object>
-    <object>objects\object_camera</object>
     <object>objects\object_moving_platform</object>
+    <object>objects\object_vertical_platform</object>
+    <object>objects\object_camera</object>
     <object>objects\object_hud</object>
     <object>objects\object10</object>
     <object>objects\object_riony</object>

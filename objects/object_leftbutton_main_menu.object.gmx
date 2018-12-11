@@ -462,8 +462,9 @@ else{
                                 else{
                                     if place_meeting(x+(10*image_xscale),y,object_delete_save){
                                         //Go into confirmation menu
-                                        instance_create(x+10,y,object_confirmation);
-                                        //sure.file_to_delete = working_directory +"saves\save "+string(collision_point(x+(sprite_width/2),y+(sprite_height/2),object_savepaper,false,true).ID)
+                                        if !instance_exists(object_confirmation){
+                                            instance_create(x+10,y,object_confirmation);
+                                            }
                                         }
                                     else{
                                         if place_meeting(x+(10*image_xscale),y,object_copy_save){
@@ -472,7 +473,6 @@ else{
                                                 object_selectsave.STATUS = "PASTE";
                                                         
                                                 //Then reload
-                                                        
                                                 instance_destroy(object_savepaper);
                                                 instance_create(51+view_xview[0],18+view_yview[0],object_savepaper);
                                                 instance_create(221+view_xview[0],18+view_yview[0],object_savepaper);

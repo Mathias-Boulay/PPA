@@ -26,7 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>image_speed = 0;
-image_index = irandom_range(3,9);
+temp = irandom_range(3,9);
+image_index = temp;
 file_to_delete = working_directory +"saves\save "+string(collision_point(x,y,object_savepaper,false,true).ID);
 </string>
           </argument>
@@ -51,26 +52,28 @@ file_to_delete = working_directory +"saves\save "+string(collision_point(x,y,obj
           <argument>
             <kind>1</kind>
             <string>if gamepad_button_check_pressed(0,gp_face1){
-    image_index = image_index -1;
+    temp--;
+    }
+    
+image_index = temp;
+
+if image_index = 0{
+    file_delete(file_to_delete);
+    //Then reload
+    instance_destroy(object_savepaper);
+    instance_create(51,18,object_savepaper);
+    instance_create(221,18,object_savepaper);
+    instance_create(51,122,object_savepaper);
+    instance_create(221,122,object_savepaper);
+    instance_destroy(object_back_save);
+    instance_destroy(object_delete_save);
+    instance_destroy(object_copy_save);
+    instance_destroy(object_play_save);
+    instance_destroy(object_leftbutton_main_menu);
+    with(object_selectsave){alarm_set(1,15);}
+    instance_destroy();
     }
 
-    if image_index = 0{
-        file_delete(file_to_delete);
-        //Then reload
-        instance_destroy(object_savepaper);
-        instance_create(51,18,object_savepaper);
-        instance_create(221,18,object_savepaper);
-        instance_create(51,122,object_savepaper);
-        instance_create(221,122,object_savepaper);
-        instance_destroy(object_back_save);
-        instance_destroy(object_delete_save);
-        instance_destroy(object_copy_save);
-        instance_destroy(object_play_save);
-        instance_destroy(object_leftbutton_main_menu);
-        with(object_selectsave){alarm_set(1,15);}
-        instance_destroy();
-        }
-    
 
         
 

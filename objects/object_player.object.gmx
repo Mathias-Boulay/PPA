@@ -626,20 +626,22 @@ if !instance_exists(object_pause){
             
         //Ok maintenant vous devez éviter de passer entre les murs.
         //Collision verticale: L'utilisation d'un statement "while" peut conduire à un crash.
-        if (!place_meeting(x,y+(vsp),object_wall)){
-            if (!place_meeting(x,y+sign(vsp),object_wall)){
-                y += vsp;
+        if (!place_meeting(x,y+(vsp+vsp_carry),object_wall)){
+            if (!place_meeting(x,y+sign(vsp+vsp_carry),object_wall)){
+                y += vsp+vsp_carry;
                 }
             else{
                 vsp = 0;
+                vsp_carry=0;
                 }
             }
         else{
-            while (!place_meeting(x,y+sign(vsp),object_wall)){
-                y += sign(vsp);
+            while (!place_meeting(x,y+sign(vsp+vsp_carry),object_wall)){
+                y += sign(vsp+vsp_carry);
                 }
-            if place_meeting(x,y+sign(vsp),object_wall){
+            if place_meeting(x,y+sign(vsp+vsp_carry),object_wall){
                 vsp = 0;
+                vsp_carry=0;
                 }
             }
             

@@ -910,6 +910,145 @@ for(i=1;i&lt;=Number;i++){
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///Platforms Phase 4: Vertical Moving platform
+show_debug_message("PLATRFORMES PHASE 4 ------------------------------------------------------");
+Number = ini_read_real(global.selected_part,"VPlatformsNumber",0);
+for(i=1;i&lt;=Number;i++){
+    xx="";
+    yy="";
+    Asset="";
+    SubAsset="";
+    distance = "";
+    dir = "";
+    movespeed = "";
+    original= ini_read_string(global.selected_part,string(i)+"-createvplatform","(0,0,sample,0,0,1)");
+    original = string_replace(original,"(","");
+    //Définition des variables
+    for(j=1;j&gt;-1;j++){ //For xx:
+        if string_char_at(original,1) != ","{
+            xx += string_copy(original,1,1);
+            original = string_replace(original,string_char_at(original,1),"");
+            }
+        else{
+            original = string_replace(original,",","");
+            show_debug_message("xx= "+xx);
+            show_debug_message("original= "+original);
+            xx = real(xx);
+            j = -10;
+            }
+        }
+    for(j=1;j&gt;-1;j++){ //For yy:
+        if string_char_at(original,1) != ","{
+            yy += string_copy(original,1,1);
+            original = string_replace(original,string_char_at(original,1),"");
+            }
+        else{
+            original = string_replace(original,",","");
+            show_debug_message("yy= "+yy);
+            show_debug_message("original= "+original);
+            yy = real(yy);
+            j = -10;
+            }
+        }
+    for(j=1;j&gt;-1;j++){ //For Asset:
+        if string_char_at(original,1) != ","{
+            Asset += string_copy(original,1,1);
+            original = string_replace(original,string_char_at(original,1),"");
+            }
+        else{
+            original = string_replace(original,",","");
+            show_debug_message("Asset= "+Asset);
+            show_debug_message("original= "+original);
+            j = -10;
+            }
+        }
+    for(j=1;j&gt;-1;j++){ //For SubAsset:
+        if string_char_at(original,1) != ","{
+            SubAsset += string_copy(original,1,1);
+            original = string_replace(original,string_char_at(original,1),"");
+            }
+        else{
+            original = string_replace(original,",","");
+            show_debug_message("SubAsset= "+SubAsset);
+            show_debug_message("original= "+original);
+            SubAsset = real(SubAsset);
+            j = -10;
+            }
+        }
+    for(j=1;j&gt;-1;j++){ //For Distance:
+        if string_char_at(original,1) != ","{
+            distance += string_copy(original,1,1);
+            original = string_replace(original,string_char_at(original,1),"");
+            }
+        else{
+            original = string_replace(original,",","");
+            show_debug_message("distance= "+distance);
+            show_debug_message("original= "+original);
+            distance = real(distance);
+            j = -10;
+            }
+        }
+    for(j=1;j&gt;-1;j++){ //For Direction:
+        if string_char_at(original,1) != ","{
+            dir += string_copy(original,1,1);
+            original = string_replace(original,string_char_at(original,1),"");
+            }
+        else{
+            original = string_replace(original,",","");
+            show_debug_message("dir= "+dir);
+            show_debug_message("original= "+original);
+            dir = real(dir);
+            j = -10;
+            }
+        }
+    for(j=1;j&gt;-1;j++){ //For movespeed:
+        if string_char_at(original,1) != ")"{
+            movespeed += string_copy(original,1,1);
+            original = string_replace(original,string_char_at(original,1),"");
+            }
+        else{
+            original = string_replace(original,")","");
+            show_debug_message("movespeed= "+movespeed);
+            show_debug_message("original= "+original);
+            movespeed = real(movespeed);
+            j = -10;
+            }
+        }
+    
+        
+        
+        
+    
+    //Placement des deux limites:
+    instance_create(xx,yy-distance,object_wall_platforms);
+    instance_create(xx,yy+distance,object_wall_platforms);
+    This_platform = instance_create(xx,yy,object_vertical_platform);
+    This_platform.image_index = SubAsset;
+    This_platform.my_sprite = asset_get_index("sprite_"+Asset+"_platforms");
+    This_platform.my_img_index = SubAsset;
+    This_platform.dir = dir;
+    This_platform.movespeed = movespeed;
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Phase Marchants (codée par la Juif Corp.):
 show_debug_message("PHASE MARCHANTS -------------------------------------------------------");
 Number = ini_read_real(global.selected_part,"SellersNumber",0);
