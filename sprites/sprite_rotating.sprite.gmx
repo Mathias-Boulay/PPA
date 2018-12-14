@@ -7,9 +7,9 @@
   <coltolerance>0</coltolerance>
   <sepmasks>0</sepmasks>
   <bboxmode>0</bboxmode>
-  <bbox_left>15</bbox_left>
-  <bbox_right>35</bbox_right>
-  <bbox_top>12</bbox_top>
+  <bbox_left>13</bbox_left>
+  <bbox_right>37</bbox_right>
+  <bbox_top>14</bbox_top>
   <bbox_bottom>50</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
@@ -32,5 +32,17 @@
     <frame index="9">images\sprite_rotating_9.png</frame>
     <frame index="10">images\sprite_rotating_10.png</frame>
     <frame index="11">images\sprite_rotating_11.png</frame>
+    <frame index="12">images\sprite_rotating_12.png</frame>
+    <frame index="13">images\sprite_rotating_13.png</frame>
+    <frame index="14">images\sprite_rotating_14.png</frame>
+    <frame index="15">images\sprite_rotating_15.png</frame>
+    <frame index="16">images\sprite_rotating_16.png</frame>
+    <frame index="17">images\sprite_rotating_17.png</frame>
+    <frame index="18">images\sprite_rotating_18.png</frame>
+    <frame index="19">images\sprite_rotating_19.png</frame>
+    <frame index="20">images\sprite_rotating_20.png</frame>
+    <frame index="21">images\sprite_rotating_21.png</frame>
+    <frame index="22">images\sprite_rotating_22.png</frame>
+    <frame index="23">images\sprite_rotating_23.png</frame>
   </frames>
 </sprite>

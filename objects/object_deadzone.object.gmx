@@ -27,7 +27,8 @@
             <kind>1</kind>
             <string>//Initialise basic font:
 global.font_normal = font_add_sprite_ext(sprite_font_normal,"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ",true,1);
-global.font_title = font_add_sprite_ext(sprite_font_title,"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789* |▯ô",true,1);
+global.font_title = font_add_sprite_ext(sprite_font_title,"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789* |▯áàâäéèêëíìîïóòôöúùûü",true,1);
+global.font_big_title = font_add_sprite_ext(sprite_font_big_title,"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",true,1);
 global.font_short = font_add_sprite_ext(sprite_font_short,"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/: ",true,1);
 
 //First launch ? 

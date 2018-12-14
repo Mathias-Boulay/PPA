@@ -69,7 +69,7 @@ xorigin = x;
         {
         if (!place_meeting(x+sign(hsp),y,object_wall_platforms))
             {
-            x += sign(hsp);
+            x += hsp;
             }
         else
             {
@@ -80,7 +80,7 @@ xorigin = x;
         {
         if (!place_meeting(x+sign(hsp),y,object_wall_platforms))
             {
-            x += hsp;
+            x += sign(hsp);
             }
         else
             {
@@ -102,9 +102,12 @@ xorigin = x;
             {
             mask_index = my_sprite;
             image_index = my_img_index;
-            if place_meeting(x,y-1,object_player){
-                object_player.hsp_carry = hsp;
+            if place_meeting(xprevious,y-1,object_player){
+                object_player.hsp_carry = (x-xprevious)+(sign(hsp)*global.frict/2);
                 }
+            /*else{
+                object_player.hsp_carry = 0;
+                }*/
             }
         }
         

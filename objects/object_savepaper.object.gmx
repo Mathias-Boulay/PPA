@@ -134,10 +134,10 @@ if STATUS = "RENAME"{alarm_set(1,45);}
 global.sub_left = "";
 if STATUS = "SELECTED"{
     if !instance_exists(object_back_save){
-        instance_create(x+21,y+10,object_play_save);
+        instance_create(x+69,y+10,object_play_save);
         instance_create(x+69,y+30,object_copy_save);
-        instance_create(x+11,y+50,object_delete_save);
-        instance_create(x+69,y+70,object_back_save);
+        instance_create(x+69,y+50,object_delete_save);
+        instance_create(x+69,y+72,object_back_save);
         global.sub_left = instance_create(x+92,y+16,object_leftbutton_main_menu);
         global.sub_left.image_xscale = -1;
         }
@@ -213,11 +213,11 @@ if top != "PASTE"{
             //Draw body
             draw_set_font(global.font_short);
             draw_set_halign(fa_left);
-            draw_text(x+6,y+34,"Last played: "+ LastTime);
-            draw_text(x+5,y+48,"Total play time: "+string(PlayTime)+"H");
-            draw_text(x+6,y+62,"State: "+LastLevel);
-            draw_text(x+6,y+76,"Rionys: "+string(Rionys));
-            draw_text(x+6,y+90,"Foes Killed: "+string(FoesKilled));
+            draw_text(x+6,y+34,object_white_book.texts[42]+ LastTime);
+            draw_text(x+5,y+48,object_white_book.texts[43]+string(PlayTime)+"H");
+            draw_text(x+6,y+62,object_white_book.texts[44]+LastLevel);
+            draw_text(x+6,y+76,object_white_book.texts[45]+string(Rionys));
+            draw_text(x+6,y+90,object_white_book.texts[46]+string(FoesKilled));
             }
         }
     else{

@@ -108,7 +108,6 @@
       <sprite>sprites\sprite_background_title</sprite>
       <sprites name="options main">
         <sprite>sprites\sprite_shai_artwork</sprite>
-        <sprite>sprites\sprite_options_title</sprite>
         <sprite>sprites\sprite_langue_option</sprite>
         <sprite>sprites\sprite_contr_lles</sprite>
         <sprite>sprites\sprite_select_main</sprite>
@@ -128,7 +127,6 @@
         <sprite>sprites\sprite_english_flag</sprite>
         <sprite>sprites\sprite_drapeau_francais</sprite>
         <sprite>sprites\sprite_franglais_flag</sprite>
-        <sprite>sprites\sprite_langue_title</sprite>
         <sprite>sprites\sprite_cadre</sprite>
         <sprite>sprites\sprite_franglish</sprite>
         <sprite>sprites\sprite_english</sprite>
@@ -267,6 +265,7 @@
       <sprite>sprites\sprite_font_shop</sprite>
       <sprite>sprites\sprite_font_normal</sprite>
       <sprite>sprites\sprite_font_short</sprite>
+      <sprite>sprites\sprite_font_big_title</sprite>
     </sprites>
     <sprite>sprites\sprite_level_builder</sprite>
     <sprite>sprites\sprite_level_drawer</sprite>

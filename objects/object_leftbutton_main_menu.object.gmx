@@ -522,12 +522,12 @@ else{
                                             else{
                                                 object_white_book.page = 0;
                                                 script_fade_status("SELECT_LEVEL");
-                                                instance_destroy(object_savepaper);
+                                                /*instance_destroy(object_savepaper);
                                                 instance_destroy(object_back_save);
                                                 instance_destroy(object_delete_save);
                                                 instance_destroy(object_copy_save);
                                                 instance_destroy(object_play_save);
-                                                instance_destroy();
+                                                instance_destroy();*/
                                                 }
                                             }
                                         }

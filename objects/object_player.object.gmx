@@ -72,7 +72,7 @@ instance_create(x,y,object_hud);
 instance_create(x,y,object_camera);
 
 for(i=0;i&lt;array_length_1d(object_hud.numberofitems);i++){
-    places_left -= 1;
+    places_left = places_left-1;
     }
 
 ini_close();
@@ -355,7 +355,13 @@ if !instance_exists(object_pause){
         }
     if STATUS = "crawling"{
         hsp = clamp(hsp, -1,1);
-        }
+        }else{
+            if STATUS = "divejumping"{
+                if sign(hsp) != sign(image_xscale){
+                    hsp = 0;
+                    }
+                }
+            }
     /*if abs(hsp) &lt; 0.60 &amp;&amp; abs(move) != 0{
         hsp = 0.60*sign(hsp);
         }*/ 
@@ -410,9 +416,15 @@ if !instance_exists(object_pause){
             }
         //Ajout de friction si l'on possède de la propulsion depuis un mur:
         if abs(walljumppower) &lt; (global.frict/2){walljumppower = 0;}else{if walljumppower &gt; 0{walljumppower -= global.frict;}else{walljumppower += global.frict;}}
+        //Pareil mais pour hsp carry
+        if abs(hsp_carry) &lt; (global.frict/2){hsp_carry = 0;}else{if hsp_carry &gt; 0{hsp_carry -= global.frict/2;}else{hsp_carry += global.frict/2;}}
         
         //Et voici la gravité !
+        //Vsp
         if vsp &lt; 9{vsp+=global.grav}
+        //vsp_carry:
+        //vsp_carry = max(0,vsp_carry
+        
         
         //Réagir lorsque un obstacle vous inflige des dommages:
         if !invincible{
@@ -550,8 +562,8 @@ if !instance_exists(object_pause){
                                             //Effectuer une attaque dive depuis le mur de gauche:
                                             vsp = -global.jumpspeed;
                                             walljumppower = 4;
+                                            x=x+2;
                                             STATUS = "divejumping";
-                                            x+=2;
                                             image_speed = 0.12;
                                             image_xscale = sign(walljumppower);
                                             }
@@ -560,8 +572,8 @@ if !instance_exists(object_pause){
                                                 //Effectuer une attaque dive depuis le mur de droite
                                                 vsp = -global.jumpspeed;
                                                 walljumppower = -4;
+                                                x = x-2;
                                                 STATUS = "divejumping";
-                                                x-=2;
                                                 image_speed = 0.12;
                                                 image_xscale = sign(walljumppower);
                                                 }
@@ -625,6 +637,26 @@ if !instance_exists(object_pause){
             
             
         //Ok maintenant vous devez éviter de passer entre les murs.
+        //Surcouche plateforme horizontale:if (!place_meeting(x,y+(vsp+vsp_carry),object_wall)){
+        if (!place_meeting(x+hsp_carry,y,object_wall)){
+            if (!place_meeting(x+sign(hsp_carry),y,object_wall)){
+                x += hsp_carry;
+                }
+            else{ //...
+                hsp_carry=0;
+                }
+            }
+        else{
+            if (!place_meeting(x+sign(hsp_carry),y,object_wall)){
+                x += sign(hsp_carry);
+                }
+            else{
+                hsp_carry = 0;
+                }
+            }
+            
+        
+        
         //Collision verticale: L'utilisation d'un statement "while" peut conduire à un crash.
         if (!place_meeting(x,y+(vsp+vsp_carry),object_wall)){
             if (!place_meeting(x,y+sign(vsp+vsp_carry),object_wall)){
@@ -646,51 +678,50 @@ if !instance_exists(object_pause){
             }
             
         //Collision horizontale: Doit intégrer le support des pentes même si j'ai pas l'impression que cela va être utilisé.
-        if (!place_meeting(x+(hsp+walljumppower+hsp_carry),y,object_wall)){
-            if (!place_meeting(x+sign(hsp+walljumppower+hsp_carry),y,object_wall)){
-                x += (hsp+walljumppower+hsp_carry);
+        if (!place_meeting(x+(hsp+walljumppower),y,object_wall)){
+            if (!place_meeting(x+sign(hsp+walljumppower),y,object_wall)){
+                x += (hsp+walljumppower);
                 }
             else{
                 hsp = 0;
                 walljumppower =0;
-                hsp_carry = 0;
                 }
             }
         else{
             if place_meeting(x,y+1,object_wall){
                 yrealplus = 3;
-                while(place_meeting(x+(hsp+walljumppower+hsp_carry),y-yrealplus,object_wall) &amp;&amp; yrealplus &lt; 10){
+                while(place_meeting(x+(hsp+walljumppower),y-yrealplus,object_wall) &amp;&amp; yrealplus &lt; 10){
                     yrealplus += 1;
                     }
-                if (place_meeting(x+(hsp+walljumppower+hsp_carry),y-yplus,object_wall)){
-                    if (!place_meeting(x+sign(hsp+walljumppower+hsp_carry),y-yplus,object_wall)){
-                        x += sign(hsp+walljumppower+hsp_carry);
+                if (place_meeting(x+(hsp+walljumppower),y-yplus,object_wall)){
+                    if (!place_meeting(x+sign(hsp+walljumppower),y-yplus,object_wall)){
+                        x += sign(hsp+walljumppower);
                         }
                     else{
                         hsp = 0;
                         walljumppower = 0;
-                        hsp_carry = 0;
                         }
                     }
                 else{
-                    x += (hsp+walljumppower+hsp_carry);
+                    x += (hsp+walljumppower);
                     y -= yrealplus;
                     }
                 }
             else{
-                if (!place_meeting(x+sign(hsp+walljumppower+hsp_carry),y,object_wall)){
-                    x += sign(hsp+walljumppower+hsp_carry);
+                if (!place_meeting(x+sign(hsp+walljumppower),y,object_wall)){
+                    x += sign(hsp+walljumppower);
                     }
                 else{
                     hsp = 0;
                     walljumppower =0;
-                    hsp_carry = 0;
                     }
                 }
             }
             
     //Correctif du système de collision en bois:
-    if place_meeting(x,y,object_wall){if next_right = true &amp;&amp; next_left != true{x -=2;}else{if next_right != true &amp;&amp; next_left = true{x +=2;}}}
+    if STATUS != "divejumping"{
+        if place_meeting(x,y,object_wall){if next_right = true &amp;&amp; next_left != true{x -=2;}else{if next_right != true &amp;&amp; next_left = true{x +=2;}}}
+        }
         
         
     
@@ -746,9 +777,11 @@ if !instance_exists(object_pause){
                                                                 if place_meeting(x,y+1,object_wall){ //Si Shai a un pied sur terre
                                                                     if hsp = 0{ //Si l'on est immobile 
                                                                         if looking &lt; -0.90{
-                                                                            STATUS = "lookup";
-                                                                            image_speed = 0.070;
-                                                                            waiting = 0;
+                                                                            if (STATUS != "crawling" &amp;&amp; STATUS != "crawlidle"){
+                                                                                STATUS = "lookup";
+                                                                                image_speed = 0.070;
+                                                                                waiting = 0;
+                                                                                }
                                                                             }
                                                                         else{
                                                                             if STATUS = "lookup"{
@@ -1456,31 +1489,6 @@ else{
 //show_debug_message("STATUS= "+string(STATUS));
 //show_debug_message("sprite_index= "+string(sprite_index));
 
-
-/*if array_height_2d(global.backgrounds_sprites)-1 &gt;= 0{
-    draw_background_ext(background_index[0],ceil(background_x[0]),ceil(background_y[0]),1,1,0,c_white,1);
-    }
-if array_height_2d(global.backgrounds_sprites)-1 &gt;= 1{    
-    draw_background_ext(background_index[1],ceil(background_x[1]),ceil(background_y[1]),1,1,0,c_white,1);
-    }
-if array_height_2d(global.backgrounds_sprites)-1 &gt;= 2{
-    draw_background_ext(background_index[2],ceil(background_x[2]),ceil(background_y[2]),1,1,0,c_white,1);
-    }
-if array_height_2d(global.backgrounds_sprites)-1 &gt;= 3{
-    draw_background_ext(background_index[3],ceil(background_x[3]),ceil(background_y[3]),1,1,0,c_white,1);
-    }
-if array_height_2d(global.backgrounds_sprites)-1 &gt;= 4{
-    draw_background_ext(background_index[4],ceil(background_x[4]),ceil(background_y[4]),1,1,0,c_white,1);
-    }
-if array_height_2d(global.backgrounds_sprites)-1 &gt;= 5{
-    draw_background_ext(background_index[5],ceil(background_x[5]),ceil(background_y[5]),1,1,0,c_white,1);
-    }
-if array_height_2d(global.backgrounds_sprites)-1 &gt;= 6{
-    draw_background_ext(background_index[6],ceil(background_x[6]),ceil(background_y[6]),1,1,0,c_white,1);
-    }
-if array_height_2d(global.backgrounds_sprites)-1 &gt;= 7{
-    draw_background_ext(background_index[7],ceil(background_x[7]),ceil(background_y[7]),1,1,0,c_white,1);
-    }*/
     
 draw_sprite_ext(sprite_index,image_index,ceil(x),ceil(y),image_xscale,image_yscale,image_angle,c_white,1);
 </string>
