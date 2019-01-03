@@ -1,0 +1,56 @@
+-41754553331250303
+
+Notes pour les paths compatibles entre eux:
+
+//path_0: path_1 ; path_3 ; path_2_bis
+
+//path_1: path_0 ; path_2 ; path_3_bis ; path_1_bis
+
+//path_2: path_1 ; path_3 ; path_0_bis ; 
+
+//path_3: path_0 ; path_2 ; path_1_bis ; path_3_bis
+
+
+//path_0_bis: path_1_bis ; path_3_bis ; path_2
+
+//path_1_bis: path_0_bis ; path_2_bis ; path_3 ; path_1
+
+//path_2_bis: path_1_bis ; path_3_bis ; path_0 
+
+//path_3_bis: path_0_bis ; path_2_bis ; path_1 ; path_3
+
+
+Finaliser les transitions entre les feuiles ( vitesse minimale ?) DONE !
+
+//Définition d'une direction et des variables:
+path_part[0] = irandom(3);
+path_part[1] = choose("","_bis");
+//On démarre !
+path_start(asset_get_index("path_leaves_"+string(path_part[0])+path_part[1]),0,path_action_stop,false);
+
+
+Implémenter les fondus au noirs dans les menus DONE ! It was some kind of easy...
+ ->Menus pour voir les contrôles manettes à implémenter. DONE !
+ ->Menus en fonction de la langue MANQUE UNE FONT PLUS DES CARACTERES SUP POUR LA TITLE
+
+ BUG !:PASSER LES COLLISION LINE EN PLACE_MEETING|| IT DONE !
+ 
+ Corriger la suppression de sauvegarde un peu trop véloce. CE FUT FAIT !
+ 
+ 
+ Travailler sur la propulsion verticale pour Shai en faisant une plateforme verticale sa maman la texture.
+  ->Menu de save qui possède une disparition d'item trop véloce ! HEY TOUT DISPARAIT TRANQUILLEMENT MAINTENANT !
+  ->Inclus les menus lorsque l'on joue ! (à internationaliser) || Manque certains trucs qui sont à l'état de textures comme les mots dans le menu de langue.
+  
+  Shai possède un problème de déplacement/reset de sprite sur la jumpfrom crawl || Faut que je verrouille cette animation
+ Passer sur la nouvelle animation de coup de tête de Shai CECI EST FAIT BIEN QUE SANS IMPACT DIRECT
+ L'on doit internationaliser les descriptions d'items.
+ 
+Configuer une hitbox fixe malgré le xscale NE FONCTIONNE PAS COMME VOULU DONC AVORTÉ
+Mettre en place 2-3 hitboxs pour Shai.
+
+
+
+
+Commencer à créer une interface graphique en secret pour faire les niveaux plus vites que les autres ?
+
