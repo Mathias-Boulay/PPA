@@ -29,12 +29,9 @@
 my_sprite="";
 my_img_index="100";
 movespeed = 0;
-distance = -10;
-distance_temp =-10;
 dir = 1;
 hsp = 0;
 image_speed=0;
-xorigin = x;
 </string>
           </argument>
         </arguments>
@@ -136,7 +133,7 @@ xorigin = x;
             <kind>1</kind>
             <string>if my_img_index != 100{
     draw_sprite(my_sprite,my_img_index,x,y);
-    draw_text(x,y,"mask_index= "+string(mask_index));
+    /*draw_text(x,y,"mask_index= "+string(mask_index));
     draw_text(x,y+15,"my_sprite= "+string(my_sprite));
     draw_text(x,y+30,"my_img_index= "+string(my_img_index));
     draw_text(x,y+45,"distance= "+string(distance));
@@ -144,7 +141,7 @@ xorigin = x;
     draw_text(x,y+75,"dir= "+string(dir));
     draw_text(x,y+90,"hsp= "+string(hsp));
     draw_text(x,y+105,"image_index= "+string(image_index));
-    
+    */
     }
 </string>
           </argument>

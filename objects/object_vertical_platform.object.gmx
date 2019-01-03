@@ -29,8 +29,6 @@
 my_sprite="";
 my_img_index="100";
 movespeed = 0;
-distance = -10;
-distance_temp =-10;
 dir = 1;
 hsp = 0;
 image_speed=0;
@@ -68,7 +66,7 @@ image_speed=0;
         {
         if (!place_meeting(x,y+sign(vsp),object_wall_platforms))
             {
-            y += sign(vsp);
+            y += vsp;
             }
         else
             {
@@ -79,7 +77,7 @@ image_speed=0;
         {
         if (!place_meeting(x,y+sign(vsp),object_wall_platforms))
             {
-            y += vsp;
+            y += sign(vsp);
             }
         else
             {
@@ -102,9 +100,9 @@ image_speed=0;
             mask_index = my_sprite;
             image_index = my_img_index;
             if place_meeting(x,yprevious-1,object_player){
-                object_player.vsp_carry = vsp;
-                vsp = 0;
-                //object_player.y = y-(sprite_height/2)-1;
+                object_player.vsp_carry = y-yprevious;
+                object_player.vsp = 0;
+                object_player.y = yprevious-ceil(object_player.sprite_height/2)-1;
                 }
             }
         }
@@ -137,12 +135,10 @@ image_speed=0;
     draw_text(x,y,"mask_index= "+string(mask_index));
     draw_text(x,y+15,"my_sprite= "+string(my_sprite));
     draw_text(x,y+30,"my_img_index= "+string(my_img_index));
-    draw_text(x,y+45,"distance= "+string(distance));
-    draw_text(x,y+60,"distance_temp= "+string(distance_temp));
-    draw_text(x,y+75,"dir= "+string(dir));
-    draw_text(x,y+90,"hsp= "+string(hsp));
-    draw_text(x,y+105,"image_index= "+string(image_index));
-    
+    draw_text(x,y+45,"dir= "+string(dir));
+    draw_text(x,y+60,"hsp= "+string(hsp));
+    draw_text(x,y+75,"image_index= "+string(image_index));
+    draw_text(x,y+90,"y= "+string(y));
     }
 </string>
           </argument>

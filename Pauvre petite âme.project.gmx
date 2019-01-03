@@ -270,6 +270,7 @@
     <sprite>sprites\sprite_level_builder</sprite>
     <sprite>sprites\sprite_level_drawer</sprite>
     <sprite>sprites\sprite_wall_platforms</sprite>
+    <sprite>sprites\sprite196</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background_title</background>

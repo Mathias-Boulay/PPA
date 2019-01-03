@@ -637,7 +637,25 @@ if !instance_exists(object_pause){
             
             
         //Ok maintenant vous devez éviter de passer entre les murs.
-        //Surcouche plateforme horizontale:if (!place_meeting(x,y+(vsp+vsp_carry),object_wall)){
+        //Surcouche plateforme verticale:
+        if (!place_meeting(x,y+vsp_carry,object_wall)){
+            if (!place_meeting(x,y+sign(vsp_carry),object_wall)){
+                y += vsp_carry;
+                }
+            else{ //...
+                vsp_carry=0;
+                }
+            }
+        else{
+            if (!place_meeting(x,y+sign(vsp_carry),object_wall)){
+                y += sign(vsp_carry);
+                }
+            else{
+                vsp_carry = 0;
+                }
+            }
+        
+        //Surcouche plateforme horizontale:
         if (!place_meeting(x+hsp_carry,y,object_wall)){
             if (!place_meeting(x+sign(hsp_carry),y,object_wall)){
                 x += hsp_carry;
@@ -658,22 +676,20 @@ if !instance_exists(object_pause){
         
         
         //Collision verticale: L'utilisation d'un statement "while" peut conduire à un crash.
-        if (!place_meeting(x,y+(vsp+vsp_carry),object_wall)){
-            if (!place_meeting(x,y+sign(vsp+vsp_carry),object_wall)){
-                y += vsp+vsp_carry;
+        if (!place_meeting(x,y+(vsp),object_wall)){
+            if (!place_meeting(x,y+sign(vsp),object_wall)){
+                y += vsp;
                 }
             else{
                 vsp = 0;
-                vsp_carry=0;
                 }
             }
         else{
-            while (!place_meeting(x,y+sign(vsp+vsp_carry),object_wall)){
-                y += sign(vsp+vsp_carry);
+            while (!place_meeting(x,y+sign(vsp),object_wall)){
+                y += sign(vsp);
                 }
-            if place_meeting(x,y+sign(vsp+vsp_carry),object_wall){
+            if place_meeting(x,y+sign(vsp),object_wall){
                 vsp = 0;
-                vsp_carry=0;
                 }
             }
             
@@ -777,11 +793,9 @@ if !instance_exists(object_pause){
                                                                 if place_meeting(x,y+1,object_wall){ //Si Shai a un pied sur terre
                                                                     if hsp = 0{ //Si l'on est immobile 
                                                                         if looking &lt; -0.90{
-                                                                            if (STATUS != "crawling" &amp;&amp; STATUS != "crawlidle"){
-                                                                                STATUS = "lookup";
-                                                                                image_speed = 0.070;
-                                                                                waiting = 0;
-                                                                                }
+                                                                           STATUS = "lookup";
+                                                                            image_speed = 0.070;
+                                                                            waiting = 0;
                                                                             }
                                                                         else{
                                                                             if STATUS = "lookup"{
@@ -1448,6 +1462,15 @@ else{
                                                                 }
                                                             }
                                                         temp_jump = 0;
+                                                        }
+                                                    else{
+                                                        if STATUS ="precrawl"{
+                                                            if looking &lt;= 0.70{
+                                                                STATUS ="jumpfromcrawl";
+                                                                image_index = 0;
+                                                                image_speed = 0.5;
+                                                                }
+                                                            }
                                                         }
                                                     }
                                                 }
