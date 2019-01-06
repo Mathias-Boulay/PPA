@@ -25,14 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/*var temp;
-temp = 0;
-repeat (8)
-    {
-    numberofitems[temp] = ini_read_real("Data",string(instance_number(object_hud))+"-item["+string(temp)+"]",0);
-    temp +=1;
-    }*/
-for(i=1;i&gt;-10;i++){
+            <string>for(i=1;i&gt;-10;i++){
     if object_exists(asset_get_index("object_item_"+string(i))){
         numberofitems[i] = ini_read_real("Data",string(instance_number(object_hud))+"-item["+string(i)+"]",0);
         }
@@ -48,22 +41,11 @@ for(i=1;i&gt;-10;i++){
     }
 
 
-    
-selected_item = 0;
+
 active_item = 0;
 font_hud = font_add_sprite_ext(sprite_font,'0123456789"/',true,1);
 
 //draw_set_font(font_hud);
-/*var temp2;
-temp2 = 1;
-repeat(array_length_1d(numberofitems)-1)
-    {
-    if numberofitems[temp2] &gt; 0
-        {
-        selected_item = temp2;
-        }
-    temp2 += 1;
-    }*/
 alarm_set(0,60);
 </string>
           </argument>
@@ -191,6 +173,7 @@ if gamepad_button_check_pressed(0,gp_face4){
             <string>//Setting up the good font
 draw_set_font(font_hud);
 draw_set_halign(fa_left);
+draw_set_valign(fa_bottom);
 //Actualise position of the hud
 x = ceil(view_xview[0] + ((sprite_width/2) + 5));
 y = ceil(view_yview[0] + ((sprite_height/2)+ 5));

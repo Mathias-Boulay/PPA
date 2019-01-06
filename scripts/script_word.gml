@@ -1,5 +1,6 @@
 var search = argument0;
-
+//Par précaution mais peut mener à des erreur peu detectables.
+ini_close();
 
 ini_open("language.ini");
 
