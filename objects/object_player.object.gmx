@@ -71,9 +71,7 @@ heart_1.state = ini_read_string("Data",string(ID+1)+"-heart_2","basic");
 instance_create(x,y,object_hud);
 instance_create(x,y,object_camera);
 
-for(i=0;i&lt;array_length_1d(object_hud.numberofitems);i++){
-    places_left = places_left-1;
-    }
+
 
 ini_close();
 ini_open(global.selected_level);
@@ -1042,42 +1040,9 @@ if !instance_exists(object_pause){
                                         }
                                     }
                                 }
-                           /* else{
-                                //Replacer Shai
-                                if image_index &gt;= 7 &amp;&amp; image_index &lt; 7.2{
-                                    if !place_meeting(x+image_xscale,y,object_wall){
-                                        x++;
-                                        }
-                                    }
-                                else{
-                                    if image_index &gt;= 8 &amp;&amp; image_index &lt; 8.2{
-                                        if !place_meeting(x+image_xscale,y,object_wall){
-                                            x++;
-                                            }
-                                        }
-                                    else{
-                                        if image_index &gt;= 9 &amp;&amp; image_index &lt; 9.2{
-                                            if !place_meeting(x+image_xscale,y,object_wall){
-                                                x++;
-                                                }
-                                            }
-                                        else{
-                                            if image_index &gt;= 10 &amp;&amp; image_index &lt; 10.2{
-                                                if !place_meeting(x+image_xscale,y,object_wall){
-                                                    x++;
-                                                    }
-                                                }
-                                            else{
-                                                if image_index &gt;= 11 &amp;&amp; image_index &lt; 11.2{
-                                                    if !place_meeting(x+image_xscale,y,object_wall){
-                                                        x++;
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }   
-                                }*/
+                            else{
+                                //Section qui vise à replacer Shai en fonction de son image index dans l'attaque headshot.   
+                                }
                             }
                         else{
                             //Gérer les étapes de la roulade:
@@ -1385,7 +1350,12 @@ else{
                     }
                 else{
                     if STATUS = "precrawl"{
-                        STATUS = "crawlidle";
+                        if looking &gt; 0.7{
+                            STATUS = "crawlidle";
+                            }
+                        else{
+                            STATUS = "jumpfromcrawl";
+                            }
                         }
                     else{
                         if STATUS = "jumpfromdive"{
@@ -1462,15 +1432,6 @@ else{
                                                                 }
                                                             }
                                                         temp_jump = 0;
-                                                        }
-                                                    else{
-                                                        if STATUS ="precrawl"{
-                                                            if looking &lt;= 0.70{
-                                                                STATUS ="jumpfromcrawl";
-                                                                image_index = 0;
-                                                                image_speed = 0.5;
-                                                                }
-                                                            }
                                                         }
                                                     }
                                                 }

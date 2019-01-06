@@ -25,21 +25,16 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>repeat(2)
-    {
-    if place_meeting(x,y,object_item_1)
-        {
+            <string>repeat(2){
+    if place_meeting(x,y,object_item_1){
         x += 38;
         }
     }
-if place_meeting(x,y,object_item_1)
-    {
+if place_meeting(x,y,object_item_1){
     y += 39;
     }
-repeat(2)
-    {
-    if place_meeting(x,y,object_item_1)
-        {
+repeat(2){
+    if place_meeting(x,y,object_item_1){
         x -= 38;
         }
     }

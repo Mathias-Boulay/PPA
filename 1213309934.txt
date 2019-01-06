@@ -38,7 +38,7 @@ Implémenter les fondus au noirs dans les menus DONE ! It was some kind of easy.
  Corriger la suppression de sauvegarde un peu trop véloce. CE FUT FAIT !
  
  
- Travailler sur la propulsion verticale pour Shai en faisant une plateforme verticale sa maman la texture.
+ Travailler sur la propulsion verticale pour Shai en faisant une plateforme verticale sa maman la texture. --> FOIRAGE COMPLET !
   ->Menu de save qui possède une disparition d'item trop véloce ! HEY TOUT DISPARAIT TRANQUILLEMENT MAINTENANT !
   ->Inclus les menus lorsque l'on joue ! (à internationaliser) || Manque certains trucs qui sont à l'état de textures comme les mots dans le menu de langue.
   

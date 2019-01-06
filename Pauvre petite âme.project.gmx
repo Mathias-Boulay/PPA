@@ -324,17 +324,14 @@
     <object>objects\object10</object>
     <object>objects\object_riony</object>
     <object>objects\object_pushable</object>
-    <object>objects\object_infos</object>
     <object>objects\object_uncontrol_platform</object>
-    <object>objects\object_seller</object>
-    <object>objects\object_fond_shop</object>
-    <object>objects\object_case</object>
     <object>objects\object_heart</object>
     <object>objects\object_hit</object>
     <object>objects\object_wall_platforms</object>
     <object>objects\object_leaves</object>
     <objects name="Menus">
       <objects name="Pause_menu">
+        <object>objects\object_infos</object>
         <object>objects\object_pause</object>
         <object>objects\object_resume</object>
         <object>objects\object_pockets</object>
@@ -400,6 +397,11 @@
         <object>objects\object_modifier</object>
         <object>objects\object_vibrations</object>
         <object>objects\object_try</object>
+      </objects>
+      <objects name="shops">
+        <object>objects\object_fond_shop</object>
+        <object>objects\object_seller</object>
+        <object>objects\object_case</object>
       </objects>
     </objects>
     <objects name="Construction Stuff">

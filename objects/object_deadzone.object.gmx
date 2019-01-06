@@ -78,8 +78,8 @@ if !file_exists(working_directory + "\settings\settings.ini"){
 //Load the settings:
 script_settings_load();
 
-//Then let the game live !
 instance_create(23,4,object_white_book);
+
     
 
 </string>
@@ -128,9 +128,16 @@ if object_white_book.STATUS = "TITLE"{window_center();}
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Screenshots event:
+            <string>///Screenshots event + book check:
 if keyboard_check_pressed(vk_f2){
     screen_save(working_directory + "\screenshots\screenshot-"+string(current_day)+"_"+string(current_month)+"_"+string(current_year)+"-"+string(current_hour)+"_"+string(current_minute)+"_"+string(current_second)+".png");
+    }
+    
+//Then let the game live !
+if room = room_title{
+    if !instance_exists(object_white_book){
+        instance_create(23,4,object_white_book);
+        }
     }
 </string>
           </argument>

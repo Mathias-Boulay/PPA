@@ -25,12 +25,26 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var temp;
+            <string>/*var temp;
 temp = 0;
 repeat (8)
     {
     numberofitems[temp] = ini_read_real("Data",string(instance_number(object_hud))+"-item["+string(temp)+"]",0);
     temp +=1;
+    }*/
+for(i=1;i&gt;-10;i++){
+    if object_exists(asset_get_index("object_item_"+string(i))){
+        numberofitems[i] = ini_read_real("Data",string(instance_number(object_hud))+"-item["+string(i)+"]",0);
+        }
+    else{
+        i = -100;
+        for(j=1;j&lt;array_length_1d(numberofitems);j++){
+            if numberofitems[j] &gt; 0{
+                selected_item = j;
+                j = 100;
+                }
+            }
+        }
     }
 
 
@@ -40,7 +54,7 @@ active_item = 0;
 font_hud = font_add_sprite_ext(sprite_font,'0123456789"/',true,1);
 
 //draw_set_font(font_hud);
-var temp2;
+/*var temp2;
 temp2 = 1;
 repeat(array_length_1d(numberofitems)-1)
     {
@@ -49,7 +63,7 @@ repeat(array_length_1d(numberofitems)-1)
         selected_item = temp2;
         }
     temp2 += 1;
-    }
+    }*/
 alarm_set(0,60);
 </string>
           </argument>
@@ -100,47 +114,33 @@ alarm_set(0,60);
             <kind>1</kind>
             <string>//Changing item section... I know it looks like unoptimized
 //Just checking if the game is paused:
-if !instance_exists(object_pause)
-    {
-
+if !instance_exists(object_pause){
 //Right shoulder
-if active_item = 0
-    {
-    if gamepad_button_check_pressed(0,gp_shoulderr)
-        {
+if active_item = 0{
+    if gamepad_button_check_pressed(0,gp_shoulderr){
         selected_item += 1;
-        if selected_item &gt; (array_length_1d(numberofitems)-1)
-            {
+        if selected_item &gt; (array_length_1d(numberofitems)-1){
             selected_item = 1;
             }
-        repeat (array_length_1d(numberofitems)-1) 
-            {
-            if numberofitems[selected_item] = 0
-                {
+        repeat (array_length_1d(numberofitems)-1) {
+            if numberofitems[selected_item] = 0{
                 selected_item += 1;
-                if selected_item &gt; (array_length_1d(numberofitems)-1)
-                    {
+                if selected_item &gt; (array_length_1d(numberofitems)-1){
                     selected_item = 1;
                     }
                 }
             }
         }
-    else
-        {
-        if gamepad_button_check_pressed(0,gp_shoulderl)
-            {
+    else{
+        if gamepad_button_check_pressed(0,gp_shoulderl){
             selected_item-=1;
-            if selected_item &lt; 1
-                {
+            if selected_item &lt; 1{
                 selected_item = 7;
                 }
-            repeat (array_length_1d(numberofitems)) 
-                    {
-            if numberofitems[selected_item] = 0
-                    {
+            repeat (array_length_1d(numberofitems)) {
+                if numberofitems[selected_item] = 0{
                     selected_item -= 1;
-                    if selected_item &lt; 1
-                        {
+                    if selected_item &lt; 1{
                         selected_item = array_length_1d(numberofitems)-1;
                         }
                     }
@@ -156,10 +156,8 @@ if active_item = 0{
         }
     }
 
-if gamepad_button_check_pressed(0,gp_face4)
-    {
-    if numberofitems[selected_item] != 0 &amp;&amp; active_item = 0
-        {
+if gamepad_button_check_pressed(0,gp_face4){
+    if numberofitems[selected_item] != 0 &amp;&amp; active_item = 0{
         active_item = selected_item;
         numberofitems[selected_item] -= 1;
         }
