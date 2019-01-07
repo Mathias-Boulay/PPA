@@ -27,14 +27,8 @@
             <kind>1</kind>
             <string>my_seller=instance_nearest(x, y, object_seller);
 font_shop = font_add_sprite_ext(sprite_font_shop,"0123456789",true,2);
-desc_item[0] = "Je n'existe pas !";
-desc_item[1] = "Je suis l'objet un";
-desc_item[2] = "Je suis l'objet deux";
-desc_item[3] = "Je suis l'objet trois";
-desc_item[4] = "Je suis l'objet quatre";
-desc_item[5] = "Je suis l'objet cinq";
-desc_item[6] = "Je suis l'objet six";
-desc_item[7] = "Je suis l'objet sept";
+desc_item = script_word_light(10051,10051+array_length_1d(object_hud.numberofitems)-2);
+
 </string>
           </argument>
         </arguments>
@@ -83,15 +77,17 @@ font_delete(font_shop);
             <kind>1</kind>
             <string>draw_self();
 draw_set_font(font_shop);
+draw_set_valign(fa_top);
 draw_set_halign(fa_left);
 draw_text(object_fond_shop.x+147,object_fond_shop.y-105,string(my_seller.case1price))
 draw_text(object_fond_shop.x+147,object_fond_shop.y-62,string(my_seller.case2price))
 draw_text(object_fond_shop.x+147,object_fond_shop.y-16,string(my_seller.case3price))
 draw_set_font(global.font_normal);
 draw_set_halign(fa_center);
-draw_text(x,y-116,desc_item[my_seller.case1]);
-draw_text(x,y-74,desc_item[my_seller.case2]);
-draw_text(x,y-30,desc_item[my_seller.case3]);
+draw_set_valign(fa_middle);
+draw_text(x,y-116,desc_item[my_seller.case1-1]);
+draw_text(x,y-74,desc_item[my_seller.case2-1]);
+draw_text(x,y-30,desc_item[my_seller.case3-1]);
 </string>
           </argument>
         </arguments>

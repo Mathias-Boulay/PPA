@@ -37,6 +37,11 @@
                 j = 100;
                 }
             }
+        for(j=1;j&lt;array_length_1d(numberofitems);j++){
+            if numberofitems[j] &gt; 0{
+                object_player.places_left -= numberofitems[j];
+                }
+            }
         }
     }
 

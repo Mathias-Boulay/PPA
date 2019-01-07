@@ -248,7 +248,7 @@ for(i=1;i&lt;=Number;i++){
           <argument>
             <kind>1</kind>
             <string>///Animation pour le background 7:
-actual_background[7] += 7;
+actual_background[7] += 1;
 if array_length_2d(global.backgrounds_sprites,7)-1 &lt; actual_background[7]{
     actual_background[7] = 0;
     }
@@ -278,7 +278,7 @@ alarm_set(7,global.backgrounds[7,2]);
           <argument>
             <kind>1</kind>
             <string>///Animation pour le background 6:
-actual_background[6] += 6;
+actual_background[6] += 1;
 if array_length_2d(global.backgrounds_sprites,6)-1 &lt; actual_background[6]{
     actual_background[6] = 0;
     }
@@ -308,7 +308,7 @@ alarm_set(6,global.backgrounds[6,2]);
           <argument>
             <kind>1</kind>
             <string>///Animation pour le background 5:
-actual_background[5] += 5;
+actual_background[5] += 1;
 if array_length_2d(global.backgrounds_sprites,5)-1 &lt; actual_background[5]{
     actual_background[5] = 0;
     }
@@ -338,7 +338,7 @@ alarm_set(5,global.backgrounds[5,2]);
           <argument>
             <kind>1</kind>
             <string>///Animation pour le background 4:
-actual_background[4] += 4;
+actual_background[4] += 1;
 if array_length_2d(global.backgrounds_sprites,4)-1 &lt; actual_background[4]{
     actual_background[4] = 0;
     }
@@ -368,7 +368,7 @@ alarm_set(4,global.backgrounds[4,2]);
           <argument>
             <kind>1</kind>
             <string>///Animation pour le background 3:
-actual_background[3] += 3;
+actual_background[3] += 1;
 if array_length_2d(global.backgrounds_sprites,3)-1 &lt; actual_background[3]{
     actual_background[3] = 0;
     }
@@ -398,7 +398,7 @@ alarm_set(3,global.backgrounds[3,2]);
           <argument>
             <kind>1</kind>
             <string>///Animation pour le background 2:
-actual_background[2] += 2;
+actual_background[2] += 1;
 if array_length_2d(global.backgrounds_sprites,2)-1 &lt; actual_background[2]{
     actual_background[2] = 0;
     }
