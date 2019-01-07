@@ -310,6 +310,7 @@
     <script>scripts\script_settings_load.gml</script>
     <script>scripts\script_fade_status.gml</script>
     <script>scripts\script_word.gml</script>
+    <script>scripts\script_word_light.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font_debug</font>

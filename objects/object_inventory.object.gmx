@@ -42,7 +42,11 @@ repeat(array_length_1d(object_hud.numberofitems)-1){
     temp += 1;
     }
 
+//On grab les descriptions des items:
+texts = script_word_light(10051,10051+(array_length_1d(object_hud.numberofitems)-2));
+    
 instance_create(x-88,y-48,object_select_item);
+
 </string>
           </argument>
         </arguments>

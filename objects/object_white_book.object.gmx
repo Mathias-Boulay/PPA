@@ -32,9 +32,12 @@ page = 0;
 //Cela risque d'être long si mal géré
 //En cas de fichier resté ouvert, on le ferme, en espérant ne pas faire de la merde avec le système de sauvegarde.
 ini_close();
+/*
 for(i=0;i&lt;=50;i++){
     texts[i] = script_word(i);
-    }
+    }*/
+texts = script_word_light(0,50)
+
 </string>
           </argument>
         </arguments>
@@ -343,7 +346,7 @@ else{
             draw_set_halign(fa_center);
             draw_set_valign(fa_bottom);
             draw_text(view_xview[0]+188,view_yview[0]+71,texts[48]);
-            draw_sprite(sprite_video_title_option,0,190+view_xview[0]+(string_width(texts[48])/2),27+view_yview[0]);
+            //draw_sprite(sprite_video_title_option,0,190+view_xview[0]+(string_width(texts[48])/2),27+view_yview[0]);
             draw_set_font(global.font_title);
             draw_set_valign(fa_top);
             draw_set_halign(fa_left);

@@ -34,9 +34,6 @@ Can_navigate = false;
 alarm_set(0,13);
 infos = 0;
 
-for(i=1;i&lt;=50;i++){
-    texts[i] = script_word(i+10050);
-    }
 </string>
           </argument>
         </arguments>
@@ -190,13 +187,15 @@ if infos = 1
                 draw_set_font(global.font_normal);
                 draw_set_valign(fa_middle);
                 draw_set_halign(fa_center);
-                draw_text(view_xview[0]+212,view_yview[0]+196,texts[i]);
+                draw_text(view_xview[0]+212,view_yview[0]+196,object_inventory.texts[i-1]);
                 
-                //Maintenant on affiche un truc modulaire
+                //Maintenant on affiche un truc modulaire --&gt; AVORTÉ
+                /*
                 //corner gauche haut
                 draw_sprite_ext(sprite_infos_corner,0,max(view_xview[0]+4,view_xview[0]+212-(string_width(texts[i])/2)),view_yview[0]+178,1,1,0,c_white,1);
-                //corner droute haut
+                //corner droite haut
                 draw_sprite_ext(sprite_infos_corner,0,min(view_xview[0]+view_wview[0]-4,view_xview[0]+212+(string_width(texts[i])/2)),view_yview[0]+178,1,1,90,c_white,1);
+                */
                 i= -10;
                 }
             }
