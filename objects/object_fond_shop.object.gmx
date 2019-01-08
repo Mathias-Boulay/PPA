@@ -77,7 +77,7 @@ font_delete(font_shop);
             <kind>1</kind>
             <string>draw_self();
 draw_set_font(font_shop);
-draw_set_valign(fa_top);
+draw_set_valign(fa_bottom);
 draw_set_halign(fa_left);
 draw_text(object_fond_shop.x+147,object_fond_shop.y-105,string(my_seller.case1price))
 draw_text(object_fond_shop.x+147,object_fond_shop.y-62,string(my_seller.case2price))
@@ -85,9 +85,9 @@ draw_text(object_fond_shop.x+147,object_fond_shop.y-16,string(my_seller.case3pri
 draw_set_font(global.font_normal);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
-draw_text(x,y-116,desc_item[my_seller.case1-1]);
-draw_text(x,y-74,desc_item[my_seller.case2-1]);
-draw_text(x,y-30,desc_item[my_seller.case3-1]);
+draw_text(x-6,y-114,desc_item[my_seller.case1-1]);
+draw_text(x-6,y-70,desc_item[my_seller.case2-1]);
+draw_text(x-6,y-26,desc_item[my_seller.case3-1]);
 </string>
           </argument>
         </arguments>

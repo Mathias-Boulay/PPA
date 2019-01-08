@@ -1179,7 +1179,11 @@ if sprite_index = sprite_lookup &amp;&amp; sprite_index &gt; 1
             {
             if instance_exists(object_fond_shop)
                 {
-                object_camera.y = object_fond_shop.y-120;
+                //object_camera.y = object_fond_shop.y-120;
+                //Let's create a smooth scroll instead:
+                if object_camera.y-object_player.y &lt; 59{
+                    object_camera.y += min(3,(y+59)-object_camera.y);
+                    }
                 }
             else
                 {

@@ -68,7 +68,7 @@ object_3 = 0;
         {
         if instance_number(object_case) = 0
             {
-            instance_create(view_xview[0]+(view_wview[0]/2),y+123,object_fond_shop);
+            instance_create(view_xview[0]+(view_wview[0]/2),y+148,object_fond_shop);
             instance_create(object_fond_shop.x-203,object_fond_shop.y-133,object_case);
             object_1 = instance_create(object_fond_shop.x-182,object_fond_shop.y-114,asset_get_index("object_item_" +string(case1)));
             object_2 = instance_create(object_fond_shop.x-182,object_fond_shop.y-70,asset_get_index("object_item_" +string(case2)));
