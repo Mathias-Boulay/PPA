@@ -1175,66 +1175,48 @@ object_camera.x = ceil(x);
 y = round(y);
 
 //Suivre la position y de Shai
-if sprite_index = sprite_lookup &amp;&amp; sprite_index &gt; 1
-            {
-            if instance_exists(object_fond_shop)
-                {
-                //object_camera.y = object_fond_shop.y-120;
+if sprite_index = sprite_lookup &amp;&amp; sprite_index &gt; 1{
+            if instance_exists(object_fond_shop){
                 //Let's create a smooth scroll instead:
                 if object_camera.y-object_player.y &lt; 59{
                     object_camera.y += min(3,(y+59)-object_camera.y);
                     }
                 }
-            else
-                {
-                if object_camera.y - y &gt; -50
-                    {
-                    if point_distance(object_camera.x,object_camera.y,object_camera.x,y-50) &gt;= 3
-                        {
+            else{
+                if object_camera.y - y &gt; -50{
+                    if point_distance(object_camera.x,object_camera.y,object_camera.x,y-50) &gt;= 3{
                         object_camera.y -= 3;
                         }
-                    else
-                        {
+                    else{
                         object_camera.y -= point_distance(object_camera.x,object_camera.y,object_camera.x,y-50);
                         }
                     }
-                else
-                    {
-                    if point_distance(object_camera.x,object_camera.y,object_camera.x,y-50) &gt;= 3
-                        {    
+                else{
+                    if point_distance(object_camera.x,object_camera.y,object_camera.x,y-50) &gt;= 3{    
                         object_camera.y += 3;
                         }
-                    else
-                        {
+                    else{
                         object_camera.y += point_distance(object_camera.x,object_camera.y,object_camera.x,y-50);
                         }
                     }
                 }
             }
-        else
-            {
-            if sprite_index = sprite_unlookup
-                {
-                if object_camera.y - y &lt; 0
-                    {
-                    if point_distance(object_camera.x,object_camera.y,object_camera.x,y) &gt;= 3
-                        {
+        else{
+            if sprite_index = sprite_unlookup{
+                if object_camera.y - y &lt; 0{
+                    if point_distance(object_camera.x,object_camera.y,object_camera.x,y) &gt;= 3{
                         object_camera.y += 3;
                         }
-                    else
-                        {
+                    else{
                         object_camera.y += point_distance(object_camera.x,object_camera.y,object_camera.x,y);
                         }
                     }
                 }
-            else
-                {
-                if point_distance(object_camera.x,object_camera.y,object_camera.x,y) &gt;= 10
-                    {
+            else{
+                if point_distance(object_camera.x,object_camera.y,object_camera.x,y) &gt;= 10{
                     object_camera.y += sign(y-object_camera.y)*11;
                     }
-                else
-                    {
+                else{
                     object_camera.y += sign(y-object_camera.y)*point_distance(object_camera.x,object_camera.y,object_camera.x,y);
                     }
                 }
