@@ -53,7 +53,7 @@ temp_jump = false;
 
 ini_close();
 ini_open(global.SELECTED_SAVE);
-goodness = ini_read_real("Data",string(ID+1)+"-goodness",80);
+goodness = ini_read_real("Data",string(ID+1)+"-goodness",50);
 rionys = ini_read_real("Data",string(ID+1)+"-rionys",0);
 image_speed = 0.1;
 
