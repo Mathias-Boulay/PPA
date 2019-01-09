@@ -209,7 +209,7 @@ else{
             path_speed += 0.02;
             }
         else{
-            path_speed -= max(0.01,path_speed-0.051);
+            path_speed = max(0.035,path_speed-0.051);
             }
         }
     else{
@@ -265,17 +265,6 @@ if place_meeting(x,y+1,object_wall){
             path_start(path_leaves_end,path_speed,path_action_stop,false);
             path_part[0] = "_end";
             }
-        /*
-        if (path_index = path_leaves_0_bis || path_index = path_leaves_1 || path_index = path_leaves_2_bis ||path_index = path_leaves_3){
-            //Démarrer la fin inversé
-            path_start(path_leaves_end_bis,path_speed,path_action_stop,false);
-            path_part[0] = "_end";
-            }
-        else{
-            //Démarrer la fin pas inversé
-            path_start(path_leaves_end,path_speed,path_action_stop,false);
-            path_part[0] = "_end";
-            }*/
         }
     }
 </string>

@@ -227,8 +227,6 @@
       <sprite>sprites\sprite_inventory_lvbarre_bonte</sprite>
       <sprite>sprites\sprite_infos</sprite>
       <sprite>sprites\sprite_active_case_inventory</sprite>
-      <sprite>sprites\sprite_infos_corner</sprite>
-      <sprite>sprites\sprite_infos_border</sprite>
     </sprites>
     <sprites name="Pause">
       <sprite>sprites\sprite_fond</sprite>
