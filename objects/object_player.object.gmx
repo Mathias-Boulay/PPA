@@ -188,7 +188,7 @@ if !instance_exists(object_pause){
         if gamepad_button_check_pressed(ID,gp_face2){
             STATUS = "unlookup";
             image_index = 0;
-            image_speed = 0.6;
+            image_speed = 0.06;
             }
         }
     else{
@@ -601,7 +601,7 @@ if !instance_exists(object_pause){
                                         if abs(move) &gt; 0.84 &amp;&amp; Can_jump{
                                             //Effectuer une roulade:
                                             STATUS = "rolling";
-                                            hsp += 2*image_xscale;
+                                            hsp += 1.25*image_xscale;
                                             vsp = -1
                                             image_speed = 0.5;
                                             image_index = 0;
@@ -742,24 +742,26 @@ if !instance_exists(object_pause){
         
     
     //Gestion du sens de Shai, il ne faudrait pas qu'elle soit sens dessus dessous !
-    if STATUS != "hurt"{
-        if STATUS != "rolling"{
-            if STATUS != "divefall"{
-                if STATUS != "lookup"{
-                    if STATUS != "divejumping"{
-                        if STATUS != "divelanding"{
-                            if STATUS != "jumpfromdive"{
-                                if STATUS != "spinattack"{
-                                    if STATUS != "headshot"{
-                                        if STATUS != "landing"{
-                                            if STATUS != "pre_landing"{
-                                                if STATUS != "crawling"{
-                                                    if STATUS != "crawlidle"{
-                                                        if STATUS = "walljump"{
-                                                            if place_meeting(x-1,y,object_wall){image_xscale = -1;}else{if place_meeting(x+1,y,object_wall){image_xscale = 1;}}
-                                                            }
-                                                        else{
-                                                            if abs(hsp) &gt; 0.2{image_xscale = sign(hsp);}else{if hsp = 0 &amp;&amp; abs(move) != 0{image_xscale = sign(move);}}   
+    if STATUS != "unlookup"{
+        if STATUS != "hurt"{
+            if STATUS != "rolling"{
+                if STATUS != "divefall"{
+                    if STATUS != "lookup"{
+                        if STATUS != "divejumping"{
+                            if STATUS != "divelanding"{
+                                if STATUS != "jumpfromdive"{
+                                    if STATUS != "spinattack"{
+                                        if STATUS != "headshot"{
+                                            if STATUS != "landing"{
+                                                if STATUS != "pre_landing"{
+                                                    if STATUS != "crawling"{
+                                                        if STATUS != "crawlidle"{
+                                                            if STATUS = "walljump"{
+                                                                if place_meeting(x-1,y,object_wall){image_xscale = -1;}else{if place_meeting(x+1,y,object_wall){image_xscale = 1;}}
+                                                                }
+                                                            else{
+                                                                if abs(hsp) &gt; 0.2{image_xscale = sign(hsp);}else{if hsp = 0 &amp;&amp; abs(move) != 0{image_xscale = sign(move);}}   
+                                                                }
                                                             }
                                                         }
                                                     }
@@ -802,7 +804,7 @@ if !instance_exists(object_pause){
                                                                                 if STATUS = "lookup"{
                                                                                     STATUS = "unlookup";
                                                                                     image_index = 0;
-                                                                                    image_speed = 0.055;
+                                                                                    image_speed = 0.06;
                                                                                     }
                                                                                 else{
                                                                                     if looking &gt; 0.70{

@@ -30,7 +30,7 @@ instance_create(x-29,y-24,object_pockets);
 instance_create(x-29,y-5,object_options);
 instance_create(x-29,y+14,object_restart);
 instance_create(x-29,y+33,object_home);
-instance_create(x-29,y-47,object_left_button);
+instance_create(x-33,y-47,object_left_button);
 
 </string>
           </argument>
