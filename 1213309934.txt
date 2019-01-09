@@ -47,7 +47,7 @@ Implémenter les fondus au noirs dans les menus DONE ! It was some kind of easy.
  L'on doit internationaliser les descriptions d'items.
  
 Configuer une hitbox fixe malgré le xscale NE FONCTIONNE PAS COMME VOULU DONC AVORTÉ
-Mettre en place 2-3 hitboxs pour Shai.
+Mettre en place 2-3 hitboxs pour Shai. Ceci est maintenant une priorité donc tu dois fix un max d'animations.
 
 
 
