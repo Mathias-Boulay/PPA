@@ -845,11 +845,11 @@ if !instance_exists(object_pause){
                                                                                                     image_index = 0;
                                                                                                     image_speed = 0.5;
                                                                                                     }
-                                                                                                else{
+                                                                                                /*else{
                                                                                                     if collision_line(x,y,x+(10*image_xscale),y+40,object_wall,false,true) = noone{
                                                                                                         STATUS = "ledge";
                                                                                                         image_speed = 0.15;
-                                                                                                        }
+                                                                                                        }*/
                                                                                                     else{
                                                                                                         if uncontrol = -1{
                                                                                                             STATUS = "rotating";
@@ -891,7 +891,7 @@ if !instance_exists(object_pause){
                                                                                                                 }
                                                                                                             }
                                                                                                         }
-                                                                                                    }
+                                                                                                    //}
                                                                                                 }
                                                                                             }
                                                                                         }
@@ -1076,12 +1076,11 @@ if !instance_exists(object_pause){
                             }
                         }
                     }
-             			else{
-             			  	if object_camera-y=0{
-             					    STATUS="idle"
-             			   	   }
-             			   }
-
+                else{
+                    if object_camera.y-y=0{
+                        STATUS="idle"
+                        }
+                    }
                 }
                 
                 
