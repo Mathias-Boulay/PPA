@@ -163,15 +163,12 @@
       <sprite>sprites\sprite_landing</sprite>
       <sprite>sprites\sprite_divejumping</sprite>
       <sprite>sprites\sprite_spinattack</sprite>
-      <sprite>sprites\sprite_crounching</sprite>
-      <sprite>sprites\sprite_decrounching</sprite>
       <sprite>sprites\sprite_stopping</sprite>
       <sprite>sprites\sprite_hurt</sprite>
       <sprite>sprites\sprite_pushing</sprite>
       <sprite>sprites\sprite_jumpfromdive</sprite>
       <sprite>sprites\sprite_jumpfromcrawl</sprite>
       <sprite>sprites\sprite_ledge</sprite>
-      <sprite>sprites\sprite_ledge_tester</sprite>
       <sprite>sprites\sprite_rotating</sprite>
       <sprite>sprites\sprite_waiting_phase_2</sprite>
       <sprite>sprites\sprite_waiting_phase_3</sprite>

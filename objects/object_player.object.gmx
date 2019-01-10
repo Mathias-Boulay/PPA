@@ -1047,7 +1047,7 @@ if !instance_exists(object_pause){
                                         }
                                     }
                                 else{
-                                    //Section qui vise à replacer Shai en fonction de son image index dans l'attaque headshot.   
+                                    //Section qui vise à replacer Shai en fonction de son image index dans l'attaque headshot. N'a jamais fonctionné, c'est bien pour cela que c'est toujours vide.
                                     }
                                 }
                             else{
@@ -1082,6 +1082,21 @@ if !instance_exists(object_pause){
                         }
                     }
                 }
+                
+                
+        //Nouveau chapitre: Gestion de la HITBOX de Shai ! (Pas trop tôt d'ailleurs).
+        
+        //Partie simple: la gestion des collisions vis à vis des plateformes et des murs. Deux états: bas et haut.
+        //A noter, Shai ne devrait pas se relever s'il y a un mur au dessus d'elle, il va donc falloir savoir quoi mettre en état bas.
+        if STATUS = "crawling" ||STATUS = "crawlidle" || STATUS ="divelanding" || STATUS="deathup" || STATUS = "deathdown" || STATUS = "death_predown"{
+            mask_index = sprite_crawlidle;
+            }
+        else{
+            mask_index = sprite_pushing;
+            }
+            
+        //Oki c'est parti pour l'une des plus lourde. (Trop lourde en fait faut trouver autre chose comme solution.)
+        
                 
                 
         //Increment waiting time:
