@@ -1076,6 +1076,12 @@ if !instance_exists(object_pause){
                             }
                         }
                     }
+             			else{
+             			  	if object_camera-y=0{
+             					    STATUS="idle"
+             			   	   }
+             			   }
+
                 }
                 
                 
