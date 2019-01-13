@@ -116,7 +116,7 @@ if instance_exists(object_pause){
                     }
                 }
             }
-        if (gamepad_button_check_pressed(0,gp_face1) || gamepad_button_check_pressed(0,gp_start)){
+        if (gamepad_button_check_pressed(0,gp_face1) /*|| gamepad_button_check_pressed(0,gp_start)*/){
             if place_meeting(x+5,y,object_options){
                 //Go to the options
                 instance_create(view_xview[0]+23,view_yview[0]+4,object_white_book);

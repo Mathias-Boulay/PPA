@@ -46,6 +46,8 @@ Implémenter les fondus au noirs dans les menus DONE ! It was some kind of easy.
  Passer sur la nouvelle animation de coup de tête de Shai CECI EST FAIT BIEN QUE SANS IMPACT DIRECT
  L'on doit internationaliser les descriptions d'items. || J'ai bien fait le système d'internationalisation mais j'ai pas mis de desc loul
  Corriger l'activation impromptue de la stop alors que l'on ne cours pas.
+ Corriger l'activation d'une attaque lorsque l'on est en crawlidle ou crawling
+ Corriger les menus dynamiques bugués lorsqu'en jeu. ( hitboxs non redéfinies+vibrations pas dessiné) ||Corrigé les textes mais pas les hitboxs
  
 Configuer une hitbox fixe malgré le xscale NE FONCTIONNE PAS COMME VOULU DONC AVORTÉ
 Mettre en place 2-3 hitboxs pour Shai. Ceci est maintenant une priorité donc tu dois fix un max d'animations.

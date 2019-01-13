@@ -32,10 +32,7 @@ page = 0;
 //Cela risque d'être long si mal géré
 //En cas de fichier resté ouvert, on le ferme, en espérant ne pas faire de la merde avec le système de sauvegarde.
 ini_close();
-/*
-for(i=0;i&lt;=50;i++){
-    texts[i] = script_word(i);
-    }*/
+
 texts = script_word_light(0,50)
 
 </string>
@@ -264,7 +261,7 @@ else{
 if STATUS = "OPTIONS-MAPPING"{
     if !instance_exists(object_try){
         //Then create some objects;
-        instance_create(178+view_xview[0],154+view_yview[0],object_vibrations)
+        instance_create(view_xview[0]+178,view_yview[0]+154,object_vibrations)
         instance_create(126+view_xview[0],130+view_yview[0],object_voir_controlles);
         instance_create(297+view_xview[0],127+view_yview[0],object_modifier);
         instance_create(297+view_xview[0],158+view_yview[0],object_try);
@@ -401,10 +398,10 @@ else{
                         draw_set_font(global.font_title);
                         draw_set_valign(fa_top);
                         draw_set_halign(fa_center);
-                        draw_text(125,91,texts[3]);
-                        draw_text(296,91,texts[4]);
+                        draw_text(125+view_xview[0],91+view_yview[0],texts[3]);
+                        draw_text(296+view_xview[0],91+view_yview[0],texts[4]);
                         draw_set_halign(fa_left);
-                        draw_text(52,150,texts[5]);
+                        draw_text(52+view_xview[0],150+view_yview[0],texts[5]);
                         
                         }
                     else{
