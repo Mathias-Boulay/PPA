@@ -6,7 +6,7 @@
   <depth>-1</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
-  <maskName>sprite_pushing</maskName>
+  <maskName>sprite_idle</maskName>
   <events>
     <event eventtype="0" enumb="0">
       <action>
@@ -553,87 +553,97 @@ if !instance_exists(object_pause){
             if attackcount = 0{
                 if !invincible{
                     attackcount++;
-                    if STATUS != "rolling"{
-                        if !(STATUS = "jumping" &amp;&amp; place_meeting(x,y+1,object_wall)){
-                            if STATUS != "jumpfromdive"{
-                                if STATUS != "divelanding"{
-                                    if !place_meeting(x,y+1,object_wall){ //Si vous n'êtes pas sur le sol.
-                                        if place_meeting(x-1,y,object_wall){
-                                            //Effectuer une attaque dive depuis le mur de gauche:
-                                            vsp = -global.jumpspeed;
-                                            walljumppower = 4;
-                                            x=x+2;
-                                            STATUS = "divejumping";
-                                            image_speed = 0.12;
-                                            image_xscale = sign(walljumppower);
-                                            }
-                                        else{
-                                            if place_meeting(x+1,y,object_wall){
-                                                //Effectuer une attaque dive depuis le mur de droite
-                                                vsp = -global.jumpspeed;
-                                                walljumppower = -4;
-                                                x = x-2;
-                                                STATUS = "divejumping";
-                                                image_speed = 0.12;
-                                                image_xscale = sign(walljumppower);
-                                                }
-                                            else{
-                                                if abs(move) &gt; 0.80 /*&amp;&amp; Can_jump*/{
-                                                    //Effectuer un dive jump depuis les airs !
-                                                    vsp = -global.jumpspeed/3;
-                                                    if abs(move) != 0{image_xscale= sign(move);}
-                                                    walljumppower = image_xscale*4;
-                                                    STATUS = "divejumping";
-                                                    image_speed = 0.12;
+                    if STATUS != "crawling"{
+                        if STATUS != "crawlidle"{
+                            if STATUS != "jumpfromcrawl"{
+                                if STATUS != "rolling"{
+                                    if !(STATUS = "jumping" &amp;&amp; place_meeting(x,y+1,object_wall)){
+                                        if STATUS != "jumpfromdive"{
+                                            if STATUS != "divelanding"{
+                                                if !place_meeting(x,y+1,object_wall){ //Si vous n'êtes pas sur le sol.
+                                                    if place_meeting(x-1,y,object_wall){
+                                                        //Effectuer une attaque dive depuis le mur de gauche:
+                                                        vsp = -global.jumpspeed;
+                                                        walljumppower = 4;
+                                                        x=x+2;
+                                                        STATUS = "divejumping";
+                                                        image_speed = 0.12;
+                                                        image_xscale = sign(walljumppower);
+                                                        }
+                                                    else{
+                                                        if place_meeting(x+1,y,object_wall){
+                                                            //Effectuer une attaque dive depuis le mur de droite
+                                                            vsp = -global.jumpspeed;
+                                                            walljumppower = -4;
+                                                            x = x-2;
+                                                            STATUS = "divejumping";
+                                                            image_speed = 0.12;
+                                                            image_xscale = sign(walljumppower);
+                                                            }
+                                                        else{
+                                                            if abs(move) &gt; 0.80 /*&amp;&amp; Can_jump*/{
+                                                                //Effectuer un dive jump depuis les airs !
+                                                                vsp = -global.jumpspeed/3;
+                                                                if abs(move) != 0{image_xscale= sign(move);}
+                                                                walljumppower = image_xscale*4;
+                                                                STATUS = "divejumping";
+                                                                image_speed = 0.12;
+                                                                }
+                                                            else{
+                                                                //Do the spin attack;
+                                                                vsp = -global.jumpspeed/2;
+                                                                walljumppower +=sign(image_xscale);
+                                                                STATUS = "spinattack";
+                                                                image_index = 0;
+                                                                image_speed = 0.5
+                                                                }
+                                                            }
+                                                        }
                                                     }
-                                                else{
-                                                    //Do the spin attack;
-                                                    vsp = -global.jumpspeed/2;
-                                                    walljumppower +=sign(image_xscale);
-                                                    STATUS = "spinattack";
-                                                    image_index = 0;
-                                                    image_speed = 0.5
+                                                else{ //Donc si vous êtes sur le sol:
+                                                    if abs(move) &gt; 0.84 &amp;&amp; Can_jump{
+                                                        //Effectuer une roulade:
+                                                        STATUS = "rolling";
+                                                        hsp += 1.25*image_xscale;
+                                                        vsp = -1
+                                                        image_speed = 0.5;
+                                                        image_index = 0;
+                                                        }
+                                                    else{
+                                                        if STATUS != "headshot"{
+                                                            //Effectuer un headshot:
+                                                            STATUS= "headshot";
+                                                            waiting = 0;
+                                                            image_index = 0;
+                                                            image_speed = 0.4;
+                                                            }
+                                                        }
                                                     }
                                                 }
                                             }
                                         }
-                                    else{ //Donc si vous êtes sur le sol:
-                                        if abs(move) &gt; 0.84 &amp;&amp; Can_jump{
-                                            //Effectuer une roulade:
-                                            STATUS = "rolling";
-                                            hsp += 1.25*image_xscale;
-                                            vsp = -1
-                                            image_speed = 0.5;
+                                    }
+                                else{
+                                    if image_index &gt;= 11{
+                                        if STATUS != "headshot"{
+                                            //Effectuer un headshot:
+                                            STATUS= "headshot";
+                                            waiting = 0;
                                             image_index = 0;
-                                            }
-                                        else{
-                                            if STATUS != "headshot"{
-                                                //Effectuer un headshot:
-                                                STATUS= "headshot";
-                                                waiting = 0;
-                                                image_index = 0;
-                                                image_speed = 0.4;
-                                                }
+                                            image_speed = 0.4;
                                             }
                                         }
                                     }
                                 }
                             }
                         }
-                    else{
-                        if image_index &gt;= 11{
-                            if STATUS != "headshot"{
-                                //Effectuer un headshot:
-                                STATUS= "headshot";
-                                waiting = 0;
-                                image_index = 0;
-                                image_speed = 0.4;
-                                }
-                            }
-                        }
                     }
                 }
             }
+        
+        //Hey hey ça vous dit d'aller aggresser des ptizanimos sans défense ?
+        //Module d'attaque.
+        
             
             
         //Ok maintenant vous devez éviter de passer entre les murs.
@@ -779,208 +789,170 @@ if !instance_exists(object_pause){
           
     //Gestion des STATUS de Shai:
     if !life &lt;= 0{ //Si Shai n'est pas re-morte
-        if STATUS != "unlookup"{
-            if STATUS != "precrawl"{
-                if STATUS != "stoppushing"{
-                    if STATUS != "rolling"{
-                        if STATUS != "headshot"{
-                            if STATUS != "hurt"{
-                                if STATUS != "jumpfromdive"{
-                                    if STATUS != "divefall"{
-                                        if STATUS != "jumpfromcrawl"{
-                                            if STATUS != "divejumping"{
-                                                if STATUS != "divelanding"{
-                                                    if STATUS != "spinup"{
-                                                            if STATUS  != "spinattack"{
-                                                                if STATUS != "jumping" &amp;&amp; STATUS != "double_jumping"{
-                                                                    if place_meeting(x,y+1,object_wall){ //Si Shai a un pied sur terre
-                                                                        if hsp = 0{ //Si l'on est immobile 
-                                                                            if looking &lt; -0.90{
-                                                                               STATUS = "lookup";
-                                                                                image_speed = 0.070;
-                                                                                waiting = 0;
-                                                                                }
-                                                                            else{
-                                                                                if STATUS = "lookup"{
-                                                                                    STATUS = "unlookup";
-                                                                                    image_index = 0;
-                                                                                    image_speed = 0.06;
+        if STATUS != "stopping"{
+            if STATUS != "unlookup"{
+                if STATUS != "precrawl"{
+                    if STATUS != "stoppushing"{
+                        if STATUS != "rolling"{
+                            if STATUS != "headshot"{
+                                if STATUS != "hurt"{
+                                    if STATUS != "jumpfromdive"{
+                                        if STATUS != "divefall"{
+                                            if STATUS != "jumpfromcrawl"{
+                                                if STATUS != "divejumping"{
+                                                    if STATUS != "divelanding"{
+                                                        if STATUS != "spinup"{
+                                                                if STATUS  != "spinattack"{
+                                                                    if STATUS != "jumping" &amp;&amp; STATUS != "double_jumping"{
+                                                                        if place_meeting(x,y+1,object_wall){ //Si Shai a un pied sur terre
+                                                                            if hsp = 0{ //Si l'on est immobile 
+                                                                                if looking &lt; -0.90{
+                                                                                   STATUS = "lookup";
+                                                                                    image_speed = 0.070;
+                                                                                    waiting = 0;
                                                                                     }
                                                                                 else{
-                                                                                    if looking &gt; 0.70{
-                                                                                        if STATUS = "crawling"{
-                                                                                            STATUS = "crawlidle";
-                                                                                            image_speed = 0.2;
-                                                                                            }
-                                                                                        else{
-                                                                                            if STATUS != "crawlidle" &amp;&amp; STATUS != "precrawl"{
-                                                                                                STATUS = "precrawl";
-                                                                                                image_speed = 0.5;
-                                                                                                image_index = 0;
-                                                                                                }
-                                                                                            }
+                                                                                    if STATUS = "lookup"{
+                                                                                        STATUS = "unlookup";
+                                                                                        image_index = 0;
+                                                                                        image_speed = 0.06;
                                                                                         }
                                                                                     else{
-                                                                                        if STATUS = "crawling" || STATUS = "crawlidle"{
-                                                                                            STATUS = "jumpfromcrawl";
-                                                                                            image_index = 0;
-                                                                                            image_speed=0.5;
+                                                                                        if looking &gt; 0.70{
+                                                                                            if STATUS = "crawling"{
+                                                                                                STATUS = "crawlidle";
+                                                                                                image_speed = 0.2;
+                                                                                                }
+                                                                                            else{
+                                                                                                if STATUS != "crawlidle" &amp;&amp; STATUS != "precrawl"{
+                                                                                                    STATUS = "precrawl";
+                                                                                                    image_speed = 0.5;
+                                                                                                    image_index = 0;
+                                                                                                    }
+                                                                                                }
                                                                                             }
                                                                                         else{
-                                                                                            if abs(move) !=0{
-                                                                                                if STATUS != "pushing" &amp;&amp; STATUS != "startpushing" &amp;&amp; STATUS != "stoppushing"{
-                                                                                                    STATUS = "startpushing";
-                                                                                                    image_index = 0;
-                                                                                                    image_speed = 0.5;
+                                                                                            if STATUS = "crawling" || STATUS = "crawlidle"{
+                                                                                                STATUS = "jumpfromcrawl";
+                                                                                                image_index = 0;
+                                                                                                image_speed=0.5;
+                                                                                                }
+                                                                                            else{
+                                                                                                if abs(move) !=0{
+                                                                                                    if STATUS != "pushing" &amp;&amp; STATUS != "startpushing" &amp;&amp; STATUS != "stoppushing"{
+                                                                                                        STATUS = "startpushing";
+                                                                                                        image_index = 0;
+                                                                                                        image_speed = 0.5;
+                                                                                                        }
+                                                                                                    else{
+                                                                                                        if STATUS = "pushing"{
+                                                                                                            image_speed = abs(move)/8;
+                                                                                                            }
+                                                                                                        }
                                                                                                     }
                                                                                                 else{
                                                                                                     if STATUS = "pushing"{
-                                                                                                        image_speed = abs(move)/8;
+                                                                                                        STATUS = "stoppushing";
+                                                                                                        image_index = 0;
+                                                                                                        image_speed = 0.5;
                                                                                                         }
-                                                                                                    }
-                                                                                                }
-                                                                                            else{
-                                                                                                if STATUS = "pushing"{
-                                                                                                    STATUS = "stoppushing";
-                                                                                                    image_index = 0;
-                                                                                                    image_speed = 0.5;
-                                                                                                    }
-                                                                                                /*else{
-                                                                                                    if collision_line(x,y,x+(10*image_xscale),y+40,object_wall,false,true) = noone{
-                                                                                                        STATUS = "ledge";
-                                                                                                        image_speed = 0.15;
-                                                                                                        }*/
-                                                                                                    else{
-                                                                                                        if uncontrol = -1{
-                                                                                                            STATUS = "rotating";
-                                                                                                            image_speed = 0.22;
-                                                                                                            }
+                                                                                                    /*else{
+                                                                                                        if collision_line(x,y,x+(10*image_xscale),y+40,object_wall,false,true) = noone{
+                                                                                                            STATUS = "ledge";
+                                                                                                            image_speed = 0.15;
+                                                                                                            }*/
                                                                                                         else{
-                                                                                                            if waiting &gt; 5{
-                                                                                                                //Faire des trucs en attendant comme.... des équations bicarrées ?
-                                                                                                                /*if (waiting &gt; 5 &amp;&amp; waiting &lt; 5.1) || (waiting &gt; 10 &amp;&amp; waiting &lt; 10.1){
-                                                                                                                    STATUS = "waiting";
-                                                                                                                    }
-                                                                                                                else{*/
-                                                                                                                    if (waiting &gt; 10 &amp;&amp; waiting &lt; 10.1){
-                                                                                                                        STATUS = "waiting_phase_2";
-                                                                                                                        image_speed = 0.25;
-                                                                                                                        }
-                                                                                                                    else{
-                                                                                                                        if waiting &gt; 18{
-                                                                                                                            STATUS = "waiting_phase_3";
-                                                                                                                            if image_index &lt; 1{
-                                                                                                                                image_speed = 0.006;
-                                                                                                                                }
-                                                                                                                            else{
-                                                                                                                                image_speed = 0.15;
-                                                                                                                                }
-                                                                                                                            }
-                                                                                                                        }
-                                                                                                                    //}
+                                                                                                            if uncontrol = -1{
+                                                                                                                STATUS = "rotating";
+                                                                                                                image_speed = 0.22;
                                                                                                                 }
                                                                                                             else{
-                                                                                                                if global.bossfight{
-                                                                                                                    STATUS = "idle_bossfight";
-                                                                                                                    image_speed = 0.033;
+                                                                                                                if waiting &gt; 5{
+                                                                                                                    //Faire des trucs en attendant comme.... des équations bicarrées ?
+                                                                                                                    /*if (waiting &gt; 5 &amp;&amp; waiting &lt; 5.1) || (waiting &gt; 10 &amp;&amp; waiting &lt; 10.1){
+                                                                                                                        STATUS = "waiting";
+                                                                                                                        }
+                                                                                                                    else{*/
+                                                                                                                        if (waiting &gt; 10 &amp;&amp; waiting &lt; 10.1){
+                                                                                                                            STATUS = "waiting_phase_2";
+                                                                                                                            image_speed = 0.25;
+                                                                                                                            }
+                                                                                                                        else{
+                                                                                                                            if waiting &gt; 18{
+                                                                                                                                STATUS = "waiting_phase_3";
+                                                                                                                                if image_index &lt; 1{
+                                                                                                                                    image_speed = 0.006;
+                                                                                                                                    }
+                                                                                                                                else{
+                                                                                                                                    image_speed = 0.15;
+                                                                                                                                    }
+                                                                                                                                }
+                                                                                                                            }
+                                                                                                                        //}
                                                                                                                     }
                                                                                                                 else{
-                                                                                                                    STATUS = "idle";
-                                                                                                                    image_speed = 0.1; 
+                                                                                                                    if global.bossfight{
+                                                                                                                        STATUS = "idle_bossfight";
+                                                                                                                        image_speed = 0.033;
+                                                                                                                        }
+                                                                                                                    else{
+                                                                                                                        STATUS = "idle";
+                                                                                                                        image_speed = 0.1; 
+                                                                                                                        }
                                                                                                                     }
                                                                                                                 }
                                                                                                             }
-                                                                                                        }
-                                                                                                    //}
+                                                                                                        //}
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            else{ //Si l'on est pas immobile...
+                                                                                if looking &gt; 0.70{
+                                                                                    if STATUS = "crawling"{image_speed=(abs(hsp)/5)*sign(hsp)*sign(image_xscale);}
+                                                                                    if STATUS = "crawlidle"{
+                                                                                        STATUS = "crawling";
+                                                                                        }
+                                                                                    else{
+                                                                                        if STATUS != "crawling" &amp;&amp; STATUS != "precrawl"{
+                                                                                            STATUS = "precrawl";
+                                                                                            image_speed = 0.4;
+                                                                                            image_index = 0;
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                else{
+                                                                                    if STATUS = "crawling" || STATUS = "crawidle"{
+                                                                                        STATUS = "jumpfromcrawl";
+                                                                                        image_index = 0;
+                                                                                        image_speed=0.5;
+                                                                                        }
+                                                                                    else{
+                                                                                        if ((sign(move) = 1 &amp;&amp; sign(hsp) = -1) || (sign(move) = -1 &amp;&amp; sign(hsp) = 1)&amp;&amp; STATUS="running"){
+                                                                                            STATUS = "stopping";
+                                                                                            }
+                                                                                        else{
+                                                                                            if abs(hsp) &gt; 3.4{
+                                                                                                STATUS = "running";
+                                                                                                image_speed = abs(hsp)/16
+                                                                                                }
+                                                                                            else{
+                                                                                                STATUS = "walking";
+                                                                                                image_speed = abs(hsp)/32
                                                                                                 }
                                                                                             }
                                                                                         }
                                                                                     }
                                                                                 }
                                                                             }
-                                                                        else{ //Si l'on est pas immobile...
-                                                                            if looking &gt; 0.70{
-                                                                                if STATUS = "crawling"{image_speed=(abs(hsp)/5)*sign(hsp)*sign(image_xscale);}
-                                                                                if STATUS = "crawlidle"{
-                                                                                    STATUS = "crawling";
-                                                                                    }
-                                                                                else{
-                                                                                    if STATUS != "crawling" &amp;&amp; STATUS != "precrawl"{
-                                                                                        STATUS = "precrawl";
-                                                                                        image_speed = 0.4;
-                                                                                        image_index = 0;
-                                                                                        }
-                                                                                    }
+                                                                        else{ //Si Shai a les jambes en l'air
+                                                                            if place_meeting(x-1,y,object_wall) || place_meeting(x+1,y,object_wall){
+                                                                                STATUS = "walljump";
                                                                                 }
                                                                             else{
-                                                                                if STATUS = "crawling" || STATUS = "crawidle"{
-                                                                                    STATUS = "jumpfromcrawl";
-                                                                                    image_index = 0;
-                                                                                    image_speed=0.5;
-                                                                                    }
-                                                                                else{
-                                                                                    if (sign(move) = 1 &amp;&amp; sign(hsp) = -1) || (sign(move) = -1 &amp;&amp; sign(hsp) = 1){
-                                                                                        STATUS = "stopping";
-                                                                                        }
-                                                                                    else{
-                                                                                        if abs(hsp) &gt; 3.4{
-                                                                                            STATUS = "running";
-                                                                                            image_speed = abs(hsp)/16
-                                                                                            }
-                                                                                        else{
-                                                                                            STATUS = "walking";
-                                                                                            image_speed = abs(hsp)/32
-                                                                                            }
-                                                                                        }
-                                                                                    }
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    else{ //Si Shai a les jambes en l'air
-                                                                        if place_meeting(x-1,y,object_wall) || place_meeting(x+1,y,object_wall){
-                                                                            STATUS = "walljump";
-                                                                            }
-                                                                        else{
-                                                                            if vsp &gt; 1{
-                                                                                STATUS = "landing";
-                                                                                //Sous gestion des animations:
-                                                                                if move*image_xscale &lt; 0{ //Stick à gauche
-                                                                                    if image_index &lt; 12{
-                                                                                        image_index = 12;
-                                                                                        image_speed = 0.5;
-                                                                                        }
-                                                                                    }
-                                                                                else{
-                                                                                    if move*image_xscale &gt; 0{ //Stick à droite
-                                                                                        if image_index &lt; 6 || image_index &gt; 11{
-                                                                                            image_index = 6;
-                                                                                            image_speed = 0.5;
-                                                                                            }
-                                                                                        }
-                                                                                    else{ //Stick au milieu
-                                                                                        if image_index &gt; 5{
-                                                                                            image_index = 0;
-                                                                                            image_speed = 0.5;
-                                                                                            }
-                                                                                        }
-                                                                                    }
-                                                                                }
-                                                                            else{
-                                                                                if abs(vsp) &lt;= 1{
-                                                                                    STATUS = "pre_landing";
-                                                                                    image_speed = 0.5;
-                                                                                    }
-                                                                                }
-                                                                            }  
-                                                                        }
-                                                                    }
-                                                                else{
-                                                                    if !place_meeting(x,y+1,object_wall){
-                                                                        if place_meeting(x-1,y,object_wall) || place_meeting(x+1,y,object_wall){
-                                                                            STATUS = "walljump";
-                                                                            }
-                                                                        else{
-                                                                            if vsp &gt; 1{
+                                                                                if vsp &gt; 1{
                                                                                     STATUS = "landing";
                                                                                     //Sous gestion des animations:
                                                                                     if move*image_xscale &lt; 0{ //Stick à gauche
@@ -1010,97 +982,128 @@ if !instance_exists(object_pause){
                                                                                         image_speed = 0.5;
                                                                                         }
                                                                                     }
+                                                                                }  
+                                                                            }
+                                                                        }
+                                                                    else{
+                                                                        if !place_meeting(x,y+1,object_wall){
+                                                                            if place_meeting(x-1,y,object_wall) || place_meeting(x+1,y,object_wall){
+                                                                                STATUS = "walljump";
+                                                                                }
+                                                                            else{
+                                                                                if vsp &gt; 1{
+                                                                                        STATUS = "landing";
+                                                                                        //Sous gestion des animations:
+                                                                                        if move*image_xscale &lt; 0{ //Stick à gauche
+                                                                                            if image_index &lt; 12{
+                                                                                                image_index = 12;
+                                                                                                image_speed = 0.5;
+                                                                                                }
+                                                                                            }
+                                                                                        else{
+                                                                                            if move*image_xscale &gt; 0{ //Stick à droite
+                                                                                                if image_index &lt; 6 || image_index &gt; 11{
+                                                                                                    image_index = 6;
+                                                                                                    image_speed = 0.5;
+                                                                                                    }
+                                                                                                }
+                                                                                            else{ //Stick au milieu
+                                                                                                if image_index &gt; 5{
+                                                                                                    image_index = 0;
+                                                                                                    image_speed = 0.5;
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    else{
+                                                                                        if abs(vsp) &lt;= 1{
+                                                                                            STATUS = "pre_landing";
+                                                                                            image_speed = 0.5;
+                                                                                            }
+                                                                                        }
+                                                                                    }
                                                                                 }
                                                                             }
                                                                         }
+                                                                    else{
+                                                                        if place_meeting(x,y+1,object_wall){STATUS="idle";}
+                                                                        }
                                                                     }
-                                                                else{
-                                                                    if place_meeting(x,y+1,object_wall){STATUS="idle";}
+                                                                }
+                                                            }
+                                                        else{
+                                                            if place_meeting(x,y+1,object_wall){
+                                                                STATUS = "divelanding";
+                                                                }
+                                                            else{
+                                                                if place_meeting(x+image_xscale*2,y,object_wall){
+                                                                    hurt = (hsp*walljumppower);
                                                                     }
                                                                 }
                                                             }
                                                         }
-                                                    else{
-                                                        if place_meeting(x,y+1,object_wall){
-                                                            STATUS = "divelanding";
-                                                            }
-                                                        else{
-                                                            if place_meeting(x+image_xscale*2,y,object_wall){
-                                                                hurt = (hsp*walljumppower);
-                                                                }
-                                                            }
+                                                    }
+                                                else{
+                                                    if place_meeting(x,y+1,object_wall){
+                                                        STATUS = "divelanding";
                                                         }
                                                     }
                                                 }
-                                            else{
-                                                if place_meeting(x,y+1,object_wall){
-                                                    STATUS = "divelanding";
-                                                    }
+                                            }
+                                        else{
+                                            if place_meeting(x,y+1,object_wall){
+                                                STATUS = "stopping";
+                                                image_index = 2;
                                                 }
                                             }
                                         }
                                     else{
-                                        if place_meeting(x,y+1,object_wall){
-                                            STATUS = "stopping";
-                                            image_index = 2;
+                                        //Section qui vise à replacer Shai en fonction de son image index dans l'attaque headshot. N'a jamais fonctionné, c'est bien pour cela que c'est toujours vide.
+                                        }
+                                    }
+                                else{
+                                    //Gérer les étapes de la roulade:
+                                    if image_index &gt;= 3 &amp;&amp; image_index &lt;4{
+                                        //Vérifier si elle est au sol:
+                                        if !place_meeting(x,y+1,object_wall){
+                                            image_index = 3;
                                             }
                                         }
-                                    }
-                                else{
-                                    //Section qui vise à replacer Shai en fonction de son image index dans l'attaque headshot. N'a jamais fonctionné, c'est bien pour cela que c'est toujours vide.
-                                    }
-                                }
-                            else{
-                                //Gérer les étapes de la roulade:
-                                if image_index &gt;= 3 &amp;&amp; image_index &lt;4{
-                                    //Vérifier si elle est au sol:
-                                    if !place_meeting(x,y+1,object_wall){
-                                        image_index = 3;
-                                        }
-                                    }
-                                else{
-                                    if !place_meeting(x,y+1,object_wall){
-                                        if image_index &gt;= 11{
-                                            if key_jump{
-                                                temp_jump = true;
+                                    else{
+                                        if !place_meeting(x,y+1,object_wall){
+                                            if image_index &gt;= 11{
+                                                if key_jump{
+                                                    temp_jump = true;
+                                                    }
                                                 }
-                                            }
-                                        if vsp &gt; 1.5{
-                                            STATUS = "pre_landing";
-                                            image_index = 0;
-                                            image_speed = 0.5;
+                                            if vsp &gt; 1.5{
+                                                STATUS = "pre_landing";
+                                                image_index = 0;
+                                                image_speed = 0.5;
+                                                }
                                             }
                                         }
                                     }
                                 }
                             }
                         }
-                    }
-                else{
-                    if object_camera.y-y=0{
-                        STATUS="idle"
+                    else{
+                        if object_camera.y-y=0{
+                            STATUS="idle"
+                            }
                         }
                     }
-                }
-                
-                
-        //Nouveau chapitre: Gestion de la HITBOX de Shai ! (Pas trop tôt d'ailleurs).
-        
-        //Partie simple: la gestion des collisions vis à vis des plateformes et des murs. Deux états: bas et haut.
-        //A noter, Shai ne devrait pas se relever s'il y a un mur au dessus d'elle, il va donc falloir savoir quoi mettre en état bas.
-        if STATUS = "crawling" ||STATUS = "crawlidle" || STATUS ="divelanding" || STATUS="deathup" || STATUS = "deathdown" || STATUS = "death_predown"{
-            mask_index = sprite_crawlidle;
-            }
-        else{
-            mask_index = sprite_pushing;
-            }
-            
-        //Oki c'est parti pour l'une des plus lourde. (Trop lourde en fait faut trouver autre chose comme solution.) (Finalement rien n'a été trouvé donc on va essayer.)
-        //Franchement je peux pas faire ça, cela necessiterai des centaines de lignes de codes, sans compter qu'il faut le pui de traitement derrière.
-        
-        
-        
-                
+                else{
+                    if sign(hsp) = sign(move){
+                        if abs(sign(hsp)) = 1{
+                            STATUS = "walking";
+                            }
+                        else{
+                            STATUS ="idle";
+                            }
+                        }
+                    }
+                }        
                 
         //Increment waiting time:
         if x = xprevious &amp;&amp; y = yprevious &amp;&amp; STATUS != "pushing" &amp;&amp; STATUS != "startpushing" &amp;&amp; STATUS != "stoppushing" &amp;&amp; STATUS != "crawlidle" &amp;&amp; STATUS !="precrawl" &amp;&amp; STATUS !="crawlidle" &amp;&amp; STATUS != "jumpfromcrawl" {waiting += 0.012;}else{waiting = 0;}
@@ -1465,13 +1468,7 @@ else{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-
-//show_debug_message("STATUS= "+string(STATUS));
-//show_debug_message("sprite_index= "+string(sprite_index));
-
-    
-draw_sprite_ext(sprite_index,image_index,ceil(x),ceil(y),image_xscale,image_yscale,image_angle,c_white,1);
+            <string>draw_sprite_ext(sprite_index,image_index,ceil(x),ceil(y),image_xscale,image_yscale,image_angle,c_white,1);
 </string>
           </argument>
         </arguments>
