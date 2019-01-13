@@ -80,6 +80,9 @@ sprite_index = play;
             <kind>1</kind>
             <string>///Apply the good sprite depending of the settings:
 ///Set the good sprite depending of the settings:
+draw_set_font(global.font_title);
+draw_set_valign(fa_bottom);
+draw_set_halign(fa_center);
 if !window_get_fullscreen(){
     sprite_collision_mask(play,false,2,50-(string_width(object_white_book.texts[28])/2),0,100-(50-(string_width(object_white_book.texts[28])/2)),18,1,0);
     }

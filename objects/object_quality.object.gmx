@@ -76,7 +76,9 @@ sprite_index = play;
           <argument>
             <kind>1</kind>
             <string>///Set the good sprite depending of the settings:
-
+draw_set_font(global.font_title);
+draw_set_valign(fa_bottom);
+draw_set_halign(fa_center);
 sprite_collision_mask(play,false,2,50-(string_width(object_white_book.texts[24+global.quality])/2),0,100-(50-(string_width(object_white_book.texts[24+global.quality])/2)),14,1,0);
 </string>
           </argument>
@@ -100,7 +102,8 @@ sprite_collision_mask(play,false,2,50-(string_width(object_white_book.texts[24+g
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_self();
+            <string>//I DRAW !
+draw_self();
 
 draw_set_font(global.font_title);
 draw_set_valign(fa_bottom);
