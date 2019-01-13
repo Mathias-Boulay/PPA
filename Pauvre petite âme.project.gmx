@@ -325,6 +325,7 @@
     <object>objects\object_uncontrol_platform</object>
     <object>objects\object_heart</object>
     <object>objects\object_hit</object>
+    <object>objects\object_hitbox</object>
     <object>objects\object_wall_platforms</object>
     <object>objects\object_leaves</object>
     <objects name="Menus">

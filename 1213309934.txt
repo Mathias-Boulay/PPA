@@ -44,7 +44,8 @@ Implémenter les fondus au noirs dans les menus DONE ! It was some kind of easy.
   
   Shai possède un problème de déplacement/reset de sprite sur la jumpfrom crawl || Faut que je verrouille cette animation
  Passer sur la nouvelle animation de coup de tête de Shai CECI EST FAIT BIEN QUE SANS IMPACT DIRECT
- L'on doit internationaliser les descriptions d'items.
+ L'on doit internationaliser les descriptions d'items. || J'ai bien fait le système d'internationalisation mais j'ai pas mis de desc loul
+ Corriger l'activation impromptue de la stop alors que l'on ne cours pas.
  
 Configuer une hitbox fixe malgré le xscale NE FONCTIONNE PAS COMME VOULU DONC AVORTÉ
 Mettre en place 2-3 hitboxs pour Shai. Ceci est maintenant une priorité donc tu dois fix un max d'animations.

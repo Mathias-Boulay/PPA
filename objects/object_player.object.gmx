@@ -1095,7 +1095,10 @@ if !instance_exists(object_pause){
             mask_index = sprite_pushing;
             }
             
-        //Oki c'est parti pour l'une des plus lourde. (Trop lourde en fait faut trouver autre chose comme solution.)
+        //Oki c'est parti pour l'une des plus lourde. (Trop lourde en fait faut trouver autre chose comme solution.) (Finalement rien n'a été trouvé donc on va essayer.)
+        //Franchement je peux pas faire ça, cela necessiterai des centaines de lignes de codes, sans compter qu'il faut le pui de traitement derrière.
+        
+        
         
                 
                 
@@ -1231,7 +1234,7 @@ if STATUS = "lookup" &amp;&amp; sprite_index &gt; 1{
             }
 
 
-object_camera.y = round(object_camera.y);
+//object_camera.y = round(object_camera.y);
 //Traitement de la vue afin de la syncroniser plus vite:
 view_xview[ID]= object_camera.x-212;
 if view_xview[ID]+view_wview[ID]&gt; room_width{view_xview[ID]= room_width-view_wview[ID];}
