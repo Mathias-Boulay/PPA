@@ -51,6 +51,11 @@ Implémenter les fondus au noirs dans les menus DONE ! It was some kind of easy.
  
 Configuer une hitbox fixe malgré le xscale NE FONCTIONNE PAS COMME VOULU DONC AVORTÉ
 Mettre en place 2-3 hitboxs pour Shai. Ceci est maintenant une priorité donc tu dois fix un max d'animations.
+-> La mettre plus petite. (Se réferer à l'idle+la pushing);
+-> Retravailler la hitbox de la roulade pour éviter des collisions mal convenues.
+-> Faire apparaître l'objet d'attaque lors d'une attaque --> objet de taille définie lors de l'apparition.
+Note: un bug d'activation d'animation de stopping à été detecté.
+NOTE: CORRIGER UN BUG SUR LA FONCTION HURT
 
 
 

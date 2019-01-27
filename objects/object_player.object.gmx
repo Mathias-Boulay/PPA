@@ -640,11 +640,6 @@ if !instance_exists(object_pause){
                     }
                 }
             }
-        
-        //Hey hey ça vous dit d'aller aggresser des ptizanimos sans défense ?
-        //Module d'attaque.
-        
-            
             
         //Ok maintenant vous devez éviter de passer entre les murs.
         //Surcouche plateforme verticale:
@@ -748,6 +743,90 @@ if !instance_exists(object_pause){
     if STATUS != "divejumping"{
         if place_meeting(x,y,object_wall){if next_right = true &amp;&amp; next_left != true{x -=2;}else{if next_right != true &amp;&amp; next_left = true{x +=2;}}}
         }
+        
+    //Hey hey ça vous dit d'aller aggresser des ptizanimos sans défense ?
+        //Module d'attaque.
+        if STATUS = "headshot"{
+            if (image_index+image_speed &gt;= 4) &amp;&amp; (image_index+image_speed &lt; 9){
+                //Attaque headshot, passible de maux de crâne.
+                if !instance_exists(object_hit){
+                    instance_create(x+11,y-13,object_hit);
+                    object_hit.image_xscale = 15;
+                    object_hit.image_yscale = 22;
+                    }
+                else{
+                    object_hit.x = x+11;
+                    object_hit.y = y-13;
+                    object_hit.image_xscale = 15;
+                    object_hit.image_yscale = 22;
+                    }
+                }
+            else{
+                if instance_exists(object_hit){instance_destroy(object_hit);}
+                }
+            }
+        else{
+            if STATUS = "spinattack"{
+                //Attaque bouboule, passible de que dalle:
+                if !instance_exists(object_hit){
+                    instance_create(x-10,y,object_hit);
+                    object_hit.image_xscale=25;
+                    object_hit.image_yscale=25;
+                    }
+                else{
+                    object_hit.x = x-10;
+                    object_hit.y = y;
+                    object_hit.image_xscale=25;
+                    object_hit.image_yscale=25;
+                    }
+                }
+            else{
+                if STATUS="divejumping"{
+                    if (image_index) &gt;= 3{
+                        //Attaque diive jumping, passable de déchirage de pull:
+                        if !instance_exists(object_hit){
+                            instance_create(x-10,y+23,object_hit);
+                            object_hit.image_xscale = 25;
+                            object_hit.image_yscale = 2;
+                            }
+                        else{
+                            object_hit.x = x-10;
+                            object_hit.y = y+23;
+                            object_hit.image_xscale=25;
+                            object_hit.image_yscale=2;
+                            }
+                        }
+                    else{
+                        if instance_exists(object_hit){instance_destroy(object_hit);}
+                        }
+                    }
+                else{
+                    if STATUS="rolling"{
+                        if (image_index &gt;= 4)&amp;&amp;(image_index &lt; 11){
+                            //On fait  une roulade bien trop pété.
+                            if !instance_exists(object_hit){
+                                instance_create(x-10,y,object_hit);
+                                object_hit.image_xscale=25;
+                                object_hit.image_yscale=25;
+                                }
+                            else{
+                                object_hit.x = x-10;
+                                object_hit.y = y;
+                                object_hit.image_xscale=25;
+                                object_hit.image_yscale=25;
+                                }
+                            }
+                        else{
+                            if instance_exists(object_hit){instance_destroy(object_hit);}
+                            }
+                        }
+                    else{
+                        if instance_exists(object_hit){instance_destroy(object_hit);}
+                        //Reste des attaques, ajoutables à l'infini.
+                        }
+                    }
+                }
+            }
         
         
     
