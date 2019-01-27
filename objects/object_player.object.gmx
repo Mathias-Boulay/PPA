@@ -750,14 +750,14 @@ if !instance_exists(object_pause){
             if (image_index+image_speed &gt;= 4) &amp;&amp; (image_index+image_speed &lt; 9){
                 //Attaque headshot, passible de maux de crâne.
                 if !instance_exists(object_hit){
-                    instance_create(x+11,y-13,object_hit);
-                    object_hit.image_xscale = 15;
+                    instance_create(x+(11*image_xscale),y-13,object_hit);
+                    object_hit.image_xscale = 15*image_xscale;
                     object_hit.image_yscale = 22;
                     }
                 else{
-                    object_hit.x = x+11;
+                    object_hit.x = x+(11*image_xscale);
                     object_hit.y = y-13;
-                    object_hit.image_xscale = 15;
+                    object_hit.image_xscale = 15*image_xscale;
                     object_hit.image_yscale = 22;
                     }
                 }
@@ -1115,8 +1115,8 @@ if !instance_exists(object_pause){
                                                                 STATUS = "divelanding";
                                                                 }
                                                             else{
-                                                                if place_meeting(x+image_xscale*2,y,object_wall){
-                                                                    hurt = (hsp*walljumppower);
+                                                                if place_meeting(x+(image_xscale*2),y,object_wall){
+                                                                    hurt =((abs(hsp)*abs(walljumppower))*-image_xscale);
                                                                     }
                                                                 }
                                                             }
