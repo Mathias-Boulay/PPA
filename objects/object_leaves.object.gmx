@@ -209,7 +209,7 @@ else{
             path_speed += 0.02;
             }
         else{
-            path_speed = max(0.035,path_speed-0.051);
+            path_speed = max(0.1,path_speed-0.051);
             }
         }
     else{
