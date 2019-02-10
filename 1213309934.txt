@@ -54,8 +54,14 @@ Mettre en place 2-3 hitboxs pour Shai. Ceci est maintenant une priorité donc tu
 -> La mettre plus petite. (Se réferer à l'idle+la pushing);
 -> Retravailler la hitbox de la roulade pour éviter des collisions mal convenues.
 -> Faire apparaître l'objet d'attaque lors d'une attaque --> objet de taille définie lors de l'apparition.
-Note: un bug d'activation d'animation de stopping à été detecté.
-NOTE: CORRIGER UN BUG SUR LA FONCTION HURT
+Note: un bug d'activation d'animation de stopping à été detecté. --> Pas vraiment en fait.
+NOTE: CORRIGER UN BUG SUR LA FONCTION HURT || CE FUT CORRIGÉ
+On doit pouvoir ramper depuis la divelanding. || devrait fonctionner.
+C'est un peu con de faire un coup de tête lorsque l'on quitte le menu des vendeurs. || Noralement patché.
+
+Déterminer/ corriger la variable comptant le nombre de Shai.
+Ajouter des valeurs par défaut aux différents constructeurs.
+
 
 
 
