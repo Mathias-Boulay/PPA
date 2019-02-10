@@ -1030,22 +1030,52 @@ if STATUS != "divejumping"{
 //Hey hey ça vous dit d'aller aggresser des ptizanimos sans défense ?
 //Module d'attaque.
 if STATUS = "headshot"{
-    if (image_index+image_speed &gt;= 4) &amp;&amp; (image_index+image_speed &lt; 9){
-        //Attaque headshot, passible de maux de crâne.
+    if (image_index &gt;= 2) &amp;&amp; (image_index &lt; 3){
         if !instance_exists(object_hit){
-            instance_create(x+(11*image_xscale),y-13,object_hit);
-            object_hit.image_xscale = 15*image_xscale;
-            object_hit.image_yscale = 22;
+            instance_create(x+(-22*image_xscale),y-11,object_hit);
+            object_hit.image_xscale = 14*image_xscale;
+            object_hit.image_yscale = 20;
             }
         else{
-            object_hit.x = x+(11*image_xscale);
-            object_hit.y = y-13;
-            object_hit.image_xscale = 15*image_xscale;
-            object_hit.image_yscale = 22;
+            object_hit.x = x-(22*image_xscale);
+            object_hit.y = y-11;
+            object_hit.image_xscale = 14*image_xscale;
+            object_hit.image_yscale = 20;
             }
         }
     else{
-        if instance_exists(object_hit){instance_destroy(object_hit);}
+        if (image_index &gt;= 3) &amp;&amp; (image_index &lt; 4){
+            if !instance_exists(object_hit){
+                instance_create(x+(-22*image_xscale),y-11,object_hit);
+                object_hit.image_xscale = 25*image_xscale;
+                object_hit.image_yscale = 18;
+                }
+            else{
+                object_hit.x = x-(22*image_xscale);
+                object_hit.y = y-11;
+                object_hit.image_xscale = 25*image_xscale;
+                object_hit.image_yscale = 18;
+                }
+            }
+        else{
+            if (image_index &gt;= 4) &amp;&amp; (image_index &lt; 9){
+                //Attaque headshot, passible de maux de crâne.
+                if !instance_exists(object_hit){
+                    instance_create(x+(11*image_xscale),y-13,object_hit);
+                    object_hit.image_xscale = 15*image_xscale;
+                    object_hit.image_yscale = 22;
+                    }
+                else{
+                    object_hit.x = x+(11*image_xscale);
+                    object_hit.y = y-13;
+                    object_hit.image_xscale = 15*image_xscale;
+                    object_hit.image_yscale = 22;
+                    }
+                }
+            else{
+                if instance_exists(object_hit){instance_destroy(object_hit);}
+                }
+            }
         }
     }
 else{
@@ -1582,7 +1612,7 @@ if x = xprevious &amp;&amp; y = yprevious &amp;&amp; STATUS != "pushing" &amp;&a
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//Module d'animation:
+            <string>///Module d'animation:
 //The one line animator:
 sprite_index = asset_get_index("sprite_"+STATUS);
 if sprite_index = -1{sprite_index = sprite_TPose;}
