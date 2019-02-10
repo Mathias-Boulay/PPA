@@ -1592,7 +1592,7 @@ for(i=1;i&lt;=Number;i++){
             <kind>1</kind>
             <string>///Phase joueur: !IAHSMAI
 show_debug_message("JE CONVOQUE SHAI !--------------------------------------------");
-Number = ini_read_real(global.selected_part,"totoparcequecommeçafonctionne",0);
+Number = ini_read_real(global.selected_part,"ShaiNumber",0);
 show_debug_message("ShaiNumber= "+string(Number));
 show_debug_message("global.selected_part= "+global.selected_part);
 for(i=1;i&lt;=Number;i++){

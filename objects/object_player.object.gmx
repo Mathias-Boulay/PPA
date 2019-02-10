@@ -795,84 +795,86 @@ if attack{
     if attackcount = 0{
         if !invincible{
             attackcount++;
-            if STATUS != "crawling"{
-                if STATUS != "crawlidle"{
-                    if STATUS != "jumpfromcrawl"{
-                        if STATUS != "rolling"{
-                            if !(STATUS = "jumping" &amp;&amp; place_meeting(x,y+1,object_wall)){
-                                if STATUS != "jumpfromdive"{
-                                    if STATUS != "divelanding"{
-                                        if !place_meeting(x,y+1,object_wall){ //Si vous n'êtes pas sur le sol.
-                                            if place_meeting(x-1,y,object_wall){
-                                                //Effectuer une attaque dive depuis le mur de gauche:
-                                                vsp = -global.jumpspeed;
-                                                walljumppower = 4;
-                                                x=x+2;
-                                                STATUS = "divejumping";
-                                                image_speed = 0.12;
-                                                image_xscale = sign(walljumppower);
-                                                }
-                                            else{
-                                                if place_meeting(x+1,y,object_wall){
-                                                    //Effectuer une attaque dive depuis le mur de droite
+            if STATUS != "unlookup"{
+                if STATUS != "crawling"{
+                    if STATUS != "crawlidle"{
+                        if STATUS != "jumpfromcrawl"{
+                            if STATUS != "rolling"{
+                                if !(STATUS = "jumping" &amp;&amp; place_meeting(x,y+1,object_wall)){
+                                    if STATUS != "jumpfromdive"{
+                                        if STATUS != "divelanding"{
+                                            if !place_meeting(x,y+1,object_wall){ //Si vous n'êtes pas sur le sol.
+                                                if place_meeting(x-1,y,object_wall){
+                                                    //Effectuer une attaque dive depuis le mur de gauche:
                                                     vsp = -global.jumpspeed;
-                                                    walljumppower = -4;
-                                                    x = x-2;
+                                                    walljumppower = 4;
+                                                    x=x+2;
                                                     STATUS = "divejumping";
                                                     image_speed = 0.12;
                                                     image_xscale = sign(walljumppower);
                                                     }
                                                 else{
-                                                    if abs(move) &gt; 0.80 /*&amp;&amp; Can_jump*/{
-                                                        //Effectuer un dive jump depuis les airs !
-                                                        vsp = -global.jumpspeed/3;
-                                                        if abs(move) != 0{image_xscale= sign(move);}
-                                                        walljumppower = image_xscale*4;
+                                                    if place_meeting(x+1,y,object_wall){
+                                                        //Effectuer une attaque dive depuis le mur de droite
+                                                        vsp = -global.jumpspeed;
+                                                        walljumppower = -4;
+                                                        x = x-2;
                                                         STATUS = "divejumping";
                                                         image_speed = 0.12;
+                                                        image_xscale = sign(walljumppower);
                                                         }
                                                     else{
-                                                        //Do the spin attack;
-                                                        vsp = -global.jumpspeed/2;
-                                                        walljumppower +=sign(image_xscale);
-                                                        STATUS = "spinattack";
-                                                        image_index = 0;
-                                                        image_speed = 0.5
+                                                        if abs(move) &gt; 0.80 /*&amp;&amp; Can_jump*/{
+                                                            //Effectuer un dive jump depuis les airs !
+                                                            vsp = -global.jumpspeed/3;
+                                                            if abs(move) != 0{image_xscale= sign(move);}
+                                                            walljumppower = image_xscale*4;
+                                                            STATUS = "divejumping";
+                                                            image_speed = 0.12;
+                                                            }
+                                                        else{
+                                                            //Do the spin attack;
+                                                            vsp = -global.jumpspeed/2;
+                                                            walljumppower +=sign(image_xscale);
+                                                            STATUS = "spinattack";
+                                                            image_index = 0;
+                                                            image_speed = 0.5
+                                                            }
                                                         }
                                                     }
                                                 }
-                                            }
-                                        else{ //Donc si vous êtes sur le sol:
-                                            if abs(move) &gt; 0.84 &amp;&amp; Can_jump{
-                                                //Effectuer une roulade:
-                                                STATUS = "rolling";
-                                                hsp += 1.25*image_xscale;
-                                                vsp = -1
-                                                image_speed = 0.5;
-                                                image_index = 0;
-                                                }
-                                            else{
-                                                if STATUS != "headshot"{
-                                                    //Effectuer un headshot:
-                                                    STATUS= "headshot";
-                                                    waiting = 0;
+                                            else{ //Donc si vous êtes sur le sol:
+                                                if abs(move) &gt; 0.84 &amp;&amp; Can_jump{
+                                                    //Effectuer une roulade:
+                                                    STATUS = "rolling";
+                                                    hsp += 1.25*image_xscale;
+                                                    vsp = -1
+                                                    image_speed = 0.5;
                                                     image_index = 0;
-                                                    image_speed = 0.4;
+                                                    }
+                                                else{
+                                                    if STATUS != "headshot"{
+                                                        //Effectuer un headshot:
+                                                        STATUS= "headshot";
+                                                        waiting = 0;
+                                                        image_index = 0;
+                                                        image_speed = 0.4;
+                                                        }
                                                     }
                                                 }
                                             }
                                         }
                                     }
                                 }
-                            }
-                        else{
-                            if image_index &gt;= 11{
-                                if STATUS != "headshot"{
-                                    //Effectuer un headshot:
-                                    STATUS= "headshot";
-                                    waiting = 0;
-                                    image_index = 0;
-                                    image_speed = 0.4;
+                            else{
+                                if image_index &gt;= 11{
+                                    if STATUS != "headshot"{
+                                        //Effectuer un headshot:
+                                        STATUS= "headshot";
+                                        waiting = 0;
+                                        image_index = 0;
+                                        image_speed = 0.4;
+                                        }
                                     }
                                 }
                             }
@@ -1030,6 +1032,7 @@ if STATUS != "divejumping"{
 //Hey hey ça vous dit d'aller aggresser des ptizanimos sans défense ?
 //Module d'attaque.
 if STATUS = "headshot"{
+    //Attaque headshot, passible de maux de crâne.
     if (image_index &gt;= 2) &amp;&amp; (image_index &lt; 3){
         if !instance_exists(object_hit){
             instance_create(x+(-22*image_xscale),y-11,object_hit);
@@ -1046,34 +1049,48 @@ if STATUS = "headshot"{
     else{
         if (image_index &gt;= 3) &amp;&amp; (image_index &lt; 4){
             if !instance_exists(object_hit){
-                instance_create(x+(-22*image_xscale),y-11,object_hit);
-                object_hit.image_xscale = 25*image_xscale;
+                instance_create(x+(-21*image_xscale),y-11,object_hit);
+                object_hit.image_xscale = 27*image_xscale;
                 object_hit.image_yscale = 18;
                 }
             else{
-                object_hit.x = x-(22*image_xscale);
+                object_hit.x = x-(21*image_xscale);
                 object_hit.y = y-11;
-                object_hit.image_xscale = 25*image_xscale;
+                object_hit.image_xscale = 27*image_xscale;
                 object_hit.image_yscale = 18;
                 }
             }
         else{
-            if (image_index &gt;= 4) &amp;&amp; (image_index &lt; 9){
-                //Attaque headshot, passible de maux de crâne.
+            if (image_index &gt;= 4) &amp;&amp; (image_index &lt; 5){
                 if !instance_exists(object_hit){
-                    instance_create(x+(11*image_xscale),y-13,object_hit);
-                    object_hit.image_xscale = 15*image_xscale;
+                    instance_create(x+(-13*image_xscale),y-12,object_hit);
+                    object_hit.image_xscale = 37*image_xscale;
                     object_hit.image_yscale = 22;
                     }
                 else{
-                    object_hit.x = x+(11*image_xscale);
-                    object_hit.y = y-13;
-                    object_hit.image_xscale = 15*image_xscale;
+                    object_hit.x = x-(13*image_xscale);
+                    object_hit.y = y-11;
+                    object_hit.image_xscale = 37*image_xscale;
                     object_hit.image_yscale = 22;
                     }
                 }
             else{
-                if instance_exists(object_hit){instance_destroy(object_hit);}
+                if (image_index &gt;= 5) &amp;&amp; (image_index &lt; 7){
+                    if !instance_exists(object_hit){
+                        instance_create(x+(11*image_xscale),y-13,object_hit);
+                        object_hit.image_xscale = 13*image_xscale;
+                        object_hit.image_yscale = 22;
+                        }
+                    else{
+                        object_hit.x = x+(11*image_xscale);
+                        object_hit.y = y-13;
+                        object_hit.image_xscale = 13*image_xscale;
+                        object_hit.image_yscale = 22;
+                        }
+                    }
+                else{
+                    if instance_exists(object_hit){instance_destroy(object_hit);}
+                    }
                 }
             }
         }
@@ -1082,31 +1099,31 @@ else{
     if STATUS = "spinattack"{
         //Attaque bouboule, passible de que dalle:
         if !instance_exists(object_hit){
-            instance_create(x-10,y,object_hit);
-            object_hit.image_xscale=25;
+            instance_create(x-(9*image_xscale),y,object_hit);
+            object_hit.image_xscale=26*image_xscale;
             object_hit.image_yscale=25;
             }
         else{
-            object_hit.x = x-10;
+            object_hit.x = x-(9*image_xscale);
             object_hit.y = y;
-            object_hit.image_xscale=25;
+            object_hit.image_xscale=26*image_xscale;
             object_hit.image_yscale=25;
             }
         }
     else{
         if STATUS="divejumping"{
-            if (image_index) &gt;= 3{
+            if (image_index) &gt;= 5{
                 //Attaque diive jumping, passable de déchirage de pull:
                 if !instance_exists(object_hit){
-                    instance_create(x-10,y+23,object_hit);
-                    object_hit.image_xscale = 25;
-                    object_hit.image_yscale = 2;
+                    instance_create(x-(5*image_xscale),y+2,object_hit);
+                    object_hit.image_xscale = 23*image_xscale;
+                    object_hit.image_yscale = 26;
                     }
                 else{
-                    object_hit.x = x-10;
-                    object_hit.y = y+23;
-                    object_hit.image_xscale=25;
-                    object_hit.image_yscale=2;
+                    object_hit.x = x-(5*image_xscale);
+                    object_hit.y = y+2;
+                    object_hit.image_xscale=23*image_xscale;
+                    object_hit.image_yscale=26;
                     }
                 }
             else{
@@ -1118,14 +1135,14 @@ else{
                 if (image_index &gt;= 4)&amp;&amp;(image_index &lt; 11){
                     //On fait  une roulade bien trop pété.
                     if !instance_exists(object_hit){
-                        instance_create(x-10,y,object_hit);
-                        object_hit.image_xscale=25;
+                        instance_create(x-(9*image_xscale),y,object_hit);
+                        object_hit.image_xscale=26*image_xscale;
                         object_hit.image_yscale=25;
                         }
                     else{
-                        object_hit.x = x-10;
+                        object_hit.x = x-(9*image_xscale);
                         object_hit.y = y;
-                        object_hit.image_xscale=25;
+                        object_hit.image_xscale=26*image_xscale;
                         object_hit.image_yscale=25;
                         }
                     }
@@ -1162,25 +1179,27 @@ else{
             <kind>1</kind>
             <string>///Module de gestion du sens de Shai:
 //Gestion du sens de Shai, il ne faudrait pas qu'elle soit sens dessus dessous !
-if STATUS != "unlookup"{
-    if STATUS != "hurt"{
-        if STATUS != "rolling"{
-            if STATUS != "divefall"{
-                if STATUS != "lookup"{
-                    if STATUS != "divejumping"{
-                        if STATUS != "divelanding"{
-                            if STATUS != "jumpfromdive"{
-                                if STATUS != "spinattack"{
-                                    if STATUS != "headshot"{
-                                        if STATUS != "landing"{
-                                            if STATUS != "pre_landing"{
-                                                if STATUS != "crawling"{
-                                                    if STATUS != "crawlidle"{
-                                                        if STATUS = "walljump"{
-                                                            if place_meeting(x-1,y,object_wall){image_xscale = -1;}else{if place_meeting(x+1,y,object_wall){image_xscale = 1;}}
-                                                            }
-                                                        else{
-                                                            if abs(hsp) &gt; 0.2{image_xscale = sign(hsp);}else{if hsp = 0 &amp;&amp; abs(move) != 0{image_xscale = sign(move);}}   
+if STATUS != "crawlfromdive"{
+    if STATUS != "unlookup"{
+        if STATUS != "hurt"{
+            if STATUS != "rolling"{
+                if STATUS != "divefall"{
+                    if STATUS != "lookup"{
+                        if STATUS != "divejumping"{
+                            if STATUS != "divelanding"{
+                                if STATUS != "jumpfromdive"{
+                                    if STATUS != "spinattack"{
+                                        if STATUS != "headshot"{
+                                            if STATUS != "landing"{
+                                                if STATUS != "pre_landing"{
+                                                    if STATUS != "crawling"{
+                                                        if STATUS != "crawlidle"{
+                                                            if STATUS = "walljump"{
+                                                                if place_meeting(x-1,y,object_wall){image_xscale = -1;}else{if place_meeting(x+1,y,object_wall){image_xscale = 1;}}
+                                                                }
+                                                            else{
+                                                                if abs(hsp) &gt; 0.2{image_xscale = sign(hsp);}else{if hsp = 0 &amp;&amp; abs(move) != 0{image_xscale = sign(move);}}   
+                                                                }
                                                             }
                                                         }
                                                     }
@@ -1231,7 +1250,7 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                         if STATUS != "jumpfromcrawl"{
                                             if STATUS != "divejumping"{
                                                 if STATUS != "divelanding"{
-                                                    if STATUS != "spinup"{
+                                                    if STATUS != "crawlfromdive"{
                                                             if STATUS  != "spinattack"{
                                                                 if STATUS != "jumping" &amp;&amp; STATUS != "double_jumping"{
                                                                     if place_meeting(x,y+1,object_wall){ //Si Shai a un pied sur terre
@@ -1298,7 +1317,7 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                                                             }
                                                                                                         else{
                                                                                                             if waiting &gt; 5{
-                                                                                                                //Faire des trucs en attendant comme.... des équations bicarrées ?
+                                                                                                                //Faire des trucs en attendant comme.... de la documentation ? ?
                                                                                                                 /*if (waiting &gt; 5 &amp;&amp; waiting &lt; 5.1) || (waiting &gt; 10 &amp;&amp; waiting &lt; 10.1){
                                                                                                                     STATUS = "waiting";
                                                                                                                     }
@@ -1460,10 +1479,20 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                     }
                                                                 }
                                                             }
+                                                        else{
+                                                            //Cela signifie que l'on est en divelanding. On doit pouvoir switcher de mode via le crawling.
+                                                            if looking &gt; 0.7{
+                                                                STATUS = "crawlfromdive";
+                                                                image_index = 0;
+                                                                image_speed = 0.2;
+                                                                }
+                                                            }
                                                         }
                                                     else{
                                                         if place_meeting(x,y+1,object_wall){
                                                             STATUS = "divelanding";
+                                                            image_index = 0;
+                                                            image_speed = 0.25;
                                                             }
                                                         else{
                                                             if place_meeting(x+(image_xscale*2),y,object_wall){
@@ -1910,6 +1939,16 @@ else{
                                                                 }
                                                             }
                                                         temp_jump = 0;
+                                                        }
+                                                    else{
+                                                        if STATUS = "crawlfromdive"{
+                                                            if abs(move) != 0{
+                                                                STATUS = "crawling";
+                                                                }
+                                                            else{
+                                                                STATUS = "crawlidle";
+                                                                }
+                                                            }
                                                         }
                                                     }
                                                 }
