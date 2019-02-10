@@ -167,6 +167,7 @@
       <sprite>sprites\sprite_hurt</sprite>
       <sprite>sprites\sprite_pushing</sprite>
       <sprite>sprites\sprite_jumpfromdive</sprite>
+      <sprite>sprites\sprite_crawlfromdive</sprite>
       <sprite>sprites\sprite_jumpfromcrawl</sprite>
       <sprite>sprites\sprite_ledge</sprite>
       <sprite>sprites\sprite_rotating</sprite>
