@@ -62,7 +62,10 @@ C'est un peu con de faire un coup de tête lorsque l'on quitte le menu des vende
 Déterminer/ corriger la variable comptant le nombre de Shai. || C'est fait et à vrai dire c'est pas trop tôt.
 Ajouter des valeurs par défaut aux différents constructeurs. || Fait mais il faudra aussi il penser pour les futurs éléments.
 Corriger le problème de distance des platformes mouvantes qui n'est pas défini correctement (pas de prise en charge de la taille du sprite).
+	--> Corriger l'optimisation des plateformes.
 Commencer à gérer le menu de test de contrôle.
+Note: un bug d'activation d'animation de stopping à été detecté concernant l'atterissage après une hurt, elle reboucle à cause de sa vitesse.
+Lorsque Shai se retrouve bloqué en osition de jumping elle ne peut s'en défaire que par un autre saut ce qui problématique dans le cas d'espaces fermés
 
 
 

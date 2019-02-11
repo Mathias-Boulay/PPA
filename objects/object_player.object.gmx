@@ -907,23 +907,6 @@ if attack{
             <string>///Module de collisions:
 
 //Ok maintenant vous devez éviter de passer entre les murs.
-//Surcouche plateforme verticale:
-if (!place_meeting(x,y+vsp_carry,object_wall)){
-    if (!place_meeting(x,y+sign(vsp_carry),object_wall)){
-        y += vsp_carry;
-        }
-    else{ //...
-        vsp_carry=0;
-        }
-    }
-else{
-    if (!place_meeting(x,y+sign(vsp_carry),object_wall)){
-        y += sign(vsp_carry);
-        }
-    else{
-        vsp_carry = 0;
-        }
-    }
 
 //Surcouche plateforme horizontale:
 if (!place_meeting(x+hsp_carry,y,object_wall)){
@@ -1471,6 +1454,11 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                                         }
                                                                                     }
                                                                                 }
+                                                                            }
+                                                                        else{
+                                                                            /*if Can_jump &amp;&amp; vsp = 0 &amp;&amp; alarm[11] = -1{
+                                                                                STATUS = "idle";
+                                                                                }*/
                                                                             }
                                                                         }
                                                                     }
