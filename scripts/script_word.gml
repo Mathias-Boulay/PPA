@@ -1,3 +1,4 @@
+///script_word(ValueToSearch)
 var search = argument0;
 //Par précaution mais peut mener à des erreur peu detectables.
 ini_close();

@@ -1,3 +1,4 @@
+///script_word_light(StartValueToSearch , EndValueToSearch);
 var search = argument0;
 var length = argument1;
 //Par précaution mais peut mener à des erreur peu detectables.
