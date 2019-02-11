@@ -67,7 +67,13 @@ Commencer à gérer le menu de test de contrôle.
 Note: un bug d'activation d'animation de stopping à été detecté concernant l'atterissage après une hurt, elle reboucle à cause de sa vitesse. || Normalement patché.
 Lorsque Shai se retrouve bloqué en position de jumping elle ne peut s'en défaire que par un autre saut ce qui problématique dans le cas d'espaces fermés || Patché même si pas ultra design je l'avoue.
 Actuellement j'ai des problèmes de boîtes de colisions sur les crawl. || Corrigé, j'avais juste oublié le fait que le mask était calqué sur le sprite idle du joueur.
-Faudrait éviter par la même occasion que Shai se relève lorsqu'elle se situe en dessous d'un obstacle ou elle serait trop grand pour être entièrement relevé. 
+Faudrait éviter par la même occasion que Shai se relève lorsqu'elle se situe en dessous d'un obstacle ou elle serait trop grand pour être entièrement relevé. || Normalement ceci fut aussi patché.
+Ajouter la fonction createwall(x,y,asset,SubAsset); || Fait et fonctionne bien.
+Corriger les sprites de crawling qui ne s'actualisent pas tant en terme de vitesse que d'animation. ||J'actualise la vitesse quand même, on dirait que la crawling imobile c'est la crawlidle.
+Corriger la push qui push dans rien ?
+Corriger les backgrounds qui s'actualisent malgré la présence du menu de pause. --> Assez difficile à gérer avec les alarmes ? || Fonctionne parfaitement !
+Internationaliser l'inventaire --> Complexe avec le peu de place fourni ?
+Mettre des traductions ?
 
 
 

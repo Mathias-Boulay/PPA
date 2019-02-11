@@ -487,7 +487,13 @@ alarm_set(0,global.backgrounds[0,2]);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string></string>
+            <string>///On imobilise les alarmes des backgrounds
+if instance_exists(object_pause){
+    for(i=0;i&lt;=7;i++){
+        alarm[i] ++;
+        }
+    }
+</string>
           </argument>
         </arguments>
       </action>

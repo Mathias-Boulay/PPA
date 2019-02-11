@@ -196,6 +196,10 @@ if !instance_exists(object_pause){
         }
     }
 else{
+    //On freeze le sprite du joueur ainsi que ses alarmes.
+    alarm[0] ++;
+    alarm[10]++;
+    alarm[11]++;
     image_index -= image_speed;
     UIBusy = 1;
     }
@@ -1350,6 +1354,7 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                                 }
                                                                             }
                                                                         else{ //Si l'on est pas immobile...
+                                                                            if STATUS = "crawling"{image_speed=(abs(hsp)/5)*sign(hsp)*sign(image_xscale);}
                                                                             if looking &gt; 0.70{
                                                                                 if STATUS = "crawling"{image_speed=(abs(hsp)/5)*sign(hsp)*sign(image_xscale);}
                                                                                 if STATUS = "crawlidle"{
