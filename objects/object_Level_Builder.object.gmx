@@ -662,7 +662,6 @@ for(i=1;i&lt;=Number;i++){
     This_platform = instance_create(xx,yy,object_platform);
     This_platform.image_index = SubAsset;
     This_platform.my_sprite = asset_get_index("sprite_"+Asset+"_platforms");
-    This_platform.my_img_index = SubAsset;
     }
 </string>
           </argument>
