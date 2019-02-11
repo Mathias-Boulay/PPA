@@ -38,7 +38,7 @@ Implémenter les fondus au noirs dans les menus DONE ! It was some kind of easy.
  Corriger la suppression de sauvegarde un peu trop véloce. CE FUT FAIT !
  
  
- Travailler sur la propulsion verticale pour Shai en faisant une plateforme verticale sa maman la texture. --> FOIRAGE COMPLET !
+ Travailler sur la propulsion verticale pour Shai en faisant une plateforme verticale sa maman la texture. --> FOIRAGE COMPLET ! --> (2019/02/11) La plateforme verticale fonctionne même à haute vitesse.
   ->Menu de save qui possède une disparition d'item trop véloce ! HEY TOUT DISPARAIT TRANQUILLEMENT MAINTENANT !
   ->Inclus les menus lorsque l'on joue ! (à internationaliser) || Manque certains trucs qui sont à l'état de textures comme les mots dans le menu de langue.
   
@@ -62,10 +62,13 @@ C'est un peu con de faire un coup de tête lorsque l'on quitte le menu des vende
 Déterminer/ corriger la variable comptant le nombre de Shai. || C'est fait et à vrai dire c'est pas trop tôt.
 Ajouter des valeurs par défaut aux différents constructeurs. || Fait mais il faudra aussi il penser pour les futurs éléments.
 Corriger le problème de distance des platformes mouvantes qui n'est pas défini correctement (pas de prise en charge de la taille du sprite).
-	--> Corriger l'optimisation des plateformes.
+	--> Appliquer l'optimisation des plateformes.
 Commencer à gérer le menu de test de contrôle.
-Note: un bug d'activation d'animation de stopping à été detecté concernant l'atterissage après une hurt, elle reboucle à cause de sa vitesse.
-Lorsque Shai se retrouve bloqué en osition de jumping elle ne peut s'en défaire que par un autre saut ce qui problématique dans le cas d'espaces fermés
+Note: un bug d'activation d'animation de stopping à été detecté concernant l'atterissage après une hurt, elle reboucle à cause de sa vitesse. || Normalement patché.
+Lorsque Shai se retrouve bloqué en position de jumping elle ne peut s'en défaire que par un autre saut ce qui problématique dans le cas d'espaces fermés || Patché même si pas ultra design je l'avoue.
+Actuellement j'ai des problèmes de boîtes de colisions sur les crawl. || Corrigé, j'avais juste oublié le fait que le mask était calqué sur le sprite idle du joueur.
+Faudrait éviter par la même occasion que Shai se relève lorsqu'elle se situe en dessous d'un obstacle ou elle serait trop grand pour être entièrement relevé. 
+
 
 
 

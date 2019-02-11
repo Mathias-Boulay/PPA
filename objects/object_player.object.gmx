@@ -6,7 +6,7 @@
   <depth>-1</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
-  <maskName>sprite_idle</maskName>
+  <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
       <action>
@@ -671,11 +671,13 @@ if key_jump{
                             //if STATUS != "lookup"{
                                 if STATUS = "crawling" || STATUS = "crawlidle"{
                                     if place_meeting(x,y+1,object_wall){
-                                        //Jump while being crounched:
-                                        STATUS = "jumpfromdive";
-                                        alarm_set(0,10);
-                                        image_speed = 0.5;
-                                        image_index = 0;
+                                        if !place_meeting(x,y-12,object_wall){
+                                            //Jump while being crounched:
+                                            STATUS = "jumpfromdive";
+                                            alarm_set(0,10);
+                                            image_speed = 0.5;
+                                            image_index = 0;
+                                            }
                                         }
                                     }
                                 else{
@@ -714,11 +716,13 @@ if key_jump{
                                         if jumpcount &lt; 2{
                                             if Can_jump{
                                                 if STATUS = "divelanding"{
-                                                    //On se relève en sautant mais va falloir remasteriser les contrôles:
-                                                    STATUS = "jumpfromdive";
-                                                    alarm_set(0,10);
-                                                    image_speed = 0.5;
-                                                    image_index = 0;
+                                                    if !place_meeting(x,y-12,object_wall){
+                                                        //On se relève en sautant mais va falloir remasteriser les contrôles:
+                                                        STATUS = "jumpfromdive";
+                                                        alarm_set(0,10);
+                                                        image_speed = 0.5;
+                                                        image_index = 0;
+                                                        }
                                                     }
                                                 else{
                                                     //Effectuer un triple saut ou un saut normal. Le triple saut n'a pas d'implémentation prévue.
@@ -1239,9 +1243,11 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                     if place_meeting(x,y+1,object_wall){ //Si Shai a un pied sur terre
                                                                         if hsp = 0{ //Si l'on est immobile 
                                                                             if looking &lt; -0.90{
-                                                                               STATUS = "lookup";
-                                                                                image_speed = 0.070;
-                                                                                waiting = 0;
+                                                                                if (STATUS != "crawling") &amp;&amp; (STATUS != "crawlidle"){
+                                                                                    STATUS = "lookup";
+                                                                                    image_speed = 0.070;
+                                                                                    waiting = 0;
+                                                                                    }
                                                                                 }
                                                                             else{
                                                                                 if STATUS = "lookup"{
@@ -1265,9 +1271,11 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                                         }
                                                                                     else{
                                                                                         if STATUS = "crawling" || STATUS = "crawlidle"{
-                                                                                            STATUS = "jumpfromcrawl";
-                                                                                            image_index = 0;
-                                                                                            image_speed=0.5;
+                                                                                            if !place_meeting(x,y-12,object_wall){
+                                                                                                STATUS = "jumpfromcrawl";
+                                                                                                image_index = 0;
+                                                                                                image_speed=0.5;
+                                                                                                }
                                                                                             }
                                                                                         else{
                                                                                             if abs(move) !=0{
@@ -1356,10 +1364,12 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                                     }
                                                                                 }
                                                                             else{
-                                                                                if STATUS = "crawling" || STATUS = "crawidle"{
-                                                                                    STATUS = "jumpfromcrawl";
-                                                                                    image_index = 0;
-                                                                                    image_speed=0.5;
+                                                                                if STATUS = "crawling" || STATUS = "crawlidle"{
+                                                                                    if !place_meeting(x,y-12,object_wall){
+                                                                                        STATUS = "jumpfromcrawl";
+                                                                                        image_index = 0;
+                                                                                        image_speed=0.5;
+                                                                                        }
                                                                                     }
                                                                                 else{
                                                                                     if ((sign(move) = 1 &amp;&amp; sign(hsp) = -1) || (sign(move) = -1 &amp;&amp; sign(hsp) = 1)&amp;&amp; STATUS="running"){
@@ -1869,8 +1879,12 @@ else{
                                     }
                                 else{
                                     if STATUS = "jumping"{
-                                        image_index = 5;
-                                        image_speed = 0;
+                                        if vsp != 0{
+                                            image_index = 5;
+                                            }
+                                        else{
+                                            STATUS = "idle";
+                                            }
                                         }
                                     else{
                                         if STATUS = "headshot"{
@@ -1935,6 +1949,12 @@ else{
                                                                 }
                                                             else{
                                                                 STATUS = "crawlidle";
+                                                                }
+                                                            }
+                                                        else{
+                                                            if STATUS = "stopping"{
+                                                                image_speed = 0;
+                                                                image_index = image_number-1;
                                                                 }
                                                             }
                                                         }
