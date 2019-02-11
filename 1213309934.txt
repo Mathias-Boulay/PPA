@@ -59,8 +59,10 @@ NOTE: CORRIGER UN BUG SUR LA FONCTION HURT || CE FUT CORRIGÉ
 On doit pouvoir ramper depuis la divelanding. || devrait fonctionner.
 C'est un peu con de faire un coup de tête lorsque l'on quitte le menu des vendeurs. || Noralement patché.
 
-Déterminer/ corriger la variable comptant le nombre de Shai.
-Ajouter des valeurs par défaut aux différents constructeurs.
+Déterminer/ corriger la variable comptant le nombre de Shai. || C'est fait et à vrai dire c'est pas trop tôt.
+Ajouter des valeurs par défaut aux différents constructeurs. || Fait mais il faudra aussi il penser pour les futurs éléments.
+Corriger le problème de distance des platformes mouvantes qui n'est pas défini correctement (pas de prise en charge de la taille du sprite).
+Commencer à gérer le menu de test de contrôle.
 
 
 
