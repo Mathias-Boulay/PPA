@@ -686,7 +686,7 @@ if key_jump{
                                     }
                                 else{
                                     if !place_meeting(x,y+1,object_wall){ //Si vous n'êtes pas sur le sol
-                                        if place_meeting(x-1,y,object_wall){
+                                        if place_meeting(x-max(1,abs(hsp)),y,object_wall){
                                             //Effectuer un saut depuis le mur de gauche, sans aucune latence;
                                             vsp = -global.jumpspeed;
                                             walljumppower = 4;
@@ -694,7 +694,7 @@ if key_jump{
                                             STATUS = "double_jumping";
                                             }
                                         else{
-                                            if place_meeting(x+1,y,object_wall){
+                                            if place_meeting(x+max(1,abs(hsp)),y,object_wall){
                                                 //Effectuer un saut depuis le mur de droite.
                                                 vsp = -global.jumpspeed;
                                                 walljumppower = -4;
@@ -1283,15 +1283,19 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                                             }
                                                                                         else{
                                                                                             if abs(move) !=0{
-                                                                                                if STATUS != "pushing" &amp;&amp; STATUS != "startpushing" &amp;&amp; STATUS != "stoppushing"{
-                                                                                                    STATUS = "startpushing";
-                                                                                                    image_index = 0;
-                                                                                                    image_speed = 0.5;
+                                                                                                if STATUS != "pushing"{
+                                                                                                    if STATUS != "startpushing"{
+                                                                                                        if STATUS != "stoppushing"{
+                                                                                                            if position_meeting(x+image_xscale,y+10,object_wall){
+                                                                                                                STATUS = "startpushing";
+                                                                                                                image_index = 0;
+                                                                                                                image_speed = 0.5;
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
                                                                                                     }
                                                                                                 else{
-                                                                                                    if STATUS = "pushing"{
-                                                                                                        image_speed = abs(move)/8;
-                                                                                                        }
+                                                                                                    image_speed = abs(move)/8;
                                                                                                     }
                                                                                                 }
                                                                                             else{
@@ -1356,7 +1360,6 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                         else{ //Si l'on est pas immobile...
                                                                             if STATUS = "crawling"{image_speed=(abs(hsp)/5)*sign(hsp)*sign(image_xscale);}
                                                                             if looking &gt; 0.70{
-                                                                                if STATUS = "crawling"{image_speed=(abs(hsp)/5)*sign(hsp)*sign(image_xscale);}
                                                                                 if STATUS = "crawlidle"{
                                                                                     STATUS = "crawling";
                                                                                     }
@@ -1883,7 +1886,7 @@ else{
                                     image_speed = 0;
                                     }
                                 else{
-                                    if STATUS = "jumping"{
+                                    if STATUS = "jumping" || STATUS = "double_jumping"{
                                         if vsp != 0{
                                             image_index = 5;
                                             }

@@ -70,11 +70,20 @@ Actuellement j'ai des problèmes de boîtes de colisions sur les crawl. || Corri
 Faudrait éviter par la même occasion que Shai se relève lorsqu'elle se situe en dessous d'un obstacle ou elle serait trop grand pour être entièrement relevé. || Normalement ceci fut aussi patché.
 Ajouter la fonction createwall(x,y,asset,SubAsset); || Fait et fonctionne bien.
 Corriger les sprites de crawling qui ne s'actualisent pas tant en terme de vitesse que d'animation. ||J'actualise la vitesse quand même, on dirait que la crawling imobile c'est la crawlidle.
-Corriger la push qui push dans rien ?
+Corriger la push qui push dans rien ? ||Pacthé avec l'effet voulu.
 Corriger les backgrounds qui s'actualisent malgré la présence du menu de pause. --> Assez difficile à gérer avec les alarmes ? || Fonctionne parfaitement !
-Internationaliser l'inventaire --> Complexe avec le peu de place fourni ?
-Mettre des traductions ?
 
+Internationaliser l'inventaire+ le menu de pause --> Complexe avec le peu de place fourni ?
+Mettre des traductions ?
+Je suis le seul à trouver l'enchainement de la hurt et de la stopping vachement bizzare ?
+La possibilité de faire un saut complètement vertical contre le mur est inacceptable !
+	--> Le fonctionnement de ce bug est assez simple à comprendre: le joueur appuie sur A, application de la propulsion verticale puis annulation de la quasi-totalité de la propulsion horizontale car on rencontre le mur, de cette façon il ne reste plus que la propulsion verticale avec Shai en STATUS walljumping.
+	-->Les deux seules solutions existantes sont la pré-vérification (peut mettre à mal toutes les collisions) ou le changement d'ordre entres les modules (peu conseillé aussi).
+	|| J'ai réussi à en réduire le nombre d'occurences.
+Heu j'ai oublié de patcher le bug en double jump... || Fait !
+La roulade nous permet de nous relever dans des espace trop restreint. --> Plutôt compliqué à gérer à cause que l'animation est gérée d'un trait.
+Sinan le temps on le compte quand ?
+Pareil, il n'y a pas indication du dernier niveau joué/ débloqué.
 
 
 
