@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_create(x-29,y-43,object_resume);
+            <string>texts=script_word_light(51,59);
+instance_create(x-29,y-43,object_resume);
 instance_create(x-29,y-24,object_pockets);
 instance_create(x-29,y-5,object_options);
 instance_create(x-29,y+14,object_restart);

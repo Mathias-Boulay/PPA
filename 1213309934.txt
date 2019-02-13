@@ -86,8 +86,11 @@ Sinan le temps on le compte quand ?
 Pareil, il n'y a pas indication du dernier niveau joué/ débloqué.
 Changer le double saut en optionnel via un item. || Validé !
 Shai ne peut plus pousser ! || Oki c'est bon !
-Le menu pause est par rapport à Shai ! --> Mais dans le code ce n'est pas comme ça !
+Le menu pause est par rapport à Shai ! --> Mais dans le code ce n'est pas comme ça ! --> Tentative à moitié foiré. || Normalement patché.
 L'animation de stop est mal joué ! || Corrigé vitesse et sens non dépendant de la vitesse de hsp.
+Corriger la stopping qui boucle + stoppe lorsque joué en inversé ! || Corrigé !
+Patch animation qui s'active mal lors du saut depuis une plateforme.|| C'était plutôt un bug de saut dans les airs après être tombé du sol.
+
 
 
 

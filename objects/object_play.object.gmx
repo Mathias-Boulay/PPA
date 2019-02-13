@@ -52,11 +52,8 @@ sprite_index = play;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//On prend notre sprite depuis les ressources incluses afin de pouvoir manipuler sa zone de collision dynamiquement:
-draw_set_font(global.font_title);
-play = sprite_duplicate(sprite_play);
-sprite_collision_mask(play,false,2,0,0,16+string_width(object_white_book.texts[17]),14,1,0);
-sprite_index = play;
+            <string>///On supprime le doublon.
+sprite_delete(play);
 </string>
           </argument>
         </arguments>

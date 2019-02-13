@@ -150,6 +150,7 @@ attackcount = 0;
           <argument>
             <kind>1</kind>
             <string>///Effectuer un saut tout à fait classique:
+if place_meeting(x,y+1,object_wall){
 vsp = -global.jumpspeed;
 jumpcount ++;
 Can_jump = false;
@@ -159,7 +160,8 @@ alarm_set(11,15);
     if place_meeting(x,y+1,object_wall){
         triplejumptampon++;
         }
-    }*/    
+    }*/ 
+}   
 </string>
           </argument>
         </arguments>
@@ -704,7 +706,7 @@ if key_jump{
                                             else{
                                                 if jumpcount &lt; 1{
                                                     if Can_jump{
-                                                        //Effectuer un saut normal dans les airs, penser à l'incrémentation de la variable tampon de triple saut ?
+                                                        //Effectuer un saut normal dans les airs.
                                                         vsp = -global.jumpspeed;
                                                         jumpcount ++;
                                                         Can_jump = false;
