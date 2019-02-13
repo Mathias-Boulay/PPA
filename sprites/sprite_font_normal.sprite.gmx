@@ -10,7 +10,7 @@
   <bbox_left>0</bbox_left>
   <bbox_right>13</bbox_right>
   <bbox_top>0</bbox_top>
-  <bbox_bottom>12</bbox_bottom>
+  <bbox_bottom>14</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
@@ -18,7 +18,7 @@
   </TextureGroups>
   <For3D>0</For3D>
   <width>14</width>
-  <height>13</height>
+  <height>16</height>
   <frames>
     <frame index="0">images\sprite_font_normal_0.png</frame>
     <frame index="1">images\sprite_font_normal_1.png</frame>
@@ -73,5 +73,26 @@
     <frame index="50">images\sprite_font_normal_50.png</frame>
     <frame index="51">images\sprite_font_normal_51.png</frame>
     <frame index="52">images\sprite_font_normal_52.png</frame>
+    <frame index="53">images\sprite_font_normal_53.png</frame>
+    <frame index="54">images\sprite_font_normal_54.png</frame>
+    <frame index="55">images\sprite_font_normal_55.png</frame>
+    <frame index="56">images\sprite_font_normal_56.png</frame>
+    <frame index="57">images\sprite_font_normal_57.png</frame>
+    <frame index="58">images\sprite_font_normal_58.png</frame>
+    <frame index="59">images\sprite_font_normal_59.png</frame>
+    <frame index="60">images\sprite_font_normal_60.png</frame>
+    <frame index="61">images\sprite_font_normal_61.png</frame>
+    <frame index="62">images\sprite_font_normal_62.png</frame>
+    <frame index="63">images\sprite_font_normal_63.png</frame>
+    <frame index="64">images\sprite_font_normal_64.png</frame>
+    <frame index="65">images\sprite_font_normal_65.png</frame>
+    <frame index="66">images\sprite_font_normal_66.png</frame>
+    <frame index="67">images\sprite_font_normal_67.png</frame>
+    <frame index="68">images\sprite_font_normal_68.png</frame>
+    <frame index="69">images\sprite_font_normal_69.png</frame>
+    <frame index="70">images\sprite_font_normal_70.png</frame>
+    <frame index="71">images\sprite_font_normal_71.png</frame>
+    <frame index="72">images\sprite_font_normal_72.png</frame>
+    <frame index="73">images\sprite_font_normal_73.png</frame>
   </frames>
 </sprite>

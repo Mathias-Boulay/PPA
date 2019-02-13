@@ -84,6 +84,12 @@ Heu j'ai oublié de patcher le bug en double jump... || Fait !
 La roulade nous permet de nous relever dans des espace trop restreint. --> Plutôt compliqué à gérer à cause que l'animation est gérée d'un trait.
 Sinan le temps on le compte quand ?
 Pareil, il n'y a pas indication du dernier niveau joué/ débloqué.
+Changer le double saut en optionnel via un item. || Validé !
+Shai ne peut plus pousser ! || Oki c'est bon !
+Le menu pause est par rapport à Shai ! --> Mais dans le code ce n'est pas comme ça !
+L'animation de stop est mal joué ! || Corrigé vitesse et sens non dépendant de la vitesse de hsp.
+
+
 
 
 
