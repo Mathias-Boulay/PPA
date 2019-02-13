@@ -186,6 +186,7 @@
       <sprite>sprites\sprite_divefall</sprite>
       <sprite>sprites\sprite_rolling</sprite>
       <sprite>sprites\sprite_TPose</sprite>
+      <sprite>sprites\sprite_hurt_death</sprite>
     </sprites>
     <sprites name="powers_up">
       <sprite>sprites\sprite_item_0</sprite>
