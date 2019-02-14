@@ -93,6 +93,7 @@ Patch animation qui s'active mal lors du saut depuis une plateforme.|| C'était 
 Retirer les collisions des feuilles.
 corriger la hauteur de saut dynamique.
 Optimiser le code du module de friction (death edition aussi) !
+Corriger le uncontrol. ||Fait bien sur il posait problème par rapport à la death
 
 
 

@@ -118,7 +118,7 @@ if object_player.debug &gt;= 1
     //Debug tools:
     draw_set_halign(fa_right);
     draw_text_colour(view_xview[0]+424,view_yview[0]+15,'WARNING,DEBUG TOOLS:',c_red,c_red,c_red,c_red,1);
-    if object_player.debug = 1{draw_text_colour(view_xview[0]+424,view_yview[0]+30,"-Player's ID modifier",c_red,c_red,c_red,c_red,1);}
+    if object_player.debug = 1{draw_text_colour(view_xview[0]+424,view_yview[0]+30,"Speed= "+string(room_speed),c_red,c_red,c_red,c_red,1);}
     if object_player.debug = 2{draw_text_colour(view_xview[0]+424,view_yview[0]+30,'-Room_speed modifier',c_red,c_red,c_red,c_red,1);}
     draw_set_halign(fa_left);
     }

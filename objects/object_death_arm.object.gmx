@@ -84,24 +84,25 @@ if sprite_index = sprite_death_arm_stretch{
         sprite_index = sprite_death_arm_grab
         object_player.STATUS = "death_predown";
         object_player.image_index = 0;
-        object_player.image_speed = 0.14;
-        image_speed = 0.5;
-        alarm_set(0,30);
+        object_player.image_speed = 0.07;
+        image_index = 0;
+        image_speed = 0.15;
+        alarm_set(0,160);
         }
     }
 if sprite_index = sprite_death_arm_grab{
     if image_index &gt;= 4{
         //Bah la pour la transition correcte j'ai besoin d'un doigt tout seul.
-        draw_sprite(sprite_death_arm_finger,0,x-10,y-2);
         if !instance_exists(object_death_arm_finger){
-            instance_create(x-10,y-2,object_death_arm_finger);
+            instance_create(x-8,y-2,object_death_arm_finger);
             }
         }
     }
 
 if Can_down{
-    y -= ceil(vit*2);
+    y += ceil(vit*2);
     object_death_arm_finger.y = y-2;
+    object_player.y = y;
     }
 
 

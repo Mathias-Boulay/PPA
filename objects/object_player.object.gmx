@@ -150,8 +150,55 @@ attackcount = 0;
           <argument>
             <kind>1</kind>
             <string>///Donc là faut créer le bras en dehors de l'écran.
-instance_create(x+5,view_yview[0]+view_hport[0]+35,object_death_arm);
+instance_create(x+17,view_yview[0]+view_hport[0]+35,object_death_arm);
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="8">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///On reprend des contrôles normaux.
+uncontrol = 1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="7">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>instance_create(x,y,object_respawn);
 </string>
           </argument>
         </arguments>
@@ -267,6 +314,7 @@ if !instance_exists(object_pause){
 else{
     //On freeze le sprite du joueur ainsi que ses alarmes.
     alarm[0] ++;
+    alarm[8] ++;
     alarm[10]++;
     alarm[11]++;
     image_index -= image_speed;
@@ -370,9 +418,9 @@ if place_meeting(x,y+1,object_uncontrol_platform){
     uncontrol = -1;
     }
 else{
-    if uncontrol != 0{
-        if alarm_get(9) = -1{
-            alarm_set(9,60);
+    if uncontrol = -1 {
+        if alarm_get(8) = -1{
+            alarm_set(8,60);
             }
         }
     }
@@ -641,7 +689,7 @@ if STATUS != "rolling"{
                     hsp = 0;
                     }
                 else{
-                    hsp += (-sign(hsp))*(global.frict*4)
+                    hsp += (-sign(hsp))*(global.frict*3)
                     }
                 }
             }
@@ -653,7 +701,7 @@ else{
             hsp = 0;
             }
         else{
-            hsp += (-sign(hsp))*(global.frict*4)
+            hsp += (-sign(hsp))*(global.frict*3)
             }
         }
     }
@@ -689,7 +737,7 @@ if vsp &lt; 9{vsp+=global.grav}
 //Réagir lorsque un obstacle vous inflige des dommages:
 if abs(hurt) != 0{
     image_speed = 0.4;
-    hsp = hurt/1;
+    hsp = hurt;
     vsp = -abs(hurt/2);
     hurt= 0 ;
     image_xscale = sign(hsp) * -1;
@@ -1558,7 +1606,7 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                             }
                                                         else{
                                                             if place_meeting(x+(image_xscale*2),y,object_wall){
-                                                                hurt =(abs(hsp)*-image_xscale);
+                                                                hurt =(abs(hsp*walljumppower)*-image_xscale);
                                                                 }
                                                             }
                                                         }
@@ -1676,51 +1724,6 @@ if x = xprevious &amp;&amp; y = yprevious &amp;&amp; STATUS != "pushing" &amp;&a
       </action>
       <action>
         <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Phase de débug et endroit tranquille pour des tests de code.
-if keyboard_check_pressed(vk_down){
-    instance_create(x,y-100,object_leaves);
-    }
-
-if keyboard_check_pressed(vk_up){
-    life =0;
-    hurt = -2;
-    }
-
-
-
-
-
-
-if gamepad_button_check_pressed(ID,gp_stickl){
-    if debug &lt;1
-        {
-        debug ++;
-        }
-    else{
-        debug = 0;
-        }
-    }
-    
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
         <id>424</id>
         <kind>2</kind>
         <userelative>0</userelative>
@@ -1799,20 +1802,22 @@ if STATUS = "hurt_death"{
         STATUS = "laying_death";
         image_index = 0;
         image_speed = 0.3;
+        show_debug_message("Je suis mis à zéro !");
+        Can_up = false;
         }
     }
 else{
-    if STATUS = "death_up"{
+    if STATUS = "deathup"{
         //Là Shai se lève magiquement
-        y--;
-        }
-    else{
-        if STATUS = "deathdown"{
-            //Là on est ramené par la créa-main:
-            y = object_death_arm.y;
-            
+        if !Can_up{
+            if image_index &gt;= image_number-1{
+                Can_up = true;
+                }
             }
-        }       
+        if Can_up{
+            y--;
+            }
+        }      
     }
 </string>
           </argument>
@@ -1880,8 +1885,8 @@ if STATUS = "hurt_death" || STATUS = "laying_death"{
 if STATUS != "hurt_death"{
     if abs(hurt) != 0{
         image_speed = 0.4;
-        hsp = hurt/1;
-        vsp = -abs(hurt/2);
+        hsp = 5*sign(hurt);
+        vsp = -2.5;
         hurt= 0 ;
         image_xscale = sign(hsp) * -1;
         STATUS = "hurt_death";
@@ -2007,6 +2012,54 @@ if STATUS = "hurt_death" ||STATUS = "laying_death"{
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///Phase de débug et endroit tranquille pour des tests de code.
+if keyboard_check_pressed(vk_down){
+    instance_create(x,y-100,object_leaves);
+    }
+
+if keyboard_check_pressed(vk_up){
+    life =0;
+    hurt = -2;
+    }
+
+if keyboard_check_pressed(vk_left){
+    room_speed --;
+    }
+
+
+
+
+
+if gamepad_button_check_pressed(ID,gp_stickl){
+    if debug &lt;1
+        {
+        debug ++;
+        }
+    else{
+        debug = 0;
+        }
+    }
+    
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Module d'animation:
 //The one line animator:
 sprite_index = asset_get_index("sprite_"+STATUS);
@@ -2034,51 +2087,56 @@ if sprite_index = -1{sprite_index = sprite_TPose;}
             <string>///Camera for V4 (Enfin retravaillé parce que j'ai eu une illumination)
 
 if !instance_exists(object_pause){
-    //Follow xplayerposition
-    object_camera.x = ceil(x);
-    
-    //rounding player vertical position
-    y = round(y);
-    
-    //Suivre la position y de Shai
-    if STATUS = "lookup" &amp;&amp; sprite_index &gt; 1{
-                if instance_exists(object_fond_shop){
-                    //Let's create a smooth scroll instead:
-                    if object_camera.y-object_player.y &lt; 59{
-                        object_camera.y += min(3,(y+59)-object_camera.y);
-                        }
-                    }
-                else{
-                    //Là Shai regarde en l'air donc on doit faire en sorte que la camera se barre vers le haut
-                    object_camera.y -= min(3,object_camera.y-(y-80));
-                    }
-                }
-            else{
-                if STATUS = "unlookup"{
-                    //Là Shai BAISSE LES YEUX ! JE T'AI DIS BAISSE LES YEUX !
-                    if object_camera.y -y &lt; 0{
-                        object_camera.y += min(3,y-object_camera.y);
+    if STATUS != "death_predown"{
+        if STATUS != "deathdown"{
+            
+            //Follow xplayerposition
+            object_camera.x = ceil(x);
+            
+            //rounding player vertical position
+            y = round(y);
+            
+            //Suivre la position y de Shai
+            if STATUS = "lookup" &amp;&amp; sprite_index &gt; 1{
+                        if instance_exists(object_fond_shop){
+                            //Let's create a smooth scroll instead:
+                            if object_camera.y-object_player.y &lt; 59{
+                                object_camera.y += min(3,(y+59)-object_camera.y);
+                                }
+                            }
+                        else{
+                            //Là Shai regarde en l'air donc on doit faire en sorte que la camera se barre vers le haut
+                            object_camera.y -= min(3,object_camera.y-(y-80));
+                            }
                         }
                     else{
-                        //Dans le cas ou l'on fait face à un vendeur:
-                        object_camera.y -= min(3,object_camera.y-y);
+                        if STATUS = "unlookup"{
+                            //Là Shai BAISSE LES YEUX ! JE T'AI DIS BAISSE LES YEUX !
+                            if object_camera.y -y &lt; 0{
+                                object_camera.y += min(3,y-object_camera.y);
+                                }
+                            else{
+                                //Dans le cas ou l'on fait face à un vendeur:
+                                object_camera.y -= min(3,object_camera.y-y);
+                                }
+                            }
+                        else{
+                            object_camera.y = y;
+                            }
                         }
-                    }
-                else{
-                    object_camera.y = y;
-                    }
-                }
-    
-    
-    //object_camera.y = round(object_camera.y);
-    //Traitement de la vue afin de la syncroniser plus vite:
-    view_xview[ID]= object_camera.x-212;
-    if view_xview[ID]+view_wview[ID]&gt; room_width{view_xview[ID]= room_width-view_wview[ID];}
-    if view_xview[ID]&lt; 0{view_xview[ID]= 0;}
-    
-    view_yview[ID]=object_camera.y-120;
-    if view_yview[ID]+view_hview[ID]&gt; room_height{view_yview[ID]= room_height-view_hview[ID];}
-    if view_yview[ID]&lt; 0{view_yview[ID]= 0;}
+            
+            
+            //object_camera.y = round(object_camera.y);
+            //Traitement de la vue afin de la syncroniser plus vite:
+            view_xview[ID]= object_camera.x-212;
+            if view_xview[ID]+view_wview[ID]&gt; room_width{view_xview[ID]= room_width-view_wview[ID];}
+            if view_xview[ID]&lt; 0{view_xview[ID]= 0;}
+            
+            view_yview[ID]=object_camera.y-120;
+            if view_yview[ID]+view_hview[ID]&gt; room_height{view_yview[ID]= room_height-view_hview[ID];}
+            if view_yview[ID]&lt; 0{view_yview[ID]= 0;}
+            }
+        }
     }
 
 
@@ -2139,6 +2197,53 @@ if is_array(global.backgrounds){
         background_y[7] = (view_yview[0]/global.backgrounds[7,1])+global.backgrounds[7,6];
         }  
     }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="40">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///On crée les différents éléments de Shai démembrée !
+instance_create(x+irandom(9)-4,y,object_head);
+instance_create(x+irandom(9)-4,y,object_chest);
+instance_create(x+irandom(9)-4,y,object_left_arm);
+instance_create(x+irandom(9)-4,y,object_right_arm);
+instance_create(x+irandom(9)-4,y,object_left_leg);
+instance_create(x+irandom(9)-4,y,object_right_leg);
+
+//Donc maintenant il faut que les morceaux volent !
+//La vitesse:
+object_head.speed = random_range(0.5,1);
+object_chest.speed = random_range(0.5,1);;
+object_left_arm.speed = random_range(0.5,1);
+object_right_arm.speed = random_range(0.5,1);
+object_left_leg.speed = random_range(0.5,1);
+object_right_leg.speed = random_range(0.5,1);
+
+object_head.direction = random_range(70,110);
+object_chest.direction = random_range(70,110);
+object_left_arm.direction = random_range(70,110);
+object_right_arm.direction = random_range(70,110);
+object_left_leg.direction = random_range(70,110);
+object_right_leg.direction = random_range(70,110);
+
+alarm_set(7,180);
 </string>
           </argument>
         </arguments>

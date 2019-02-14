@@ -149,6 +149,14 @@
       </sprites>
     </sprites>
     <sprites name="Shai">
+      <sprites name="Shai's parts">
+        <sprite>sprites\sprite_head</sprite>
+        <sprite>sprites\sprite_chest</sprite>
+        <sprite>sprites\sprite_left_arm</sprite>
+        <sprite>sprites\sprite_right_arm</sprite>
+        <sprite>sprites\sprite_left_leg</sprite>
+        <sprite>sprites\sprite_right_leg</sprite>
+      </sprites>
       <sprite>sprites\sprite_idle</sprite>
       <sprite>sprites\sprite_idle_bossfight</sprite>
       <sprite>sprites\sprite_jumping</sprite>
@@ -186,6 +194,7 @@
       <sprite>sprites\sprite_divefall</sprite>
       <sprite>sprites\sprite_rolling</sprite>
       <sprite>sprites\sprite_TPose</sprite>
+      <sprite>sprites\sprite_laying_death</sprite>
       <sprite>sprites\sprite_hurt_death</sprite>
     </sprites>
     <sprites name="death_arm">
@@ -416,10 +425,19 @@
       <object>objects\object_drawer</object>
     </objects>
     <objects name="players">
+      <objects name="players' parts">
+        <object>objects\object_head</object>
+        <object>objects\object_chest</object>
+        <object>objects\object_left_arm</object>
+        <object>objects\object_right_arm</object>
+        <object>objects\object_left_leg</object>
+        <object>objects\object_right_leg</object>
+      </objects>
       <object>objects\object_player_old</object>
       <object>objects\object_player</object>
     </objects>
     <object>objects\object90</object>
+    <object>objects\object_respawn</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_title</room>
