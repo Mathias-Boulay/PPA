@@ -77,32 +77,32 @@ Can_down = false;
           <argument>
             <kind>1</kind>
             <string>///On fonce vers Shai.
-y -= min(vit,y-object_player.y);
+y -= min(vit,y-8-object_player.y);
 if sprite_index = sprite_death_arm_stretch{
-    if y = object_player.y{
+    if y-8 = object_player.y{
         //On la grab !
-        sprite_index = sprite_death_arm_grab
+        sprite_index = sprite_death_arm_grab;
         object_player.STATUS = "death_predown";
         object_player.image_index = 0;
-        object_player.image_speed = 0.07;
+        object_player.image_speed = 0.3;
         image_index = 0;
         image_speed = 0.15;
-        alarm_set(0,160);
+        alarm_set(0,60);
         }
     }
 if sprite_index = sprite_death_arm_grab{
     if image_index &gt;= 4{
         //Bah la pour la transition correcte j'ai besoin d'un doigt tout seul.
         if !instance_exists(object_death_arm_finger){
-            instance_create(x-8,y-2,object_death_arm_finger);
+            instance_create(x-8,y-3,object_death_arm_finger);
             }
         }
     }
 
 if Can_down{
     y += ceil(vit*2);
-    object_death_arm_finger.y = y-2;
-    object_player.y = y;
+    object_death_arm_finger.y = y-3;
+    object_player.y = y+8;
     }
 
 
