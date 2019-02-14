@@ -150,7 +150,7 @@ attackcount = 0;
           <argument>
             <kind>1</kind>
             <string>///Donc là faut créer le bras en dehors de l'écran.
-instance_create(x,y+240,object_death_arm);
+instance_create(x+5,view_yview[0]+view_hport[0]+35,object_death_arm);
 
 </string>
           </argument>
@@ -193,6 +193,48 @@ alarm_set(11,15);
       </action>
     </event>
     <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>612</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>-1</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_if_variable</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>-1</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>life</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>0</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>3</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>422</id>
+        <kind>1</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -660,20 +702,13 @@ if vsp &lt; 9{vsp+=global.grav}
             <kind>1</kind>
             <string>///Module de gestion de la hurt:
 //Réagir lorsque un obstacle vous inflige des dommages:
-if !invincible{
-    if abs(hurt) != 0{
-        image_speed = 0.4;
-        hsp = hurt/1.5;
-        vsp = -abs(hurt/3);
-        hurt= 0 ;
-        image_xscale = sign(hsp) * -1;
-        if life &lt;= 0{
-            STATUS = "hurt_death";
-            }
-        else{
-            STATUS = "hurt";
-            }
-        }
+if abs(hurt) != 0{
+    image_speed = 0.4;
+    hsp = hurt/1;
+    vsp = -abs(hurt/2);
+    hurt= 0 ;
+    image_xscale = sign(hsp) * -1;
+    STATUS = "hurt"
     }
 </string>
           </argument>
@@ -1538,7 +1573,7 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                             }
                                                         else{
                                                             if place_meeting(x+(image_xscale*2),y,object_wall){
-                                                                hurt =((abs(hsp)*abs(walljumppower))*-image_xscale);
+                                                                hurt =(abs(hsp)*-image_xscale);
                                                                 }
                                                             }
                                                         }
@@ -1604,30 +1639,6 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                         STATUS ="idle";
                         }
                     }
-                }
-            }
-        else{
-            //Ah c'est con Shai est morte² !
-            if STATUS = "hurt_death"{
-                if place_meeting(x,y+1,object_wall){
-                    //S'allonger
-                    STATUS = "laying_death";
-                    image_index = 0;
-                    image_speed = 0.3;
-                    }
-                }
-            else{
-                if STATUS = "death_up"{
-                    //Là Shai se lève magiquement
-                    y--;
-                    }
-                else{
-                    if STATUS = "deathdown"{
-                        //Là on est ramené par la créa-main:
-                        y = object_death_arm.y;
-                        
-                        }
-                    }       
                 }
             }
             
@@ -1738,6 +1749,116 @@ if gamepad_button_check_pressed(ID,gp_stickl){
     else{
         debug = 0;
         }
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>424</id>
+        <kind>2</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>424</id>
+        <kind>2</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>421</id>
+        <kind>3</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>422</id>
+        <kind>1</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Ah c'est con Shai est morte² !
+//Module de hurt death:
+if STATUS != "hurt_death"{
+    if abs(hurt) != 0{
+        image_speed = 0.4;
+        hsp = hurt/1;
+        vsp = -abs(hurt/2);
+        hurt= 0 ;
+        image_xscale = sign(hsp) * -1;
+        STATUS = "hurt_death";
+        }
+    }
+                
+if STATUS = "hurt_death"{
+    if place_meeting(x,y+1,object_wall){
+        //S'allonger
+        STATUS = "laying_death";
+        image_index = 0;
+        image_speed = 0.3;
+        }
+    }
+else{
+    if STATUS = "death_up"{
+        //Là Shai se lève magiquement
+        y--;
+        }
+    else{
+        if STATUS = "deathdown"{
+            //Là on est ramené par la créa-main:
+            y = object_death_arm.y;
+            
+            }
+        }       
     }
 </string>
           </argument>
@@ -2038,7 +2159,17 @@ else{
                                                                     STATUS = "deathup";
                                                                     image_index = 0;
                                                                     image_speed = 0.1;
-                                                                    alarm_set(9,300);
+                                                                    alarm_set(9,70);
+                                                                    }
+                                                                else{
+                                                                    if STATUS = "deathup"{
+                                                                        image_index = image_number-2;
+                                                                        }
+                                                                    else{
+                                                                        if STATUS = "death_predown"{
+                                                                            STATUS = "deathdown";
+                                                                            }
+                                                                        }
                                                                     }
                                                                 }
                                                             }

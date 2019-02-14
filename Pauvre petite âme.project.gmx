@@ -188,6 +188,11 @@
       <sprite>sprites\sprite_TPose</sprite>
       <sprite>sprites\sprite_hurt_death</sprite>
     </sprites>
+    <sprites name="death_arm">
+      <sprite>sprites\sprite_death_arm_stretch</sprite>
+      <sprite>sprites\sprite_death_arm_grab</sprite>
+      <sprite>sprites\sprite_death_arm_finger</sprite>
+    </sprites>
     <sprites name="powers_up">
       <sprite>sprites\sprite_item_0</sprite>
       <sprite>sprites\sprite_item_1</sprite>
@@ -328,6 +333,7 @@
     <object>objects\object_hitbox</object>
     <object>objects\object_wall_platforms</object>
     <object>objects\object_leaves</object>
+    <object>objects\object_death_arm</object>
     <objects name="Menus">
       <objects name="Pause_menu">
         <object>objects\object_infos</object>
@@ -413,6 +419,7 @@
       <object>objects\object_player</object>
     </objects>
     <object>objects\object90</object>
+    <object>objects\object_death_arm_finger</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_title</room>
