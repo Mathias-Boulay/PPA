@@ -59,7 +59,17 @@ image_speed = 0;
     else{
         mask_index = my_sprite;
         }
+    
+    
+    //Ptit workaround si Shai meure.
+    near = instance_nearest(x,y,object_player);
+    if near != noone{
+        if near.life &lt;= 0{
+            mask_index = -1;
+            }
+        }
     }
+     
 </string>
           </argument>
         </arguments>

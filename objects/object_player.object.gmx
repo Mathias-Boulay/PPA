@@ -631,12 +631,7 @@ if STATUS != "rolling"{
             hsp = 0;
             }
         else{
-            if hsp &gt; 0{
-                hsp -= global.frict;
-                }
-            else{
-                hsp += global.frict;
-                }
+            hsp += (-sign(hsp))*global.frict
             }
         }
     else{
@@ -646,12 +641,7 @@ if STATUS != "rolling"{
                     hsp = 0;
                     }
                 else{
-                    if hsp &gt; 0{
-                        hsp -= global.frict*4;
-                        }
-                    else{
-                        hsp += global.frict*4;
-                        }
+                    hsp += (-sign(hsp))*(global.frict*4)
                     }
                 }
             }
@@ -663,12 +653,7 @@ else{
             hsp = 0;
             }
         else{
-            if hsp &gt; 0{
-                hsp -= global.frict;
-                }
-            else{
-                hsp += global.frict;
-                }
+            hsp += (-sign(hsp))*(global.frict*4)
             }
         }
     }
@@ -1705,36 +1690,15 @@ if x = xprevious &amp;&amp; y = yprevious &amp;&amp; STATUS != "pushing" &amp;&a
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Module d'animation:
-//The one line animator:
-sprite_index = asset_get_index("sprite_"+STATUS);
-if sprite_index = -1{sprite_index = sprite_TPose;}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>///Phase de débug et endroit tranquille pour des tests de code.
 if keyboard_check_pressed(vk_down){
     instance_create(x,y-100,object_leaves);
     }
 
-
+if keyboard_check_pressed(vk_up){
+    life =0;
+    hurt = -2;
+    }
 
 
 
@@ -1750,6 +1714,7 @@ if gamepad_button_check_pressed(ID,gp_stickl){
         debug = 0;
         }
     }
+    
 </string>
           </argument>
         </arguments>
@@ -1827,17 +1792,6 @@ if gamepad_button_check_pressed(ID,gp_stickl){
           <argument>
             <kind>1</kind>
             <string>///Ah c'est con Shai est morte² !
-//Module de hurt death:
-if STATUS != "hurt_death"{
-    if abs(hurt) != 0{
-        image_speed = 0.4;
-        hsp = hurt/1;
-        vsp = -abs(hurt/2);
-        hurt= 0 ;
-        image_xscale = sign(hsp) * -1;
-        STATUS = "hurt_death";
-        }
-    }
                 
 if STATUS = "hurt_death"{
     if place_meeting(x,y+1,object_wall){
@@ -1866,6 +1820,165 @@ else{
       </action>
       <action>
         <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Module de gestion des frictions/gravité death edition !:
+//Accelérer c'est bien beau mais faut freiner aussi, avec la friction ! :
+if STATUS = "hurt_death" || STATUS = "laying_death"{    
+    if sign(hsp) != sign(move){
+        if abs(hsp) &lt; global.frict*2{
+            hsp = 0;
+            }
+        else{
+            hsp += (-sign(hsp))*(global.frict*2)
+            }
+        }
+        
+    //Ajout de friction si l'on possède de la propulsion depuis un mur:
+    if abs(walljumppower) &lt; (global.frict/2){walljumppower = 0;}else{if walljumppower &gt; 0{walljumppower -= global.frict;}else{walljumppower += global.frict;}}
+    //Pareil mais pour hsp carry
+    if abs(hsp_carry) &lt; (global.frict/2){hsp_carry = 0;}else{if hsp_carry &gt; 0{hsp_carry -= global.frict/2;}else{hsp_carry += global.frict/2;}}
+    
+    //Et voici la gravité !
+    //Vsp
+    if vsp &lt; 9{vsp+=global.grav}
+    
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Module de hurt death:
+if STATUS != "hurt_death"{
+    if abs(hurt) != 0{
+        image_speed = 0.4;
+        hsp = hurt/1;
+        vsp = -abs(hurt/2);
+        hurt= 0 ;
+        image_xscale = sign(hsp) * -1;
+        STATUS = "hurt_death";
+        }
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Module de collisions death edition:
+//Ok maintenant vous devez éviter de passer entre les murs.
+if STATUS = "hurt_death" ||STATUS = "laying_death"{
+    //Collision verticale: L'utilisation d'un statement "while" peut conduire à un crash.
+    if (!place_meeting(x,y+(vsp),object_wall)){
+        if (!place_meeting(x,y+sign(vsp),object_wall)){
+            y += vsp;
+            }
+        else{
+            vsp = 0;
+            }
+        }
+    else{
+        while (!place_meeting(x,y+sign(vsp),object_wall)){
+            y += sign(vsp);
+            }
+        if place_meeting(x,y+sign(vsp),object_wall){
+            vsp = 0;
+            }
+        }
+        
+    //Collision horizontale: Doit intégrer le support des pentes même si j'ai pas l'impression que cela va être utilisé.
+    if (!place_meeting(x+(hsp+walljumppower),y,object_wall)){
+        if (!place_meeting(x+sign(hsp+walljumppower),y,object_wall)){
+            x += (hsp+walljumppower);
+            }
+        else{
+            hsp = 0;
+            walljumppower =0;
+            }
+        }
+    else{
+        if place_meeting(x,y+1,object_wall){
+            yrealplus = 3;
+            while(place_meeting(x+(hsp+walljumppower),y-yrealplus,object_wall) &amp;&amp; yrealplus &lt; 10){
+                yrealplus += 1;
+                }
+            if (place_meeting(x+(hsp+walljumppower),y-yplus,object_wall)){
+                if (!place_meeting(x+sign(hsp+walljumppower),y-yplus,object_wall)){
+                    x += sign(hsp+walljumppower);
+                    }
+                else{
+                    hsp = 0;
+                    walljumppower = 0;
+                    }
+                }
+            else{
+                x += (hsp+walljumppower);
+                y -= yrealplus;
+                }
+            }
+        else{
+            if (!place_meeting(x+sign(hsp+walljumppower),y,object_wall)){
+                x += sign(hsp+walljumppower);
+                }
+            else{
+                hsp = 0;
+                walljumppower =0;
+                }
+            }
+        }
+            
+    //Correctif du système de collision en bois:
+    if place_meeting(x,y,object_wall){if next_right = true &amp;&amp; next_left != true{x -=2;}else{if next_right != true &amp;&amp; next_left = true{x +=2;}}}
+        
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
         <id>424</id>
         <kind>2</kind>
         <userelative>0</userelative>
@@ -1877,6 +1990,30 @@ else{
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Module d'animation:
+//The one line animator:
+sprite_index = asset_get_index("sprite_"+STATUS);
+if sprite_index = -1{sprite_index = sprite_TPose;}
+</string>
+          </argument>
+        </arguments>
       </action>
       <action>
         <libid>1</libid>

@@ -92,6 +92,13 @@ image_speed=0;
                 object_player.y = y-26;
                 }
             }
+        //Ptit workaround si Shai meure.
+        near = instance_nearest(x,y,object_player);
+        if near != noone{
+            if near.life &lt;= 0{
+                mask_index = -1;
+                }
+            }
         }
     }
 </string>

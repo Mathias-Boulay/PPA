@@ -89,6 +89,13 @@ image_speed=0;
                 object_player.hsp_carry = (x-xprevious)+(sign(hsp)*global.frict/2);
                 }
             }
+        //Ptit workaround si Shai meure.
+        near = instance_nearest(x,y,object_player);
+        if near != noone{
+            if near.life &lt;= 0{
+                mask_index = -1;
+                }
+            }
         }
     }
 </string>

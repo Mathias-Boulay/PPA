@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>///On veut appliquer la vitesse que l'on désire, cette vitesse est calculé en fonction de la distance du bras par rapport à Shai
-vit = ((y-object_player.y)/30);
+vit = ceil((y-object_player.y)/30);
 image_speed = 0.13;
 Can_down = false;
  
@@ -83,6 +83,8 @@ if sprite_index = sprite_death_arm_stretch{
         //On la grab !
         sprite_index = sprite_death_arm_grab
         object_player.STATUS = "death_predown";
+        object_player.image_index = 0;
+        object_player.image_speed = 0.14;
         image_speed = 0.5;
         alarm_set(0,30);
         }
@@ -98,7 +100,7 @@ if sprite_index = sprite_death_arm_grab{
     }
 
 if Can_down{
-    y -= vit*2;
+    y -= ceil(vit*2);
     object_death_arm_finger.y = y-2;
     }
 

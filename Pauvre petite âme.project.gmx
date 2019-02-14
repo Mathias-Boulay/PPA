@@ -334,6 +334,7 @@
     <object>objects\object_wall_platforms</object>
     <object>objects\object_leaves</object>
     <object>objects\object_death_arm</object>
+    <object>objects\object_death_arm_finger</object>
     <objects name="Menus">
       <objects name="Pause_menu">
         <object>objects\object_infos</object>
@@ -419,7 +420,6 @@
       <object>objects\object_player</object>
     </objects>
     <object>objects\object90</object>
-    <object>objects\object_death_arm_finger</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_title</room>
