@@ -163,9 +163,11 @@ if path_index = -1{
                 }
             }
         }
+    path_speed = 0;
     }
 
 //Changer de pattern en cas de collision avec un mur sur les côtés:
+/*
 if place_meeting(x-1,y,object_wall){
     x++;
     //Switcher sur un pattern qui part vers la droite:
@@ -193,6 +195,7 @@ else{
             }
         }
     }
+*/
     
 //Définir la vitesse en fonction du pattern et de sa position dans celui ci:
 if path_part[0] = 0{

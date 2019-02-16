@@ -861,22 +861,23 @@ if key_jump{
                 }
             }
         }
+    }
 
-    //Implémentation de la hauteur de saut variable:
-    if STATUS != "rolling"{
-        if STATUS != "jumpfromdive"{
-            if STATUS != "divejumping"{
-                if STATUS != "hurt"{
-                    if vsp &lt; 0{
-                        if !key_jump_held{
-                            vsp = max(vsp,-global.jumpspeed/2);
-                            }
+//Implémentation de la hauteur de saut variable:
+if STATUS != "rolling"{
+    if STATUS != "jumpfromdive"{
+        if STATUS != "divejumping"{
+            if STATUS != "hurt"{
+                if vsp &lt; 0{
+                    if !key_jump_held{
+                        vsp = max(vsp,-global.jumpspeed/2);
                         }
                     }
                 }
             }
         }
     }
+    
 </string>
           </argument>
         </arguments>
@@ -2247,12 +2248,12 @@ if life &lt;=0{
         object_left_leg.direction = random_range(55,125);
         object_right_leg.direction = random_range(55,125);
         
-        object_head.friction=object_head.speed/alarm[7]+20;
-        object_chest.friction=object_chest.speed/alarm[7]+20;
-        object_left_arm.friction=object_left_arm.speed/alarm[7]+20;
-        object_right_arm.friction=object_right_arm.speed/alarm[7]+20;
-        object_left_leg.friction=object_left_leg.speed/alarm[7]+20;
-        object_right_leg.friction=object_right_leg.speed/alarm[7]+20;
+        object_head.friction=object_head.speed/(alarm[7]);
+        object_chest.friction=object_chest.speed/(alarm[7]);
+        object_left_arm.friction=object_left_arm.speed/(alarm[7]);
+        object_right_arm.friction=object_right_arm.speed/(alarm[7]);
+        object_left_leg.friction=object_left_leg.speed/(alarm[7]);
+        object_right_leg.friction=object_right_leg.speed/(alarm[7]);
         
         
         }
