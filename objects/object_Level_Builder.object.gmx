@@ -110,7 +110,7 @@ global.time_left="";
 global.bossfight="";
 
 //Définition des variables globales utilisées principalement par le joueur:
-original = ini_read_string(global.selected_part,"Worldsettings","(0.3,5.75,8,0.10,6000,0)");
+original = ini_read_string(global.selected_part,"Worldsettings","(0.3,6,8,0.12,6000,0)");
 original = string_replace(original,"(","");
 for(j=1;j&gt;-1;j++){ //For gravity:
         if string_char_at(original,1) != ","{

@@ -535,7 +535,7 @@ else{
 //Si demandé, on active la pause:
 if pause{
     if !instance_exists(object_left_button){
-        instance_create(max(212,object_camera.x),max(120,object_camera.y),object_pause);
+        instance_create(max(212,min(object_camera.x,room_width-212)),max(120,min(object_camera.y,room_height-120)),object_pause);
         }
     else{
         show_debug_message("Nombre d'instances actives: "+string(instance_number(object_pause)));
@@ -1564,11 +1564,6 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                                     }
                                                                                 }
                                                                             }
-                                                                        else{
-                                                                            /*if Can_jump &amp;&amp; vsp = 0 &amp;&amp; alarm[11] = -1{
-                                                                                STATUS = "idle";
-                                                                                }*/
-                                                                            }
                                                                         }
                                                                     }
                                                                 else{
@@ -1617,29 +1612,35 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                             }
                                         }
                                     }
-                                else{
-                                    //Section qui vise à replacer Shai en fonction de son image index dans l'attaque headshot. N'a jamais fonctionné, c'est bien pour cela que c'est toujours vide.
-                                    }
                                 }
                             else{
-                                //Gérer les étapes de la roulade:
-                                if image_index &gt;= 3 &amp;&amp; image_index &lt;4{
-                                    //Vérifier si elle est au sol:
-                                    if !place_meeting(x,y+1,object_wall){
-                                        image_index = 3;
+                                if image_index &gt;= 4 &amp;&amp; image_index &lt; 11{
+                                    if image_index &gt;= 10.5 &amp;&amp; image_index &lt; 11{
+                                        if place_meeting(x,y-15,object_wall){
+                                            image_index = 4;
+                                            }
                                         }
                                     }
                                 else{
-                                    if !place_meeting(x,y+1,object_wall){
-                                        if image_index &gt;= 11{
-                                            if key_jump{
-                                                temp_jump = true;
-                                                }
+                                    //Gérer les étapes de la roulade:
+                                    if image_index &gt;= 3 &amp;&amp; image_index &lt;4{
+                                        //Vérifier si elle est au sol:
+                                        if !place_meeting(x,y+1,object_wall){
+                                            image_index = 3;
                                             }
-                                        if vsp &gt; 1.5{
-                                            STATUS = "pre_landing";
-                                            image_index = 0;
-                                            image_speed = 0.5;
+                                        }
+                                    else{
+                                        if !place_meeting(x,y+1,object_wall){
+                                            if image_index &gt;= 11{
+                                                if key_jump{
+                                                    temp_jump = true;
+                                                    }
+                                                }
+                                            if vsp &gt; 1.5{
+                                                STATUS = "pre_landing";
+                                                image_index = 0;
+                                                image_speed = 0.5;
+                                                }
                                             }
                                         }
                                     }
@@ -2075,7 +2076,7 @@ if !instance_exists(object_pause){
         if STATUS != "deathdown"{
             
             //Follow xplayerposition
-            object_camera.x = ceil(x);
+            object_camera.x = ceil(x)
             
             //rounding player vertical position
             y = round(y);
@@ -2108,6 +2109,8 @@ if !instance_exists(object_pause){
                             object_camera.y = y;
                             }
                         }
+            
+            
             
             
             //object_camera.y = round(object_camera.y);
