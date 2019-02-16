@@ -3,7 +3,7 @@
   <spriteName>sprite_leaves</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>2</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -254,7 +254,7 @@ else{
 
 
 
-
+/*
 //Démarrer la fin du pattern en bas de collision avec le sol.
 if place_meeting(x,y+1,object_wall){
     if path_part[0] != "_end"{
@@ -270,6 +270,7 @@ if place_meeting(x,y+1,object_wall){
             }
         }
     }
+*/
 </string>
           </argument>
         </arguments>

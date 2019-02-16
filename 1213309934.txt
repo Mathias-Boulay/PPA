@@ -93,10 +93,15 @@ Patch animation qui s'active mal lors du saut depuis une plateforme.|| C'était 
 
 Mettre nouveau bouton retour.
 Recorriger le knockback qui est trop puissant contre le mur et pas assez pour la mort.
-Retirer les collisions des feuilles.
-corriger la hauteur de saut dynamique.
-Optimiser le code du module de friction (death edition aussi) !
-Actualiser les armes.
+Retirer les collisions des feuilles. || Fait assez simplement fallait pas rêver.
+corriger la hauteur de saut dynamique || Fait c'était un problème de structure.
+Optimiser le code du module de friction (death edition aussi) ! || C'est fait !
+Clean le code de fin d'animation
+Réduire sa tendence à glisser.
+On doit se prendre une hurt avec le headshot.
+Décaler un peu la caméra dans la direction vers laquelle on marche ( necessite patch concernant l'apparition du menu de pause. qui necessite déjà un patch de toute façon.)
+Corriger les hitboxs d'attaques qui sont encore un peu à chier.
+Actualiser les arbres.
 Corriger le uncontrol. ||Fait bien sur il posait problème par rapport à la death
 
 

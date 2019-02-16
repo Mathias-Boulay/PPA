@@ -675,40 +675,26 @@ if STATUS = "crawling"{
 //Accelérer c'est bien beau mais faut freiner aussi, avec la friction ! :
 if STATUS != "rolling"{
     if sign(hsp) != sign(move){
-        if abs(hsp) &lt; global.frict{
-            hsp = 0;
-            }
-        else{
-            hsp += (-sign(hsp))*global.frict
-            }
+        hsp = max(0,abs(hsp)-global.frict)*sign(hsp);
         }
     else{
         if STATUS = "divejumping"{
             if place_meeting(x,y+1,object_wall){
-                if abs(hsp) &lt; global.frict{
-                    hsp = 0;
-                    }
-                else{
-                    hsp += (-sign(hsp))*(global.frict*3)
-                    }
+                hsp = max(0,abs(hsp)-global.frict*3)*sign(hsp);
                 }
             }
         }
     }
 else{
     if image_index &gt; 11{
-        if abs(hsp) &lt; global.frict{
-            hsp = 0;
-            }
-        else{
-            hsp += (-sign(hsp))*(global.frict*3)
-            }
+        hsp = max(0,abs(hsp)-global.frict*3)*sign(hsp);
         }
     }
 //Ajout de friction si l'on possède de la propulsion depuis un mur:
-if abs(walljumppower) &lt; (global.frict/2){walljumppower = 0;}else{if walljumppower &gt; 0{walljumppower -= global.frict;}else{walljumppower += global.frict;}}
+walljumppower = max(0,abs(walljumppower)-global.frict)*sign(walljumppower);
+
 //Pareil mais pour hsp carry
-if abs(hsp_carry) &lt; (global.frict/2){hsp_carry = 0;}else{if hsp_carry &gt; 0{hsp_carry -= global.frict/2;}else{hsp_carry += global.frict/2;}}
+hsp_carry = max(0,abs(hsp_carry)-global.frict/2)*sign(hsp_carry);
 
 //Et voici la gravité !
 //Vsp
@@ -1586,7 +1572,10 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                         }
                                                                     }
                                                                 else{
-                                                                    if place_meeting(x,y+1,object_wall){STATUS="idle";}
+                                                                    if place_meeting(x,y+1,object_wall){
+                                                                        STATUS="idle";
+                                                                        image_speed = 0.1;
+                                                                        }
                                                                     }
                                                                 }
                                                             }
@@ -1661,6 +1650,7 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                 else{
                     if object_camera.y-y=0{
                         STATUS="idle"
+                        image_speed = 0.1;
                         }
                     }
                 }
@@ -1671,6 +1661,7 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                         }
                     else{
                         STATUS ="idle";
+                        image_speed = 0.1;
                         }
                     }
                 }
@@ -1842,20 +1833,12 @@ else{
             <kind>1</kind>
             <string>///Module de gestion des frictions/gravité death edition !:
 //Accelérer c'est bien beau mais faut freiner aussi, avec la friction ! :
-if STATUS = "hurt_death" || STATUS = "laying_death"{    
-    if sign(hsp) != sign(move){
-        if abs(hsp) &lt; global.frict*2{
-            hsp = 0;
-            }
-        else{
-            hsp += (-sign(hsp))*(global.frict*2)
-            }
-        }
+if STATUS = "hurt_death" || STATUS = "laying_death"{
+    //Friction pour la vitesse normale.
+    hsp = max(0,abs(hsp)-global.frict*2)*sign(hsp);
         
     //Ajout de friction si l'on possède de la propulsion depuis un mur:
-    if abs(walljumppower) &lt; (global.frict/2){walljumppower = 0;}else{if walljumppower &gt; 0{walljumppower -= global.frict;}else{walljumppower += global.frict;}}
-    //Pareil mais pour hsp carry
-    if abs(hsp_carry) &lt; (global.frict/2){hsp_carry = 0;}else{if hsp_carry &gt; 0{hsp_carry -= global.frict/2;}else{hsp_carry += global.frict/2;}}
+    walljumppower = max(0,abs(walljumppower)-global.frict)*sign(walljumppower);
     
     //Et voici la gravité !
     //Vsp
@@ -2282,7 +2265,171 @@ if life &lt;=0{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Compressed 'cause I have the PUTIN DE FLEMME !
+            <string>///Système de fin d'animation retravaillé avec de meilleur statements:
+switch(STATUS){
+    case "waiting":
+    case "unlookup":
+    case "jumpfromcrawl":
+    case "stoppushing":
+        STATUS = "idle";
+        image_speed = 0.1;
+        break;
+    
+    case "divejumping":
+        image_index = 5;
+        break;
+        
+    case "divelanding":
+        image_index = 6;
+        image_speed = 0;
+        break;
+        
+    case "waiting_phase_2":
+        image_index = 11;
+        break;
+    
+    case "startpushing":
+        STATUS = "pushing";
+        break;
+        
+    case "precrawl":
+        if looking &gt; 0.7{
+            STATUS = "crawlidle";
+            }
+        else{
+            STATUS = "jumpfromcrawl";
+            }
+        break;
+    
+    case "jumpfromdive":
+        STATUS = "jumping";
+        image_index = 2;
+        image_speed = 0.5;
+        break;
+        
+    case "pre_landing":
+        image_index = 1;
+        image_speed = 0;
+        break;
+        
+    case "jumping":
+    case "double_jumping":
+        if vsp &lt; 0{
+            image_index = 5;
+            }
+        else{
+            STATUS = "idle";
+            image_speed = 0.1;
+            }
+        break;
+            
+        case "headshot":
+            STATUS = "idle";
+            image_speed = 0.1;
+            alarm_set(10,10);
+            break;
+            
+        case "spinattack":
+            if !attack{
+                if (vsp &lt; -global.grav){
+                    STATUS = "jumping";
+                    }
+                else{
+                     if (abs(vsp) &lt; 1){
+                        STATUS = "pre_landing";
+                        }
+                    else{
+                        if vsp &gt;= 1{
+                            STATUS = "landing";
+                            }
+                        }
+                    }
+                }
+            break;
+            
+        case "rolling":
+            if temp_jump{
+                //Then do a jump;
+                STATUS = "jumping";
+                image_index = 2;
+                image_speed= 0.5;
+                vsp = -global.jumpspeed;
+                jumpcount ++;
+                Can_jump = false;
+                alarm_set(11,15);
+                }
+            else{
+                //Transition over running or walking;
+                if hsp &gt; 3.5{
+                    STATUS = "running";
+                    }
+                else{
+                    if abs(hsp) &gt; 0{
+                        STATUS = "walking";
+                        }
+                    else{
+                        STATUS = "idle";
+                        image_speed = 0.1;
+                        }
+                    }
+                }
+            temp_jump = 0;
+            break;
+            
+        case "crawlfromdive":
+            if abs(move) != 0{
+                STATUS = "crawling";
+                }
+            else{
+                STATUS = "crawlidle";
+                }    
+            break;
+            
+        case "stopping":
+            if image_speed &lt; 0{
+                image_speed = 0;
+                }
+            else{
+                image_speed = 0;
+                image_index = image_number-1;
+                }
+            break;
+            
+        case "laying_death":
+            STATUS = "deathup";
+            image_speed = 0.3;
+            alarm_set(9,100);
+            break;
+            
+        case "death_predown":
+            STATUS = "deathdown";
+            image_speed = 0.5;
+            break;
+                
+        }
+        
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///(OUTDATED) Compressed 'cause I have the PUTIN DE FLEMME !
+/*
 if STATUS = "waiting" || STATUS = "unlookup"{
     STATUS = "idle";
     }
@@ -2446,6 +2593,7 @@ else{
             }
         }
     }
+*/
 </string>
           </argument>
         </arguments>
