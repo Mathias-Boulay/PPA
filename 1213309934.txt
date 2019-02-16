@@ -90,10 +90,15 @@ Le menu pause est par rapport à Shai ! --> Mais dans le code ce n'est pas comme
 L'animation de stop est mal joué ! || Corrigé vitesse et sens non dépendant de la vitesse de hsp.
 Corriger la stopping qui boucle + stoppe lorsque joué en inversé ! || Corrigé !
 Patch animation qui s'active mal lors du saut depuis une plateforme.|| C'était plutôt un bug de saut dans les airs après être tombé du sol.
+
+Mettre nouveau bouton retour.
+Recorriger le knockback qui est trop puissant contre le mur et pas assez pour la mort.
 Retirer les collisions des feuilles.
 corriger la hauteur de saut dynamique.
 Optimiser le code du module de friction (death edition aussi) !
+Actualiser les armes.
 Corriger le uncontrol. ||Fait bien sur il posait problème par rapport à la death
+
 
 
 

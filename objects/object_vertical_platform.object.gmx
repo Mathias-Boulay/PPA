@@ -32,6 +32,7 @@ dir = 1;
 hsp = 0;
 image_index = 0;
 image_speed=0;
+near = instance_nearest(x,y,object_player)
 </string>
           </argument>
         </arguments>
@@ -126,12 +127,7 @@ if near != noone{
             <kind>1</kind>
             <string>
 draw_sprite(my_sprite,image_index,x,y);
-draw_text(x,y,"mask_index= "+string(mask_index));
-draw_text(x,y+15,"my_sprite= "+string(my_sprite));
-draw_text(x,y+30,"dir= "+string(dir));
-draw_text(x,y+45,"hsp= "+string(hsp));
-draw_text(x,y+60,"image_index= "+string(image_index));
-draw_text(x,y+75,"y= "+string(y));
+draw_text(x,y+15,"near.life="+string(near.life));
 </string>
           </argument>
         </arguments>

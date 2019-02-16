@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>///On veut appliquer la vitesse que l'on désire, cette vitesse est calculé en fonction de la distance du bras par rapport à Shai
-vit = ceil((y-object_player.y)/30);
+vit = ceil((y-object_player.y)/20);
 image_speed = 0.13;
 Can_down = false;
  
@@ -86,8 +86,8 @@ if sprite_index = sprite_death_arm_stretch{
         object_player.image_index = 0;
         object_player.image_speed = 0.3;
         image_index = 0;
-        image_speed = 0.15;
-        alarm_set(0,60);
+        image_speed = 0.3;
+        alarm_set(0,30);
         }
     }
 if sprite_index = sprite_death_arm_grab{
@@ -100,7 +100,7 @@ if sprite_index = sprite_death_arm_grab{
     }
 
 if Can_down{
-    y += ceil(vit*2);
+    y += ceil(vit*1.5);
     object_death_arm_finger.y = y-3;
     object_player.y = y+8;
     }
@@ -139,6 +139,32 @@ else{
         image_index = image_number-1;
         }
     }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//On met la transparance.
+draw_set_alpha(0.7);
+draw_self();
+draw_set_alpha(1);
 </string>
           </argument>
         </arguments>

@@ -1606,7 +1606,7 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                             }
                                                         else{
                                                             if place_meeting(x+(image_xscale*2),y,object_wall){
-                                                                hurt =(abs(hsp*walljumppower)*-image_xscale);
+                                                                hurt =(abs(hsp+walljumppower)*-image_xscale);
                                                                 }
                                                             }
                                                         }
@@ -2219,32 +2219,43 @@ if is_array(global.backgrounds){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if !instance_exists(object_head){
-    ///On crée les différents éléments de Shai démembrée !
-    instance_create(x+irandom(9)-4,y,object_head);
-    instance_create(x+irandom(9)-4,y,object_chest);
-    instance_create(x+irandom(9)-4,y,object_left_arm);
-    instance_create(x+irandom(9)-4,y,object_right_arm);
-    instance_create(x+irandom(9)-4,y,object_left_leg);
-    instance_create(x+irandom(9)-4,y,object_right_leg);
-    
-    //Donc maintenant il faut que les morceaux volent !
-    //La vitesse:
-    object_head.speed = random_range(3,6);
-    object_chest.speed = random_range(3,6);
-    object_left_arm.speed = random_range(3,6);
-    object_right_arm.speed = random_range(3,6);
-    object_left_leg.speed = random_range(3,6);
-    object_right_leg.speed = random_range(3,6);
-    
-    object_head.direction = random_range(55,125);
-    object_chest.direction = random_range(55,125);
-    object_left_arm.direction = random_range(55,125);
-    object_right_arm.direction = random_range(55,125);
-    object_left_leg.direction = random_range(55,125);
-    object_right_leg.direction = random_range(55,125);
-    
-    alarm_set(7,180);
+            <string>///On démembre Shai !
+if life &lt;=0{
+    if !instance_exists(object_head){
+        ///On crée les différents éléments de Shai démembrée !
+        instance_create(x+irandom(9)-4,y,object_head);
+        instance_create(x+irandom(9)-4,y,object_chest);
+        instance_create(x+irandom(9)-4,y,object_left_arm);
+        instance_create(x+irandom(9)-4,y,object_right_arm);
+        instance_create(x+irandom(9)-4,y,object_left_leg);
+        instance_create(x+irandom(9)-4,y,object_right_leg);
+        
+        //Donc maintenant il faut que les morceaux volent !
+        alarm_set(7,120);
+        //La vitesse:
+        object_head.speed = random_range(3,6);
+        object_chest.speed = random_range(3,6);
+        object_left_arm.speed = random_range(3,6);
+        object_right_arm.speed = random_range(3,6);
+        object_left_leg.speed = random_range(3,6);
+        object_right_leg.speed = random_range(3,6);
+        
+        object_head.direction = random_range(55,125);
+        object_chest.direction = random_range(55,125);
+        object_left_arm.direction = random_range(55,125);
+        object_right_arm.direction = random_range(55,125);
+        object_left_leg.direction = random_range(55,125);
+        object_right_leg.direction = random_range(55,125);
+        
+        object_head.friction=object_head.speed/alarm[7]+20;
+        object_chest.friction=object_chest.speed/alarm[7]+20;
+        object_left_arm.friction=object_left_arm.speed/alarm[7]+20;
+        object_right_arm.friction=object_right_arm.speed/alarm[7]+20;
+        object_left_leg.friction=object_left_leg.speed/alarm[7]+20;
+        object_right_leg.friction=object_right_leg.speed/alarm[7]+20;
+        
+        
+        }
     }
 
 
@@ -2404,12 +2415,12 @@ else{
                                                                 if STATUS = "laying_death"{
                                                                     STATUS = "deathup";
                                                                     image_index = 0;
-                                                                    image_speed = 0.2;
-                                                                    alarm_set(9,70);
+                                                                    image_speed = 0.3;
+                                                                    alarm_set(9,100);
                                                                     }
                                                                 else{
                                                                     if STATUS = "deathup"{
-                                                                        image_index = image_number-2;
+                                                                        image_index = image_number-1;
                                                                         }
                                                                     else{
                                                                         if STATUS = "death_predown"{
