@@ -81,7 +81,7 @@ La possibilité de faire un saut complètement vertical contre le mur est inacce
 	-->Les deux seules solutions existantes sont la pré-vérification (peut mettre à mal toutes les collisions) ou le changement d'ordre entres les modules (peu conseillé aussi).
 	|| J'ai réussi à en réduire le nombre d'occurences.
 Heu j'ai oublié de patcher le bug en double jump... || Fait !
-La roulade nous permet de nous relever dans des espace trop restreint. --> Plutôt compliqué à gérer à cause que l'animation est gérée d'un trait.
+La roulade nous permet de nous relever dans des espace trop restreint. --> Plutôt compliqué à gérer à cause que l'animation est gérée d'un trait. ||Fait !
 Sinan le temps on le compte quand ?
 Pareil, il n'y a pas indication du dernier niveau joué/ débloqué.
 Changer le double saut en optionnel via un item. || Validé !
@@ -97,7 +97,8 @@ Retirer les collisions des feuilles. || Fait assez simplement fallait pas rêver
 corriger la hauteur de saut dynamique || Fait c'était un problème de structure.
 Optimiser le code du module de friction (death edition aussi) ! || C'est fait !
 Clean le code de fin d'animation ||Nice c'est fait et ça fonctionne.
-Réduire sa tendence à glisser.
+Réduire sa tendence à glisser. || Fait !
+
 On doit se prendre une hurt avec le headshot.
 Décaler un peu la caméra dans la direction vers laquelle on marche ( necessite patch concernant l'apparition du menu de pause. qui necessite déjà un patch de toute façon.) --> FOIRÉ mais j'ai patché le module de pause.
 Corriger les hitboxs d'attaques qui sont encore un peu à chier.
