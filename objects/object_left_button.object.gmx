@@ -124,7 +124,7 @@ if instance_exists(object_pause){
             else{
                 if place_meeting(x+5,y,object_home){
                     //Back home
-                    room_goto(room_title);
+                    script_fade_status("Jesaispassicelavaboguer");
                     }
                 else{
                     if place_meeting(x+5,y,object_restart){

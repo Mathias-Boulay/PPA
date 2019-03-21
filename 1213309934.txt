@@ -103,6 +103,9 @@ On doit se prendre une hurt avec le headshot.
 Décaler un peu la caméra dans la direction vers laquelle on marche ( necessite patch concernant l'apparition du menu de pause. qui necessite déjà un patch de toute façon.) --> FOIRÉ mais j'ai patché le module de pause.
 Corriger les hitboxs d'attaques qui sont encore un peu à chier.
 Actualiser les arbres.
+UNE FATAL ERROR LORSQUE QU'ON BACK DU MENU DE SELECTION DE NIVEAU !
+La hauteur de la lettre i doit être ajusté. (La hauteur du 0 aussi ?)
+
 Corriger le uncontrol. ||Fait bien sur il posait problème par rapport à la death
 
 

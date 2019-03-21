@@ -55,7 +55,12 @@ STATUS = "";
     a = clamp(a+(fade*0.06),0,1.3);
     
     if a = 1.3{
-        object_white_book.STATUS = STATUS;
+        if instance_exists(object_white_book){
+            object_white_book.STATUS = STATUS;
+            }
+        else{
+            room_goto(room_title);
+            }
         fade = -1;
         }
         

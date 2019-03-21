@@ -131,7 +131,6 @@ if STATUS = "RENAME"{alarm_set(1,45);}
           <argument>
             <kind>1</kind>
             <string>///Sub menus:
-global.sub_left = "";
 if STATUS = "SELECTED"{
     if !instance_exists(object_back_save){
         instance_create(x+69,y+10,object_play_save);

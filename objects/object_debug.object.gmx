@@ -111,7 +111,8 @@ if object_player.debug &gt;= 1
     draw_text(view_xview[0]+100,view_yview[0]+150,'Can_jump ='+string(object_player.Can_jump));
     draw_text(view_xview[0]+100,view_yview[0]+165,'image_angle= '+string(object_player.image_angle));
     draw_text(view_xview[0]+100,view_yview[0]+180,'place_left ='+string(object_player.next_left));
-    draw_text(view_xview[0]+100,view_yview[0]+195,'place_right ='+string(object_player.next_right)); 
+    draw_text(view_xview[0]+100,view_yview[0]+195,'place_right ='+string(object_player.next_right));
+    draw_text(view_xview[0]+100,view_yview[0]+210,'Hit number= '+string(instance_number(object_hit))); 
     
     
     

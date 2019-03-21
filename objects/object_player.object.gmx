@@ -1177,14 +1177,14 @@ else{
     if STATUS = "spinattack"{
         //Attaque bouboule, passible de que dalle:
         if !instance_exists(object_hit){
-            instance_create(x-(9*image_xscale),y,object_hit);
-            object_hit.image_xscale=26*image_xscale;
+            instance_create(x-(12*image_xscale),y,object_hit);
+            object_hit.image_xscale=28*image_xscale;
             object_hit.image_yscale=25;
             }
         else{
-            object_hit.x = x-(9*image_xscale);
+            object_hit.x = x-(12*image_xscale);
             object_hit.y = y;
-            object_hit.image_xscale=26*image_xscale;
+            object_hit.image_xscale=28*image_xscale;
             object_hit.image_yscale=25;
             }
         }
@@ -1213,14 +1213,14 @@ else{
                 if (image_index &gt;= 4)&amp;&amp;(image_index &lt; 11){
                     //On fait  une roulade bien trop pété.
                     if !instance_exists(object_hit){
-                        instance_create(x-(9*image_xscale),y,object_hit);
-                        object_hit.image_xscale=26*image_xscale;
+                        instance_create(x-(12*image_xscale),y,object_hit);
+                        object_hit.image_xscale=28*image_xscale;
                         object_hit.image_yscale=25;
                         }
                     else{
-                        object_hit.x = x-(9*image_xscale);
+                        object_hit.x = x-(12*image_xscale);
                         object_hit.y = y;
-                        object_hit.image_xscale=26*image_xscale;
+                        object_hit.image_xscale=28*image_xscale;
                         object_hit.image_yscale=25;
                         }
                     }
@@ -1393,11 +1393,11 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                                                     image_index = 0;
                                                                                                     image_speed = 0.5;
                                                                                                     }
-                                                                                                /*else{
+                                                                                                else{
                                                                                                     if collision_line(x,y,x+(10*image_xscale),y+40,object_wall,false,true) = noone{
                                                                                                         STATUS = "ledge";
                                                                                                         image_speed = 0.15;
-                                                                                                        }*/
+                                                                                                        }
                                                                                                     else{
                                                                                                         if uncontrol = -1{
                                                                                                             STATUS = "rotating";
@@ -1439,7 +1439,7 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                                                                 }
                                                                                                             }
                                                                                                         }
-                                                                                                    //}
+                                                                                                    }
                                                                                                 }
                                                                                             }
                                                                                         }
@@ -1631,11 +1631,19 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                         }
                                     else{
                                         if !place_meeting(x,y+1,object_wall){
-                                            if image_index &gt;= 11{
+                                            if image_index &gt;= 12{
                                                 if key_jump{
                                                     temp_jump = true;
                                                     }
                                                 }
+                                            else{
+                                                if image_index &gt;= 19{
+                                                    if looking &gt; 0.7{
+                                                        STATUS = "crawling";
+                                                        }
+                                                    }
+                                                }
+                                            
                                             if vsp &gt; 1.5{
                                                 STATUS = "pre_landing";
                                                 image_index = 0;
