@@ -1636,8 +1636,8 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                         }
                                     }
                                 else{
-                                    if image_index &gt; 8{
-                                        x+=0.4;
+                                    if image_index &gt;= 3{
+                                        x+=0.4*image_xscale;
                                         }
                                     }
                                 }
