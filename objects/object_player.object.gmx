@@ -455,7 +455,7 @@ key_jump_held = gamepad_button_check(ID,gp_face1);
 move = gamepad_axis_value(ID,gp_axislh)*uncontrol;
 looking = gamepad_axis_value(ID,gp_axislv); 
 attack = gamepad_button_check_pressed(ID,gp_face2);
-pause = gamepad_button_check_pressed(ID,gp_start) || os_is_paused();
+pause = gamepad_button_check_pressed(ID,gp_start) /* || os_is_paused()*/;
 debugbutton = gamepad_button_check_pressed(ID,gp_stickr)
 
 //Mapper la croix directionelle:
@@ -775,7 +775,7 @@ if key_jump{
                                         if place_meeting(x-max(1,abs(hsp)),y,object_wall){
                                             //Effectuer un saut depuis le mur de gauche, sans aucune latence;
                                             vsp = -global.jumpspeed;
-                                            walljumppower = 4;
+                                            walljumppower = 5;
                                             hsp = 0.5;
                                             STATUS = "double_jumping";
                                             }
@@ -783,9 +783,10 @@ if key_jump{
                                             if place_meeting(x+max(1,abs(hsp)),y,object_wall){
                                                 //Effectuer un saut depuis le mur de droite.
                                                 vsp = -global.jumpspeed;
-                                                walljumppower = -4;
+                                                walljumppower = -5;
                                                 hsp = -0.5;
                                                 STATUS = "double_jumping";
+                                                image_xscale=sign(walljumppower);
                                                 }
                                             else{
                                                 if jumpcount &lt; 1{
@@ -797,6 +798,7 @@ if key_jump{
                                                         alarm_set(11,15);
                                                         STATUS = "double_jumping";
                                                         image_index = 0;
+                                                        image_xscale=sign(walljumppower);
                                                         }
                                                     }
                                                 }
@@ -906,6 +908,7 @@ if attack{
                                                     x=x+2;
                                                     STATUS = "divejumping";
                                                     image_speed = 0.12;
+                                                    image_index=0;
                                                     image_xscale = sign(walljumppower);
                                                     }
                                                 else{
@@ -916,6 +919,7 @@ if attack{
                                                         x = x-2;
                                                         STATUS = "divejumping";
                                                         image_speed = 0.12;
+                                                        image_index=0;
                                                         image_xscale = sign(walljumppower);
                                                         }
                                                     else{
@@ -925,6 +929,7 @@ if attack{
                                                             if abs(move) != 0{image_xscale= sign(move);}
                                                             walljumppower = image_xscale*4;
                                                             STATUS = "divejumping";
+                                                            image_index=0;
                                                             image_speed = 0.12;
                                                             }
                                                         else{
@@ -1179,18 +1184,18 @@ else{
         if !instance_exists(object_hit){
             instance_create(x-(12*image_xscale),y,object_hit);
             object_hit.image_xscale=28*image_xscale;
-            object_hit.image_yscale=25;
+            object_hit.image_yscale=26;
             }
         else{
             object_hit.x = x-(12*image_xscale);
             object_hit.y = y;
             object_hit.image_xscale=28*image_xscale;
-            object_hit.image_yscale=25;
+            object_hit.image_yscale=26;
             }
         }
     else{
         if STATUS="divejumping"{
-            if (image_index) &gt;= 5{
+            if (image_index) &gt;= 3{
                 //Attaque diive jumping, passable de déchirage de pull:
                 if !instance_exists(object_hit){
                     instance_create(x-(5*image_xscale),y+2,object_hit);
@@ -1229,8 +1234,24 @@ else{
                     }
                 }
             else{
-                if instance_exists(object_hit){instance_destroy(object_hit);}
-                //Reste des attaques, ajoutables à l'infini.
+                if STATUS="divefall"{
+                    //Attaque diive fall, passable de déchirage de pull:
+                    if !instance_exists(object_hit){
+                        instance_create(x-(5*image_xscale),y+2,object_hit);
+                        object_hit.image_xscale = 23*image_xscale;
+                        object_hit.image_yscale = 26;
+                        }
+                    else{
+                        object_hit.x = x-(5*image_xscale);
+                        object_hit.y = y+2;
+                        object_hit.image_xscale=23*image_xscale;
+                        object_hit.image_yscale=26;
+                        }
+                    }
+                else{
+                    if instance_exists(object_hit){instance_destroy(object_hit);}
+                    //Reste des attaques, ajoutables à l'infini.
+                    }
                 }
             }
         }
@@ -1273,11 +1294,13 @@ if STATUS != "stopping"{
                                                     if STATUS != "pre_landing"{
                                                         if STATUS != "crawling"{
                                                             if STATUS != "crawlidle"{
-                                                                if STATUS = "walljump"{
-                                                                    if place_meeting(x-1,y,object_wall){image_xscale = -1;}else{if place_meeting(x+1,y,object_wall){image_xscale = 1;}}
-                                                                    }
-                                                                else{
-                                                                    if abs(hsp) &gt; 0.2{image_xscale = sign(hsp);}else{if hsp = 0 &amp;&amp; abs(move) != 0{image_xscale = sign(move);}}   
+                                                                if STATUS != "double_jumping"{
+                                                                    if STATUS = "walljump"{
+                                                                        if place_meeting(x-1,y,object_wall){image_xscale = -1;}else{if place_meeting(x+1,y,object_wall){image_xscale = 1;}}
+                                                                        }
+                                                                    else{
+                                                                        if abs(hsp) &gt; 0.2{image_xscale = sign(hsp);}else{if hsp = 0 &amp;&amp; abs(move) != 0{image_xscale = sign(move);}}   
+                                                                        }
                                                                     }
                                                                 }
                                                             }
@@ -1612,8 +1635,18 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                             }
                                         }
                                     }
+                                else{
+                                    if image_index &gt; 8{
+                                        x+=0.4;
+                                        }
+                                    }
                                 }
                             else{
+                                //Proposer la possibilité de faire un saut dès la fin de la roulade.
+                                if key_jump{
+                                    temp_jump = true;
+                                    }
+                                    
                                 if image_index &gt;= 4 &amp;&amp; image_index &lt; 11{
                                     if image_index &gt;= 10.5 &amp;&amp; image_index &lt; 11{
                                         if place_meeting(x,y-15,object_wall){
@@ -1630,19 +1663,13 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                             }
                                         }
                                     else{
-                                        if !place_meeting(x,y+1,object_wall){
-                                            if image_index &gt;= 12{
-                                                if key_jump{
-                                                    temp_jump = true;
+                                        if place_meeting(x,y+1,object_wall){
+                                            if image_index &gt;= 19{
+                                                if looking &gt; 0.7{
+                                                    STATUS = "crawling";
                                                     }
                                                 }
-                                            else{
-                                                if image_index &gt;= 19{
-                                                    if looking &gt; 0.7{
-                                                        STATUS = "crawling";
-                                                        }
-                                                    }
-                                                }
+                                                
                                             
                                             if vsp &gt; 1.5{
                                                 STATUS = "pre_landing";
@@ -1664,6 +1691,20 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                     }
                 }
             else{
+                if image_speed &lt; 0{
+                    if (image_index &gt;=0 &amp;&amp; image_index &lt; 1){
+                        image_index = 0;
+                        image_speed = 0;
+                        }
+                    }
+                else{
+                    if (image_speed &gt; 0){
+                        if image_index &gt;= image_number-1{
+                            image_speed=0;
+                            image_index = image_number-1;
+                            }
+                        }
+                    }
                 if sign(hsp) = sign(move){
                     if abs(sign(hsp)) = 1{
                         STATUS = "walking";
@@ -2085,6 +2126,8 @@ if !instance_exists(object_pause){
             
             //Follow xplayerposition
             object_camera.x = ceil(x)
+            //Apply some exception ?
+            //object_camera.x =  
             
             //rounding player vertical position
             y = round(y);
@@ -2341,7 +2384,7 @@ switch(STATUS){
             break;
             
         case "spinattack":
-            if !attack{
+            if !gamepad_button_check(ID,gp_face2){
                 if (vsp &lt; -global.grav){
                     STATUS = "jumping";
                     }
@@ -2365,6 +2408,7 @@ switch(STATUS){
                 image_index = 2;
                 image_speed= 0.5;
                 vsp = -global.jumpspeed;
+                hsp = image_xscale*2;
                 jumpcount ++;
                 Can_jump = false;
                 alarm_set(11,15);
@@ -2396,15 +2440,6 @@ switch(STATUS){
                 }    
             break;
             
-        case "stopping":
-            if image_speed &lt; 0{
-                image_speed = 0;
-                }
-            else{
-                image_speed = 0;
-                image_index = image_number-1;
-                }
-            break;
             
         case "laying_death":
             STATUS = "deathup";
@@ -2416,6 +2451,10 @@ switch(STATUS){
             STATUS = "deathdown";
             image_speed = 0.5;
             break;
+            
+        case "deathup":
+            image_index = image_number-1;
+            image_speed=0;
                 
         }
         
