@@ -438,6 +438,8 @@
     </objects>
     <object>objects\object90</object>
     <object>objects\object_respawn</object>
+    <object>objects\object_lag</object>
+    <object>objects\object_test_backgrounds</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_title</room>

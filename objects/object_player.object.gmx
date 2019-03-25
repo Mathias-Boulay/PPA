@@ -73,7 +73,6 @@ instance_create(x,y,object_hud);
 instance_create(x,y,object_camera);
 
 
-
 ini_close();
 ini_open(global.selected_level);
     
@@ -778,6 +777,7 @@ if key_jump{
                                             walljumppower = 5;
                                             hsp = 0.5;
                                             STATUS = "double_jumping";
+                                            image_xscale=sign(walljumppower);
                                             }
                                         else{
                                             if place_meeting(x+max(1,abs(hsp)),y,object_wall){
@@ -798,7 +798,6 @@ if key_jump{
                                                         alarm_set(11,15);
                                                         STATUS = "double_jumping";
                                                         image_index = 0;
-                                                        image_xscale=sign(walljumppower);
                                                         }
                                                     }
                                                 }
@@ -1090,171 +1089,6 @@ else{
 //Correctif du système de collision en bois:
 if STATUS != "divejumping"{
     if place_meeting(x,y,object_wall){if next_right = true &amp;&amp; next_left != true{x -=2;}else{if next_right != true &amp;&amp; next_left = true{x +=2;}}}
-    }
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Module de gestion technique de l'attaque:
-//Hey hey ça vous dit d'aller aggresser des ptizanimos sans défense ?
-//Module d'attaque.
-if STATUS = "headshot"{
-    //Attaque headshot, passible de maux de crâne.
-    if (image_index &gt;= 2) &amp;&amp; (image_index &lt; 3){
-        if !instance_exists(object_hit){
-            instance_create(x+(-22*image_xscale),y-11,object_hit);
-            object_hit.image_xscale = 14*image_xscale;
-            object_hit.image_yscale = 20;
-            }
-        else{
-            object_hit.x = x-(22*image_xscale);
-            object_hit.y = y-11;
-            object_hit.image_xscale = 14*image_xscale;
-            object_hit.image_yscale = 20;
-            }
-        }
-    else{
-        if (image_index &gt;= 3) &amp;&amp; (image_index &lt; 4){
-            if !instance_exists(object_hit){
-                instance_create(x+(-21*image_xscale),y-11,object_hit);
-                object_hit.image_xscale = 27*image_xscale;
-                object_hit.image_yscale = 18;
-                }
-            else{
-                object_hit.x = x-(21*image_xscale);
-                object_hit.y = y-11;
-                object_hit.image_xscale = 27*image_xscale;
-                object_hit.image_yscale = 18;
-                }
-            }
-        else{
-            if (image_index &gt;= 4) &amp;&amp; (image_index &lt; 5){
-                if !instance_exists(object_hit){
-                    instance_create(x+(-13*image_xscale),y-12,object_hit);
-                    object_hit.image_xscale = 37*image_xscale;
-                    object_hit.image_yscale = 22;
-                    }
-                else{
-                    object_hit.x = x-(13*image_xscale);
-                    object_hit.y = y-11;
-                    object_hit.image_xscale = 37*image_xscale;
-                    object_hit.image_yscale = 22;
-                    }
-                }
-            else{
-                if (image_index &gt;= 5) &amp;&amp; (image_index &lt; 7){
-                    if !instance_exists(object_hit){
-                        instance_create(x+(11*image_xscale),y-13,object_hit);
-                        object_hit.image_xscale = 13*image_xscale;
-                        object_hit.image_yscale = 22;
-                        }
-                    else{
-                        object_hit.x = x+(11*image_xscale);
-                        object_hit.y = y-13;
-                        object_hit.image_xscale = 13*image_xscale;
-                        object_hit.image_yscale = 22;
-                        }
-                    }
-                else{
-                    if instance_exists(object_hit){instance_destroy(object_hit);}
-                    }
-                }
-            }
-        }
-    }
-else{
-    if STATUS = "spinattack"{
-        //Attaque bouboule, passible de que dalle:
-        if !instance_exists(object_hit){
-            instance_create(x-(12*image_xscale),y,object_hit);
-            object_hit.image_xscale=28*image_xscale;
-            object_hit.image_yscale=26;
-            }
-        else{
-            object_hit.x = x-(12*image_xscale);
-            object_hit.y = y;
-            object_hit.image_xscale=28*image_xscale;
-            object_hit.image_yscale=26;
-            }
-        }
-    else{
-        if STATUS="divejumping"{
-            if (image_index) &gt;= 3{
-                //Attaque diive jumping, passable de déchirage de pull:
-                if !instance_exists(object_hit){
-                    instance_create(x-(5*image_xscale),y+2,object_hit);
-                    object_hit.image_xscale = 23*image_xscale;
-                    object_hit.image_yscale = 26;
-                    }
-                else{
-                    object_hit.x = x-(5*image_xscale);
-                    object_hit.y = y+2;
-                    object_hit.image_xscale=23*image_xscale;
-                    object_hit.image_yscale=26;
-                    }
-                }
-            else{
-                if instance_exists(object_hit){instance_destroy(object_hit);}
-                }
-            }
-        else{
-            if STATUS="rolling"{
-                if (image_index &gt;= 4)&amp;&amp;(image_index &lt; 11){
-                    //On fait  une roulade bien trop pété.
-                    if !instance_exists(object_hit){
-                        instance_create(x-(12*image_xscale),y,object_hit);
-                        object_hit.image_xscale=28*image_xscale;
-                        object_hit.image_yscale=25;
-                        }
-                    else{
-                        object_hit.x = x-(12*image_xscale);
-                        object_hit.y = y;
-                        object_hit.image_xscale=28*image_xscale;
-                        object_hit.image_yscale=25;
-                        }
-                    }
-                else{
-                    if instance_exists(object_hit){instance_destroy(object_hit);}
-                    }
-                }
-            else{
-                if STATUS="divefall"{
-                    //Attaque diive fall, passable de déchirage de pull:
-                    if !instance_exists(object_hit){
-                        instance_create(x-(5*image_xscale),y+2,object_hit);
-                        object_hit.image_xscale = 23*image_xscale;
-                        object_hit.image_yscale = 26;
-                        }
-                    else{
-                        object_hit.x = x-(5*image_xscale);
-                        object_hit.y = y+2;
-                        object_hit.image_xscale=23*image_xscale;
-                        object_hit.image_yscale=26;
-                        }
-                    }
-                else{
-                    if instance_exists(object_hit){instance_destroy(object_hit);}
-                    //Reste des attaques, ajoutables à l'infini.
-                    }
-                }
-            }
-        }
     }
 </string>
           </argument>
@@ -1756,6 +1590,171 @@ else{
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///Module de gestion technique de l'attaque:
+//Hey hey ça vous dit d'aller aggresser des ptizanimos sans défense ?
+//Module d'attaque.
+if STATUS = "headshot"{
+    //Attaque headshot, passible de maux de crâne.
+    if (image_index &gt;= 2) &amp;&amp; (image_index &lt; 3){
+        if !instance_exists(object_hit){
+            instance_create(x+(-22*image_xscale),y-11,object_hit);
+            object_hit.image_xscale = 14*image_xscale;
+            object_hit.image_yscale = 20;
+            }
+        else{
+            object_hit.x = x-(22*image_xscale);
+            object_hit.y = y-11;
+            object_hit.image_xscale = 14*image_xscale;
+            object_hit.image_yscale = 20;
+            }
+        }
+    else{
+        if (image_index &gt;= 3) &amp;&amp; (image_index &lt; 4){
+            if !instance_exists(object_hit){
+                instance_create(x+(-21*image_xscale),y-11,object_hit);
+                object_hit.image_xscale = 27*image_xscale;
+                object_hit.image_yscale = 18;
+                }
+            else{
+                object_hit.x = x-(21*image_xscale);
+                object_hit.y = y-11;
+                object_hit.image_xscale = 27*image_xscale;
+                object_hit.image_yscale = 18;
+                }
+            }
+        else{
+            if (image_index &gt;= 4) &amp;&amp; (image_index &lt; 5){
+                if !instance_exists(object_hit){
+                    instance_create(x+(-13*image_xscale),y-12,object_hit);
+                    object_hit.image_xscale = 37*image_xscale;
+                    object_hit.image_yscale = 22;
+                    }
+                else{
+                    object_hit.x = x-(13*image_xscale);
+                    object_hit.y = y-11;
+                    object_hit.image_xscale = 37*image_xscale;
+                    object_hit.image_yscale = 22;
+                    }
+                }
+            else{
+                if (image_index &gt;= 5) &amp;&amp; (image_index &lt; 7){
+                    if !instance_exists(object_hit){
+                        instance_create(x+(11*image_xscale),y-13,object_hit);
+                        object_hit.image_xscale = 13*image_xscale;
+                        object_hit.image_yscale = 22;
+                        }
+                    else{
+                        object_hit.x = x+(11*image_xscale);
+                        object_hit.y = y-13;
+                        object_hit.image_xscale = 13*image_xscale;
+                        object_hit.image_yscale = 22;
+                        }
+                    }
+                else{
+                    if instance_exists(object_hit){instance_destroy(object_hit);}
+                    }
+                }
+            }
+        }
+    }
+else{
+    if STATUS = "spinattack"{
+        //Attaque bouboule, passible de que dalle:
+        if !instance_exists(object_hit){
+            instance_create(x-(12*image_xscale),y,object_hit);
+            object_hit.image_xscale=28*image_xscale;
+            object_hit.image_yscale=26;
+            }
+        else{
+            object_hit.x = x-(12*image_xscale);
+            object_hit.y = y;
+            object_hit.image_xscale=28*image_xscale;
+            object_hit.image_yscale=26;
+            }
+        }
+    else{
+        if STATUS="divejumping"{
+            if (image_index) &gt;= 3{
+                //Attaque diive jumping, passable de déchirage de pull:
+                if !instance_exists(object_hit){
+                    instance_create(x-(5*image_xscale),y+2,object_hit);
+                    object_hit.image_xscale = 23*image_xscale;
+                    object_hit.image_yscale = 26;
+                    }
+                else{
+                    object_hit.x = x-(5*image_xscale);
+                    object_hit.y = y+2;
+                    object_hit.image_xscale=23*image_xscale;
+                    object_hit.image_yscale=26;
+                    }
+                }
+            else{
+                if instance_exists(object_hit){instance_destroy(object_hit);}
+                }
+            }
+        else{
+            if STATUS="rolling"{
+                if (image_index &gt;= 4)&amp;&amp;(image_index &lt; 11){
+                    //On fait  une roulade bien trop pété.
+                    if !instance_exists(object_hit){
+                        instance_create(x-(12*image_xscale),y,object_hit);
+                        object_hit.image_xscale=28*image_xscale;
+                        object_hit.image_yscale=25;
+                        }
+                    else{
+                        object_hit.x = x-(12*image_xscale);
+                        object_hit.y = y;
+                        object_hit.image_xscale=28*image_xscale;
+                        object_hit.image_yscale=25;
+                        }
+                    }
+                else{
+                    if instance_exists(object_hit){instance_destroy(object_hit);}
+                    }
+                }
+            else{
+                if STATUS="divefall"{
+                    //Attaque diive fall, passable de déchirage de pull:
+                    if !instance_exists(object_hit){
+                        instance_create(x-(5*image_xscale),y+2,object_hit);
+                        object_hit.image_xscale = 23*image_xscale;
+                        object_hit.image_yscale = 26;
+                        }
+                    else{
+                        object_hit.x = x-(5*image_xscale);
+                        object_hit.y = y+2;
+                        object_hit.image_xscale=23*image_xscale;
+                        object_hit.image_yscale=26;
+                        }
+                    }
+                else{
+                    if instance_exists(object_hit){instance_destroy(object_hit);}
+                    //Reste des attaques, ajoutables à l'infini.
+                    }
+                }
+            }
+        }
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Module de gestion du temps d'inactivité.
 //Increment waiting time:
 if x = xprevious &amp;&amp; y = yprevious &amp;&amp; STATUS != "pushing" &amp;&amp; STATUS != "startpushing" &amp;&amp; STATUS != "stoppushing" &amp;&amp; STATUS != "crawlidle" &amp;&amp; STATUS !="precrawl" &amp;&amp; STATUS !="crawlidle" &amp;&amp; STATUS != "jumpfromcrawl" {waiting += 0.012;}else{waiting = 0;}
@@ -2047,17 +2046,50 @@ if STATUS = "hurt_death" ||STATUS = "laying_death"{
           <argument>
             <kind>1</kind>
             <string>///Phase de débug et endroit tranquille pour des tests de code.
-if keyboard_check_pressed(vk_down){
-    instance_create(x,y-100,object_leaves);
-    }
-
-if keyboard_check_pressed(vk_up){
-    life =0;
-    hurt = -2;
-    }
 
 if keyboard_check_pressed(vk_left){
     room_speed --;
+    show_debug_message(keyboard_string);
+    }
+    
+if keyboard_check_pressed(vk_add){
+    //Input buffering
+    keyboard_string = "";
+    show_debug_message("Inputs cleared !");
+    }
+
+if keyboard_check_pressed(vk_enter){
+show_debug_message("Command triggered:"+keyboard_string);
+    switch(keyboard_string){
+        
+        case "leaves":
+            instance_create(x,y-100,object_leaves);
+            break;
+        
+        case "lag":
+            instance_create(x,y,object_lag);
+            break;
+        
+        case "DIE":
+            life=0;
+            hurt=-2;
+            break;
+        
+        case "background":
+            instance_create(0,0,object_test_backgrounds);
+            break;
+            
+        case "view":
+            if !view_visible[1]{
+                view_visible[1]=true;
+                }
+            else{
+                view_visible[1]=false;
+                }
+            break;
+            
+        show_debug_message("No command found !");
+        }
     }
 
 
