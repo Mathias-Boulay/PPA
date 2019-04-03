@@ -440,6 +440,7 @@
     <object>objects\object_respawn</object>
     <object>objects\object_lag</object>
     <object>objects\object_test_backgrounds</object>
+    <object>objects\object_background</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_title</room>

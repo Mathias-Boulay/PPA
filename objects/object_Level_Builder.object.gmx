@@ -99,6 +99,15 @@ var case3cpriceup;
 var distance;
 var dir;
 var movespeed;
+//Variables utilisés par le système de background/foregrounds
+var Depth;
+var Xaxis;
+var Yaxis;
+var Speed;
+var Xoffset;
+var Yoffset;
+var htiled;
+var vtiled;
 
 
 //Déclaration des variables globales utilisées principalement par le joueur:
@@ -1718,6 +1727,177 @@ for(i=1;i&lt;=Number;i++){
         }
     instance_create(xx,yy,object_player);
     }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Phase de création des objets de backgrounds et foregrounds:
+show_debug_message("BACK/FOREGROUNDS PHASE ------------------------------");
+Number = ini_read_real(global.selected_part,"BackgroundNumber",0);
+for(i=1;i&lt;=Number;i++){
+    Xaxis="";
+    Yaxis="";
+    Asset="";
+    Speed="";
+    Xoffset="";
+    Yoffset="";
+    htiled="";
+    vtiled="";
+    Depth="";
+    original = ini_read_string(global.selected_part,string(i)+"-createbackground","(2,1,sample_walls,-1,100,15,1,0,15)");
+    original = string_replace(original,"(","");
+    //Définition des variables
+    for(j=1;j&gt;-1;j++){ //For Xaxis:
+        if string_char_at(original,1) != ","{
+            Xaxis += string_copy(original,1,1);
+            original = string_replace(original,string_char_at(original,1),"");
+            }
+        else{
+            original = string_replace(original,",","");
+            show_debug_message("Xaxis= "+Xaxis);
+            show_debug_message("original= "+original);
+            Xaxis = real(Xaxis);
+            j = -10;
+            }
+        }
+    for(j=1;j&gt;-1;j++){ //For YAxis:
+        if string_char_at(original,1) != ","{
+            Yaxis += string_copy(original,1,1);
+            original = string_replace(original,string_char_at(original,1),"");
+            }
+        else{
+            original = string_replace(original,",","");
+            show_debug_message("Yaxis= "+Yaxis);
+            show_debug_message("original= "+original);
+            Yaxis = real(Yaxis);
+            j = -10;
+            }
+        }
+    for(j=1;j&gt;-1;j++){ //For Asset:
+        if string_char_at(original,1) != ","{
+            Asset += string_copy(original,1,1);
+            original = string_replace(original,string_char_at(original,1),"");
+            }
+        else{
+            original = string_replace(original,",","");
+            show_debug_message("Asset= "+Asset);
+            show_debug_message("original= "+original);
+            j = -10;
+            }
+        }
+    for(j=1;j&gt;-1;j++){ //For Speed:
+        if string_char_at(original,1) != ","{
+            Speed += string_copy(original,1,1);
+            original = string_replace(original,string_char_at(original,1),"");
+            }
+        else{
+            original = string_replace(original,",","");
+            show_debug_message("Speed= "+Speed);
+            show_debug_message("original= "+original);
+            Speed = real(Speed);
+            j = -10;
+            }
+        }
+    for(j=1;j&gt;-1;j++){ //For Xoffset:
+        if string_char_at(original,1) != ","{
+            Xoffset += string_copy(original,1,1);
+            original = string_replace(original,string_char_at(original,1),"");
+            }
+        else{
+            original = string_replace(original,",","");
+            show_debug_message("Xoffset= "+Xoffset);
+            show_debug_message("original= "+original);
+            Xoffset = real(Xoffset);
+            j = -10;
+            }
+        }
+    for(j=1;j&gt;-1;j++){ //For Yoffset:
+        if string_char_at(original,1) != ","{
+            Yoffset += string_copy(original,1,1);
+            original = string_replace(original,string_char_at(original,1),"");
+            }
+        else{
+            original = string_replace(original,",","");
+            show_debug_message("Yoffset= "+Yoffset);
+            show_debug_message("original= "+original);
+            Yoffset = real(Yoffset);
+            j = -10;
+            }
+        }
+    for(j=1;j&gt;-1;j++){ //For htiled:
+        if string_char_at(original,1) != ","{
+            htiled += string_copy(original,1,1);
+            original = string_replace(original,string_char_at(original,1),"");
+            }
+        else{
+            original = string_replace(original,",","");
+            show_debug_message("htiled= "+htiled);
+            show_debug_message("original= "+original);
+            htiled = real(htiled);
+            if htiled = 0{htiled=1;}else{htiled=0;}
+            j = -10;
+            }
+        }
+    for(j=1;j&gt;-1;j++){ //For vtiled:
+        if string_char_at(original,1) != ","{
+            vtiled += string_copy(original,1,1);
+            original = string_replace(original,string_char_at(original,1),"");
+            }
+        else{
+            original = string_replace(original,",","");
+            show_debug_message("vtiled= "+vtiled);
+            show_debug_message("original= "+original);
+            vtiled = real(vtiled);
+            if vtiled = 0{vtiled=1;}else{vtiled=0;}
+            j = -10;
+            }
+        }
+    for(j=1;j&gt;-1;j++){ //For Depth:
+        if string_char_at(original,1) != ")"{
+            Depth += string_copy(original,1,1);
+            original = string_replace(original,string_char_at(original,1),"");
+            }
+        else{
+            original = string_replace(original,")","");
+            show_debug_message("Depth= "+Depth);
+            show_debug_message("original= "+original);
+            Depth = real(Depth);
+            j = -10;
+            }
+        }
+    //Créons les objets et implantons leur propriétés.
+    This_background = instance_create(0,0,object_background);
+    This_background.Xaxis = Xaxis;
+    This_background.Yaxis = Yaxis;
+    This_background.Xoffset= Xoffset;
+    This_background.Yoffset= Yoffset;
+    This_background.sprite_index = asset_get_index("sprite_"+string(Asset));
+    This_background.image_speed = Speed;
+    This_background.htiled = htiled;
+    This_background.vtiled = vtiled;
+    This_background.depth = Depth;
+    
+    
+    
+    
+    }
+
 </string>
           </argument>
         </arguments>

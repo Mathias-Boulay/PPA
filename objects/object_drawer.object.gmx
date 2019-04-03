@@ -11,26 +11,6 @@
     <event eventtype="0" enumb="0">
       <action>
         <libid>1</libid>
-        <id>605</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>Drawer from V-3.1</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
         <id>603</id>
         <kind>7</kind>
         <userelative>0</userelative>
@@ -69,7 +49,7 @@ show_debug_message("INITIALISATION DE L'ENVIRONNEMENT---------------------------
           <argument>
             <kind>1</kind>
             <string>///Phase Backgrounds/Foregrounds:
-
+/*
 show_debug_message("BACKGROUNDS LOADING PHASE--------------------------------------------");
 Number = ini_read_real(global.selected_part,"BackgroundsNumber",0);
 
@@ -224,8 +204,28 @@ for(i=1;i&lt;=Number;i++){
     background_htiled[i-1] = global.backgrounds[i-1,4];
     background_vtiled[i-1] = global.backgrounds[i-1,5];
            
-    }
+    }*/
 </string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Drawer from V-3.1</string>
           </argument>
         </arguments>
       </action>
