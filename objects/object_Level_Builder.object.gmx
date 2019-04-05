@@ -1747,7 +1747,7 @@ for(i=1;i&lt;=Number;i++){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Phase de création des objets de backgrounds et foregrounds:
+            <string>///Phase backgrounds et foregrounds:
 show_debug_message("BACK/FOREGROUNDS PHASE ------------------------------");
 Number = ini_read_real(global.selected_part,"BackgroundNumber",0);
 for(i=1;i&lt;=Number;i++){
