@@ -48,12 +48,6 @@
         <sprite>sprites\sprite_sample_platforms</sprite>
       </sprites>
       <sprites name="Sunset Forest">
-        <sprite>sprites\sprite_sunset_forest_platforms</sprite>
-        <sprite>sprites\sprite_sunset_forest_walls</sprite>
-        <sprite>sprites\sprite_sunset_forest_bird</sprite>
-        <sprite>sprites\sprite_sunset_forest_clouds</sprite>
-        <sprite>sprites\sprite_sunset_forest_panels</sprite>
-        <sprite>sprites\sprite_sunset_forest_mushrooms</sprite>
         <sprites name="Animals with an AI">
           <sprite>sprites\sprite_fox_idle</sprite>
           <sprite>sprites\sprite_fox_run</sprite>
@@ -68,7 +62,37 @@
           <sprite>sprites\sprite_cat_run</sprite>
           <sprite>sprites\sprite_cat_dead</sprite>
         </sprites>
-        <sprite>sprites\sprite_leaves</sprite>
+        <sprites name="back/foregrounds">
+          <sprite>sprites\sprite_sunset_forest_back</sprite>
+          <sprite>sprites\sprite_sunset_forest_moutains</sprite>
+          <sprite>sprites\sprite_sunset_forest_furthest</sprite>
+          <sprite>sprites\sprite_sunset_forest_hills</sprite>
+          <sprite>sprites\sprite_sunset_forest_trees_furthest</sprite>
+          <sprite>sprites\sprite_sunset_forest_trees</sprite>
+          <sprite>sprites\sprite_sunset_forest_leaves</sprite>
+          <sprite>sprites\sprite_sunset_forest_stars</sprite>
+          <sprite>sprites\sprite_sunset_forest_water</sprite>
+        </sprites>
+        <sprite>sprites\sprite_sunset_forest_platforms</sprite>
+        <sprite>sprites\sprite_sunset_forest_walls</sprite>
+        <sprite>sprites\sprite_sunset_forest_bird</sprite>
+        <sprite>sprites\sprite_sunset_forest_clouds</sprite>
+        <sprite>sprites\sprite_sunset_forest_panels</sprite>
+        <sprite>sprites\sprite_sunset_forest_mushrooms</sprite>
+        <sprite>sprites\sprite_sunset_forests_leaves</sprite>
+        <sprite>sprites\sprite_sunset_forest_luminium</sprite>
+      </sprites>
+      <sprites name="LL">
+        <sprites name="Back/foregrounds">
+          <sprite>sprites\sprite_LL_back</sprite>
+        </sprites>
+        <sprite>sprites\sprite_LL_walls</sprite>
+        <sprite>sprites\sprite_LL_platforms</sprite>
+        <sprite>sprites\sprite_LL_butterdie</sprite>
+        <sprite>sprites\sprite_LL_arbras</sprite>
+        <sprite>sprites\sprite_smile</sprite>
+        <sprite>sprites\sprite_LL_flowers</sprite>
+        <sprite>sprites\sprite_LL_flocon</sprite>
       </sprites>
     </sprites>
     <sprites name="Title-menus">
@@ -272,11 +296,12 @@
       <sprite>sprites\sprite_font_title</sprite>
       <sprite>sprites\sprite_font_zone</sprite>
       <sprite>sprites\sprite_font_lv</sprite>
-      <sprite>sprites\sprite_font</sprite>
+      <sprite>sprites\sprite_font_goodness</sprite>
       <sprite>sprites\sprite_font_shop</sprite>
       <sprite>sprites\sprite_font_normal</sprite>
       <sprite>sprites\sprite_font_short</sprite>
       <sprite>sprites\sprite_font_big_title</sprite>
+      <sprite>sprites\sprite_font</sprite>
     </sprites>
     <sprite>sprites\sprite_level_builder</sprite>
     <sprite>sprites\sprite_level_drawer</sprite>
@@ -325,25 +350,12 @@
     <font>fonts\font_debug</font>
   </fonts>
   <objects name="objects">
-    <object>objects\object_wall</object>
-    <object>objects\object_deadzone</object>
-    <object>objects\object_debug</object>
-    <object>objects\object_platform</object>
-    <object>objects\object_moving_platform</object>
-    <object>objects\object_vertical_platform</object>
-    <object>objects\object_camera</object>
-    <object>objects\object_hud</object>
-    <object>objects\object10</object>
-    <object>objects\object_riony</object>
-    <object>objects\object_pushable</object>
-    <object>objects\object_uncontrol_platform</object>
-    <object>objects\object_heart</object>
-    <object>objects\object_hit</object>
-    <object>objects\object_hitbox</object>
-    <object>objects\object_wall_platforms</object>
-    <object>objects\object_leaves</object>
-    <object>objects\object_death_arm</object>
-    <object>objects\object_death_arm_finger</object>
+    <objects name="Assets' objects">
+      <objects name="Sunset_Forest">
+        <object>objects\object_bird</object>
+        <object>objects\object_leaves</object>
+      </objects>
+    </objects>
     <objects name="Menus">
       <objects name="Pause_menu">
         <object>objects\object_infos</object>
@@ -423,6 +435,7 @@
       <object>objects\object_LevelBuilder_old</object>
       <object>objects\object_Level_Builder</object>
       <object>objects\object_drawer</object>
+      <object>objects\object_background</object>
     </objects>
     <objects name="players">
       <objects name="players' parts">
@@ -436,11 +449,28 @@
       <object>objects\object_player_old</object>
       <object>objects\object_player</object>
     </objects>
+    <object>objects\object_wall</object>
+    <object>objects\object_deadzone</object>
+    <object>objects\object_debug</object>
+    <object>objects\object_platform</object>
+    <object>objects\object_moving_platform</object>
+    <object>objects\object_vertical_platform</object>
+    <object>objects\object_camera</object>
+    <object>objects\object_hud</object>
+    <object>objects\object10</object>
+    <object>objects\object_riony</object>
+    <object>objects\object_pushable</object>
+    <object>objects\object_uncontrol_platform</object>
+    <object>objects\object_heart</object>
+    <object>objects\object_hit</object>
+    <object>objects\object_hitbox</object>
+    <object>objects\object_wall_platforms</object>
+    <object>objects\object_death_arm</object>
+    <object>objects\object_death_arm_finger</object>
     <object>objects\object90</object>
     <object>objects\object_respawn</object>
     <object>objects\object_lag</object>
     <object>objects\object_test_backgrounds</object>
-    <object>objects\object_background</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_title</room>

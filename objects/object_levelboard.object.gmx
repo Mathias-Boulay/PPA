@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>///Define the ID and grab all necesarry info from the paper just up to it
+texts = script_word_light(60,62);
 ID = (instance_number(object_levelboard)+object_white_book.page);
 font_lv = font_add_sprite_ext(sprite_font_lv,"0123456789/:",true,1);
 MyPaper = collision_point(x+(sprite_width/2),y-(sprite_height/2),object_levelpaper,false,true);
@@ -180,6 +181,14 @@ if First != 6{
     draw_sprite(sprite_board_left,0,x-72,y+6);
     draw_sprite(sprite_board_left,1,x-72,y+32);
     draw_sprite(sprite_board_left,2,x-73,y+59);
+    draw_set_font(global.font_short);
+    draw_set_halign(fa_left);
+    draw_text(x-61,y+21,texts[0]);
+    draw_text(x-61,y+48,texts[1]);
+    draw_text(x-60,y+76,texts[2]);
+    
+    draw_set_font(font_lv);
+    draw_set_halign(fa_right);
     //Première colonne
     draw_text(x+14,y+13,string(MyPaper.Level[First,2]));
     draw_text(x+27,y+27,string(MyPaper.Level[First,0]));

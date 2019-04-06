@@ -3,7 +3,7 @@
   <spriteName>sprite_item_2</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-14</depth>
+  <depth>-904</depth>
   <persistent>0</persistent>
   <parentName>object_item_1</parentName>
   <maskName>&lt;undefined&gt;</maskName>
