@@ -125,9 +125,7 @@ if near != noone{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-draw_sprite(my_sprite,image_index,x,y);
-draw_text(x,y+15,"near.life="+string(near.life));
+            <string>draw_sprite(my_sprite,image_index,x,y);
 </string>
           </argument>
         </arguments>

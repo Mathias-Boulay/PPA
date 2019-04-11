@@ -533,8 +533,9 @@ else{
             <string>///Module d'activation de pause:
 //Si demandé, on active la pause:
 if pause{
-    if !instance_exists(object_left_button){
-        instance_create(max(212,min(object_camera.x,room_width-212)),max(120,min(object_camera.y,room_height-120)),object_pause);
+    if !instance_exists(object_pause){
+        //instance_create(max(212,min(object_camera.x,room_width-212)),max(120,min(object_camera.y,room_height-120)),object_pause);
+        instance_create(view_xview[0]+(view_wview[0]/2),view_yview[0]+view_hview[0]+85,object_pause);
         }
     else{
         show_debug_message("Nombre d'instances actives: "+string(instance_number(object_pause)));

@@ -53,8 +53,15 @@ Yoffset="";
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>x=(view_xview[0]/Xaxis);
-y=(view_yview[0]/Yaxis);
+            <string>x=(view_xview[0]/Xaxis)+Xoffset;
+while(x+sprite_width&lt;view_xview[0]){
+    x+=sprite_width;
+    }
+
+y=(view_yview[0]/Yaxis)+Yoffset;
+while(y+sprite_height&lt;view_yview[0]){
+    y+=sprite_height;
+    }    
 
 </string>
           </argument>
@@ -78,11 +85,18 @@ y=(view_yview[0]/Yaxis);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>for(j=floor((view_yview[0]-y)/sprite_height)*sprite_height;j&lt;(view_yview[0]+view_hview[0]-y);j+=sprite_height+(vtiled*view_hview[0])){ //y
+            <string>/*
+for(j=floor((view_yview[0]-y)/sprite_height)*sprite_height;j&lt;(view_yview[0]+view_hview[0]-y);j+=sprite_height+(vtiled*view_hview[0])){ //y
     for(i=floor((view_xview[0]-x)/sprite_width)*sprite_width;i&lt;(view_xview[0]+view_wview[0]-x);i+=sprite_width+(htiled*view_wview[0])){ //x
-        draw_sprite(sprite_index,image_index,x+i+Xoffset,y+j+Yoffset);
+        draw_sprite(sprite_index,image_index,x+i,y+j);
         }
     }
+*/
+
+draw_self();
+    
+    
+    
 </string>
           </argument>
         </arguments>

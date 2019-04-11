@@ -221,8 +221,10 @@ if gamepad_button_check_pressed(0,gp_face1){
                     }
                 }
             }
-        //Then go load the level:
-        room_goto(room_level);
+        //Then go load the level: Remplacé par le fondu au noir géré par l'objet frame
+        //room_goto(room_level);
+        fading=instance_create(x,y,object_fade);
+        fading.STATUS = "lol";
         }
     else{
         //Play a deny sound;

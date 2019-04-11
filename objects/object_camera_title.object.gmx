@@ -3,7 +3,7 @@
   <spriteName>sprite_camera</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>2</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>path_start(path_handled_camera,1,path_action_restart,false);
+            <string>path="";
 </string>
           </argument>
         </arguments>
@@ -50,6 +50,20 @@
             <kind>1</kind>
             <string>round(x);
 round(y);
+if path_position = 0{
+    path_start(asset_get_index("path_title"+path),1/4,path_action_stop,true);
+    if path=""{path="_reverse"}else{path="";}
+    }
+if gamepad_button_check_pressed(0,gp_start)||gamepad_button_check_pressed(0,gp_face1){
+    fading=instance_create(x,y,object_fade);
+    fading.STATUS="TITLE";
+    }
+if gamepad_button_check_pressed(0,gp_face2){
+    game_end();
+    }
+
+
+
 </string>
           </argument>
         </arguments>

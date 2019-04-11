@@ -52,6 +52,7 @@ show_debug_message("INITIALISATION DE L'ENVIRONNEMENT---------------------------
 //Ouverture du fichier de niveau correspondant:
 ini_open(global.selected_level);
 
+
 //Phase d'initialisation de l'environnement:
 room_width = ini_read_real("Generic Informations",global.selected_part+"XSize",424);
 room_height = ini_read_real("Generic Informations",global.selected_part+"YSize",240);
@@ -1898,6 +1899,28 @@ for(i=1;i&lt;=Number;i++){
     
     }
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Phase création de l'overlay:
+instance_create(x,y,object_start_overlay_1);
 </string>
           </argument>
         </arguments>

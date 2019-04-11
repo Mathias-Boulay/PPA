@@ -106,5 +106,15 @@
     <frame index="83">images\sprite_font_normal_83.png</frame>
     <frame index="84">images\sprite_font_normal_84.png</frame>
     <frame index="85">images\sprite_font_normal_85.png</frame>
+    <frame index="86">images\sprite_font_normal_86.png</frame>
+    <frame index="87">images\sprite_font_normal_87.png</frame>
+    <frame index="88">images\sprite_font_normal_88.png</frame>
+    <frame index="89">images\sprite_font_normal_89.png</frame>
+    <frame index="90">images\sprite_font_normal_90.png</frame>
+    <frame index="91">images\sprite_font_normal_91.png</frame>
+    <frame index="92">images\sprite_font_normal_92.png</frame>
+    <frame index="93">images\sprite_font_normal_93.png</frame>
+    <frame index="94">images\sprite_font_normal_94.png</frame>
+    <frame index="95">images\sprite_font_normal_95.png</frame>
   </frames>
 </sprite>

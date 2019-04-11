@@ -65,13 +65,14 @@
         <sprites name="back/foregrounds">
           <sprite>sprites\sprite_sunset_forest_back</sprite>
           <sprite>sprites\sprite_sunset_forest_moutains</sprite>
-          <sprite>sprites\sprite_sunset_forest_furthest</sprite>
+          <sprite>sprites\sprite_sunset_forest_hills_furthest</sprite>
           <sprite>sprites\sprite_sunset_forest_hills</sprite>
           <sprite>sprites\sprite_sunset_forest_trees_furthest</sprite>
           <sprite>sprites\sprite_sunset_forest_trees</sprite>
           <sprite>sprites\sprite_sunset_forest_leaves</sprite>
           <sprite>sprites\sprite_sunset_forest_stars</sprite>
           <sprite>sprites\sprite_sunset_forest_water</sprite>
+          <sprite>sprites\sprite229</sprite>
         </sprites>
         <sprite>sprites\sprite_sunset_forest_platforms</sprite>
         <sprite>sprites\sprite_sunset_forest_walls</sprite>
@@ -85,6 +86,9 @@
       <sprites name="LL">
         <sprites name="Back/foregrounds">
           <sprite>sprites\sprite_LL_back</sprite>
+          <sprite>sprites\sprite_LL_spikes</sprite>
+          <sprite>sprites\sprite_LL_light_hills</sprite>
+          <sprite>sprites\sprite_LL_dark_hills</sprite>
         </sprites>
         <sprite>sprites\sprite_LL_walls</sprite>
         <sprite>sprites\sprite_LL_platforms</sprite>
@@ -169,7 +173,6 @@
       </sprites>
       <sprites name="FUCKING_BIG_SHAI">
         <sprite>sprites\sprite_big_Shai</sprite>
-        <sprite>sprites\sprite_hair_big_shai</sprite>
       </sprites>
     </sprites>
     <sprites name="Shai">
@@ -273,6 +276,9 @@
       <sprite>sprites\sprite_home</sprite>
       <sprite>sprites\sprite_options</sprite>
       <sprite>sprites\sprite_pockets</sprite>
+      <sprite>sprites\sprite_paper</sprite>
+      <sprite>sprites\sprite_right_hand</sprite>
+      <sprite>sprites\sprite_stretch_bar</sprite>
     </sprites>
     <sprites name="shop">
       <sprite>sprites\sprite_stands</sprite>
@@ -281,16 +287,6 @@
       <sprite>sprites\sprite_select_shop</sprite>
       <sprite>sprites\sprite_Riony</sprite>
     </sprites>
-    <sprite>sprites\sprite_temp</sprite>
-    <sprite>sprites\sprite_deadzone</sprite>
-    <sprite>sprites\sprite_platform</sprite>
-    <sprite>sprites\sprite_camera</sprite>
-    <sprite>sprites\sprite_red</sprite>
-    <sprite>sprites\sprite57</sprite>
-    <sprite>sprites\sprite58</sprite>
-    <sprite>sprites\sprite_hit</sprite>
-    <sprite>sprites\sprite_ghost_spawner</sprite>
-    <sprite>sprites\sprite101</sprite>
     <sprites name="Fonts">
       <sprite>sprites\sprite_font_mapping</sprite>
       <sprite>sprites\sprite_font_title</sprite>
@@ -303,10 +299,22 @@
       <sprite>sprites\sprite_font_big_title</sprite>
       <sprite>sprites\sprite_font</sprite>
     </sprites>
+    <sprite>sprites\sprite_temp</sprite>
+    <sprite>sprites\sprite_deadzone</sprite>
+    <sprite>sprites\sprite_platform</sprite>
+    <sprite>sprites\sprite_camera</sprite>
+    <sprite>sprites\sprite_red</sprite>
+    <sprite>sprites\sprite57</sprite>
+    <sprite>sprites\sprite58</sprite>
+    <sprite>sprites\sprite_hit</sprite>
+    <sprite>sprites\sprite_ghost_spawner</sprite>
+    <sprite>sprites\sprite101</sprite>
     <sprite>sprites\sprite_level_builder</sprite>
     <sprite>sprites\sprite_level_drawer</sprite>
     <sprite>sprites\sprite_wall_platforms</sprite>
     <sprite>sprites\sprite196</sprite>
+    <sprite>sprites\sprite_start_level_overlay_1</sprite>
+    <sprite>sprites\sprite_start_level_overlay_2</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background_title</background>
@@ -338,6 +346,10 @@
       <path>paths\path_leaves_3_bis</path>
       <path>paths\path_leaves_end</path>
       <path>paths\path_leaves_end_bis</path>
+    </paths>
+    <paths name="title paths">
+      <path>paths\path_title</path>
+      <path>paths\path_title_reverse</path>
     </paths>
   </paths>
   <scripts name="scripts">
@@ -376,11 +388,14 @@
         <object>objects\object_select_info</object>
         <object>objects\object_select_item</object>
         <object>objects\object_options_menu</object>
-        <object>objects\object_left_button</object>
-        <object>objects\object_mid_button</object>
-        <object>objects\object_right_button</object>
+        <object>objects\object_right_hand_pause</object>
       </objects>
       <objects name="mains-menus">
+        <objects name="Title">
+          <object>objects\object_big_shai</object>
+          <object>objects\object_big_shai_hair</object>
+          <object>objects\object_camera_title</object>
+        </objects>
         <object>objects\object_white_book</object>
         <object>objects\object_play</object>
         <object>objects\object_album</object>
@@ -401,9 +416,6 @@
         <object>objects\object_sound_high</object>
         <object>objects\object_sound_middle</object>
         <object>objects\object_sound_low</object>
-        <object>objects\object_big_shai</object>
-        <object>objects\object_big_shai_hair</object>
-        <object>objects\object_camera_title</object>
         <object>objects\object_francais</object>
         <object>objects\object_franglish</object>
         <object>objects\object_english</object>
@@ -471,14 +483,17 @@
     <object>objects\object_respawn</object>
     <object>objects\object_lag</object>
     <object>objects\object_test_backgrounds</object>
+    <object>objects\object_start_overlay_2</object>
+    <object>objects\object_start_overlay_1</object>
+    <object>objects\object_tools_font</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\room_pre_title</room>
     <room>rooms\room_title</room>
     <room>rooms\room_level_1</room>
     <room>rooms\room_test_LevelBuilder</room>
     <room>rooms\room_test</room>
     <room>rooms\room0</room>
-    <room>rooms\room_pre_title</room>
     <room>rooms\room_level</room>
   </rooms>
   <help>
