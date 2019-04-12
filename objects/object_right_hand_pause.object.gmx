@@ -3,11 +3,163 @@
   <spriteName>sprite_right_hand</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-902</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
-  <events/>
+  <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Utilisation des status afin d'adapter les animations:
+Can_navigate=true;
+STATUS = "DISPLAY";
+Objective="";
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//Enable the navigation
+Can_navigate=true;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>switch(STATUS){
+    case "DISPLAY":
+        //S'afficher avec une animation de décélération:
+        y -= (y-(view_yview[0]+78)+6)/17;
+        if abs(y-(view_yview[0]+78)) &lt; 1{
+            y = view_yview[0]+78;
+            STATUS= "SELECT";
+            }
+        break;
+        
+    case "OUT":
+        //on sort avec une animatin acceleration:
+        y += (y-(view_yview[0]+78)+6)/17;
+        if y-46 &gt; view_yview[0]+view_hview[0]{
+            instance_destroy();
+            }
+        break;
+        
+    case "SELECT":
+        if Can_navigate{
+            if abs(global.axislv[0]) &gt; 0.2{
+                if collision_line(x,y+sign(global.axislv[0])*27,object_resume.x,y+sign(global.axislv[0])*27,object_resume,false,false) != noone{
+                    objective=y+sign(global.axislv[0])*27;
+                    STATUS ="OBJECTIVE";
+                    Can_navigate=false;
+                    }
+                }
+            else{
+                if global.face1[0] ||global.start[0] {
+                    Can_navigate=false;
+                    //Vérifier tous les boutons puis en dernier celui de resume
+                    if collision_line(x,y,object_resume.x,y,object_home,false,false) != noone{
+                        //Home menu need a prompt
+                        }
+                    else{
+                        if collision_line(x,y,object_resume.x,y,object_restart,false,false) != noone{
+                            //Restart, fondu au noir nécéssaire
+                            instance_create(x,y,object_respawn);
+                            }
+                        else{
+                            if collision_line(x,y,object_resume.x,y,object_options,false,false) != noone{
+                                //Menus options, transition puis livre.
+                                STATUS = "OUT-BOOK";
+                                }
+                            else{
+                                if collision_line(x,y,object_resume.x,y,object_pockets,false,false) != noone{
+                                    //Translation puis arrivé en fade.
+                                    STATUS="OUT-POCKETS";
+                                    }
+                                else{ //At this point it's obvious: resume button. Do the same thing as the B button.
+                                    STATUS = "OUT";
+                                    object_pause.STATUS="OUT";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        if global.face2[0]{
+            STATUS = "OUT";
+            object_pause.STATUS = "OUT";
+            }
+        break;
+        
+    case "OBJECTIVE":
+        y += ((objective-y)+1)/5;
+        if abs(((y-objective)+1)/5) &lt; 1{
+            y = objective;
+            STATUS = "SELECT"
+            Can_navigate=true;
+            }
+        break;
+    
+        
+        
+    }
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+  </events>
   <PhysicsObject>0</PhysicsObject>
   <PhysicsObjectSensor>0</PhysicsObjectSensor>
   <PhysicsObjectShape>0</PhysicsObjectShape>

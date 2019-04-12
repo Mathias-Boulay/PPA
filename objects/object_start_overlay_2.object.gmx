@@ -120,7 +120,7 @@ if image_angle &lt; -90{
 draw_set_font(global.font_big_title);
 draw_set_valign(fa_bottom);
 draw_set_halign(fa_center);
-draw_text_transformed(x+lengthdir_x(200,image_angle+26.27),y+lengthdir_y(200,image_angle+26.27),global.selected_part,1,1,image_angle);
+draw_text_transformed(x+lengthdir_x(200,image_angle+25),y+lengthdir_y(200,image_angle+25),global.selected_part,1,1,image_angle);
 
 </string>
           </argument>

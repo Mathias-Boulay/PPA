@@ -112,6 +112,51 @@ if room = room_pre_title {window_center();}
         </arguments>
       </action>
     </event>
+    <event eventtype="3" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Inputs globalisé sous formes de variables.
+if !instance_exists(object_fade) &amp;&amp; !instance_exists(object_respawn){
+    for(i=0;i&lt;1;i++){
+        //Version courte: juste lorsque les boutons viennent d'être pressés
+        global.face1[i]=gamepad_button_check_pressed(i,gp_face1);
+        global.face2[i]=gamepad_button_check_pressed(i,gp_face2);
+        global.face3[i]=gamepad_button_check_pressed(i,gp_face3);
+        global.face4[i]=gamepad_button_check_pressed(i,gp_face4);
+        global.start[i]=gamepad_button_check_pressed(i,gp_start);
+        global.select[i]=gamepad_button_check_pressed(i,gp_select);
+        global.shoulderl[i]=gamepad_button_check_pressed(i,gp_shoulderl);
+        global.shoulderr[i]=gamepad_button_check_pressed(i,gp_shoulderr);
+        //Version longue: tant que les boutons sont préssés:
+        global.face1_long[i]=gamepad_button_check(i,gp_face1);
+        
+        //joysticks:
+        global.axislh[i]=gamepad_axis_value(i,gp_axislh);
+        global.axislv[i]=gamepad_axis_value(i,gp_axislv);
+        global.axisrh[i]=gamepad_axis_value(i,gp_axisrh);
+        global.axisrv[i]=gamepad_axis_value(i,gp_axisrv);
+        
+        }
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
