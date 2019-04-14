@@ -103,37 +103,42 @@ Can_navigate=true;
                     Can_navigate=false;
                     }
                 }
+            }
+        if global.face1[0] || global.start[0]{
+            tempbutton=collision_line(x,y,object_resume.x,y,object_resume,false,false);
+            //Là on va tester à quel bouton on a affaire.
+            if collision_line(x,y,object_resume.x,y,object_home,false,false) != noone{
+                //Objet home:
+                temp_val_width=4;
+                }
             else{
-                if global.face1[0] ||global.start[0] {
-                    Can_navigate=false;
-                    //Vérifier tous les boutons puis en dernier celui de resume
-                    if collision_line(x,y,object_resume.x,y,object_home,false,false) != noone{
-                        //Home menu need a prompt
+                if collision_line(x,y,object_resume.x,y,object_restart,false,false) != noone{
+                    //Objet restart:
+                    temp_val_width=3;
+                    }
+                else{
+                    if collision_line(x,y,object_resume.x,y,object_options,false,false) != noone{
+                        //Objet options:
+                        temp_val_width=2;
                         }
                     else{
-                        if collision_line(x,y,object_resume.x,y,object_restart,false,false) != noone{
-                            //Restart, fondu au noir nécéssaire
-                            instance_create(x,y,object_respawn);
+                        if collision_line(x,y,object_resume.x,y,object_pockets,false,false) != noone{
+                            //Objet poches:
+                            temp_val_width=1;
                             }
                         else{
-                            if collision_line(x,y,object_resume.x,y,object_options,false,false) != noone{
-                                //Menus options, transition puis livre.
-                                STATUS = "OUT-BOOK";
-                                }
-                            else{
-                                if collision_line(x,y,object_resume.x,y,object_pockets,false,false) != noone{
-                                    //Translation puis arrivé en fade.
-                                    STATUS="OUT-POCKETS";
-                                    }
-                                else{ //At this point it's obvious: resume button. Do the same thing as the B button.
-                                    STATUS = "OUT";
-                                    object_pause.STATUS="OUT";
-                                    }
-                                }
+                            //Objet resume fait pas chier:
+                            temp_val_width=0;
                             }
                         }
                     }
                 }
+            temp_path=path_add();
+            path_add_point(temp_path,x,y,100);
+            path_add_point(temp_path,tempbutton.x+17,tempbutton.y+tempbutton.sprite_height+2,100);
+            path_set_closed(temp_path,false);
+            path_start(temp_path,0.2,path_action_stop,false);
+            STATUS = "UNDERLINE";
             }
         if global.face2[0]{
             STATUS = "OUT";
@@ -146,14 +151,54 @@ Can_navigate=true;
         if abs(((y-objective)+1)/5) &lt; 1{
             y = objective;
             STATUS = "SELECT"
-            Can_navigate=true;
+            alarm_set(0,10);
             }
         break;
     
+    case "UNDERLINE":
+        if !instance_exists(object_underline){
+            if path_position = 1{
+                This_underline=instance_create(x,y,object_underline);
+                draw_set_font(global.font_title);
+                draw_set_halign(fa_left);
+                This_underline.image_xscale=string_width(object_pause.texts[temp_val_width])/66;
+                }
+            }
+        else{
+            x+= (((object_pause.x+44)-x)+5)/15
+            if abs((((object_pause.x+44)-x)+5)/15) &lt; 1{
+                x = object_pause.x+44;
+                }
+            }
         
         
     }
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_self();
+draw_text(x,y,string(path_position));
+draw_text(x,y+15,string(path_endaction));
 </string>
           </argument>
         </arguments>

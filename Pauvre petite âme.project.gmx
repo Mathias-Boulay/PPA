@@ -389,6 +389,7 @@
         <object>objects\object_select_item</object>
         <object>objects\object_options_menu</object>
         <object>objects\object_right_hand_pause</object>
+        <object>objects\object_underline</object>
       </objects>
       <objects name="mains-menus">
         <objects name="Title">
