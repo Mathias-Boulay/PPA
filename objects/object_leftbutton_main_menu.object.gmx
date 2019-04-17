@@ -112,11 +112,11 @@ if object_white_book.STATUS = "TITLE"{    //Si l'on est sur ce putin d'écran ti
     //move the left part of the button
     //Moving part
     if Can_navigate{
-        if abs(gamepad_axis_value(0,gp_axislv)) &gt; 0.4{        
+        if abs(global.axislv[0]) &gt; 0.4{        
             alarm_set(0,13);
-            if place_meeting(x+15,y+(sign(gamepad_axis_value(0,gp_axislv))*36),object_play){
+            if place_meeting(x+15,y+(sign(global.axislv[0])*36),object_play){
                 Can_navigate = false;
-                y += sign(gamepad_axis_value(0,gp_axislv))*36;
+                y += sign(global.axislv[0])*36;
                 }
             else{
                 if y-15 &lt; object_play.y{
@@ -131,7 +131,7 @@ if object_white_book.STATUS = "TITLE"{    //Si l'on est sur ce putin d'écran ti
             }
         }           
     //Button pressing part:           
-    if gamepad_button_check_pressed(0,gp_face1) || gamepad_button_check_pressed(0,gp_start){
+    if global.face1[0] || global.start[0]{
         if place_meeting(x+10,y,object_credits){
             //force the player to see the credits
             }
@@ -153,7 +153,7 @@ if object_white_book.STATUS = "TITLE"{    //Si l'on est sur ce putin d'écran ti
                 }
             }
         }
-    if gamepad_button_check_pressed(0,gp_face2){
+    if global/face2[0]{
         game_end();
         } 
     }
@@ -163,11 +163,11 @@ else{
         if (place_meeting(x+5,y,object_video_options)){x--;} 
         //Moving part
         if Can_navigate{
-            if abs(gamepad_axis_value(0,gp_axislv)) &gt; 0.4{        
+            if abs(global.axislv[0]) &gt; 0.4{        
                 alarm_set(0,13);
-                if place_meeting(x+15,y+(sign(gamepad_axis_value(0,gp_axislv))*36),object_video_options){
+                if place_meeting(x+15,y+(sign(global.axislv[0])*36),object_video_options){
                     Can_navigate = false;
-                    y += sign(gamepad_axis_value(0,gp_axislv))*36;
+                    y += sign(global.axislv[0])*36;
                     }
                 else{
                     if y-15 &lt; object_video_options.y{
@@ -182,7 +182,7 @@ else{
                 }
             }      
         //Button pressing part:           
-        if gamepad_button_check_pressed(0,gp_face1) || gamepad_button_check_pressed(0,gp_start){
+        if global.face1[0] || global.start[0]{
             if place_meeting(x+10,y,object_controlles){
                 //mappings
                 script_fade_status("OPTIONS-MAPPING");
@@ -204,7 +204,7 @@ else{
                     }
                 }
             }
-        if gamepad_button_check_pressed(0,gp_face2){
+        if global.face2[0]{
             if room = room_title{
                 script_fade_status("TITLE");
                 }
@@ -236,11 +236,11 @@ else{
             
             //Moving part
             if Can_navigate{
-                if abs(gamepad_axis_value(0,gp_axislv)) &gt; 0.4{        
+                if abs(global.axislv[0]) &gt; 0.4{        
                     alarm_set(0,13);
-                    if place_meeting(x-30,y+(sign(gamepad_axis_value(0,gp_axislv))*39),object_resolution){
+                    if place_meeting(x-30,y+(sign(global.axislv[0])*39),object_resolution){
                         Can_navigate = false;
-                        y += sign(gamepad_axis_value(0,gp_axislv))*39;
+                        y += sign(global.axislv[0])*39;
                         }
                     else{
                         if y-15 &lt; object_resolution.y{
@@ -256,7 +256,7 @@ else{
                 }
                         
             //Button pressing part:           
-            if abs(gamepad_axis_value(0,gp_axislh)) &gt; 0.7 &amp;&amp; Can_navigate{
+            if abs(global.axislh[0]) &gt; 0.7 &amp;&amp; Can_navigate{
                 alarm_set(0,13);
                 Can_navigate = false;
                 ini_open(working_directory + "settings\settings.ini");
@@ -269,13 +269,13 @@ else{
                 else{
                     if place_meeting(x-15,y,object_quality){
                         //set quality.
-                        global.quality += sign(gamepad_axis_value(0,gp_axislh));
+                        global.quality += sign(global.axislh[0]);
                         if global.quality &lt; 1{global.quality = 3;}else{if global.quality &gt; 3{global.quality = 1;}}
                         ini_write_real("video","quality",global.quality);
                         }
                     else{
                         //set resolution.
-                        global.window_size += sign(gamepad_axis_value(0,gp_axislh));
+                        global.window_size += sign(global.axislh[0]);
                         if global.window_size &lt; 1{global.window_size = 3;}else{if global.window_size &gt; 3{global.window_size = 1;}}
                         ini_write_real("video","window_size",global.window_size);
                         }
@@ -286,7 +286,7 @@ else{
                 
             
                 
-            if gamepad_button_check_pressed(0,gp_face2){
+            if global.face2[0]{
                 script_fade_status("OPTIONS");
                 }
             }
@@ -299,7 +299,7 @@ else{
                     }
                 //Moving part
                 if Can_navigate{
-                    if abs(gamepad_axis_value(0,gp_axislv)) &gt; 0.4{        
+                    if abs(global.axislh[0]) &gt; 0.4{        
                         alarm_set(0,13);
                             if y &gt; 120+view_yview[0]{
                                 y = 92+view_yview[0];
@@ -314,24 +314,24 @@ else{
                     
                             
                 //Button pressing part:           
-                if abs(gamepad_axis_value(0,gp_axislh)) &gt; 0.7 &amp;&amp; Can_navigate{
+                if abs(global.axislh[0]) &gt; 0.7 &amp;&amp; Can_navigate{
                     Can_navigate = false;
                     alarm_set(0,13);
                     ini_open(working_directory + "\settings\settings.ini");
                     if y &lt; 120+view_yview[0]{
-                        global.music_volume += sign(gamepad_axis_value(0,gp_axislh));
+                        global.music_volume += sign(global.axislh[0]);
                         if global.music_volume &gt; 9{global.music_volume = 9;}else{if global.music_volume &lt; 0{global.music_volume = 0;}}
                         ini_write_real("sounds","music_volume",global.music_volume);
                         }
                     else{
-                        global.sfx_volume += sign(gamepad_axis_value(0,gp_axislh));
+                        global.sfx_volume += sign(global.axislh[0]);
                         if global.sfx_volume &gt; 9{global.sfx_volume = 9;}else{if global.sfx_volume &lt; 0{global.sfx_volume = 0;}}
                         ini_write_real("sounds","sfx_volume",global.sfx_volume);
                         }
                     ini_close();
                     script_settings_load();      
                     }
-                if gamepad_button_check_pressed(0,gp_face2){
+                if global.face2[0]{
                     script_fade_status("OPTIONS");
                     }
                 }
@@ -341,7 +341,7 @@ else{
                     if (!place_meeting(x+5,y,object_franglish)){x++;}
                     if (place_meeting(x+5,y,object_franglish)){x--;}
                     
-                    if abs(gamepad_axis_value(0,gp_axislh)) &gt; 0.7 &amp;&amp; Can_navigate{
+                    if abs(global.axislh[0]) &gt; 0.7 &amp;&amp; Can_navigate{
                         Can_navigate = false;
                         alarm_set(0,13);
                         if place_meeting(x+10,y,object_francais) || place_meeting(x+10,y,object_english){
@@ -351,7 +351,7 @@ else{
                             right_dependency.y = y;
                             }
                         else{
-                            if sign(gamepad_axis_value(0,gp_axislv)) = -1{
+                            if sign(global.axislv[0]) = -1{
                                 y = 104+view_yview[0];
                                 x = 257+view_xview[0];
                                 right_dependency.x = x+50;
@@ -366,7 +366,7 @@ else{
                             }
                         }
                     else{
-                        if abs(gamepad_axis_value(0,gp_axislv)) &gt; 0.7 &amp;&amp; Can_navigate{
+                        if abs(global.axislv[0]) &gt; 0.7 &amp;&amp; Can_navigate{
                             Can_navigate = false;
                             alarm_set(0,13);
                             if place_meeting(x+10,y,object_francais){
@@ -386,7 +386,7 @@ else{
                             }
                         }
                     
-                    if gamepad_button_check_pressed(0,gp_face1){
+                    if global.face1[0]{
                         ini_open(working_directory + "settings\settings.ini");
                         if place_meeting(x+10,y,object_francais){
                             ini_write_string("langage","selected_langage","français");
@@ -402,16 +402,16 @@ else{
                         ini_close();
                         script_settings_load();
                         }
-                    if gamepad_button_check_pressed(0,gp_face2){script_fade_status("OPTIONS");}
+                    if global.face2[0]{script_fade_status("OPTIONS");}
                     }
                 else{
                     if object_white_book.STATUS = "SELECT_SAVE"{
                         if !instance_exists(object_confirmation){
                             //Let's move
-                            if abs(gamepad_axis_value(0,gp_axislv)) &gt; 0.5{
+                            if abs(global.axislv[0]) &gt; 0.5{
                                 if Can_navigate{
-                                    if collision_line(x-50,y+(sign(gamepad_axis_value(0,gp_axislv))*20),x+50,y+(sign(gamepad_axis_value(0,gp_axislv))*20),object_play_save,false,true) != noone{
-                                        y+= (sign(gamepad_axis_value(0,gp_axislv))*20);
+                                    if collision_line(x-50,y+(sign(global.axislv[0])*20),x+50,y+(sign(global.axislv[0])*20),object_play_save,false,true) != noone{
+                                        y+= (sign(global.axislv[0])*20);
                                         }
                                     else{
                                         if place_meeting(x+(10*image_xscale),y,object_back_save){
@@ -444,7 +444,7 @@ else{
                                         }
                                     }
                             //Nox if I want to do something:
-                            if gamepad_button_check_pressed(0,gp_face1){
+                            if global.face1[0]{
                                 if place_meeting(x+(10*image_xscale),y,object_back_save){
                                     //Step back.
                                     instance_destroy(object_savepaper);
@@ -534,7 +534,7 @@ else{
                                     }   
                                 }
                             else{
-                                if gamepad_button_check_pressed(0,gp_face2){
+                                if global.face2[0]{
                                     //Step back.
                                     instance_destroy(object_savepaper);
                                     instance_create(51+view_xview[0],18+view_yview[0],object_savepaper);
@@ -551,10 +551,10 @@ else{
                                 }        
                             }
                         else{
-                            if gamepad_button_check_pressed(0,gp_face2){
+                            if global.face2[0]{
                                 instance_destroy(object_confirmation);
                                 }
-                            if gamepad_button_check_pressed(0,gp_face1){
+                            if global.face1[0]{
                                 object_confirmation.image_index = irandom(9);
                                 }
                             }
@@ -578,7 +578,7 @@ else{
                                         }
                                     }
                             if Can_navigate{//Déplacement horizontal
-                                if abs(gamepad_axis_value(0,gp_axislh)) &gt; 0.6{
+                                if abs(global.axislh[0]) &gt; 0.6{
                                     Can_navigate =false;
                                     alarm_set(0,15);
                                     if place_meeting(x+15,y,object_voir_controlles){
@@ -607,7 +607,7 @@ else{
                                     }
                                 }
                             if Can_navigate{//Déplacement vertical
-                                if abs(gamepad_axis_value(0,gp_axislv)) &gt; 0.6{
+                                if abs(global.axislv[0]) &gt; 0.6{
                                     Can_navigate =false;
                                     alarm_set(0,15);
                                     if place_meeting(x+15,y,object_voir_controlles){
@@ -644,11 +644,11 @@ else{
                                 
                                 
                                 
-                            if gamepad_button_check_pressed(0,gp_face2){
+                            if global.face2[0]{
                                 script_fade_status("OPTIONS");
                                 }
                             
-                            if gamepad_button_check_pressed(0,gp_face1){    
+                            if global.face1[0]{    
                                 //Vérifier où l'on est et effectuer des actions en conséquences:
                                 if place_meeting(x-15,y,object_vibrations){
                                     //Activer ou désactiver les vibrations;
@@ -687,7 +687,7 @@ else{
                                 
                             if Can_navigate{
                                 if place_meeting(x-15,y,object_vibrations){
-                                    if gamepad_axis_value(0,gp_axislh) &gt; 0.6{
+                                    if global.axislh[0] &gt; 0.6{
                                         Can_navigate = false;
                                         alarm_set(0,15);
                                         //Go on;
@@ -700,7 +700,7 @@ else{
                                             
                                         }
                                     else{
-                                        if gamepad_axis_value(0,gp_axislh) &lt; -0.6{
+                                        if global.axislh[0] &lt; -0.6{
                                             Can_navigate = false;
                                             alarm_set(0,15);
                                             //Go off;

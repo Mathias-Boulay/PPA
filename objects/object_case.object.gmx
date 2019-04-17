@@ -98,20 +98,20 @@ font_delete(font_shop);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//Navigate trough the shop.
-if abs(gamepad_axis_value(0,gp_axislv)) &gt; 0.4
+            <string>///Navigate trough the shop.
+if abs(global.axislv[0]) &gt; 0.4
     {
     if Can_navigate
         {
-        if place_meeting(x,y+(sign(gamepad_axis_value(0,gp_axislv))*44),object_item_1)
+        if place_meeting(x,y+(sign(global.axislv[0])*44),object_item_1)
             {
-            y += sign(gamepad_axis_value(0,gp_axislv))*44;
+            y += sign(global.axislv[0])*44;
             Can_navigate = false;
             alarm_set(0,13);
             }
         else
             {
-            if sign(gamepad_axis_value(0,gp_axislv)) &gt; 0
+            if sign(global.axislv[0]) &gt; 0
                 {
                 y = object_fond_shop.y-134;
                 Can_navigate = false;
@@ -128,7 +128,7 @@ if abs(gamepad_axis_value(0,gp_axislv)) &gt; 0.4
     }
     
 //Buying section
-if gamepad_button_check_pressed(0,gp_face1)
+if global.face1[0]
     {
     if place_meeting(x,y,my_seller.object_1)
         {

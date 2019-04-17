@@ -104,7 +104,7 @@ alarm_set(0,60);
 if !instance_exists(object_pause){
 //Right shoulder
 if active_item = 0{
-    if gamepad_button_check_pressed(0,gp_shoulderr){
+    if global.shoulderr[0]{
         selected_item += 1;
         if selected_item &gt; (array_length_1d(numberofitems)-1){
             selected_item = 1;
@@ -119,7 +119,7 @@ if active_item = 0{
             }
         }
     else{
-        if gamepad_button_check_pressed(0,gp_shoulderl){
+        if global.shoulderl[0]{
             selected_item-=1;
             if selected_item &lt; 1{
                 selected_item = 7;
@@ -143,7 +143,7 @@ if active_item = 0{
         }
     }
 
-if gamepad_button_check_pressed(0,gp_face4){
+if global.face4[0]{
     if numberofitems[selected_item] != 0 &amp;&amp; active_item = 0{
         active_item = selected_item;
         numberofitems[selected_item] -= 1;

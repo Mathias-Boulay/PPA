@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_speed = 0.33;
+            <string>///Défini la vitesse de l'animation des rionys
+image_speed = 0.33;
 </string>
           </argument>
         </arguments>
@@ -48,7 +49,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>object_player.rionys += 1;
+            <string>//Ajouter un rionys + le détruire.
+object_player.rionys += 1;
 instance_destroy();
 </string>
           </argument>

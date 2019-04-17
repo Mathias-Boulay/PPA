@@ -101,7 +101,7 @@ Source = "";
             <string>if Can_do{
     ///Controls for moving
     if Can_navigate{
-        if abs(gamepad_axis_value(0,gp_axislh)) &gt; 0.5{
+        if abs(global.axislh[0]) &gt; 0.5{
             if x &lt; room_width/2{
                 x += 170;
                 Can_navigate =false;
@@ -114,7 +114,7 @@ Source = "";
                 }
             }
             
-        if abs(gamepad_axis_value(0,gp_axislv)) &gt; 0.5{
+        if abs(global.axislv[0]) &gt; 0.5{
             if y &lt; room_height/2{
                 y += 104;
                 Can_navigate =false;
@@ -129,7 +129,7 @@ Source = "";
         }
     if STATUS = "NORMAL"{    
         //Stuff for selecting the save
-        if gamepad_button_check_pressed(0,gp_face1){
+        if global.face1[0]{
             /*global.SELECTED_SAVE = working_directory +"\saves\save "+string(collision_point(x+(sprite_width/2),y+(sprite_height/2),object_savepaper,false,true).ID);
             object_white_book.page = 0;
             object_white_book.STATUS = "SELECT_LEVEL";*/
@@ -137,14 +137,14 @@ Source = "";
             savepaper.STATUS = "SELECTED";
             }
         //Stuff to quit the save selecting:
-        if gamepad_button_check_pressed(0,gp_face2){
+        if global.face2[0]{
             script_fade_status("TITLE");
             }
         }
     else{
         if STATUS = "PASTE"{
             //Stuff to paste the file somewhere
-            if gamepad_button_check_pressed(0,gp_face1){
+            if global.face1[0]{
             temp_dest = working_directory+"saves\save "+string(collision_point(x+(sprite_width/2),y+(sprite_height/2),object_savepaper,false,true).ID);
                 if !file_exists(temp_dest){
                     //Then copy
@@ -175,7 +175,7 @@ Source = "";
                     }
                 }
             else{
-                if gamepad_button_check_pressed(0,gp_face2){
+                if global.face2[0]{
                     //Stuff to unload the copy-paste part
                     STATUS = "NORMAL";
                     }
@@ -187,7 +187,7 @@ Source = "";
     
         
     //Stuff to navigate trough them
-    if gamepad_button_check_pressed(0,gp_shoulderr){
+    if global.shoulderr[0]{
         object_white_book.page += 4;
         instance_destroy(object_savepaper);
         instance_create(51+view_xview[0],18+view_yview[0],object_savepaper);
@@ -195,7 +195,7 @@ Source = "";
         instance_create(51+view_xview[0],122+view_yview[0],object_savepaper);
         instance_create(221+view_xview[0],122+view_yview[0],object_savepaper);
         }
-    if gamepad_button_check_pressed(0,gp_shoulderl){
+    if global.shoulderl[0]{
         object_white_book.page -= 4;
         instance_destroy(object_savepaper);
         instance_create(51+view_xview[0],18+view_yview[0],object_savepaper);

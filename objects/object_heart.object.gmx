@@ -49,8 +49,7 @@ state = "basic";
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if number &gt; object_player.life
-    {
+            <string>if number &gt; object_player.life{
     state = "empty";
     }
 </string>

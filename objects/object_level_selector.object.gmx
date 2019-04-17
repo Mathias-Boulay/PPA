@@ -100,9 +100,9 @@ if lv_index.image_index &gt; 5 {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//Controls:
+            <string>///Controls:
 if Can_navigate{
-    if gamepad_axis_value(0,gp_axislh) &gt; 0.5{
+    if global.axislh[0] &gt; 0.5{
         Can_navigate = false;
         alarm_set(0,15);
         if place_meeting(x+30,y,object_lv){
@@ -120,7 +120,7 @@ if Can_navigate{
                 }
             }
         }
-    if gamepad_axis_value(0,gp_axislh) &lt; -0.5{
+    if global.axislh[0] &lt; -0.5{
         Can_navigate = false;
         alarm_set(0,15);
         if place_meeting(x-30,y,object_lv){
@@ -139,7 +139,7 @@ if Can_navigate{
             }
         }
     }    
-if gamepad_button_check_pressed(0,gp_shoulderr){
+if global.shoulderr[0]{
     object_white_book.page += 2;
     visible = true;
     instance_destroy(object_levelpaper);
@@ -159,7 +159,7 @@ if gamepad_button_check_pressed(0,gp_shoulderr){
         }    
                     
     }
-if gamepad_button_check_pressed(0,gp_shoulderl){
+if global.shoulderl[0]{
     object_white_book.page -= 2;
     instance_destroy(object_levelpaper);
     instance_destroy(object_levelboard);
@@ -188,7 +188,7 @@ if img_index != noone{
         }
     }
             
-if gamepad_button_check_pressed(0,gp_face1){
+if global.face1[0]{
     var PartToLoad = collision_point(x+(sprite_width/2),y+(sprite_height/2),object_lv,false,true).image_index;
     var MyPaper = collision_point(x,y-50,object_levelpaper,false,false);
     if MyPaper.Level[PartToLoad,5] = 1{
@@ -231,7 +231,7 @@ if gamepad_button_check_pressed(0,gp_face1){
         show_error("Error, MyPaper.level[PartToLoad,5] ="+string(MyPaper.Level[PartToLoad,5]),true);
         }
     }
-if gamepad_button_check_pressed(0,gp_face2){
+if global.face2[0]{
     script_fade_status("SELECT_SAVE");
     object_white_book.page = 0;
     }
