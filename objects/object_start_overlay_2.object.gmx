@@ -50,7 +50,8 @@ image_angle=90;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>temp=false;
+            <string>///Reset la variable temp
+temp=false;
 </string>
           </argument>
         </arguments>
@@ -90,7 +91,10 @@ else{
         image_angle-=1.1;
         }
     }
-    
+if global.start[0]{
+    alarm_set(0,1);
+    }    
+
 if image_angle &lt; -90{
     instance_destroy();
     }
@@ -116,11 +120,12 @@ if image_angle &lt; -90{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_self();
+            <string>///Se dessiner soi et le texte.
+draw_self();
 draw_set_font(global.font_big_title);
 draw_set_valign(fa_bottom);
 draw_set_halign(fa_center);
-draw_text_transformed(x+lengthdir_x(200,image_angle+25),y+lengthdir_y(200,image_angle+25),global.selected_part,1,1,image_angle);
+draw_text_transformed(x+lengthdir_x(200,image_angle+24.5),y+lengthdir_y(200,image_angle+24.5),global.selected_part,1,1,image_angle);
 
 </string>
           </argument>

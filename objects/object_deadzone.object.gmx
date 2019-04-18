@@ -130,28 +130,67 @@ if room = room_pre_title {window_center();}
           <argument>
             <kind>1</kind>
             <string>///Inputs globalisé sous formes de variables.
-if !instance_exists(object_fade) &amp;&amp; !instance_exists(object_respawn){
+//Les inputs sont bloqués si l'objet fade existe.
+if !instance_exists(object_fade){
+    if !instance_exists(object_fade) &amp;&amp; !instance_exists(object_respawn){
+        for(i=0;i&lt;1;i++){
+            //Version courte: juste lorsque les boutons viennent d'être pressés
+            global.face1[i]=gamepad_button_check_pressed(i,gp_face1);
+            global.face2[i]=gamepad_button_check_pressed(i,gp_face2);
+            global.face3[i]=gamepad_button_check_pressed(i,gp_face3);
+            global.face4[i]=gamepad_button_check_pressed(i,gp_face4);
+            global.start[i]=gamepad_button_check_pressed(i,gp_start);
+            global.select[i]=gamepad_button_check_pressed(i,gp_select);
+            global.shoulderl[i]=gamepad_button_check_pressed(i,gp_shoulderl);
+            global.shoulderr[i]=gamepad_button_check_pressed(i,gp_shoulderr);
+            //Appui sur les joysticks:
+            global.stickr[i]= gamepad_button_check_pressed(i,gp_stickr);
+            global.stickl[i]= gamepad_button_check_pressed(i,gp_stickl);
+            
+            //Version longue: tant que les boutons sont pressés:
+            global.face1_long[i]=gamepad_button_check(i,gp_face1);
+            
+            //joysticks:
+            global.axislh[i]=gamepad_axis_value(i,gp_axislh);
+            global.axislv[i]=gamepad_axis_value(i,gp_axislv);
+            global.axisrh[i]=gamepad_axis_value(i,gp_axisrh);
+            global.axisrv[i]=gamepad_axis_value(i,gp_axisrv);
+            //Mapper la croix directionnelle sur le joystick gauche:
+            if gamepad_button_check(i,gp_padl){ global.axislh[i] = clamp(global.axislh[i]-1,-1,0);}
+            if gamepad_button_check(i,gp_padr){ global.axislh[i] = clamp(global.axislh[i]+1,0,1);}
+            if gamepad_button_check(i,gp_padu){ global.axislv[i] = clamp(global.axislh[i]-1,-1,0);}
+            if gamepad_button_check(i,gp_padd){ global.axislh[i] = clamp(global.axislh[i]+1,0,1);}
+            
+            }
+        }
+    }
+else{ //Reset les valeurs:
     for(i=0;i&lt;1;i++){
-        //Version courte: juste lorsque les boutons viennent d'être pressés
-        global.face1[i]=gamepad_button_check_pressed(i,gp_face1);
-        global.face2[i]=gamepad_button_check_pressed(i,gp_face2);
-        global.face3[i]=gamepad_button_check_pressed(i,gp_face3);
-        global.face4[i]=gamepad_button_check_pressed(i,gp_face4);
-        global.start[i]=gamepad_button_check_pressed(i,gp_start);
-        global.select[i]=gamepad_button_check_pressed(i,gp_select);
-        global.shoulderl[i]=gamepad_button_check_pressed(i,gp_shoulderl);
-        global.shoulderr[i]=gamepad_button_check_pressed(i,gp_shoulderr);
-        //Version longue: tant que les boutons sont préssés:
-        global.face1_long[i]=gamepad_button_check(i,gp_face1);
+        //Version courte
+        global.face1[i]=false;
+        global.face2[i]=false;
+        global.face3[i]=false;
+        global.face4[i]=false;
+        global.start[i]=false;
+        global.select[i]=false;
+        global.shoulderr[i]=false;
+        global.shoulderl[i]=false;
+        //Appui sur les joysticks
+        global.stickr[i]=false;
+        global.stickl[i]=false;
         
-        //joysticks:
-        global.axislh[i]=gamepad_axis_value(i,gp_axislh);
-        global.axislv[i]=gamepad_axis_value(i,gp_axislv);
-        global.axisrh[i]=gamepad_axis_value(i,gp_axisrh);
-        global.axisrv[i]=gamepad_axis_value(i,gp_axisrv);
+        //Version longue: tant que les boutons sont pressés
+        global.face1_long[i]=false;
+        
+        //Joysticks
+        global.axislh[i]=0;
+        global.axislv[i]=0;
+        global.axisrh[i]=0;
+        global.axisrv[i]=0;
         
         }
     }
+
 </string>
           </argument>
         </arguments>

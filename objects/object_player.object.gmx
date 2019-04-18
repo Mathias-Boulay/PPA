@@ -450,19 +450,14 @@ next_right = place_meeting(x+2,y,object_wall);
 next_left = place_meeting(x-2,y,object_wall);
 
 //On prend les instructions du joueur:
-key_jump = gamepad_button_check_pressed(ID,gp_face1);
-key_jump_held = gamepad_button_check(ID,gp_face1);
-move = gamepad_axis_value(ID,gp_axislh)*uncontrol;
-looking = gamepad_axis_value(ID,gp_axislv); 
-attack = gamepad_button_check_pressed(ID,gp_face2);
-pause = gamepad_button_check_pressed(ID,gp_start) /* || os_is_paused()*/;
-debugbutton = gamepad_button_check_pressed(ID,gp_stickr)
+key_jump = global.face1[ID];
+key_jump_held = global.face1_long[ID];
+move = global.axislh[ID]*uncontrol;
+looking = global.axislv[ID]; 
+attack = global.face2[ID];
+pause = global.start[ID] /* || os_is_paused()*/;
+debugbutton = global.stickl[ID];
 
-//Mapper la croix directionelle:
-if gamepad_button_check(ID,gp_padl){move = -1;}
-if gamepad_button_check(ID,gp_padr){move = 1;}
-if gamepad_button_check(ID,gp_padu){looking = -1;}
-if gamepad_button_check(ID,gp_padd){looking = 1;}
 
 //Appliquer une marge de detection car certaines manettes ne sont pas terriblements fonctionnelles:
 //Ou alors si le joueur effectue une action particulière.
@@ -481,35 +476,17 @@ else{
             }
         }
     else{
-        if STATUS = "precrawl"{
-            move = 0;
-            }
-        else{
-            if STATUS = "decrounching"{
+        switch(STATUS){
+            case "precrawl":
+            case "decrounching":
+            case "headshot":
+            case "divelanding":
+            case "jumpfromdive":
+            case "rolling":
                 move = 0;
-                }
-            else{
-                if STATUS = "headshot"{
-                    move = 0;
-                    }
-                else{
-                    if STATUS = "divelanding"{
-                        move = 0;
-                        }
-                    else{
-                        if STATUS = "jumpfromdive"{
-                            move = 0;
-                            }
-                        else{
-                            if STATUS = "rolling"{
-                                move = 0;
-                                }
-                            }
-                        }
-                    }
-                }
+                break;
             }
-        } 
+        }
     }
 </string>
           </argument>
@@ -535,8 +512,11 @@ else{
 //Si demandé, on active la pause:
 if pause{
     if !instance_exists(object_pause){
-        //instance_create(max(212,min(object_camera.x,room_width-212)),max(120,min(object_camera.y,room_height-120)),object_pause);
-        instance_create(view_xview[0]+(view_wview[0]/2),view_yview[0]+view_hview[0]+85,object_pause);
+        if !instance_exists(object_start_overlay_1){
+            if !instance_exists(object_start_overlay_2){
+                instance_create(view_xview[0]+(view_wview[0]/2),view_yview[0]+view_hview[0]+85,object_pause);
+                }
+            }
         }
     else{
         show_debug_message("Nombre d'instances actives: "+string(instance_number(object_pause)));
@@ -2075,9 +2055,8 @@ show_debug_message("Command triggered:"+keyboard_string);
 
 
 
-if gamepad_button_check_pressed(ID,gp_stickl){
-    if debug &lt;1
-        {
+if debugbutton {
+    if debug &lt;1{
         debug ++;
         }
     else{
@@ -2397,7 +2376,7 @@ switch(STATUS){
             break;
             
         case "spinattack":
-            if !gamepad_button_check(ID,gp_face2){
+            if !global.face2[ID]{
                 if (vsp &lt; -global.grav){
                     STATUS = "jumping";
                     }

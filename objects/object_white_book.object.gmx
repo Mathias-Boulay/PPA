@@ -57,12 +57,13 @@ texts = script_word_light(0,50)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if STATUS = "TITLE"{
+            <string>///Menu recodé pour être dynamique au livre.
+if STATUS = "TITLE"{
     if !instance_exists(object_play){
-        instance_create(x+225+view_xview[0],y+47+view_yview[0],object_play);
-        instance_create(x+225+view_xview[0],y+82+view_yview[0],object_album);
-        instance_create(x+225+view_xview[0],y+119+view_yview[0],object_options_main_menu);
-        instance_create(x+225+view_xview[0],y+154+view_yview[0],object_credits);
+        instance_create(x+248,y+51,object_play);
+        instance_create(x+248,y+87,object_album);
+        instance_create(x+248,y+123,object_options_main_menu);
+        instance_create(x+248,y+159,object_credits);
         left_title = instance_create(x+213+view_xview[0],y+54+view_yview[0],object_leftbutton_main_menu);
         }
     }
@@ -78,11 +79,11 @@ else{
         
 if STATUS = "OPTIONS"{
     if !instance_exists(object_video_options){
-        instance_create(248+view_xview[0],50+view_yview[0],object_video_options);
-        instance_create(248+view_xview[0],87+view_yview[0],object_sound);
-        instance_create(248+view_xview[0],123+view_yview[0],object_controlles);
-        instance_create(248+view_xview[0],159+view_yview[0],object_langage);
-        left_options = instance_create(243+view_xview[0],58+view_yview[0],object_leftbutton_main_menu);
+        instance_create(x+248,y+51,object_video_options);
+        instance_create(x+248,y+87,object_sound);
+        instance_create(x+248,y+123,object_controlles);
+        instance_create(x+248,y+159,object_langage);
+        left_options = instance_create(y+243,y+58,object_leftbutton_main_menu);
         }
     }
 else{
@@ -97,11 +98,11 @@ else{
             
 if STATUS = "OPTIONS-VIDEO"{
     if !instance_exists(object_resolution){
-        instance_create(269+view_xview[0],86+view_yview[0],object_resolution);
-        instance_create(269+view_xview[0],120+view_yview[0],object_fullscreen);
-        instance_create(269+view_xview[0],161+view_yview[0],object_quality);
-        instance_create(175+view_xview[0],200+view_yview[0],object_retour);
-        left_video=instance_create(286+view_xview[0],92+view_yview[0],object_leftbutton_main_menu);      
+        instance_create(x+269,y+86,object_resolution);
+        instance_create(x+269,y+120,object_fullscreen);
+        instance_create(x+269,y+161,object_quality);
+        instance_create(x+175,y+200,object_retour);
+        left_video=instance_create(x+286,y+92,object_leftbutton_main_menu);      
         }
     }
 else{
@@ -116,76 +117,76 @@ else{
     
 if STATUS = "OPTIONS-SON"{
     if !instance_exists(object_music_button){
-        instance_create(111+view_xview[0],86+view_yview[0],object_music_button);
-        instance_create(120+view_xview[0],143+view_yview[0],object_sfx_button);
-        left_son = instance_create(101+view_xview[0],92+view_yview[0],object_leftbutton_main_menu);
-        instance_create(175+view_xview[0],200+view_yview[0],object_retour);
+        instance_create(x+111,y+86,object_music_button);
+        instance_create(x+120,y+143,object_sfx_button);
+        left_son = instance_create(x+101,y+92,object_leftbutton_main_menu);
+        instance_create(x+175,y+200,object_retour);
         //Create sounds bar
         //low sounds bar:
         //music:
-        instance_create(174+view_xview[0],113+view_yview[0],object_sound_low);
-        instance_create(190+view_xview[0],113+view_yview[0],object_sound_low);
-        instance_create(206+view_xview[0],113+view_yview[0],object_sound_low);
-        instance_create(222+view_xview[0],113+view_yview[0],object_sound_low);
-        instance_create(238+view_xview[0],113+view_yview[0],object_sound_low);
-        instance_create(254+view_xview[0],113+view_yview[0],object_sound_low);
-        instance_create(270+view_xview[0],113+view_yview[0],object_sound_low);
-        instance_create(286+view_xview[0],113+view_yview[0],object_sound_low);
-        instance_create(302+view_xview[0],113+view_yview[0],object_sound_low);
+        instance_create(x+174,y+113,object_sound_low);
+        instance_create(x+190,y+113,object_sound_low);
+        instance_create(x+206,y+113,object_sound_low);
+        instance_create(x+222,y+113,object_sound_low);
+        instance_create(x+238,y+113,object_sound_low);
+        instance_create(x+254,y+113,object_sound_low);
+        instance_create(x+270,y+113,object_sound_low);
+        instance_create(x+286,y+113,object_sound_low);
+        instance_create(x+302,y+113,object_sound_low);
         //sfx:
-        instance_create(174+view_xview[0],170+view_yview[0],object_sound_low);
-        instance_create(190+view_xview[0],170+view_yview[0],object_sound_low);
-        instance_create(206+view_xview[0],170+view_yview[0],object_sound_low);
-        instance_create(222+view_xview[0],170+view_yview[0],object_sound_low);
-        instance_create(238+view_xview[0],170+view_yview[0],object_sound_low);
-        instance_create(254+view_xview[0],170+view_yview[0],object_sound_low);
-        instance_create(270+view_xview[0],170+view_yview[0],object_sound_low);
-        instance_create(286+view_xview[0],170+view_yview[0],object_sound_low);
-        instance_create(302+view_xview[0],170+view_yview[0],object_sound_low);
+        instance_create(x+174,y+170,object_sound_low);
+        instance_create(x+190,y+170,object_sound_low);
+        instance_create(x+206,y+170,object_sound_low);
+        instance_create(x+222,y+170,object_sound_low);
+        instance_create(x+238,y+170,object_sound_low);
+        instance_create(x+254,y+170,object_sound_low);
+        instance_create(x+270,y+170,object_sound_low);
+        instance_create(x+286,y+170,object_sound_low);
+        instance_create(x+302,y+170,object_sound_low);
         
         //high sound bar:
         //music:
-        instance_create(174+view_xview[0],105+view_yview[0],object_sound_high);
-        instance_create(190+view_xview[0],102+view_yview[0],object_sound_high);
-        instance_create(206+view_xview[0],99+view_yview[0],object_sound_high);
-        instance_create(222+view_xview[0],96+view_yview[0],object_sound_high);
-        instance_create(238+view_xview[0],93+view_yview[0],object_sound_high);
-        instance_create(254+view_xview[0],90+view_yview[0],object_sound_high);
-        instance_create(270+view_xview[0],87+view_yview[0],object_sound_high);
-        instance_create(286+view_xview[0],84+view_yview[0],object_sound_high);
-        instance_create(302+view_xview[0],81+view_yview[0],object_sound_high);
+        instance_create(x+174,y+105,object_sound_high);
+        instance_create(x+190,y+102,object_sound_high);
+        instance_create(x+206,y+99,object_sound_high);
+        instance_create(x+222,y+96,object_sound_high);
+        instance_create(x+238,y+93,object_sound_high);
+        instance_create(x+254,y+90,object_sound_high);
+        instance_create(x+270,y+87,object_sound_high);
+        instance_create(x+286,y+84,object_sound_high);
+        instance_create(x+302,y+81,object_sound_high);
         
         //sfx:
-        instance_create(174+view_xview[0],162+view_yview[0],object_sound_high);
-        instance_create(190+view_xview[0],159+view_yview[0],object_sound_high);
-        instance_create(206+view_xview[0],156+view_yview[0],object_sound_high);
-        instance_create(222+view_xview[0],153+view_yview[0],object_sound_high);
-        instance_create(238+view_xview[0],150+view_yview[0],object_sound_high);
-        instance_create(254+view_xview[0],147+view_yview[0],object_sound_high);
-        instance_create(270+view_xview[0],144+view_yview[0],object_sound_high);
-        instance_create(286+view_xview[0],141+view_yview[0],object_sound_high);
-        instance_create(302+view_xview[0],138+view_yview[0],object_sound_high);
+        instance_create(x+174,y+162,object_sound_high);
+        instance_create(x+190,y+159,object_sound_high);
+        instance_create(x+206,y+156,object_sound_high);
+        instance_create(x+222,y+153,object_sound_high);
+        instance_create(x+238,y+150,object_sound_high);
+        instance_create(x+254,y+147,object_sound_high);
+        instance_create(x+270,y+144,object_sound_high);
+        instance_create(x+286,y+141,object_sound_high);
+        instance_create(x+302,y+138,object_sound_high);
         
         //middle sound bar:
         //music:
-        instance_create(190+view_xview[0],110+view_yview[0],object_sound_middle);
-        instance_create(206+view_xview[0],107+view_yview[0],object_sound_middle);
-        instance_create(222+view_xview[0],104+view_yview[0],object_sound_middle);
-        instance_create(238+view_xview[0],101+view_yview[0],object_sound_middle);
-        instance_create(254+view_xview[0],98+view_yview[0],object_sound_middle);
-        instance_create(270+view_xview[0],95+view_yview[0],object_sound_middle);
-        instance_create(286+view_xview[0],92+view_yview[0],object_sound_middle);
-        instance_create(302+view_xview[0],89+view_yview[0],object_sound_middle);
+        instance_create(x+190,y+110,object_sound_middle);
+        instance_create(x+206,y+107,object_sound_middle);
+        instance_create(x+222,y+104,object_sound_middle);
+        instance_create(x+238,y+101,object_sound_middle);
+        instance_create(x+254,y+98,object_sound_middle);
+        instance_create(x+270,y+95,object_sound_middle);
+        instance_create(x+286,y+92,object_sound_middle);
+        instance_create(x+302,y+89,object_sound_middle);
         
         //sfx:
-        instance_create(190+view_xview[0],167+view_yview[0],object_sound_middle);
-        instance_create(206+view_xview[0],164+view_yview[0],object_sound_middle);
-        instance_create(222+view_xview[0],161+view_yview[0],object_sound_middle);
-        instance_create(238+view_xview[0],158+view_yview[0],object_sound_middle);
-        instance_create(254+view_xview[0],155+view_yview[0],object_sound_middle);
-        instance_create(270+view_xview[0],152+view_yview[0],object_sound_middle);
-        instance_create(286+view_xview[0],149+view_yview[0],object_sound_middle);
-        instance_create(302+view_xview[0],146+view_yview[0],object_sound_middle);
+        instance_create(x+190,y+167,object_sound_middle);
+        instance_create(x+206,y+164,object_sound_middle);
+        instance_create(x+222,y+161,object_sound_middle);
+        instance_create(x+238,y+158,object_sound_middle);
+        instance_create(x+254,y+155,object_sound_middle);
+        instance_create(x+270,y+152,object_sound_middle);
+        instance_create(x+286,y+149,object_sound_middle);
+        instance_create(x+302,y+146,object_sound_middle);
         }
     }
 else{
@@ -202,9 +203,9 @@ else{
         
 if STATUS = "OPTIONS-LANGAGE"{
     if !instance_exists(object_franglish){
-        instance_create(85+view_xview[0],158+view_yview[0],object_franglish);
-        instance_create(264+view_xview[0],202+view_yview[0],object_english);
-        instance_create(260+view_xview[0],98+view_yview[0],object_francais);
+        instance_create(x+85,158+view_yview[0],object_franglish);
+        instance_create(x+264,202+view_yview[0],object_english);
+        instance_create(x+260,98+view_yview[0],object_francais);
         instance_create(90+view_xview[0],194+view_yview[0],object_retour);
         left_langue = instance_create(80+view_xview[0],164+view_yview[0],object_leftbutton_main_menu);
         instance_create(0+view_xview[0],0+view_yview[0],object_selection_flag);

@@ -69,62 +69,60 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if instance_exists(object_player)
-{
-if object_player.debug &gt;= 1
-    {
-    draw_set_halign(fa_left);
-    //Première colone
-    draw_text(view_xview[0],view_yview[0],'accelerate =' +string(object_player.accelerate));
-    draw_text(view_xview[0],view_yview[0]+15,'hsp =' +string(object_player.hsp));
-    draw_text(view_xview[0],view_yview[0]+30,'vsp =' +string(object_player.vsp));
-    draw_text(view_xview[0],view_yview[0]+45,'jumpcount =' +string(object_player.jumpcount));
-    draw_text(view_xview[0],view_yview[0]+75,'image_xscale ='+string(object_player.image_xscale));
-    draw_text(view_xview[0],view_yview[0]+90,'walljumppower' +string(object_player.walljumppower));
-    draw_text(view_xview[0],view_yview[0]+105,'move =' +string(object_player.move));
-    draw_text(view_xview[0],view_yview[0]+120,'looking =' +string(object_player.looking));
-    draw_text(view_xview[0],view_yview[0]+135,'jump =' +string(object_player.key_jump_held));
-    draw_text(view_xview[0],view_yview[0]+150,'invicible =' +string(object_player.invincible));
-    draw_text(view_xview[0],view_yview[0]+165,'attackcount =' +string(object_player.attackcount));
-    draw_text(view_xview[0],view_yview[0]+180,'image_index =' +string(object_player.image_index));
-    draw_text(view_xview[0],view_yview[0]+195,'hsp_carry= ' +string(object_player.hsp_carry));
-    draw_text(view_xview[0],view_yview[0]+210,'x =' +string(object_player.x));
-    draw_text(view_xview[0],view_yview[0]+225,'y ='+string(object_player.y ));
-    
-    //Deuxième colone
-    draw_text(view_xview[0]+100,view_yview[0]+15,'waiting =' +string(object_player.waiting));
-    draw_text(view_xview[0]+100,view_yview[0]+30,'STATUS = '+string(object_player.STATUS));
-    draw_text(view_xview[0]+100,view_yview[0]+45,'sprite_index =' +string(object_player.sprite_index));
-    draw_text(view_xview[0]+100,view_yview[0]+60,'vsp_carry = REMOVED');
-    draw_text(view_xview[0]+100,view_yview[0]+75,'ID =' +string(object_player.ID));
-    draw_text(view_xview[0]+100,view_yview[0]+90,'array lenght ='+string(array_length_1d(object_hud.numberofitems)));
-    if sign(object_player.image_speed) &gt;= 0{
-        ent_speed = floor(object_player.image_speed);
+            <string>///Module de debug
+if instance_exists(object_player){
+    if object_player.debug &gt;= 1{
+        draw_set_halign(fa_left);
+        //Première colone
+        draw_text(view_xview[0],view_yview[0],'accelerate =' +string(object_player.accelerate));
+        draw_text(view_xview[0],view_yview[0]+15,'hsp =' +string(object_player.hsp));
+        draw_text(view_xview[0],view_yview[0]+30,'vsp =' +string(object_player.vsp));
+        draw_text(view_xview[0],view_yview[0]+45,'jumpcount =' +string(object_player.jumpcount));
+        draw_text(view_xview[0],view_yview[0]+75,'image_xscale ='+string(object_player.image_xscale));
+        draw_text(view_xview[0],view_yview[0]+90,'walljumppower' +string(object_player.walljumppower));
+        draw_text(view_xview[0],view_yview[0]+105,'move =' +string(object_player.move));
+        draw_text(view_xview[0],view_yview[0]+120,'looking =' +string(object_player.looking));
+        draw_text(view_xview[0],view_yview[0]+135,'jump =' +string(object_player.key_jump_held));
+        draw_text(view_xview[0],view_yview[0]+150,'invicible =' +string(object_player.invincible));
+        draw_text(view_xview[0],view_yview[0]+165,'attackcount =' +string(object_player.attackcount));
+        draw_text(view_xview[0],view_yview[0]+180,'image_index =' +string(object_player.image_index));
+        draw_text(view_xview[0],view_yview[0]+195,'hsp_carry= ' +string(object_player.hsp_carry));
+        draw_text(view_xview[0],view_yview[0]+210,'x =' +string(object_player.x));
+        draw_text(view_xview[0],view_yview[0]+225,'y ='+string(object_player.y ));
+        
+        //Deuxième colone
+        draw_text(view_xview[0]+100,view_yview[0]+15,'waiting =' +string(object_player.waiting));
+        draw_text(view_xview[0]+100,view_yview[0]+30,'STATUS = '+string(object_player.STATUS));
+        draw_text(view_xview[0]+100,view_yview[0]+45,'sprite_index =' +string(object_player.sprite_index));
+        draw_text(view_xview[0]+100,view_yview[0]+60,'vsp_carry = REMOVED');
+        draw_text(view_xview[0]+100,view_yview[0]+75,'ID =' +string(object_player.ID));
+        draw_text(view_xview[0]+100,view_yview[0]+90,'array lenght ='+string(array_length_1d(object_hud.numberofitems)));
+        if sign(object_player.image_speed) &gt;= 0{
+            ent_speed = floor(object_player.image_speed);
+            }
+        else{
+            ent_speed = ceil(object_player.image_speed);
+            }
+        decimal_speed = floor(frac(object_player.image_speed)*1000);
+        draw_text(view_xview[0]+100,view_yview[0]+105,'IMAGE_SPEED =' +string(ent_speed)+"."+string(decimal_speed));
+        draw_text(view_xview[0]+100,view_yview[0]+120,'active item ='+string(object_hud.active_item));
+        draw_text(view_xview[0]+100,view_yview[0]+135,'Rionys ='+string(object_player.rionys));
+        draw_text(view_xview[0]+100,view_yview[0]+150,'Can_jump ='+string(object_player.Can_jump));
+        draw_text(view_xview[0]+100,view_yview[0]+165,'image_angle= '+string(object_player.image_angle));
+        draw_text(view_xview[0]+100,view_yview[0]+180,'place_left ='+string(object_player.next_left));
+        draw_text(view_xview[0]+100,view_yview[0]+195,'place_right ='+string(object_player.next_right));
+        draw_text(view_xview[0]+100,view_yview[0]+210,'Hit number= '+string(instance_number(object_hit))); 
+        
+        
+        
+        //Debug tools:
+        draw_set_halign(fa_right);
+        draw_text_colour(view_xview[0]+424,view_yview[0]+15,'WARNING,DEBUG TOOLS:',c_red,c_red,c_red,c_red,1);
+        if object_player.debug = 1{draw_text_colour(view_xview[0]+424,view_yview[0]+30,"Speed= "+string(room_speed),c_red,c_red,c_red,c_red,1);}
+        if object_player.debug = 2{draw_text_colour(view_xview[0]+424,view_yview[0]+30,'-Room_speed modifier',c_red,c_red,c_red,c_red,1);}
+        draw_set_halign(fa_left);
         }
-    else{
-        ent_speed = ceil(object_player.image_speed);
-        }
-    decimal_speed = floor(frac(object_player.image_speed)*1000);
-    draw_text(view_xview[0]+100,view_yview[0]+105,'IMAGE_SPEED =' +string(ent_speed)+"."+string(decimal_speed));
-    draw_text(view_xview[0]+100,view_yview[0]+120,'active item ='+string(object_hud.active_item));
-    draw_text(view_xview[0]+100,view_yview[0]+135,'Rionys ='+string(object_player.rionys));
-    draw_text(view_xview[0]+100,view_yview[0]+150,'Can_jump ='+string(object_player.Can_jump));
-    draw_text(view_xview[0]+100,view_yview[0]+165,'image_angle= '+string(object_player.image_angle));
-    draw_text(view_xview[0]+100,view_yview[0]+180,'place_left ='+string(object_player.next_left));
-    draw_text(view_xview[0]+100,view_yview[0]+195,'place_right ='+string(object_player.next_right));
-    draw_text(view_xview[0]+100,view_yview[0]+210,'Hit number= '+string(instance_number(object_hit))); 
-    
-    
-    
-    //Debug tools:
-    draw_set_halign(fa_right);
-    draw_text_colour(view_xview[0]+424,view_yview[0]+15,'WARNING,DEBUG TOOLS:',c_red,c_red,c_red,c_red,1);
-    if object_player.debug = 1{draw_text_colour(view_xview[0]+424,view_yview[0]+30,"Speed= "+string(room_speed),c_red,c_red,c_red,c_red,1);}
-    if object_player.debug = 2{draw_text_colour(view_xview[0]+424,view_yview[0]+30,'-Room_speed modifier',c_red,c_red,c_red,c_red,1);}
-    draw_set_halign(fa_left);
     }
-    
-}
 </string>
           </argument>
         </arguments>
