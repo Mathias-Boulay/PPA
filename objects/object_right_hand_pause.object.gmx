@@ -79,16 +79,16 @@ Can_navigate=true;
             <string>switch(STATUS){
     case "DISPLAY":
         //S'afficher avec une animation de décélération:
-        y -= (y-(view_yview[0]+78)+6)/17;
-        if abs(y-(view_yview[0]+78)) &lt; 1{
-            y = view_yview[0]+78;
+        y -= (y-(view_yview[0]+view_hview[0]-162)+6)/17;
+        if abs(y-(view_yview[0]+view_hview[0]-162)) &lt; 1{
+            y = view_yview[0]+view_hview[0]-162;
             STATUS= "SELECT";
             }
         break;
         
     case "OUT":
         //on sort avec une animatin acceleration:
-        y += (y-(view_yview[0]+78)+6)/17;
+        y += (y-(view_yview[0]+view_hview[0]-162)+6)/17;
         if y-46 &gt; view_yview[0]+view_hview[0]{
             instance_destroy();
             }

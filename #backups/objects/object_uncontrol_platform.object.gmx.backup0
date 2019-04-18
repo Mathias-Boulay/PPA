@@ -1,0 +1,26 @@
+// 2019-04-18 21:18:44
+#event create
+//Setting up negative sprite_index:
+sprite_index = -1;
+image_speed = 0;
+my_sprite= -10;
+my_img_index = -10;
+
+#event step_begin
+mask_index = my_sprite;
+image_index = my_img_index;
+
+if (instance_exists(object_player)){
+    if round(object_player.y + (object_player.sprite_height/2)) > y || (gamepad_axis_value(object_player.ID,gp_axislv)) > 0.70{
+        mask_index = -1;
+        }
+    else{
+        mask_index = my_sprite;
+        image_index = my_img_index;
+        }
+    }
+
+#event draw
+if my_img_index != -10{
+    draw_sprite(my_sprite,my_img_index,x,y);
+    }

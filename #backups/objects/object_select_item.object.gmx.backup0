@@ -1,0 +1,110 @@
+// 2019-04-18 22:04:38
+#event create
+///Positionnement.
+ID = instance_number(object_select_item)-1;
+if !place_meeting(x,y,object_item_1){
+    x = object_inventory.x -88;
+    y = object_inventory.y -48;
+    }
+Can_navigate = false;
+alarm_set(0,13);
+infos = 0;
+
+
+#event alarm0|Can_navigate = true;
+Can_navigate = true;
+
+#event step
+//Partie déplacements
+if abs(gamepad_axis_value(ID,gp_axislh)) > 0.4{
+    if Can_navigate{
+        if place_meeting(x+(sign(gamepad_axis_value(ID,gp_axislh))*38),y,object_item_1){
+            x += sign(gamepad_axis_value(ID,gp_axislh))*38;
+            Can_navigate = false;
+            alarm_set(0,13);
+            }
+        else{
+            if (object_inventory.y - y) > 20{
+                instance_create(object_inventory.x+53,object_inventory.y-47,object_select_info);
+                }
+            else{
+                instance_create(object_inventory.x+53,object_inventory.y-19,object_select_info);
+                }
+            instance_destroy();
+            }
+        }
+    }
+    
+if abs(gamepad_axis_value(ID,gp_axislv)) > 0.4{
+    if Can_navigate{
+        if place_meeting(x,y+(sign(gamepad_axis_value(ID,gp_axislv))*38),object_item_1){
+            y += sign(gamepad_axis_value(ID,gp_axislv))*38;
+            Can_navigate = false;
+            alarm_set(0,13);
+            }
+        }
+    }
+//PArtie affichage d'infos
+if gamepad_button_check_pressed(ID,gp_face1){
+    infos += 1;
+    if infos > 1{
+        infos = 0;
+        }
+    }
+else{
+    if gamepad_button_check_pressed(ID,gp_face2){
+        if infos = 1{
+            infos = 0;
+            }
+        }
+    else{//Partie activation d'un item
+        if gamepad_button_check_pressed(ID,gp_face4) && object_hud.active_item = 0{
+            for(i=(array_length_1d(object_hud.numberofitems)-1);i>=1;i--){
+                if place_meeting(x,y,asset_get_index("object_item_"+string(i))){
+                    object_hud.numberofitems[i] -= 1;
+                    object_hud.active_item = i; 
+                    i= -10;
+                    }
+                }
+
+            instance_destroy(object_item_1);
+            if object_hud.active_item != 0{
+                instance_create(object_inventory.x-67,object_inventory.y-27,asset_get_index("object_item_" +string(object_hud.active_item)));
+                }
+            
+            
+            
+            var temp;
+            temp = 1;
+            repeat(array_length_1d(object_hud.numberofitems)-1){
+                repeat(object_hud.numberofitems[temp]){
+                    instance_create(object_inventory.x-67,object_inventory.y-27,asset_get_index("object_item_" +string(temp)));
+                    }
+                temp += 1;
+                }
+            }  
+        }
+    }
+
+    
+
+#event draw
+///Syncronisation avec l'inventaire +infos
+draw_sprite(sprite_select_item,1,x,y);
+if infos = 1{
+    //Affiche le sprite sur lequel on écrit
+    draw_sprite(sprite_infos,1,object_inventory.x,object_inventory.y+76);
+    
+    //Chercher et afficher les infos du bon item
+    for(i=(array_length_1d(object_hud.numberofitems)-1);i>=1;i--){
+        if place_meeting(x,y,asset_get_index("object_item_"+string(i))){
+                //Partie d'affichage: necessite que les textes soient loadés antérieurement.
+                draw_set_font(global.font_normal);
+                draw_set_valign(fa_middle);
+                draw_set_halign(fa_center);
+                draw_text(view_xview[0]+212,view_yview[0]+196,object_inventory.texts[i-1]);
+                i= -10;
+                }
+            }
+        }
+    

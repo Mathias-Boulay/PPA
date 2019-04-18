@@ -1,0 +1,79 @@
+// 2019-04-18 21:57:51
+#event create
+///alpha set à 0 et récupération des valeurs.
+image_alpha=0;
+ID = instance_number(object_inventory)-1;
+//Creation de l'item actif
+goodness_font=font_add_sprite_ext(sprite_font_goodness,"0123456789/%",true,1);
+if object_hud.active_item != 0{
+    instance_create(x-67,y-27,asset_get_index("object_item_" +string(object_hud.active_item)));
+    }
+
+
+//Creation des autres items
+var temp;
+temp = 1;
+repeat(array_length_1d(object_hud.numberofitems)-1){
+    repeat(object_hud.numberofitems[temp]){
+        instance_create(x-67,y-27,asset_get_index("object_item_" +string(temp)));
+        }
+    temp += 1;
+    }
+
+//On grab les descriptions des items:
+texts = script_word_light(10051,10051+(array_length_1d(object_hud.numberofitems)-2));
+    
+instance_create(x-88,y-48,object_select_item);
+
+
+#event step
+///Gère la présence des autres objets.
+if instance_exists(object_select_item) {
+    if object_select_item.infos != 1{
+        if gamepad_button_check_pressed(ID,gp_face2){
+            instance_destroy();
+            instance_destroy(object_select_info);
+            instance_destroy(object_select_item);
+            instance_destroy(object_item_1);
+            }
+        }
+    }
+else{
+    if gamepad_button_check_pressed(ID,gp_face2){
+        instance_destroy();
+        instance_destroy(object_select_info);
+        instance_destroy(object_select_item);
+        instance_destroy(object_item_1);
+        }
+    }
+
+#event draw
+///Affiche le hud avec le reste du texte.
+image_alpha = min(image_alpha+0.05,1);
+draw_set_alpha(image_alpha);
+draw_self();
+if object_hud.active_item != 0{
+    draw_sprite(sprite_active_case_inventory,0,x-85,y-46,);
+    }
+draw_sprite(sprite_inventory_lvbarre_bonte,0,x+40,(y+28)-((object_player.goodness*75)/100));
+
+//Là on doit dessiner la partie internationalisé)
+//Le bas:
+draw_set_font(global.font_normal_condensed);
+draw_set_valign(fa_bottom);
+draw_set_halign(fa_left);
+
+draw_text(x-71,y+51,object_pause.texts[5]);
+draw_sprite(sprite_B,0,x-69+string_width(object_pause.texts[5]),y+34);
+draw_text(x-51+string_width(object_pause.texts[5]),y+51,object_pause.texts[6]);
+draw_sprite(sprite_Y,0,x-49+string_width(object_pause.texts[5])+string_width(object_pause.texts[6]),y+34)
+draw_text(x-33+string_width(object_pause.texts[5])+string_width(object_pause.texts[6]),y+51,object_pause.texts[7]);
+//La bonté.
+draw_set_halign(fa_center);
+draw_set_valign(fa_top);
+draw_text(x+67,y+7,object_pause.texts[8]);
+//Pourcentage de bonté:
+draw_set_font(font_goodness);
+draw_text(x+68,y+26,string(object_player.goodness)+"%");
+//Reset de la valeur alpha pour éviter les conflits avec les autres objets
+draw_set_alpha(1);

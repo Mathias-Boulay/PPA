@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ID = instance_number(object_select_item)-1;
+            <string>///Positionnement.
+ID = instance_number(object_select_item)-1;
 if !place_meeting(x,y,object_item_1){
     x = object_inventory.x -88;
     y = object_inventory.y -48;
@@ -174,9 +175,9 @@ else{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite(sprite_select_item,1,x,y);
-if infos = 1
-    {
+            <string>///Syncronisation avec l'inventaire +infos
+draw_sprite(sprite_select_item,1,x,y);
+if infos = 1{
     //Affiche le sprite sur lequel on écrit
     draw_sprite(sprite_infos,1,object_inventory.x,object_inventory.y+76);
     
@@ -188,18 +189,10 @@ if infos = 1
                 draw_set_valign(fa_middle);
                 draw_set_halign(fa_center);
                 draw_text(view_xview[0]+212,view_yview[0]+196,object_inventory.texts[i-1]);
-                
-                //Maintenant on affiche un truc modulaire --&gt; AVORTÉ
-                /*
-                //corner gauche haut
-                draw_sprite_ext(sprite_infos_corner,0,max(view_xview[0]+4,view_xview[0]+212-(string_width(texts[i])/2)),view_yview[0]+178,1,1,0,c_white,1);
-                //corner droite haut
-                draw_sprite_ext(sprite_infos_corner,0,min(view_xview[0]+view_wview[0]-4,view_xview[0]+212+(string_width(texts[i])/2)),view_yview[0]+178,1,1,90,c_white,1);
-                */
                 i= -10;
                 }
             }
-    }
+        }
     
 </string>
           </argument>

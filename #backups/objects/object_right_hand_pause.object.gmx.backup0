@@ -1,0 +1,115 @@
+// 2019-04-18 21:26:27
+#event create|Utilisation des status afin d'adapter les animations:
+Can_navigate=true;
+STATUS = "DISPLAY";
+Objective="";
+
+
+#event alarm0
+//Enable the navigation
+Can_navigate=true;
+
+#event step_begin
+switch(STATUS){
+    case "DISPLAY":
+        //S'afficher avec une animation de décélération:
+        y -= (y-(view_yview[0]+view_hview[0]-162)+6)/17;
+        if abs(y-(view_yview[0]+view_hview[0]-162)) < 1{
+            y = view_yview[0]+view_hview[0]-162;
+            STATUS= "SELECT";
+            }
+        break;
+        
+    case "OUT":
+        //on sort avec une animatin acceleration:
+        y += (y-(view_yview[0]+view_hview[0]-162)+6)/17;
+        if y-46 > view_yview[0]+view_hview[0]{
+            instance_destroy();
+            }
+        break;
+        
+    case "SELECT":
+        if Can_navigate{
+            if abs(global.axislv[0]) > 0.2{
+                if collision_line(x,y+sign(global.axislv[0])*27,object_resume.x,y+sign(global.axislv[0])*27,object_resume,false,false) != noone{
+                    objective=y+sign(global.axislv[0])*27;
+                    STATUS ="OBJECTIVE";
+                    Can_navigate=false;
+                    }
+                }
+            }
+        if global.face1[0] || global.start[0]{
+            tempbutton=collision_line(x,y,object_resume.x,y,object_resume,false,false);
+            //Là on va tester à quel bouton on a affaire.
+            if collision_line(x,y,object_resume.x,y,object_home,false,false) != noone{
+                //Objet home:
+                temp_val_width=4;
+                }
+            else{
+                if collision_line(x,y,object_resume.x,y,object_restart,false,false) != noone{
+                    //Objet restart:
+                    temp_val_width=3;
+                    }
+                else{
+                    if collision_line(x,y,object_resume.x,y,object_options,false,false) != noone{
+                        //Objet options:
+                        temp_val_width=2;
+                        }
+                    else{
+                        if collision_line(x,y,object_resume.x,y,object_pockets,false,false) != noone{
+                            //Objet poches:
+                            temp_val_width=1;
+                            }
+                        else{
+                            //Objet resume fait pas chier:
+                            temp_val_width=0;
+                            }
+                        }
+                    }
+                }
+            temp_path=path_add();
+            path_add_point(temp_path,x,y,100);
+            path_add_point(temp_path,tempbutton.x+17,tempbutton.y+tempbutton.sprite_height+2,100);
+            path_set_closed(temp_path,false);
+            path_start(temp_path,0.2,path_action_stop,false);
+            STATUS = "UNDERLINE";
+            }
+        if global.face2[0]{
+            STATUS = "OUT";
+            object_pause.STATUS = "OUT";
+            }
+        break;
+        
+    case "OBJECTIVE":
+        y += ((objective-y)+1)/5;
+        if abs(((y-objective)+1)/5) < 1{
+            y = objective;
+            STATUS = "SELECT"
+            alarm_set(0,10);
+            }
+        break;
+    
+    case "UNDERLINE":
+        if !instance_exists(object_underline){
+            if path_position = 1{
+                This_underline=instance_create(x,y,object_underline);
+                draw_set_font(global.font_title);
+                draw_set_halign(fa_left);
+                This_underline.image_xscale=string_width(object_pause.texts[temp_val_width])/66;
+                }
+            }
+        else{
+            x+= (((object_pause.x+44)-x)+5)/15
+            if abs((((object_pause.x+44)-x)+5)/15) < 1{
+                x = object_pause.x+44;
+                }
+            }
+        
+        
+    }
+
+
+#event draw
+draw_self();
+draw_text(x,y,string(path_position));
+draw_text(x,y+15,string(path_endaction));

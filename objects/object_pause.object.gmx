@@ -116,14 +116,14 @@ instance_destroy(object_home);
             <string>///On gère le positionnement de la feuille et des boutons qui vont avec.
 switch(STATUS){
     case "DISPLAY":
-        y-= (y-(view_yview[0]+133)+6)/18;
-        if abs(y-(view_yview[0]+133)) &lt; 1{
-            y = view_yview[0]+133;
+        y-= (y-(view_yview[0]+view_hview[0]-107)+6)/18;
+        if abs(y-(view_yview[0]+view_hview[0]-107)) &lt; 1{
+            y = view_yview[0]+view_hview[0]-107;
             }
         break;
     case "OUT":
         //Dans le cas ou l'on doit sortir:
-        y += (y-(view_yview[0]+133)+6)/17;
+        y += (y-(view_yview[0]+view_hview[0]-107)+6)/17;
         if y-84 &gt; view_yview[0]+view_hview[0]{
             instance_destroy();
             }

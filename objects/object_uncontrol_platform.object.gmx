@@ -55,14 +55,11 @@ my_img_index = -10;
             <string>mask_index = my_sprite;
 image_index = my_img_index;
 
-if (instance_exists(object_player))
-    {
-    if round(object_player.y + (object_player.sprite_height/2)) &gt; y || (gamepad_axis_value(object_player.ID,gp_axislv)) &gt; 0.70
-        {
+if (instance_exists(object_player)){
+    if round(object_player.y + (object_player.sprite_height/2)) &gt; y || (gamepad_axis_value(object_player.ID,gp_axislv)) &gt; 0.70{
         mask_index = -1;
         }
-    else
-        {
+    else{
         mask_index = my_sprite;
         image_index = my_img_index;
         }

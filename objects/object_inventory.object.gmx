@@ -25,7 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ID = instance_number(object_inventory)-1;
+            <string>///alpha set à 0.001 (souci de condition) et récupération des valeurs.
+image_alpha=0.001;
+ID = instance_number(object_inventory)-1;
+fade=0.05;
 //Creation de l'item actif
 goodness_font=font_add_sprite_ext(sprite_font_goodness,"0123456789/%",true,1);
 if object_hud.active_item != 0{
@@ -70,24 +73,25 @@ instance_create(x-88,y-48,object_select_item);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//Du code en double se trouve ici en rapport avec l'object hud je crois
+            <string>///Gère la présence des autres objets.
 if instance_exists(object_select_item) {
     if object_select_item.infos != 1{
-        if gamepad_button_check_pressed(ID,gp_face2){
-            instance_destroy();
-            instance_destroy(object_select_info);
-            instance_destroy(object_select_item);
-            instance_destroy(object_item_1);
+        if global.face2[0]{
+            fade = -0.05;
             }
         }
     }
 else{
-    if gamepad_button_check_pressed(ID,gp_face2){
-        instance_destroy();
-        instance_destroy(object_select_info);
-        instance_destroy(object_select_item);
-        instance_destroy(object_item_1);
+    if global.face2[0]{
+        fade = -0.05;
         }
+    }
+    
+if image_alpha=0{
+    instance_destroy();
+    instance_destroy(object_select_info);
+    instance_destroy(object_select_item);
+    instance_destroy(object_item_1);
     }
 </string>
           </argument>
@@ -111,7 +115,10 @@ else{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_self();
+            <string>///Affiche le hud avec le reste du texte.
+image_alpha = clamp(image_alpha+fade,0,1);
+draw_set_alpha(image_alpha);
+draw_self();
 if object_hud.active_item != 0{
     draw_sprite(sprite_active_case_inventory,0,x-85,y-46,);
     }
@@ -135,6 +142,8 @@ draw_text(x+67,y+7,object_pause.texts[8]);
 //Pourcentage de bonté:
 draw_set_font(font_goodness);
 draw_text(x+68,y+26,string(object_player.goodness)+"%");
+//Reset de la valeur alpha pour éviter les conflits avec les autres objets
+draw_set_alpha(1);
 
 </string>
           </argument>
