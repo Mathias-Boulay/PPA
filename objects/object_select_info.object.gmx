@@ -74,7 +74,7 @@ alarm_set(0,13);
           <argument>
             <kind>1</kind>
             <string>//Partie déplacement:
-if abs(gamepad_axis_value(ID,gp_axislv)) &gt; 0.4{
+if abs(global.axislv[ID]) &gt; 0.4{
     if Can_navigate{
         if object_inventory.y - y &gt; 20{
             y += 28;
@@ -89,7 +89,7 @@ if abs(gamepad_axis_value(ID,gp_axislv)) &gt; 0.4{
         }
     }
 
-if gamepad_axis_value(ID,gp_axislh) &gt; 0.4{
+if global.axislh[0] &gt; 0.4{
     if Can_navigate{
         if object_inventory.y - y &gt; 20{
             instance_create(object_inventory.x -88, object_inventory.y -48,object_select_item);
@@ -101,7 +101,7 @@ if gamepad_axis_value(ID,gp_axislh) &gt; 0.4{
         }
     }
 else{
-    if gamepad_axis_value(ID,gp_axislh) &lt; -0.4{
+    if global.axislh[0] &lt; -0.4{
         if Can_navigate{
             if object_inventory.y -y &gt; 20{
                 instance_create(object_inventory.x - 12,object_inventory.y-48,object_select_item);

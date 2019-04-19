@@ -81,8 +81,9 @@ Can_navigate = true;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//Partie déplacements
-if abs(gamepad_axis_value(ID,gp_axislh)) &gt; 0.4{
+            <string>///Gestion des déplacements + affichage des infos
+//Partie déplacements
+if abs(global.axislh[ID]) &gt; 0.4{
     if Can_navigate{
         if place_meeting(x+(sign(gamepad_axis_value(ID,gp_axislh))*38),y,object_item_1){
             x += sign(gamepad_axis_value(ID,gp_axislh))*38;
@@ -101,7 +102,7 @@ if abs(gamepad_axis_value(ID,gp_axislh)) &gt; 0.4{
         }
     }
     
-if abs(gamepad_axis_value(ID,gp_axislv)) &gt; 0.4{
+if abs(global.axislv[0]) &gt; 0.4{
     if Can_navigate{
         if place_meeting(x,y+(sign(gamepad_axis_value(ID,gp_axislv))*38),object_item_1){
             y += sign(gamepad_axis_value(ID,gp_axislv))*38;
@@ -110,21 +111,21 @@ if abs(gamepad_axis_value(ID,gp_axislv)) &gt; 0.4{
             }
         }
     }
-//PArtie affichage d'infos
-if gamepad_button_check_pressed(ID,gp_face1){
+//Partie affichage d'infos
+if global.face1[ID]{
     infos += 1;
     if infos &gt; 1{
         infos = 0;
         }
     }
 else{
-    if gamepad_button_check_pressed(ID,gp_face2){
+    if global.face2[ID]{
         if infos = 1{
             infos = 0;
             }
         }
     else{//Partie activation d'un item
-        if gamepad_button_check_pressed(ID,gp_face4) &amp;&amp; object_hud.active_item = 0{
+        if global.face4[0] &amp;&amp; object_hud.active_item = 0{
             for(i=(array_length_1d(object_hud.numberofitems)-1);i&gt;=1;i--){
                 if place_meeting(x,y,asset_get_index("object_item_"+string(i))){
                     object_hud.numberofitems[i] -= 1;

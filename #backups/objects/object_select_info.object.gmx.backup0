@@ -1,0 +1,50 @@
+// 2019-04-19 20:10:00
+#event create
+ID = instance_number(object_select_info)-1;
+Can_navigate = false;
+alarm_set(0,13);
+
+#event alarm0
+Can_navigate = true;
+
+#event step
+//Partie déplacement:
+if abs(global.axislv[ID]) > 0.4{
+    if Can_navigate{
+        if object_inventory.y - y > 20{
+            y += 28;
+            Can_navigate = false;
+            alarm_set(0,13);
+            }
+        else{
+            y -= 28;
+            Can_navigate = false;
+            alarm_set(0,13);
+            }
+        }
+    }
+
+if global.axislh[0] > 0.4{
+    if Can_navigate{
+        if object_inventory.y - y > 20{
+            instance_create(object_inventory.x -88, object_inventory.y -48,object_select_item);
+            }
+        else{
+            instance_create(object_inventory.x-88,object_inventory.y -9,object_select_item);
+            }
+        instance_destroy();
+        }
+    }
+else{
+    if global.axislh[0] < -0.4{
+        if Can_navigate{
+            if object_inventory.y -y > 20{
+                instance_create(object_inventory.x - 12,object_inventory.y-48,object_select_item);
+                }
+            else{
+                instance_create(object_inventory.x - 12,object_inventory.y -48, object_select_item);
+                }
+            instance_destroy();
+            }
+        }
+    }

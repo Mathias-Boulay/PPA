@@ -1,4 +1,4 @@
-// 2019-04-19 20:13:54
+// 2019-04-19 20:04:23
 #event create|Positionnement.
 ID = instance_number(object_select_item)-1;
 if !place_meeting(x,y,object_item_1){
@@ -13,9 +13,10 @@ infos = 0;
 #event alarm0|Can_navigate = true;
 Can_navigate = true;
 
-#event step|Gestion des déplacements + affichage des infos
+#event step
+///Gestion des déplacements + affichage des infos
 //Partie déplacements
-if abs(global.axislh[ID] > 0.4{
+if abs(gamepad_axis_value(ID,gp_axislh)) > 0.4{
     if Can_navigate{
         if place_meeting(x+(sign(gamepad_axis_value(ID,gp_axislh))*38),y,object_item_1){
             x += sign(gamepad_axis_value(ID,gp_axislh))*38;
@@ -34,7 +35,7 @@ if abs(global.axislh[ID] > 0.4{
         }
     }
     
-if abs(global.axislv[0]) > 0.4{
+if abs(gamepad_axis_value(ID,gp_axislv)) > 0.4{
     if Can_navigate{
         if place_meeting(x,y+(sign(gamepad_axis_value(ID,gp_axislv))*38),object_item_1){
             y += sign(gamepad_axis_value(ID,gp_axislv))*38;
@@ -44,20 +45,20 @@ if abs(global.axislv[0]) > 0.4{
         }
     }
 //Partie affichage d'infos
-if global.face1[ID]{
+if gamepad_button_check_pressed(ID,gp_face1){
     infos += 1;
     if infos > 1{
         infos = 0;
         }
     }
 else{
-    if global.face2[ID]{
+    if gamepad_button_check_pressed(ID,gp_face2){
         if infos = 1{
             infos = 0;
             }
         }
     else{//Partie activation d'un item
-        if global.face4[0] && object_hud.active_item = 0{
+        if gamepad_button_check_pressed(ID,gp_face4) && object_hud.active_item = 0{
             for(i=(array_length_1d(object_hud.numberofitems)-1);i>=1;i--){
                 if place_meeting(x,y,asset_get_index("object_item_"+string(i))){
                     object_hud.numberofitems[i] -= 1;

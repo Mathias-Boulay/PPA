@@ -1,4 +1,4 @@
-// 2019-04-19 21:01:26
+// 2019-04-19 20:17:23
 #event create|Utilisation des status afin d'adapter les animations:
 Can_navigate=true;
 STATUS = "DISPLAY";
@@ -67,21 +67,13 @@ switch(STATUS){
                         }
                     }
                 }
-            
-            
             temp_path=path_add();
             path_add_point(temp_path,x,y,100);
             path_add_point(temp_path,tempbutton.x+17,tempbutton.y+tempbutton.sprite_height+2,100);
             path_set_closed(temp_path,false);
-            if temp_val_width >= 3{
-                //Faut créer le prompt de gros enculé.
-                }
-            else{
-                path_start(temp_path,0.2,path_action_stop,false);
-                STATUS = "UNDERLINE";
-                }
-                
-            }   
+            path_start(temp_path,0.2,path_action_stop,false);
+            STATUS = "UNDERLINE";
+            }
         if global.face2[0]{
             STATUS = "OUT";
             object_pause.STATUS = "OUT";
