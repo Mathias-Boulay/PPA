@@ -267,6 +267,17 @@
       <sprite>sprites\sprite_Y</sprite>
     </sprites>
     <sprites name="Pause">
+      <sprites name="prompt">
+        <sprite>sprites\sprite_prompt_upper_left</sprite>
+        <sprite>sprites\sprite_prompt_upper_middle</sprite>
+        <sprite>sprites\sprite_prompt_upper_right</sprite>
+        <sprite>sprites\sprite_prompt_center_left</sprite>
+        <sprite>sprites\sprite_prompt_center</sprite>
+        <sprite>sprites\sprite_prompt_center_right</sprite>
+        <sprite>sprites\sprite_prompt_bottom_left</sprite>
+        <sprite>sprites\sprite_prompt_bottom_middle</sprite>
+        <sprite>sprites\sprite_prompt_bottom_right</sprite>
+      </sprites>
       <sprite>sprites\sprite_fond</sprite>
       <sprite>sprites\sprite_left_button</sprite>
       <sprite>sprites\sprite_mid_button</sprite>
@@ -390,6 +401,7 @@
         <object>objects\object_options_menu</object>
         <object>objects\object_right_hand_pause</object>
         <object>objects\object_underline</object>
+        <object>objects\object_prompt</object>
       </objects>
       <objects name="mains-menus">
         <objects name="Title">
@@ -493,8 +505,8 @@
     <room>rooms\room_title</room>
     <room>rooms\room_level_1</room>
     <room>rooms\room_test_LevelBuilder</room>
-    <room>rooms\room_test</room>
     <room>rooms\room0</room>
+    <room>rooms\room_test</room>
     <room>rooms\room_level</room>
   </rooms>
   <help>

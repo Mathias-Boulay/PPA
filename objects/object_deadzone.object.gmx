@@ -159,7 +159,7 @@ if !instance_exists(object_fade){
             if gamepad_button_check(i,gp_padl){ global.axislh[i] = clamp(global.axislh[i]-1,-1,0);}
             if gamepad_button_check(i,gp_padr){ global.axislh[i] = clamp(global.axislh[i]+1,0,1);}
             if gamepad_button_check(i,gp_padu){ global.axislv[i] = clamp(global.axislh[i]-1,-1,0);}
-            if gamepad_button_check(i,gp_padd){ global.axislh[i] = clamp(global.axislh[i]+1,0,1);}
+            if gamepad_button_check(i,gp_padd){ global.axislv[i] = clamp(global.axislh[i]+1,0,1);}
             
             }
         }
@@ -221,7 +221,7 @@ if keyboard_check_pressed(vk_f2){
 //Then let the game live !
 if room = room_title{
     if !instance_exists(object_white_book){
-        instance_create(23,4,object_white_book);
+        instance_create(0,0,object_white_book);
         }
     }
 </string>

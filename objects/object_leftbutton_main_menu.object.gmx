@@ -120,11 +120,11 @@ if object_white_book.STATUS = "TITLE"{    //Si l'on est sur ce putin d'écran ti
                 }
             else{
                 if y-15 &lt; object_play.y{
-                    y = object_white_book.y+162
+                    y = object_white_book.y+166
                     Can_navigate = false;
                     }
                 else{
-                    y = object_white_book.y+53
+                    y = object_white_book.y+57
                     Can_navigate = false;
                     }
                 }
@@ -171,11 +171,11 @@ else{
                     }
                 else{
                     if y-15 &lt; object_video_options.y{
-                        y = 166+view_yview[0];
+                        y = object_white_book.y+166;
                         Can_navigate = false;
                         }
                     else{
-                        y = 58+view_yview[0];
+                        y = object_white_book.y+58;
                         Can_navigate = false;
                         }
                     }
@@ -244,11 +244,11 @@ else{
                         }
                     else{
                         if y-15 &lt; object_resolution.y{
-                            y = 170+view_yview[0];
+                            y = object_white_book.y+170;
                             Can_navigate = false;
                             }
                         else{
-                            y = 92+view_yview[0];
+                            y = object_white_book.y+92;
                             Can_navigate = false;
                             }
                         }
@@ -301,12 +301,12 @@ else{
                 if Can_navigate{
                     if abs(global.axislh[0]) &gt; 0.4{        
                         alarm_set(0,13);
-                            if y &gt; 120+view_yview[0]{
-                                y = 92+view_yview[0];
+                            if y &gt; object_white_book.y+120{
+                                y = object_white_book.y+92;
                                 Can_navigate = false;
                                 }
                             else{
-                                y = 149+view_yview[0];
+                                y = object_white_book.y+149;
                                 Can_navigate = false;
                                 }
                             }
@@ -318,7 +318,7 @@ else{
                     Can_navigate = false;
                     alarm_set(0,13);
                     ini_open(working_directory + "\settings\settings.ini");
-                    if y &lt; 120+view_yview[0]{
+                    if y &lt; object_white_book.y+120{
                         global.music_volume += sign(global.axislh[0]);
                         if global.music_volume &gt; 9{global.music_volume = 9;}else{if global.music_volume &lt; 0{global.music_volume = 0;}}
                         ini_write_real("sounds","music_volume",global.music_volume);
@@ -345,21 +345,21 @@ else{
                         Can_navigate = false;
                         alarm_set(0,13);
                         if place_meeting(x+10,y,object_francais) || place_meeting(x+10,y,object_english){
-                            x = 80+view_xview[0];
-                            y = 164+view_yview[0];
+                            x = object_white_book.x+80;
+                            y = object_white_book.y+164;
                             right_dependency.x = x+50;
                             right_dependency.y = y;
                             }
                         else{
                             if sign(global.axislv[0]) = -1{
-                                y = 104+view_yview[0];
-                                x = 257+view_xview[0];
+                                y = object_white_book.y+104;
+                                x = object_white_book.x+257;
                                 right_dependency.x = x+50;
                                 right_dependency.y = y;
                                 }
                             else{
-                                x = 260+view_xview[0];
-                                y = 210+view_yview[0];
+                                x = object_white_book.x+260;
+                                y = object_white_book.y+210;
                                 right_dependency.x = x+50;
                                 right_dependency.y = y;
                                 }
@@ -370,15 +370,15 @@ else{
                             Can_navigate = false;
                             alarm_set(0,13);
                             if place_meeting(x+10,y,object_francais){
-                                x = 260+view_xview[0];
-                                y = 210+view_yview[0];
+                                x = object_white_book.x+260;
+                                y = object_white_book.y+210;
                                 right_dependency.x = x+50;
                                 right_dependency.y = y;
                                 }
                             else{
                                 if place_meeting(x+10,y,object_english){
-                                    y = 104+view_yview[0];
-                                    x = 257+view_xview[0];
+                                    y = object_white_book.y+104;
+                                    x = object_white_book.x+257;
                                     right_dependency.x = x+50;
                                     right_dependency.y = y;
                                     }
@@ -448,10 +448,10 @@ else{
                                 if place_meeting(x+(10*image_xscale),y,object_back_save){
                                     //Step back.
                                     instance_destroy(object_savepaper);
-                                    instance_create(51+view_xview[0],18+view_yview[0],object_savepaper);
-                                    instance_create(221+view_xview[0],18+view_yview[0],object_savepaper);
-                                    instance_create(51+view_xview[0],122+view_yview[0],object_savepaper);
-                                    instance_create(221+view_xview[0],122+view_yview[0],object_savepaper);
+                                    instance_create(object_white_book.x+51,object_white_book.y+18,object_savepaper);
+                                    instance_create(object_white_book.x+221,object_white_book.y+18,object_savepaper);
+                                    instance_create(object_white_book.x+51,object_white_book.y+122,object_savepaper);
+                                    instance_create(object_white_book.x+221,object_white_book.y+122,object_savepaper);
                                     instance_destroy(object_back_save);
                                     instance_destroy(object_delete_save);
                                     instance_destroy(object_copy_save);
@@ -474,10 +474,10 @@ else{
                                                         
                                                 //Then reload
                                                 instance_destroy(object_savepaper);
-                                                instance_create(51+view_xview[0],18+view_yview[0],object_savepaper);
-                                                instance_create(221+view_xview[0],18+view_yview[0],object_savepaper);
-                                                instance_create(51+view_xview[0],122+view_yview[0],object_savepaper);
-                                                instance_create(221+view_xview[0],122+view_yview[0],object_savepaper);
+                                                instance_create(object_white_book.x+51,object_white_book.y+18,object_savepaper);
+                                                instance_create(object_white_book.x+221,object_white_book.y+18,object_savepaper);
+                                                instance_create(object_white_book.x+51,object_white_book.y+122,object_savepaper);
+                                                instance_create(object_white_book.x+221,object_white_book.y+122,object_savepaper);
                                                 instance_destroy(object_back_save);
                                                 instance_destroy(object_delete_save);
                                                 instance_destroy(object_copy_save);
@@ -501,10 +501,10 @@ else{
                                                 ini_close();
                                                 //Then reload
                                                 instance_destroy(object_savepaper);
-                                                instance_create(51+view_xview[0],18+view_yview[0],object_savepaper);
-                                                instance_create(221+view_xview[0],18+view_yview[0],object_savepaper);
-                                                instance_create(51+view_xview[0],122+view_yview[0],object_savepaper);
-                                                instance_create(221+view_xview[0],122+view_yview[0],object_savepaper);
+                                                instance_create(object_white_book.x+51,object_white_book.y+18,object_savepaper);
+                                                instance_create(object_white_book.x+221,object_white_book.y+18,object_savepaper);
+                                                instance_create(object_white_book.x+51,object_white_book.y+122,object_savepaper);
+                                                instance_create(object_white_book.x+221,object_white_book.y+122,object_savepaper);
                                                 instance_destroy(object_back_save);
                                                 instance_destroy(object_delete_save);
                                                 instance_destroy(object_copy_save);
@@ -522,12 +522,6 @@ else{
                                             else{
                                                 object_white_book.page = 0;
                                                 script_fade_status("SELECT_LEVEL");
-                                                /*instance_destroy(object_savepaper);
-                                                instance_destroy(object_back_save);
-                                                instance_destroy(object_delete_save);
-                                                instance_destroy(object_copy_save);
-                                                instance_destroy(object_play_save);
-                                                instance_destroy();*/
                                                 }
                                             }
                                         }
@@ -537,10 +531,10 @@ else{
                                 if global.face2[0]{
                                     //Step back.
                                     instance_destroy(object_savepaper);
-                                    instance_create(51+view_xview[0],18+view_yview[0],object_savepaper);
-                                    instance_create(221+view_xview[0],18+view_yview[0],object_savepaper);
-                                    instance_create(51+view_xview[0],122+view_yview[0],object_savepaper);
-                                    instance_create(221+view_xview[0],122+view_yview[0],object_savepaper);
+                                    instance_create(object_white_book.x+51,object_white_book.y+18,object_savepaper);
+                                    instance_create(object_white_book.x+221,object_white_book.y+18,object_savepaper);
+                                    instance_create(object_white_book.x+51,object_white_book.y+122,object_savepaper);
+                                    instance_create(object_white_book.x+221,object_white_book.y+122,object_savepaper);
                                     instance_destroy(object_back_save);
                                     instance_destroy(object_delete_save);
                                     instance_destroy(object_copy_save);
@@ -582,13 +576,13 @@ else{
                                     Can_navigate =false;
                                     alarm_set(0,15);
                                     if place_meeting(x+15,y,object_voir_controlles){
-                                        x = view_xview[0]+251;
-                                        right_dependency.x = view_xview[0]+342;
+                                        x = object_white_book.x+251;
+                                        right_dependency.x = object_white_book.x+342;
                                         }
                                     else{
                                         if place_meeting(x+15,y,object_modifier){
-                                            x=view_xview[0]+57;
-                                            right_dependency.x = view_xview[0]+195;
+                                            x=object_white_book.x+57;
+                                            right_dependency.x = object_white_book.x+195;
                                             }
                                         else{
                                             if place_meeting(x-15,y,object_vibrations){
@@ -599,8 +593,8 @@ else{
                                                 }
                                             else{
                                                 //On se place sur l'objet d'essai
-                                                x = view_xview[0]+200;
-                                                right_dependency.x = view_xview[0]+154;
+                                                x = object_white_book.x+200;
+                                                right_dependency.x = object_white_book.x+154;
                                                 }
                                             }
                                         }
@@ -612,29 +606,29 @@ else{
                                     alarm_set(0,15);
                                     if place_meeting(x+15,y,object_voir_controlles){
                                         //Aller sur l'object vibrations 
-                                        x = view_xview[0]+200;
-                                        right_dependency.x = view_xview[0]+154;
-                                        y=view_yview[0]+166;
+                                        x = object_white_book.x+200;
+                                        right_dependency.x = object_white_book.x+154;
+                                        y=object_white_book.y+166;
                                         }
                                     else{
                                         if place_meeting(x-15,y,object_vibrations){
                                             //Aller sur l'object voir contrôle
-                                            x= view_xview[0]+57;
-                                            y = view_yview[0]+139;
-                                            right_dependency.x = view_xview[0]+195;
+                                            x= object_white_book.x+57;
+                                            y = object_white_book.y+139;
+                                            right_dependency.x = object_white_book.x+195;
                                             }
                                         else{
                                             if place_meeting(x+15,y,object_modifier){
                                                 //Aller sur l'object try
-                                                x= view_xview[0]+259;
-                                                y = view_yview[0]+166;
-                                                right_dependency.x = view_xview[0]+333;
+                                                x= object_white_book.x+259;
+                                                y = object_white_book.y+166;
+                                                right_dependency.x = object_white_book.x+333;
                                                 }
                                             else{
                                                 //Aller sur l'objet modifier
-                                                x = view_xview[0]+251;
-                                                y = view_yview[0]+141;
-                                                right_dependency.x = view_xview[0]+342;
+                                                x = object_white_book.x+251;
+                                                y = object_white_book.y+141;
+                                                right_dependency.x = object_white_book.x+342;
                                                 }
                                             }
                                         }
@@ -769,7 +763,7 @@ else{
           <argument>
             <kind>1</kind>
             <string>draw_self();
-draw_text(0,0,"x = " +string(x) +"|| y = " +string(y));
+//draw_text(0,0,"x = " +string(x) +"|| y = " +string(y));
 </string>
           </argument>
         </arguments>

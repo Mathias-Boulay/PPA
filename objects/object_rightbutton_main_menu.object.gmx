@@ -123,23 +123,15 @@ else{
     }
 if object_white_book.STATUS = "TITLE"{
     repeat(4){
-        if (!place_meeting(x-5,y,object_play)){
-            x--;
-            }
-        if (place_meeting(x-5,y,object_play)){
-            x++;
-            }
+        if (!place_meeting(x-5,y,object_play)){x--;}
+        if (place_meeting(x-5,y,object_play)){x++;}
         }
     }
 else{
     if object_white_book.STATUS = "OPTIONS"{
         repeat(4){
-            if(!place_meeting(x-5,y,object_video_options)){
-                x --;
-                }
-            if(place_meeting(x-5,y,object_video_options)){
-                x++;
-                }
+            if(!place_meeting(x-5,y,object_video_options)){x --;}
+            if(place_meeting(x-5,y,object_video_options)){x++;}
             }
         }
     else{
@@ -160,23 +152,15 @@ else{
         else{
             if object_white_book.STATUS = "OPTIONS-SON"{
                repeat(4){
-                    if(!place_meeting(x-5,y,object_music_button)){
-                        x --;
-                        }
-                    if(place_meeting(x-5,y,object_music_button)){
-                        x++;
-                        }
+                    if(!place_meeting(x-5,y,object_music_button)){x --;}
+                    if(place_meeting(x-5,y,object_music_button)){x++;}
                     }
                 }
             else{
                 if object_white_book.STATUS = "OPTIONS-LANGAGE"{
                     repeat(4){
-                        if(place_meeting(x-5,y,object_franglish)){
-                            x++;
-                            }
-                        if(!place_meeting(x-5,y,object_franglish)){
-                            x--;
-                            }
+                        if(place_meeting(x-5,y,object_franglish)){x++;}
+                        if(!place_meeting(x-5,y,object_franglish)){x--;}
                         }
                     }
                 else{

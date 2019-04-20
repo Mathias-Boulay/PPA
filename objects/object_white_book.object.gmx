@@ -64,7 +64,7 @@ if STATUS = "TITLE"{
         instance_create(x+248,y+87,object_album);
         instance_create(x+248,y+123,object_options_main_menu);
         instance_create(x+248,y+159,object_credits);
-        left_title = instance_create(x+213+view_xview[0],y+54+view_yview[0],object_leftbutton_main_menu);
+        left_title = instance_create(x+242,y+57,object_leftbutton_main_menu);
         }
     }
 else{
@@ -83,7 +83,7 @@ if STATUS = "OPTIONS"{
         instance_create(x+248,y+87,object_sound);
         instance_create(x+248,y+123,object_controlles);
         instance_create(x+248,y+159,object_langage);
-        left_options = instance_create(y+243,y+58,object_leftbutton_main_menu);
+        left_options = instance_create(y+243,y+57,object_leftbutton_main_menu);
         }
     }
 else{
@@ -320,13 +320,13 @@ draw_self();
 if STATUS = "TITLE"
     {
     image_index = 0;
-    draw_sprite(sprite_title,0,x+31+view_xview[0],y+32+view_yview[0]); 
-    draw_sprite(sprite_fast_credits,0,x+33+view_xview[0],y+196+view_yview[0]);
-    draw_sprite(sprite_draw_fairy,0,x+199+view_xview[0],y+178+view_yview[0]);
-    draw_sprite(sprite_draw_toad,0,x+326+view_xview[0],y+182+view_yview[0]);
-    draw_sprite(sprite_draw_cat_bigeyes,0,x+332+view_xview[0],y+41+view_yview[0]);
-    draw_sprite(sprite_draw_cat,0,x+135+view_xview[0],y+27+view_yview[0]);
-    draw_sprite(sprite_draw_flappy_bird,0,x+225+view_xview[0],y+22+view_yview[0]);
+    draw_sprite(sprite_title,0,x+54,y+36); 
+    draw_sprite(sprite_fast_credits,0,x+56,y+200);
+    draw_sprite(sprite_draw_fairy,0,x+222,y+182);
+    draw_sprite(sprite_draw_toad,0,x+349,y+186);
+    draw_sprite(sprite_draw_cat_bigeyes,0,x+355,y+45);
+    draw_sprite(sprite_draw_cat,0,x+158,y+31);
+    draw_sprite(sprite_draw_flappy_bird,0,x+248,y+26);
     }
 else{
     if STATUS = "OPTIONS"{

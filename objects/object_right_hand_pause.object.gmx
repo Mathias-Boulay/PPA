@@ -141,6 +141,7 @@ Can_navigate=true;
             path_set_closed(temp_path,false);
             if temp_val_width &gt;= 3{
                 //Faut créer le prompt de gros enculé.
+                instance_create(x,y,object_prompt);
                 }
             else{
                 path_start(temp_path,0.2,path_action_stop,false);
