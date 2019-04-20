@@ -277,11 +277,11 @@
         <sprite>sprites\sprite_prompt_bottom_left</sprite>
         <sprite>sprites\sprite_prompt_bottom_middle</sprite>
         <sprite>sprites\sprite_prompt_bottom_right</sprite>
+        <sprite>sprites\sprite_prompt_left_button</sprite>
+        <sprite>sprites\sprite_prompt_mid_button</sprite>
+        <sprite>sprites\sprite_prompt_right_button</sprite>
       </sprites>
       <sprite>sprites\sprite_fond</sprite>
-      <sprite>sprites\sprite_left_button</sprite>
-      <sprite>sprites\sprite_mid_button</sprite>
-      <sprite>sprites\sprite_right_button</sprite>
       <sprite>sprites\sprite_restart</sprite>
       <sprite>sprites\sprite_resume</sprite>
       <sprite>sprites\sprite_home</sprite>

@@ -26,6 +26,9 @@
           <argument>
             <kind>1</kind>
             <string>///Récupération du texte + placement:
+Can_navigate=false;
+Choice=1;
+alarm_set(0,30);
 texts=script_word_light(63,65);
 draw_set_font(global.font_normal);
 draw_set_halign(fa_center);
@@ -35,6 +38,30 @@ image_yscale=string_height(texts[0])+28;
 //Placement:
 x=round(view_xview[0]+(view_wview[0]/2)-(image_xscale/2));
 y=round(view_yview[0]+(view_hview[0]/2)-(image_yscale/2));
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Réactivation de la navigation.
+Can_navigate=true;
 </string>
           </argument>
         </arguments>
@@ -57,7 +84,26 @@ y=round(view_yview[0]+(view_hview[0]/2)-(image_yscale/2));
         <arguments>
           <argument>
             <kind>1</kind>
-            <string></string>
+            <string>///Gestion du bouton:
+if abs(global.axislh[0]) &gt; 0.2 &amp;&amp; Can_navigate{
+    Can_navigate=false;
+    alarm_set(0,10);
+    if Choice = 1{Choice=2;}else{Choice=1;}
+    }
+if global.face2[0]{
+    instance_destroy();
+    }
+if global.face1[0]{
+    if Choice = 1{
+        //On quitte le niveau
+        }
+    else{
+        //On revient dans le menu de pause.
+        instance_destroy();
+        }
+    }
+
+</string>
           </argument>
         </arguments>
       </action>
@@ -100,8 +146,42 @@ draw_sprite_ext(sprite_prompt_upper_middle,0,x,y,image_xscale,1,0,c_white,image_
 
 //Dessiner le texte des deux boutons.
 //Texte de gauche:
-draw_text(x+(image_xscale*0.28),y+string_height(texts[0])+10,texts[1]);
-draw_text(x+(image_xscale*0.78),y+string_height(texts[0])+10,texts[2]);
+draw_set_font(global.font_normal_condensed);
+draw_text(round(x+(image_xscale*0.28)),round(y+string_height(texts[0])+10),texts[1]);
+draw_text(round(x+(image_xscale*0.78)),round(y+string_height(texts[0])+10),texts[2]);
+if Choice=1{
+    //On affiche le truc à gauche.
+    draw_sprite(sprite_prompt_left_button,0,round(x+(image_xscale*0.28)-(string_width(texts[1])/2)),round(y+string_height(texts[0])+10));
+    draw_sprite(sprite_prompt_left_button,0,round(x+(image_xscale*0.28)+(string_width(texts[1])/2)),round(y+string_height(texts[0])+10));
+    draw_sprite_ext(sprite_button_middle,0,round(x+(image_xscale*0.28)-(string_width(texts[1])/2))+1,round(y+string_height(texts[0])+10),string_width(texts[1]),1,0,c_white,image_alpha);
+    }
+else{
+    draw_sprite(sprite_prompt_left_button,0,round(x+(image_xscale*0.78)-(string_width(texts[2])/2)),round(y+string_height(texts[0])+10));
+    draw_sprite(sprite_prompt_left_button,0,round(x+(image_xscale*0.78)+(string_width(texts[2])/2)),round(y+string_height(texts[0])+10));
+    draw_sprite_ext(sprite_button_middle,0,round(x+(image_xscale*0.78)-(string_width(texts[2])/2))+1,round(y+string_height(texts[0])+10),string_width(texts[2]),1,0,c_white,image_alpha);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </string>
           </argument>
