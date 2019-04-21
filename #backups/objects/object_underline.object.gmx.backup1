@@ -1,0 +1,34 @@
+// 2019-04-21 20:30:55
+#event create
+STATUS="";
+
+#event step
+///Déclencher l'action correspondante à l'option choisie.
+if STATUS ="ACTION"{
+    //Reset le status:
+    STATUS = "";
+    if place_meeting(x,y-5,object_home){
+        //On revient au menu principal.
+        }
+    else{
+        if place_meeting(x,y-5,object_restart){
+            //pour le moment, juste un fondu sans pénalité.
+            instance_create(x,y,object_respawn);
+            }
+        else{
+            if place_meeting(x,y-5,object_options){
+            //Apparition du livre avec le status display
+            
+            }
+            else{
+                if place_meeting(x,y-5,object_pockets){
+                    //Le menu de pause se barre pour l'inventaire. Penser à bouger l'underligne aussi.
+                    }
+                else{
+                    //C'est l'objet resume qui est touché.
+                    }
+                }
+            }
+        }
+    }
+

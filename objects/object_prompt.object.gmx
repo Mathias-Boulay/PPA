@@ -95,7 +95,11 @@ if global.face2[0]{
     }
 if global.face1[0]{
     if Choice = 1{
-        //On quitte le niveau
+        //On quitte le niveau: on déclenche l'animation de soulignement.
+        with(object_right_hand_pause){
+            path_start(temp_path,2,path_action_stop,false);
+            STATUS = "UNDERLINE";
+            }
         }
     else{
         //On revient dans le menu de pause.

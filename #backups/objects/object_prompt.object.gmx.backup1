@@ -1,4 +1,4 @@
-// 2019-04-20 22:03:06
+// 2019-04-20 22:03:39
 #event create|Récupération du texte + placement:
 Can_navigate=false;
 Choice=1;
@@ -29,10 +29,11 @@ if global.face2[0]{
 if global.face1[0]{
     if Choice = 1{
         //On quitte le niveau
-    }
-else{
-    //On revient dans le menu de pause.
-    instance_destroy();
+        }
+    else{
+        //On revient dans le menu de pause.
+        instance_destroy();
+        }
     }
 
 

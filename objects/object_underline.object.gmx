@@ -7,7 +7,87 @@
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
-  <events/>
+  <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>STATUS="";
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Déclencher l'action correspondante à l'option choisie.
+if STATUS ="ACTION"{
+    //Reset le status:
+    STATUS = "";
+    if place_meeting(x,y-5,object_home){
+        //On revient au menu principal.
+        }
+    else{
+        if place_meeting(x,y-5,object_restart){
+            //pour le moment, juste un fondu sans pénalité.
+            instance_create(x,y,object_respawn);
+            }
+        else{
+            if place_meeting(x,y-5,object_options){
+            //Apparition du livre qui doit s'autoplacer sans status sup.
+            instance_create(view_xview[0],view_yview[0]+view_hview[0],object_white_book);
+            }
+            else{
+                if place_meeting(x,y-5,object_pockets){
+                    //Le menu de pause se barre pour l'inventaire. Penser à bouger l'underligne aussi.
+                    object_right_hand_pause.STATUS="OUT-INVENTORY";
+                    object_pause.STATUS="OUT-INVENTORY";
+                    }
+                else{
+                    //C'est l'objet resume qui est touché.
+                    object_right_hand_pause.STATUS="OUT-OPTIONS";
+                    object_pause.STATUS="OUT-OPTIONS";
+                    }
+                }
+            }
+        }
+    }
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+  </events>
   <PhysicsObject>0</PhysicsObject>
   <PhysicsObjectSensor>0</PhysicsObjectSensor>
   <PhysicsObjectShape>0</PhysicsObjectShape>

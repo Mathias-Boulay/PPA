@@ -1,4 +1,4 @@
-// 2019-04-20 22:03:39
+// 2019-04-21 20:30:58
 #event create|Récupération du texte + placement:
 Can_navigate=false;
 Choice=1;
@@ -16,8 +16,7 @@ y=round(view_yview[0]+(view_hview[0]/2)-(image_yscale/2));
 #event alarm0|Réactivation de la navigation.
 Can_navigate=true;
 
-#event step
-///Gestion du bouton:
+#event step|Gestion du bouton:
 if abs(global.axislh[0]) > 0.2 && Can_navigate{
     Can_navigate=false;
     alarm_set(0,10);
@@ -28,7 +27,11 @@ if global.face2[0]{
     }
 if global.face1[0]{
     if Choice = 1{
-        //On quitte le niveau
+        //On quitte le niveau: on déclenche l'animation de soulignement.
+        with(object_right_hand_pause){
+            path_start(temp_path,2,path_action_stop,false);
+            STATUS = "UNDERLINE";
+            }
         }
     else{
         //On revient dans le menu de pause.
