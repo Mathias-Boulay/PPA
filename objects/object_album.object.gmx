@@ -78,6 +78,7 @@ sprite_index = play;
             <string>draw_self();
 draw_set_font(global.font_title);
 draw_set_valign(fa_bottom);
+draw_set_halign(fa_left);
 draw_text(x+17,y+sprite_height+4,object_white_book.texts[18]);
 </string>
           </argument>

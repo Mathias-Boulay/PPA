@@ -246,8 +246,8 @@ if room = room_title{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>gamepad_set_axis_deadzone(0,0.1);
-gamepad_set_axis_deadzone(1,0.1);
+            <string>gamepad_set_axis_deadzone(0,0.2);
+gamepad_set_axis_deadzone(1,0.2);
 </string>
           </argument>
         </arguments>

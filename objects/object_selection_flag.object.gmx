@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>if global.langage = "franglish"{
-    x = 56+view_xview[0];
+    x = object_white_book.x+57;
     y = 81+view_yview[0];
     }
 else{

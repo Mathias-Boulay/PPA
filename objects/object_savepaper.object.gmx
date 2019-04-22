@@ -212,11 +212,11 @@ if top != "PASTE"{
             //Draw body
             draw_set_font(global.font_short);
             draw_set_halign(fa_left);
-            draw_text(x+6,y+34,object_white_book.texts[42]+ LastTime);
-            draw_text(x+5,y+48,object_white_book.texts[43]+string(PlayTime)+"H");
-            draw_text(x+6,y+62,object_white_book.texts[44]+LastLevel);
-            draw_text(x+6,y+76,object_white_book.texts[45]+string(Rionys));
-            draw_text(x+6,y+90,object_white_book.texts[46]+string(FoesKilled));
+            draw_text(x+6,y+36,object_white_book.texts[42]+ LastTime);
+            draw_text(x+5,y+50,object_white_book.texts[43]+string(PlayTime)+"H");
+            draw_text(x+6,y+64,object_white_book.texts[44]+LastLevel);
+            draw_text(x+6,y+78,object_white_book.texts[45]+string(Rionys));
+            draw_text(x+6,y+92,object_white_book.texts[46]+string(FoesKilled));
             }
         }
     else{

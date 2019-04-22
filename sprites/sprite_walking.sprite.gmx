@@ -28,5 +28,13 @@
     <frame index="5">images\sprite_walking_5.png</frame>
     <frame index="6">images\sprite_walking_6.png</frame>
     <frame index="7">images\sprite_walking_7.png</frame>
+    <frame index="8">images\sprite_walking_8.png</frame>
+    <frame index="9">images\sprite_walking_9.png</frame>
+    <frame index="10">images\sprite_walking_10.png</frame>
+    <frame index="11">images\sprite_walking_11.png</frame>
+    <frame index="12">images\sprite_walking_12.png</frame>
+    <frame index="13">images\sprite_walking_13.png</frame>
+    <frame index="14">images\sprite_walking_14.png</frame>
+    <frame index="15">images\sprite_walking_15.png</frame>
   </frames>
 </sprite>

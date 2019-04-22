@@ -414,12 +414,7 @@ else{
                                         y+= (sign(global.axislv[0])*20);
                                         }
                                     else{
-                                        if place_meeting(x+(10*image_xscale),y,object_back_save){
-                                            y -= 60;
-                                            }
-                                        else{
-                                            y += 60;
-                                            }
+                                        if place_meeting(x+(10*image_xscale),y,object_back_save){y -= 60;}else{y += 60;}
                                         }
                                         Can_navigate = false;
                                         alarm_set(0,15);

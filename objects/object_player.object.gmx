@@ -1260,7 +1260,7 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                                                                     }
                                                                                                                 else{
                                                                                                                     STATUS = "idle";
-                                                                                                                    image_speed = 0.1; 
+                                                                                                                    image_speed = 0.225; 
                                                                                                                     }
                                                                                                                 }
                                                                                                             }
@@ -1279,11 +1279,11 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                                 else{
                                                                                     if abs(hsp) &gt; 3.4{
                                                                                         STATUS = "running";
-                                                                                        image_speed = abs(hsp)/16
+                                                                                        image_speed = abs(hsp)/8
                                                                                         }
                                                                                     else{
                                                                                         STATUS = "walking";
-                                                                                        image_speed = abs(hsp)/32
+                                                                                        image_speed = abs(hsp)/16
                                                                                         }
                                                                                     }
                                                                                 }

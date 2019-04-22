@@ -170,6 +170,7 @@
         <sprite>sprites\sprite_small_keyboard</sprite>
         <sprite>sprites\sprite_keyboard</sprite>
         <sprite>sprites\sprite_controllers</sprite>
+        <sprite>sprites\sprite_video_title</sprite>
       </sprites>
       <sprites name="FUCKING_BIG_SHAI">
         <sprite>sprites\sprite_big_Shai</sprite>

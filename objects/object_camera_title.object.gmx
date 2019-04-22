@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>path="";
+path_start(asset_get_index("path_title"+path),1/4,path_action_stop,true);
 </string>
           </argument>
         </arguments>

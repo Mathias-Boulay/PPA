@@ -32,5 +32,17 @@
     <frame index="9">images\sprite_running_9.png</frame>
     <frame index="10">images\sprite_running_10.png</frame>
     <frame index="11">images\sprite_running_11.png</frame>
+    <frame index="12">images\sprite_running_12.png</frame>
+    <frame index="13">images\sprite_running_13.png</frame>
+    <frame index="14">images\sprite_running_14.png</frame>
+    <frame index="15">images\sprite_running_15.png</frame>
+    <frame index="16">images\sprite_running_16.png</frame>
+    <frame index="17">images\sprite_running_17.png</frame>
+    <frame index="18">images\sprite_running_18.png</frame>
+    <frame index="19">images\sprite_running_19.png</frame>
+    <frame index="20">images\sprite_running_20.png</frame>
+    <frame index="21">images\sprite_running_21.png</frame>
+    <frame index="22">images\sprite_running_22.png</frame>
+    <frame index="23">images\sprite_running_23.png</frame>
   </frames>
 </sprite>
