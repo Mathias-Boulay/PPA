@@ -55,11 +55,11 @@ if path_position = 1{
     path_start(asset_get_index("path_title"+path),1/4,path_action_stop,true);
     if path=""{path="_reverse"}else{path="";}
     }
-if gamepad_button_check_pressed(0,gp_start)||gamepad_button_check_pressed(0,gp_face1){
+if global.start[0]|| global.face1[0]{
     fading=instance_create(x,y,object_fade);
     fading.STATUS="SELECT_SAVE";
     }
-if gamepad_button_check_pressed(0,gp_face2){
+if global.face2[0]{
     game_end();
     }
 

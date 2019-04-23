@@ -33,7 +33,7 @@ page = 0;
 //En cas de fichier resté ouvert, on le ferme, en espérant ne pas faire de la merde avec le système de sauvegarde.
 ini_close();
 
-texts = script_word_light(0,50)
+texts = script_word_light(0,50);
 
 </string>
           </argument>

@@ -201,10 +201,10 @@ if !instance_exists(object_fade){
             if keyboard_check_pressed(global.keyboard_shoulderl){global.shoulderl[i]=min(global.shoulderl[i]+1,1);}
             if keyboard_check_pressed(global.keyboard_start){global.start[i]=min(global.start[i]+1,1);}
             
-            if keyboard_check_pressed(global.keyboard_up){global.axislv[i]=clamp(global.axislv[i]-1,-1,0);}
-            if keyboard_check_pressed(global.keyboard_down){global.axislv[i]=clamp(global.axislv[i]+1,0,1);}
-            if keyboard_check_pressed(global.keyboard_left){global.axislh[i]=clamp(global.axislh[i]-1,-1,0);}
-            if keyboard_check_pressed(global.keyboard_right){global.axislh[i]=clamp(global.axislh[i]+1,0,1);}
+            if keyboard_check(global.keyboard_up){global.axislv[i]=clamp(global.axislv[i]-1,-1,0);}
+            if keyboard_check(global.keyboard_down){global.axislv[i]=clamp(global.axislv[i]+1,0,1);}
+            if keyboard_check(global.keyboard_left){global.axislh[i]=clamp(global.axislh[i]-1,-1,0);}
+            if keyboard_check(global.keyboard_right){global.axislh[i]=clamp(global.axislh[i]+1,0,1);}
             
             
             
