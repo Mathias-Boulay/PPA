@@ -1,0 +1,15 @@
+// 2019-04-24 12:59:27
+#event create|Set the image_speed to 0 and the ID;
+image_speed = 0;
+
+if y < object_white_book.y+120{
+    ID = instance_number(object_sound_high);
+    if ID <= global.music_volume{image_index = 1;}else{image_index = 0;} 
+    }
+else{
+    ID = instance_number(object_sound_high)-9;
+    if ID <= global.sfx_volume{image_index = 1;}else{image_index = 0;}
+    }
+
+#event step|Set the good sprite depending of the settings:
+if y < object_white_book.y+120{if ID <= global.music_volume{image_index = 1;}else{image_index = 0;}}else{if ID <= global.sfx_volume{image_index = 1;}else{image_index = 0;}}

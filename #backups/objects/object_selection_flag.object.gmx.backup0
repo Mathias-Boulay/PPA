@@ -1,0 +1,33 @@
+// 2019-04-24 12:50:35
+#event create
+if global.langage = "franglish"{
+    x = object_white_book.x+57;
+    y = object_white_book.y+81;
+    }
+else{
+    if global.langage = "français"{
+        x = object_white_book.x+226;
+        y = object_white_book.y+21;
+        }
+    else{
+        x = object_white_book.x+226;
+        y = object_white_book.y+125;
+        }
+    }
+
+
+#event step
+if global.langage = "franglish"{
+    x = object_white_book.x+57;
+    y = object_white_book.y+81;
+    }
+else{
+    if global.langage = "français"{
+        x = object_white_book.x+226;
+        y = object_white_book.y+21;
+        }
+    else{
+        x = object_white_book.x+226;
+        y = object_white_book.y+125;
+        }
+    }

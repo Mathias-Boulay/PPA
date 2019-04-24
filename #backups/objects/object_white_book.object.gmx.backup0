@@ -1,4 +1,4 @@
-// 2019-04-20 11:43:51
+// 2019-04-24 13:06:52
 #event create|Récupération des strings necessaire pour intéragir dans les menus:
 if room = room_title{STATUS = "TITLE";}else{STATUS = "OPTIONS";}
 image_speed = 0;
@@ -7,7 +7,7 @@ page = 0;
 //En cas de fichier resté ouvert, on le ferme, en espérant ne pas faire de la merde avec le système de sauvegarde.
 ini_close();
 
-texts = script_word_light(0,50)
+texts = script_word_light(0,50);
 
 
 #event step|Menu recodé pour être dynamique au livre.
@@ -17,7 +17,7 @@ if STATUS = "TITLE"{
         instance_create(x+248,y+87,object_album);
         instance_create(x+248,y+123,object_options_main_menu);
         instance_create(x+248,y+159,object_credits);
-        left_title = instance_create(x+242,y+58,object_leftbutton_main_menu);
+        left_title = instance_create(x+242,y+57,object_leftbutton_main_menu);
         }
     }
 else{
@@ -36,7 +36,7 @@ if STATUS = "OPTIONS"{
         instance_create(x+248,y+87,object_sound);
         instance_create(x+248,y+123,object_controlles);
         instance_create(x+248,y+159,object_langage);
-        left_options = instance_create(y+243,y+58,object_leftbutton_main_menu);
+        left_options = instance_create(y+243,y+57,object_leftbutton_main_menu);
         }
     }
 else{
@@ -159,7 +159,6 @@ if STATUS = "OPTIONS-LANGAGE"{
         instance_create(x+85,y+158,object_franglish);
         instance_create(x+264,y+202,object_english);
         instance_create(x+260,y+98,object_francais);
-        instance_create(x+90,y+194,object_retour);
         left_langue = instance_create(x+80,y+164,object_leftbutton_main_menu);
         instance_create(x,y,object_selection_flag);
         }
@@ -252,12 +251,12 @@ draw_self();
 if STATUS = "TITLE"
     {
     image_index = 0;
-    draw_sprite(sprite_title,0,x+54,y+36); 
-    draw_sprite(sprite_fast_credits,0,x+56,y+200);
+    draw_sprite(sprite_title,0,x+55,y+36); 
+    draw_sprite(sprite_fast_credits,0,x+57,y+200);
     draw_sprite(sprite_draw_fairy,0,x+222,y+182);
     draw_sprite(sprite_draw_toad,0,x+349,y+186);
-    draw_sprite(sprite_draw_cat_bigeyes,0,x+355,y+45]);
-    draw_sprite(sprite_draw_cat,0,x+158,y+31);
+    draw_sprite(sprite_draw_cat_bigeyes,0,x+355,y+45);
+    draw_sprite(sprite_draw_cat,0,x+159,y+31);
     draw_sprite(sprite_draw_flappy_bird,0,x+248,y+26);
     }
 else{
@@ -265,10 +264,9 @@ else{
         image_index = 0;
         draw_set_halign(fa_center);
         draw_set_font(global.font_big_title);
-        draw_text(x+127,y+74,object_white_book.texts[47]);
+        draw_text(x+128,y+74,object_white_book.texts[47]);
         draw_set_halign(fa_left);
-        draw_sprite(sprite_shai_artwork,0,x+61,y+76);
-        
+        draw_sprite(sprite_shai_artwork,0,x+62,y+76);
         }
     else{
         if STATUS = "OPTIONS-VIDEO"{
@@ -277,6 +275,7 @@ else{
             draw_set_halign(fa_center);
             draw_set_valign(fa_bottom);
             draw_text(x+188,y+71,texts[48]);
+            draw_sprite(sprite_video_title,0,x+243,y+60);
             draw_set_font(global.font_title);
             draw_set_valign(fa_top);
             draw_set_halign(fa_left);
@@ -297,27 +296,28 @@ else{
             else{
                 if STATUS = "OPTIONS-LANGAGE"{
                     image_index = 0;
-                    draw_sprite(sprite_cadre,0,x+51,y+78);
+                    draw_sprite(sprite_cadre,0,x+52,y+78);
                     draw_sprite(sprite_cadre,0,x+221,y+18);
                     draw_sprite(sprite_cadre,0,x+221,y+122);
                     draw_sprite(sprite_english_flag,0,x+227,y+126);
                     draw_sprite(sprite_drapeau_francais,0,x+227,y+22);
-                    draw_sprite(sprite_franglais_flag,0,x+57,y+82);
+                    draw_sprite(sprite_franglais_flag,0,x+58,y+82);
+                    draw_sprite(sprite_retour,0,x+91,y+194);
                     draw_set_font(global.font_big_title);
                     draw_set_halign(fa_center);
                     draw_set_valign(fa_bottom);
-                    draw_text(x+127,y+64,object_white_book.texts[50]);
+                    draw_text(x+128,y+64,object_white_book.texts[50]);
                     }
                 else{
                     if STATUS = "OPTIONS-MAPPING"{
                         image_index = 0; 
-                        draw_sprite(sprite_cadre,0,x+51,y+18);
+                        draw_sprite(sprite_cadre,0,x+52,y+18);
                         draw_sprite(sprite_cadre,0,x+221,y+18);
                         //Background polaro gauche:
-                        draw_sprite(sprite_background_polaro,0,x+57,y+23);
-                        draw_sprite_ext(sprite_background_polaro,0,x+196,y+23,-1,1,0,c_white,1);
-                        draw_sprite_ext(sprite_background_polaro,0,x+57,y+97,1,-1,0,c_white,1);
-                        draw_sprite_ext(sprite_background_polaro,0,x+196,y+97,-1,-1,0,c_white,1);
+                        draw_sprite(sprite_background_polaro,0,x+58,y+23);
+                        draw_sprite_ext(sprite_background_polaro,0,x+197,y+23,-1,1,0,c_white,1);
+                        draw_sprite_ext(sprite_background_polaro,0,x+58,y+97,1,-1,0,c_white,1);
+                        draw_sprite_ext(sprite_background_polaro,0,x+197,y+97,-1,-1,0,c_white,1);
                         
                         //Background polaro droit:
                         draw_sprite(sprite_background_polaro,0,x+227,y+23);
@@ -325,16 +325,16 @@ else{
                         draw_sprite_ext(sprite_background_polaro,0,x+227,y+97,1,-1,0,c_white,1);
                         draw_sprite_ext(sprite_background_polaro,0,x+366,y+97,-1,-1,0,c_white,1);
                         
-                        draw_sprite(sprite_small_controller,0,x+79,y+27);
+                        draw_sprite(sprite_small_controller,0,x+80,y+27);
                         draw_sprite(sprite_keyboard,0,x+232,y+34);
                         
                         draw_set_font(global.font_title);
                         draw_set_valign(fa_top);
                         draw_set_halign(fa_center);
-                        draw_text(x+125,y+91,texts[3]);
-                        draw_text(x+296,y+91,texts[4]);
+                        draw_text(x+126,y+91,texts[3]);
+                        draw_text(x+297,y+91,texts[4]);
                         draw_set_halign(fa_left);
-                        draw_text(x+52,y+150,texts[5]);
+                        draw_text(x+53,y+150,texts[5]);
                         
                         }
                     else{

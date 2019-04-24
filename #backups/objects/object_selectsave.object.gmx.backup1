@@ -1,4 +1,4 @@
-// 2019-04-24 13:38:05
+// 2019-04-21 21:17:46
 #event create
 STATUS = "NORMAL";
 Can_navigate = true;
@@ -17,7 +17,7 @@ if Can_do{
     ///Controls for moving
     if Can_navigate{
         if abs(global.axislh[0]) > 0.5{
-            if x < object_white_book.sprite_width/2{
+            if x < room_width/2{
                 x += 170;
                 Can_navigate =false;
                 alarm_set(0,15);
@@ -30,7 +30,7 @@ if Can_do{
             }
             
         if abs(global.axislv[0]) > 0.5{
-            if y < object_white_book.sprite_height/2{
+            if y < room_height/2{
                 y += 104;
                 Can_navigate =false;
                 alarm_set(0,15);
@@ -45,13 +45,16 @@ if Can_do{
     if STATUS = "NORMAL"{    
         //Stuff for selecting the save
         if global.face1[0]{
+            /*global.SELECTED_SAVE = working_directory +"\saves\save "+string(collision_point(x+(sprite_width/2),y+(sprite_height/2),object_savepaper,false,true).ID);
+            object_white_book.page = 0;
+            object_white_book.STATUS = "SELECT_LEVEL";*/
             savepaper = collision_point(x+(sprite_width/2),y+(sprite_height/2),object_savepaper,false,false);
             savepaper.STATUS = "SELECTED";
             }
         //Stuff to quit the save selecting:
         if global.face2[0]{
-            script_fade_status("TITLE");
-            //room_goto(room_pre_title);
+            //script_fade_status("TITLE");
+            room_goto(room_pre_title);
             }
         }
     else{

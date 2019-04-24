@@ -1,4 +1,4 @@
-// 2019-04-21 21:18:35
+// 2019-04-24 13:38:46
 #event create
 Can_navigate = true;
 right_dependency = noone;
@@ -68,7 +68,7 @@ if object_white_book.STATUS = "TITLE"{    //Si l'on est sur ce putin d'écran ti
             }
         }
     if global.face2[0]{
-        game_end();
+        room_goto(room_pre_title);
         } 
     }
 else{
@@ -328,17 +328,11 @@ else{
                                         y+= (sign(global.axislv[0])*20);
                                         }
                                     else{
-                                        if place_meeting(x+(10*image_xscale),y,object_back_save){
-                                            y -= 60;
-                                            }
-                                        else{
-                                            y += 60;
-                                            }
+                                        if place_meeting(x+(10*image_xscale),y,object_back_save){y -= 60;}else{y += 60;}
                                         }
                                         Can_navigate = false;
                                         alarm_set(0,15);
                                         image_xscale *= -1;
-                                        //if (place_meeting(x+(10*image_xscale),y,object_back_save)|| place_meeting(x+(10*image_xscale),y,object_copy_save)){x = 59;}else{if (place_meeting(x+(10*image_xscale),y,object_delete_save)|| place_meeting(x+(10*image_xscale),y,object_play_save)){x = 92;}}
                                         if collision_line(x-50,y,x+50,y,object_back_save,false,false) != noone{
                                             x = object_back_save.x-4-sprite_width;
                                             }

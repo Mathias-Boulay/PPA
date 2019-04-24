@@ -136,7 +136,7 @@ if STATUS = "SELECTED"{
         instance_create(x+69,y+10,object_play_save);
         instance_create(x+69,y+30,object_copy_save);
         instance_create(x+69,y+50,object_delete_save);
-        instance_create(x+69,y+72,object_back_save);
+        instance_create(x+69,y+70,object_back_save);
         global.sub_left = instance_create(x+92,y+16,object_leftbutton_main_menu);
         global.sub_left.image_xscale = -1;
         }

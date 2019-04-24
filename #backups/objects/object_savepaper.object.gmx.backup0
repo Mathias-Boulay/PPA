@@ -1,0 +1,118 @@
+// 2019-04-24 13:13:12
+#event create
+STATUS = "NEW";
+top = "";
+edit_char ="|";
+///Define ID and grab the save
+ID = (instance_number(object_savepaper)+object_white_book.page);
+if file_exists(working_directory + "saves\save " + string(ID)){
+    //Then grab all stats
+    ini_open(working_directory + "saves\save " + string(ID));
+    Name = ini_read_string("Generic Informations","Name","Save "+string(ID));
+    Name_temp= "";
+    LastTime = ini_read_string("Generic Informations","LastTime","Never");
+    PlayTime = ini_read_real("Generic Informations","PlayTime",0);
+    LastLevel = ini_read_string("Generic Informations","LastLevel","Nothing");
+    Rionys = ini_read_real("Generic Informations","Rionys",0);
+    FoesKilled = ini_read_real("Generic Informations","FoesKilled",0);
+    ini_close();
+    STATUS = "USED"
+    }
+else{
+/*
+    //Define all Stats
+    ini_open(working_directory + "\saves\save " + string(ID));
+    ini_write_string("Generics Informations","LastTime","Never");
+    ini_write_real("Generics Informations","PlayTime",0);
+    ini_write_string("Generics Informations","LastLevel","Nothing");
+    ini_write_real("Generics Informations","Rionys",0);
+    ini_write_real("Generics Informations","FoesKilled",0);
+    LastTime = ini_read_string("Generic Informations","LastTime","Never");
+    PlayTime = ini_read_real("Generic Informations","PlayTime",0);
+    LastLevel = ini_read_string("Generic Informations","LastLevel","Nothing");
+    Rionys = ini_read_real("Generic Informations","Rionys",0);
+    FoesKilled = ini_read_real("Generic Informations","FoesKilled",0);
+    ini_close();*/
+    }
+    
+
+#event alarm0
+edit_char = "|";
+if STATUS = "RENAME"{alarm_set(1,45);}
+
+#event alarm1
+edit_char = "";
+if STATUS = "RENAME"{alarm_set(0,45);}
+
+#event step|Sub menus:
+if STATUS = "SELECTED"{
+    if !instance_exists(object_back_save){
+        instance_create(x+69,y+10,object_play_save);
+        instance_create(x+69,y+30,object_copy_save);
+        instance_create(x+69,y+50,object_delete_save);
+        instance_create(x+69,y+70,object_back_save);
+        global.sub_left = instance_create(x+92,y+16,object_leftbutton_main_menu);
+        global.sub_left.image_xscale = -1;
+        }
+    }
+else{
+    if STATUS = "RENAME"{
+        if keyboard_check_pressed(vk_anykey){
+            //Check particular cases:
+            if keyboard_check_pressed(vk_escape){
+                STATUS = "USED";
+                object_selectsave.Can_do = true;
+                }
+            else{
+                if keyboard_check_pressed(vk_enter){
+                    Name = Name_temp;
+                    ini_open(working_directory+"saves\save "+string(ID));
+                    ini_write_string("Generic Informations","Name",Name);
+                    ini_close();
+                    STATUS = "USED";
+                    object_selectsave.Can_do = true;
+                    }
+                }
+            if (keyboard_lastkey != 51 && keyboard_lastkey != 52){
+                if string_length(keyboard_string) > 13
+                   {
+                   keyboard_string = string_copy(keyboard_string, 1, 13);
+                   }
+                Name_temp = string_copy(keyboard_string, 1, 13);
+                }
+            }
+        }
+    }
+                
+
+#event draw|Draw stats
+draw_self();
+if place_meeting(x,y,object_selectsave){top = collision_rectangle(x,y,x+sprite_width,y+sprite_height,object_selectsave,false,false).STATUS;}else{top = "";}
+if top != "PASTE"{
+    if STATUS != "NEW"{
+        if STATUS != "SELECTED"{
+            draw_set_font(global.font_title);
+            draw_set_valign(fa_bottom);
+            draw_set_halign(fa_center);
+            if STATUS = "USED"{
+                draw_text(x+(sprite_width/2)-4,y+20,Name);
+                }
+            else{
+                if STATUS = "RENAME"{
+                    draw_text(x+(sprite_width/2)-4,y+20,Name_temp+edit_char);
+                    }
+                }
+            //Draw body
+            draw_set_font(global.font_short);
+            draw_set_halign(fa_left);
+            draw_text(x+6,y+36,object_white_book.texts[42]+ LastTime);
+            draw_text(x+5,y+50,object_white_book.texts[43]+string(PlayTime)+"H");
+            draw_text(x+6,y+64,object_white_book.texts[44]+LastLevel);
+            draw_text(x+6,y+78,object_white_book.texts[45]+string(Rionys));
+            draw_text(x+6,y+92,object_white_book.texts[46]+string(FoesKilled));
+            }
+        }
+    else{
+        draw_sprite(sprite_new_file,0,x,y);
+        }
+    }

@@ -102,7 +102,7 @@ Source = "";
     ///Controls for moving
     if Can_navigate{
         if abs(global.axislh[0]) &gt; 0.5{
-            if x &lt; room_width/2{
+            if x &lt; object_white_book.sprite_width/2{
                 x += 170;
                 Can_navigate =false;
                 alarm_set(0,15);
@@ -115,7 +115,7 @@ Source = "";
             }
             
         if abs(global.axislv[0]) &gt; 0.5{
-            if y &lt; room_height/2{
+            if y &lt; object_white_book.sprite_height/2{
                 y += 104;
                 Can_navigate =false;
                 alarm_set(0,15);
@@ -130,16 +130,13 @@ Source = "";
     if STATUS = "NORMAL"{    
         //Stuff for selecting the save
         if global.face1[0]{
-            /*global.SELECTED_SAVE = working_directory +"\saves\save "+string(collision_point(x+(sprite_width/2),y+(sprite_height/2),object_savepaper,false,true).ID);
-            object_white_book.page = 0;
-            object_white_book.STATUS = "SELECT_LEVEL";*/
             savepaper = collision_point(x+(sprite_width/2),y+(sprite_height/2),object_savepaper,false,false);
             savepaper.STATUS = "SELECTED";
             }
         //Stuff to quit the save selecting:
         if global.face2[0]{
-            //script_fade_status("TITLE");
-            room_goto(room_pre_title);
+            script_fade_status("TITLE");
+            //room_goto(room_pre_title);
             }
         }
     else{
