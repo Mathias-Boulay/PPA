@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>for(i=1;i&gt;-10;i++){
+            <string>selected_item="";
+for(i=1;i&gt;-10;i++){
     if object_exists(asset_get_index("object_item_"+string(i))){
         numberofitems[i] = ini_read_real("Data",string(instance_number(object_hud))+"-item["+string(i)+"]",0);
         }
@@ -46,7 +47,9 @@
     }
 
 
-
+if selected_item=""{
+    selected_item=0;
+    }
 active_item = 0;
 font_hud = font_add_sprite_ext(sprite_font,'0123456789"/',true,1);
 

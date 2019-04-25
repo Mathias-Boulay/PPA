@@ -1,4 +1,4 @@
-// 2019-04-24 13:38:05
+// 2019-04-25 12:40:29
 #event create
 STATUS = "NORMAL";
 Can_navigate = true;
@@ -65,10 +65,10 @@ if Can_do{
                     
                     //Then reload:
                     instance_destroy(object_savepaper);
-                    instance_create(51+view_xview[0],18+view_yview[0],object_savepaper);
-                    instance_create(221+view_xview[0],18+view_yview[0],object_savepaper);
-                    instance_create(51+view_xview[0],122+view_yview[0],object_savepaper);
-                    instance_create(221+view_xview[0],122+view_yview[0],object_savepaper);
+                    instance_create(object_white_book.x+51,object_white_book.y+18,object_savepaper);
+                    instance_create(object_white_book.x+221,object_white_book.y+18,object_savepaper);
+                    instance_create(object_white_book.x+51,object_white_book.y+122,object_savepaper);
+                    instance_create(object_white_book.x+221,object_white_book.y+122,object_savepaper);
                     instance_destroy(object_back_save);
                     instance_destroy(object_delete_save);
                     instance_destroy(object_copy_save);
@@ -103,18 +103,18 @@ if Can_do{
     if global.shoulderr[0]{
         object_white_book.page += 4;
         instance_destroy(object_savepaper);
-        instance_create(51+view_xview[0],18+view_yview[0],object_savepaper);
-        instance_create(221+view_xview[0],18+view_yview[0],object_savepaper);
-        instance_create(51+view_xview[0],122+view_yview[0],object_savepaper);
-        instance_create(221+view_xview[0],122+view_yview[0],object_savepaper);
+        instance_create(x+51,y+18,object_savepaper);
+        instance_create(x+221,y+18,object_savepaper);
+        instance_create(x+51,y+122,object_savepaper);
+        instance_create(x+221,y+122,object_savepaper);
         }
     if global.shoulderl[0]{
         object_white_book.page -= 4;
         instance_destroy(object_savepaper);
-        instance_create(51+view_xview[0],18+view_yview[0],object_savepaper);
-        instance_create(221+view_xview[0],18+view_yview[0],object_savepaper);
-        instance_create(51+view_xview[0],122+view_yview[0],object_savepaper);
-        instance_create(221+view_xview[0],122+view_yview[0],object_savepaper);
+        instance_create(x+51,y+18,object_savepaper);
+        instance_create(x+221,y+18,object_savepaper);
+        instance_create(x+51,y+122,object_savepaper);
+        instance_create(x+221,y+122,object_savepaper);
         }
     }
 if instance_exists(object_play_save){Can_do = false;}

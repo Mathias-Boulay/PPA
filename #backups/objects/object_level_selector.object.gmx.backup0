@@ -1,4 +1,4 @@
-// 2019-04-24 12:55:55
+// 2019-04-25 12:21:23
 #event create
 Can_navigate = true;
 image_speed = 0;
@@ -135,7 +135,7 @@ if global.face1[0]{
         }
     else{
         //Play a deny sound;
-        show_error("Error, MyPaper.level[PartToLoad,5] ="+string(MyPaper.Level[PartToLoad,5]),true);
+        show_error("Error, MyPaper.level[PartToLoad,5] ="+string(MyPaper.Level[PartToLoad,5]),false);
         }
     }
 if global.face2[0]{
