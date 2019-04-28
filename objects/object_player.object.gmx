@@ -60,12 +60,12 @@ image_speed = 0.1;
 
 
 life=ini_read_real("Data",string(ID+1)+"-life",1);
-heart_1=instance_create(view_xview[0]+7,view_yview[0]+47,object_heart);
-heart_2 = instance_create(view_xview[0]+20,view_yview[0]+47,object_heart);
-heart_3 = instance_create(view_xview[0]+33,view_yview[0]+47,object_heart);
-heart_1.state = ini_read_string("Data",string(ID+1)+"-heart_1","basic");
-heart_2.state = ini_read_string("Data",string(ID+1)+"-heart_2","basic");
-heart_1.state = ini_read_string("Data",string(ID+1)+"-heart_2","basic");
+heart[1]=instance_create(view_xview[0]+7,view_yview[0]+47,object_heart);
+heart[2] = instance_create(view_xview[0]+20,view_yview[0]+47,object_heart);
+heart[3] = instance_create(view_xview[0]+33,view_yview[0]+47,object_heart);
+heart[1].state = ini_read_string("Data",string(ID+1)+"-heart_1","basic");
+heart[2].state = ini_read_string("Data",string(ID+1)+"-heart_2","basic");
+heart[3].state = ini_read_string("Data",string(ID+1)+"-heart_3","basic");
 
 
 //Adding hud

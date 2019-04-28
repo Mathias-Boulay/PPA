@@ -63,10 +63,12 @@ repeat(2){
           <argument>
             <kind>1</kind>
             <string>///Syncro avec l'alpha de l'inventaire
-draw_set_alpha(object_inventory.image_alpha);
-draw_self();
-//Reset du draw set alpha pour éviter les conflits
-draw_set_alpha(1);
+if instance_exists(object_inventory){
+    draw_set_alpha(object_inventory.image_alpha);
+    draw_self();
+    //Reset du draw set alpha pour éviter les conflits
+    draw_set_alpha(1);
+    }
 </string>
           </argument>
         </arguments>

@@ -186,33 +186,14 @@ draw_set_valign(fa_bottom);
 x = ceil(view_xview[0] + ((sprite_width/2) + 5));
 y = ceil(view_yview[0] + ((sprite_height/2)+ 5));
 //Actualise position of the heart
-    with(object_player.heart_1)
-        {
-        x = view_xview[0]+7+ceil(sprite_width/2);
-        y = view_yview[0]+47+(sprite_height/2);
+for(i=0;i&lt;=2;i++){
+    with(object_player.heart[i+1]){
+        //Position des coeurs
+        x=view_xview[0]+7+(object_hud.i*13)+ceil(sprite_width/2);
+        y=view_yview[0]+47+(sprite_height/2);
+        //Dessiner les coeurs.
+        draw_sprite(asset_get_index("sprite_"+string(state)+"_heart"),0,x,y);
         }
-    with(object_player.heart_2)
-        {
-        x = view_xview[0]+20+ceil(sprite_width/2);
-        y = view_yview[0]+47+(sprite_height/2);
-        }
-    with(object_player.heart_3)
-        {
-        x = view_xview[0]+33+ceil(sprite_width/2);
-        y = view_yview[0]+47+(sprite_height/2);
-        }
-//Draw correct thing for heart
-with(object_player.heart_1)
-    {
-    draw_sprite(asset_get_index("sprite_"+string(state)+"_heart"),0,x,y);
-    }
-with(object_player.heart_2)
-    {
-    draw_sprite(asset_get_index("sprite_"+string(state)+"_heart"),0,x,y);
-    }
-with(object_player.heart_3)
-    {
-    draw_sprite(asset_get_index("sprite_"+string(state)+"_heart"),0,x,y);
     }
 
 //Choose the good hud background.
@@ -220,7 +201,6 @@ if active_item != 0
     {
     draw_sprite(sprite_active_item,1,x,y);
     draw_sprite(asset_get_index("sprite_item_"+string(active_item)),1,x,y);
-    //draw_text(x+11,y+16,numberofitems[active_item])
     }
 else
     {
@@ -233,12 +213,17 @@ else
     
 //Okay now draw other stuff:
 //goodness:
+draw_sprite(sprite_barre_bonte,0,x+(ceil(sprite_width/2)+1),y+((sprite_height/2)-4)-round((object_player.goodness*34)/100));
+
 if instance_exists(object_start_overlay_1){
     if object_start_overlay_1.image_xscale &gt; 1{
-        draw_sprite(sprite_barre_bonte,0,x+(ceil(sprite_width/2)+ 12),y);
+        draw_sprite(sprite_lvbarre_bonte,0,x+(ceil(sprite_width/2)+ 12),y);
         }
     }
-draw_sprite(sprite_lvbarre_bonte,0,x+(ceil(sprite_width/2)+1),y+((sprite_height/2)-4)-round((object_player.goodness*34)/100));
+else{
+    draw_sprite(sprite_lvbarre_bonte,0,x+(ceil(sprite_width/2)+ 12),y);
+    }
+
 
 //Time and rionys:
 draw_sprite(sprite_logos,0,view_xview[0]+6,view_yview[0]+59);
