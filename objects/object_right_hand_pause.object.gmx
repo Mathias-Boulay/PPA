@@ -192,7 +192,7 @@ Can_navigate=true;
     case "OUT-INVENTORY":
         //On sort et l'on invoque l'inventaire.
         if y-84 &lt; view_yview[0]+view_hview[0]{
-            y += (y-(view_yview[0]+view_hview[0]-107)+6)/17;
+            y += abs(y-(view_yview[0]+view_hview[0]-107)+6)/17;
             }
         else{
             //On attend que l'inventaire disparaisse pour revenir.
@@ -205,7 +205,7 @@ Can_navigate=true;
     case "OUT-OPTIONS":
         //On sort et l'on invoque le livre.
         if y-84 &lt; view_yview[0]+view_hview[0]{
-            y += (y-(view_yview[0]+view_hview[0]-107)+6)/17;
+            y += abs(y-(view_yview[0]+view_hview[0]-107)+6)/17;
             }
         else{
             //On attend que le livre disparaisse pour revenir.
