@@ -49,7 +49,7 @@ position=y-object_pause.y;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>y=object_pause+position;
+            <string>y=object_pause.y+position;
 </string>
           </argument>
         </arguments>

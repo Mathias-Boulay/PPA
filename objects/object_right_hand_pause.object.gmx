@@ -191,8 +191,8 @@ Can_navigate=true;
         
     case "OUT-INVENTORY":
         //On sort et l'on invoque l'inventaire.
-        if y-84 &lt; view_yview[0]+view_hview[0]{
-            y += abs(y-(view_yview[0]+view_hview[0]-107)+6)/17;
+        if y-45 &lt; view_yview[0]+view_hview[0]{
+            y += (((view_yview[0]+view_hview[0])-(y-45))+6)/17;
             }
         else{
             //On attend que l'inventaire disparaisse pour revenir.
@@ -204,8 +204,8 @@ Can_navigate=true;
         
     case "OUT-OPTIONS":
         //On sort et l'on invoque le livre.
-        if y-84 &lt; view_yview[0]+view_hview[0]{
-            y += abs(y-(view_yview[0]+view_hview[0]-107)+6)/17;
+        if y-45 &lt; view_yview[0]+view_hview[0]{
+            y += (((view_yview[0]+view_hview[0])-(y-45))+6)/17;
             }
         else{
             //On attend que le livre disparaisse pour revenir.
@@ -244,6 +244,15 @@ Can_navigate=true;
             <string>draw_self();
 draw_text(x,y,string(path_position));
 draw_text(x,y+15,string(path_endaction));
+draw_text(x,y+30,string(STATUS));
+if instance_exists(object_pause){
+    draw_text(x,y+45,string(object_pause.STATUS));
+    }
+
+
+
+
+
 </string>
           </argument>
         </arguments>

@@ -61,9 +61,9 @@ texts = script_word_light(0,50);
 if STATUS = "TITLE"{
     if !instance_exists(object_play){
         instance_create(x+248,y+51,object_play);
-        instance_create(x+248,y+87,object_album);
+        instance_create(x+248,y+86,object_album);
         instance_create(x+248,y+123,object_options_main_menu);
-        instance_create(x+248,y+159,object_credits);
+        instance_create(x+248,y+158,object_credits);
         left_title = instance_create(x+242,y+57,object_leftbutton_main_menu);
         }
     }
@@ -79,7 +79,7 @@ else{
         
 if STATUS = "OPTIONS"{
     if !instance_exists(object_video_options){
-        instance_create(x+248,y+51,object_video_options);
+        instance_create(x+248,y+50,object_video_options);
         instance_create(x+248,y+87,object_sound);
         instance_create(x+248,y+123,object_controlles);
         instance_create(x+248,y+159,object_langage);

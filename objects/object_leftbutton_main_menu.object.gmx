@@ -299,7 +299,7 @@ else{
                     }
                 //Moving part
                 if Can_navigate{
-                    if abs(global.axislh[0]) &gt; 0.4{        
+                    if abs(global.axislv[0]) &gt; 0.4{        
                         alarm_set(0,13);
                             if y &gt; object_white_book.y+120{
                                 y = object_white_book.y+92;

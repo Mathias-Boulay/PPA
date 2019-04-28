@@ -62,12 +62,9 @@ object_3 = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if place_meeting(x,y,object_player)
-    {
-    if object_player.sprite_index = sprite_lookup
-        {
-        if instance_number(object_case) = 0
-            {
+            <string>if place_meeting(x,y,object_player){
+    if object_player.sprite_index = sprite_lookup{
+        if instance_number(object_case) = 0{
             instance_create(view_xview[0]+(view_wview[0]/2),y+148,object_fond_shop);
             instance_create(object_fond_shop.x-203,object_fond_shop.y-133,object_case);
             object_1 = instance_create(object_fond_shop.x-182,object_fond_shop.y-114,asset_get_index("object_item_" +string(case1)));
@@ -75,10 +72,8 @@ object_3 = 0;
             object_3 = instance_create(object_fond_shop.x-182,object_fond_shop.y-26,asset_get_index("object_item_" +string(case3)));
             }
         }
-    else
-        {
-        if instance_exists(object_fond_shop)
-            {
+    else{
+        if instance_exists(object_fond_shop){
             instance_destroy(object_fond_shop);
             instance_destroy(object_case);
             instance_destroy(asset_get_index("object_item_" +string(case1)));

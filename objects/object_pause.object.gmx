@@ -147,7 +147,7 @@ switch(STATUS){
     case "OUT-OPTIONS":
         //On sort et l'on invoque le livre.
         if y-84 &lt; view_yview[0]+view_hview[0]{
-            y += abs(y-(view_yview[0]+view_hview[0]-107)+6)/17;
+            y += (((view_yview[0]+view_hview[0])-(y-84))+6)/17;
             }
         else{
             //Création initiale puis on attend que l'objet disparaisse:
