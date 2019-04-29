@@ -1,0 +1,40 @@
+// 2019-04-29 21:33:08
+#event create
+//Le vendeur doit être retravaillé
+image_speed = 0;
+//ID de l'item
+item_case[0] = 0;
+item_case[1] = 0;
+item_case[2] = 0;
+//Prix de l'item
+price_case[0] = 0;
+price_case[1] = 0;
+price_case[2] = 0;
+//Multiplicateur de prix de l'item
+price_up_case[0] = 0;
+price_up_case[1] = 0;
+price_up_case[2]= 0;
+vendor_index = 0;
+
+
+#event step
+if place_meeting(x,y,object_player){
+    if object_player.sprite_index = sprite_lookup{
+        if instance_number(object_case) = 0{
+            instance_create(view_xview[0]+(view_wview[0]/2),y+148,object_fond_shop);
+            object_fond_shop.my_seller=id;
+            instance_create(object_fond_shop.x-203,object_fond_shop.y-133,object_case);
+            object_case.my_seller=id;
+            }
+        }
+    else{
+        if instance_exists(object_fond_shop){
+            instance_destroy(object_fond_shop);
+            instance_destroy(object_case);
+            }
+        }
+    }
+
+#event draw
+draw_sprite(sprite_stands,image_index,x,y);
+draw_sprite(sprite_sellers,vendor_index,x-12,y-55);

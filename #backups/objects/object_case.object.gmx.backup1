@@ -1,0 +1,99 @@
+// 2019-04-29 21:40:41
+#event create
+my_seller = instance_nearest(x+(sprite_width/2), y, object_seller);
+Can_navigate = false;
+alarm_set(0,13);
+font_shop = font_add_sprite_ext(sprite_font_shop,"0123456789",true,2);
+
+#event destroy|Delete the shop font
+font_delete(font_shop);
+
+#event alarm0
+Can_navigate = true;
+
+#event step|Navigate trough the shop.
+
+//Reworked ne possède plus d'objets item, ne sont plus que des sprites:
+if abs(global.axislv[0]) > 0.4 && Can_navigate {
+    if y+(sign(global.axislv[0])*44) > object_fond_shop.y-46{
+        //On remonte en haut:
+        y = object_fond_shop.y-134;
+        }
+    else{
+        if y+(sign(global.axislv[0])*44) < object_fond_shop.y-134{
+            //On repasse en bas:
+            y = object_fond_shop.y-46;
+            }
+        else{
+            y+=sign(global.axislv[0])*44;
+            }
+        }
+    
+    //Ensuite l'on bloque la navigation:
+    Can_navigate=false;
+    alarm_set(0,13);
+    
+    }
+
+//Section d'achat retravaillé à l'aide des tableaux:
+//La question est de savoir à quel niveau du menu je suis car actuellement je vérifie juste si je ne suis pas OOB.
+if global.face1[0]{
+    for(i=0;i<=2;i++){
+        if y=object_fond_shop.y-132+(i*44){
+            //On vérifie la hauteur: Si notre hauteur correspond à celle recherché on active la suite:
+            if object_player.rionys >= my_seller.price_case[i] && object_player.places_left > 0{
+                //- de money, + cher
+                object_player.rionys -= my_seller.price_case[i];
+                object_hud.numberofitems[my_seller.item_case[i]] += 1;
+                object_player.places_left -= 1;
+                my_seller.price_case[i] *= my_seller.price_up_case[i];
+                }
+            else{
+                //On est pauvre (comme d'habitude)
+                }
+            }
+        }
+    }
+    
+
+//Buying section
+if global.face1[0]{
+    if place_meeting(x,y,my_seller.object_1){
+        if object_player.rionys >= my_seller.case1price && object_player.places_left > 0{
+            object_player.rionys -= my_seller.case1price;
+            object_hud.numberofitems[my_seller.case1] += 1;
+            object_player.places_left -= 1;
+            my_seller.case1price *= my_seller.case1priceup;
+            }
+        else{
+            //play a deny sound
+            }
+        }
+    else{
+        if place_meeting(x,y,my_seller.object_2){
+            if object_player.rionys >= my_seller.case2price && object_player.places_left > 0
+                {
+                object_player.rionys -= my_seller.case2price;
+                object_hud.numberofitems[my_seller.case2] += 1;
+                object_player.places_left -= 1;
+                my_seller.case2price *= my_seller.case2priceup;
+                }
+            else{
+                //play a deny sound
+                }
+            }
+        else{
+            if place_meeting(x,y,my_seller.object_3){
+                if object_player.rionys >= my_seller.case3price && object_player.places_left > 0 {
+                     object_player.rionys -= my_seller.case3price;
+                     object_hud.numberofitems[my_seller.case3] += 1;
+                     object_player.places_left -= 1;
+                     my_seller.case3price *= my_seller.case3priceup;
+                    }
+                else{
+                    //play a deny sound
+                    }
+                }
+            }
+        }
+    }

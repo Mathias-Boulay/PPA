@@ -25,21 +25,22 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_speed = 0;
-case1 = 0;
-case2 = 0;
-case3 = 0;
-case1price = 0;
-case2price = 0;
-case3price = 0;
-case1priceup = 0;
-case2priceup = 0;
-case3priceup = 0;
+            <string>//Le vendeur doit être retravaillé
+image_speed = 0;
+//ID de l'item
+item_case[0] = 0;
+item_case[1] = 0;
+item_case[2] = 0;
+//Prix de l'item
+price_case[0] = 0;
+price_case[1] = 0;
+price_case[2] = 0;
+//Multiplicateur de prix de l'item
+price_up_case[0] = 0;
+price_up_case[1] = 0;
+price_up_case[2]= 0;
 vendor_index = 0;
 
-object_1 = 0;
-object_2 = 0;
-object_3 = 0;
 </string>
           </argument>
         </arguments>
@@ -66,19 +67,15 @@ object_3 = 0;
     if object_player.sprite_index = sprite_lookup{
         if instance_number(object_case) = 0{
             instance_create(view_xview[0]+(view_wview[0]/2),y+148,object_fond_shop);
+            object_fond_shop.my_seller=id;
             instance_create(object_fond_shop.x-203,object_fond_shop.y-133,object_case);
-            object_1 = instance_create(object_fond_shop.x-182,object_fond_shop.y-114,asset_get_index("object_item_" +string(case1)));
-            object_2 = instance_create(object_fond_shop.x-182,object_fond_shop.y-70,asset_get_index("object_item_" +string(case2)));
-            object_3 = instance_create(object_fond_shop.x-182,object_fond_shop.y-26,asset_get_index("object_item_" +string(case3)));
+            object_case.my_seller=id;
             }
         }
     else{
         if instance_exists(object_fond_shop){
             instance_destroy(object_fond_shop);
             instance_destroy(object_case);
-            instance_destroy(asset_get_index("object_item_" +string(case1)));
-            instance_destroy(asset_get_index("object_item_" +string(case2)));
-            instance_destroy(asset_get_index("object_item_" +string(case3)));
             }
         }
     }
