@@ -30,7 +30,7 @@ image_alpha=0.001;
 ID = instance_number(object_inventory)-1;
 fade=0.05;
 //Creation de l'item actif
-goodness_font=font_add_sprite_ext(sprite_font_goodness,"0123456789/%",true,1);
+font_goodness=font_add_sprite_ext(sprite_font_goodness,"0123456789/%",true,1);
 if object_hud.active_item != 0{
     instance_create(x-67,y-27,asset_get_index("object_item_" +string(object_hud.active_item)));
     }

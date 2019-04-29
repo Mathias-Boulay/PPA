@@ -34,7 +34,7 @@ draw_set_font(global.font_normal);
 draw_set_halign(fa_center);
 draw_set_valign(fa_top);
 image_xscale=string_width(texts[0]);
-image_yscale=string_height(texts[0])+28;
+image_yscale=string_height(texts[0])+33;
 //Placement:
 x=round(view_xview[0]+(view_wview[0]/2)-(image_xscale/2));
 y=round(view_yview[0]+(view_hview[0]/2)-(image_yscale/2));
@@ -100,6 +100,7 @@ if global.face1[0]{
             path_start(temp_path,2,path_action_stop,false);
             STATUS = "UNDERLINE";
             }
+        instance_destroy();
         }
     else{
         //On revient dans le menu de pause.
@@ -135,7 +136,7 @@ draw_set_font(global.font_normal);
 draw_set_halign(fa_center);
 draw_set_valign(fa_top);
 //Texte
-draw_text(x+(image_xscale/2),y,texts[0]);
+draw_text(round(x+(image_xscale/2)),round(y),texts[0]);
 //Partie de prompt:
 //Les bords:
 draw_sprite_ext(sprite_prompt_upper_left,0,x,y,1,1,0,c_white,image_alpha);
@@ -148,24 +149,24 @@ draw_sprite_ext(sprite_prompt_center_right,0,x+image_xscale,y,1,image_yscale,0,c
 draw_sprite_ext(sprite_prompt_bottom_middle,0,x,y+image_yscale,image_xscale,1,0,c_white,image_alpha);
 draw_sprite_ext(sprite_prompt_upper_middle,0,x,y,image_xscale,1,0,c_white,image_alpha);
 
+
+
+if Choice=1{
+    //On affiche le truc à gauche.
+    draw_sprite(sprite_prompt_left_button,0,floor(x+(image_xscale*0.28)-(string_width(texts[1])/2)-4),round(y+string_height(texts[0])+8));
+    draw_sprite(sprite_prompt_right_button,0,ceil(x+(image_xscale*0.28)+(string_width(texts[1])/2)),round(y+string_height(texts[0])+8));
+    draw_sprite_ext(sprite_prompt_mid_button,0,round(x+(image_xscale*0.28)-(string_width(texts[1])/2))+1,round(y+string_height(texts[0])+8),string_width(texts[1]),1,0,c_white,image_alpha);
+    }
+else{
+    draw_sprite(sprite_prompt_left_button,0,floor(x+(image_xscale*0.78)-(string_width(texts[2])/2)-4),round(y+string_height(texts[0])+8));
+    draw_sprite(sprite_prompt_right_button,0,ceil(x+(image_xscale*0.78)+(string_width(texts[2])/2)),round(y+string_height(texts[0])+8));
+    draw_sprite_ext(sprite_prompt_mid_button,0,round(x+(image_xscale*0.78)-(string_width(texts[2])/2)),round(y+string_height(texts[0])+8),string_width(texts[2])+1,1,0,c_white,image_alpha);
+    }
+    
 //Dessiner le texte des deux boutons.
-//Texte de gauche:
 draw_set_font(global.font_normal_condensed);
 draw_text(round(x+(image_xscale*0.28)),round(y+string_height(texts[0])+10),texts[1]);
 draw_text(round(x+(image_xscale*0.78)),round(y+string_height(texts[0])+10),texts[2]);
-if Choice=1{
-    //On affiche le truc à gauche.
-    draw_sprite(sprite_prompt_left_button,0,round(x+(image_xscale*0.28)-(string_width(texts[1])/2)),round(y+string_height(texts[0])+10));
-    draw_sprite(sprite_prompt_left_button,0,round(x+(image_xscale*0.28)+(string_width(texts[1])/2)),round(y+string_height(texts[0])+10));
-    draw_sprite_ext(sprite_button_middle,0,round(x+(image_xscale*0.28)-(string_width(texts[1])/2))+1,round(y+string_height(texts[0])+10),string_width(texts[1]),1,0,c_white,image_alpha);
-    }
-else{
-    draw_sprite(sprite_prompt_left_button,0,round(x+(image_xscale*0.78)-(string_width(texts[2])/2)),round(y+string_height(texts[0])+10));
-    draw_sprite(sprite_prompt_left_button,0,round(x+(image_xscale*0.78)+(string_width(texts[2])/2)),round(y+string_height(texts[0])+10));
-    draw_sprite_ext(sprite_button_middle,0,round(x+(image_xscale*0.78)-(string_width(texts[2])/2))+1,round(y+string_height(texts[0])+10),string_width(texts[2]),1,0,c_white,image_alpha);
-    }
-
-
 
 
 

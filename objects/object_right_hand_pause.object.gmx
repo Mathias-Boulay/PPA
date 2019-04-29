@@ -195,6 +195,9 @@ Can_navigate=true;
             y += (((view_yview[0]+view_hview[0])-(y-45))+6)/17;
             }
         else{
+            if !instance_exists(object_inventory){
+                instance_create(view_xview[0]+(view_wview[0]/2),view_yview[0]+(view_hview[0]/2),object_inventory);
+                }
             //On attend que l'inventaire disparaisse pour revenir.
             if !instance_exists(object_inventory){
                 STATUS="DISPLAY";
@@ -208,6 +211,9 @@ Can_navigate=true;
             y += (((view_yview[0]+view_hview[0])-(y-45))+6)/17;
             }
         else{
+            if !instance_exists(object_white_book){
+                instance_create(view_xview[0],view_yview[0]+view_hview[0],object_white_book);
+                }
             //On attend que le livre disparaisse pour revenir.
             if !instance_exists(object_white_book){
                 STATUS="DISPLAY";
