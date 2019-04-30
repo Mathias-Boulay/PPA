@@ -1,4 +1,4 @@
-// 2019-04-19 20:07:24
+// 2019-04-30 19:52:58
 #event create|Récupération des ligne depuis le fichier de langue.
 texts=script_word_light(51,59);
 //Création des boutons.
@@ -19,6 +19,7 @@ instance_destroy(object_pockets);
 instance_destroy(object_options);
 instance_destroy(object_restart);
 instance_destroy(object_home);
+instance_destroy(object_underline);
 //instance_destroy(object_right_hand_pause);
 
 
@@ -43,13 +44,14 @@ switch(STATUS){
     case "OUT-INVENTORY":
         //On sort et l'on invoque l'inventaire.
         if y-84 < view_yview[0]+view_hview[0]{
-            y += (y-(view_yview[0]+view_hview[0]-107)+6)/17;
-            }
-        else{
+            y += abs(y-(view_yview[0]+view_hview[0]-107)+6)/17;
             //Création initiale puis on attend que l'objet disparaisse:
-            if instance_exists(object_inventory){
+            if !instance_exists(object_inventory){
                 instance_create(view_xview[0]+(view_wview[0]/2),view_yview[0]+(view_hview[0]/2),object_inventory);
                 }
+            }
+        else{
+            
             if !instance_exists(object_inventory){
                 STATUS="DISPLAY";
                 }
@@ -59,13 +61,15 @@ switch(STATUS){
     case "OUT-OPTIONS":
         //On sort et l'on invoque le livre.
         if y-84 < view_yview[0]+view_hview[0]{
-            y += (y-(view_yview[0]+view_hview[0]-107)+6)/17;
-            }
-        else{
+            y += (((view_yview[0]+view_hview[0])-(y-84))+6)/17;
+            
             //Création initiale puis on attend que l'objet disparaisse:
-            if instance_exists(object_white_book){
+            if !instance_exists(object_white_book){
                 instance_create(view_xview[0],view_yview[0]+view_hview[0],object_white_book);
                 }
+            }
+        else{
+            
             if !instance_exists(object_white_book){
                 STATUS="DISPLAY";
                 }

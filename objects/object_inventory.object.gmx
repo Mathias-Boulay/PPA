@@ -141,7 +141,7 @@ draw_set_valign(fa_top);
 draw_text(x+67,y+7,object_pause.texts[8]);
 //Pourcentage de bonté:
 draw_set_font(font_goodness);
-draw_text(x+68,y+26,string(object_player.goodness)+"%");
+draw_text(x+69,y+26,string(object_player.goodness)+"%");
 //Reset de la valeur alpha pour éviter les conflits avec les autres objets
 draw_set_alpha(1);
 

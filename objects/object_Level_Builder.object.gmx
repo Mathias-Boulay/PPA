@@ -1203,58 +1203,61 @@ for(i=1;i&lt;=Number;i++){
         for(j=0;j&lt;=2;j++){
             //Le numéro des trois items dans les cas a/b/c
             for(k=0;k&gt; -10;k++){
-                if string_char_at(original,1) !={
-                item_case[i,j] += string_copy(original,1,1);
-                original = string_replace(original,string_char_at(original,1),"");
+                if string_char_at(original,1) != ","{
+                    item_case[i,j] += string_copy(original,1,1);
+                    original = string_replace(original,string_char_at(original,1),"");
                     }
                 else{
                     original = string_replace(original,",","");
                     show_debug_message('item_case['+string(i)+','+string(j)+']= '+item_case[i,j]);
                     show_debug_message("original= "+original);
                     item_case[i,j]=real(item_case[i,j]);
-                }
+                    }
                 
-            //Le prix des trois items dans les cas a/b/c
-            for(k=0;k &gt; -10;k++){
-                if string_char_at(original,1) !={
-                price_case[i,j] += string_copy(original,1,1);
-                original = string_replace(original,string_char_at(original,1),"");
-                    }
-                else{
-                    original = string_replace(original,",","");
-                    show_debug_message('price_case['+string(i)+','+string(j)+']= '+price_case[i,j]);
-                    show_debug_message("original= "+original);
-                    price_case[i,j]=real(price_case[i,j]);
-                }
+                //Le prix des trois items dans les cas a/b/c
+                for(k=0;k &gt; -10;k++){
+                    if string_char_at(original,1) != "," {
+                        price_case[i,j] += string_copy(original,1,1);
+                        original = string_replace(original,string_char_at(original,1),"");
+                        }
+                    else{
+                        original = string_replace(original,",","");
+                        show_debug_message('price_case['+string(i)+','+string(j)+']= '+price_case[i,j]);
+                        show_debug_message("original= "+original);
+                        price_case[i,j]=real(price_case[i,j]);
+                        }
             
-            //Le multiplicateur de prix des trois items dans les cas a/b/c
-            for(k=0;k&gt;-10;k++){
-                if string_char_at(original,1) !={
-                price_up_case[i,j] += string_copy(original,1,1);
-                original = string_replace(original,string_char_at(original,1),"");
+                //Le multiplicateur de prix des trois items dans les cas a/b/c
+                for(k=0;k&gt;-10;k++){
+                    if string_char_at(original,1) !="," {
+                        price_up_case[i,j] += string_copy(original,1,1);
+                        original = string_replace(original,string_char_at(original,1),"");
+                        }
+                    else{
+                        original = string_replace(original,",","");
+                        show_debug_message('price_case['+string(i)+','+string(j)+']= '+price_up_case[i,j]);
+                        show_debug_message("original= "+original);
+                        price_up_case[i,j]=real(price_up_case[i,j]);
+                        }
                     }
-                else{
-                    original = string_replace(original,",","");
-                    show_debug_message('price_case['+string(i)+','+string(j)+']= '+price_up_case[i,j]);
-                    show_debug_message("original= "+original);
-                    price_up_case[i,j]=real(price_up_case[i,j]);
                 }
             }
-        }
-    }
      
     
-    //Reworked:
-    This_seller = instance_create(xx,yy,object_seller);
-    This_seller.image_index = Asset;
-    This_seller.vendor_index = SubAsset;
-    Temp=irandom(2); //Sert à partager entre la cas a/b/c
-    
-    //Injection des valeurs choisies #BOTTOX
-    for (i=0;i&lt;=2;i++){
-        This_seller.item_case[i]=item_case[i,Temp];
-        This_seller.price_case[i]=price_case[i,Temp];
-        This_seller.price_up_case[i]=price_case[i,Temp];
+            //Reworked:
+            This_seller = instance_create(xx,yy,object_seller);
+            This_seller.image_index = Asset;
+            This_seller.vendor_index = SubAsset;
+            Temp=irandom(2); //Sert à partager entre la cas a/b/c
+            
+            //Injection des valeurs choisies #BOTTOX
+            for (i=0;i&lt;=2;i++){
+                This_seller.item_case[i]=item_case[i,Temp];
+                This_seller.price_case[i]=price_case[i,Temp];
+                This_seller.price_up_case[i]=price_case[i,Temp];
+                }
+            }
+        }       
     }
      
 

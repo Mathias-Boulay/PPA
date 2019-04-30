@@ -1,6 +1,5 @@
-// 2019-04-18 21:54:05
-#event create
-///On se place en dynamiquement
+// 2019-04-29 21:33:08
+#event create|On se place en dynamiquement
 repeat(2){
     if place_meeting(x,y,object_item_1){
         x += 38;
@@ -15,9 +14,11 @@ repeat(2){
         }
     }
     
-#event draw
-///Syncro avec l'alpha de l'inventaire
-draw_set_alpha(object_inventory.image_alpha);
-draw_self();
-//Reset du draw set alpha pour éviter les conflits
-draw_set_alpha(1);
+
+#event draw|Syncro avec l'alpha de l'inventaire
+if instance_exists(object_inventory){
+    draw_set_alpha(object_inventory.image_alpha);
+    draw_self();
+    //Reset du draw set alpha pour éviter les conflits
+    draw_set_alpha(1);
+    }

@@ -1,17 +1,11 @@
-// 2019-04-29 21:33:08
+// 2019-04-30 19:50:14
 #event create|On se place en dynamiquement
 repeat(2){
-    if place_meeting(x,y,object_item_1){
-        x += 38;
-        }
+    if place_meeting(x,y,object_item_1){x += 38;}
     }
-if place_meeting(x,y,object_item_1){
-    y += 39;
-    }
+if place_meeting(x,y,object_item_1){y += 39;}
 repeat(2){
-    if place_meeting(x,y,object_item_1){
-        x -= 38;
-        }
+    if place_meeting(x,y,object_item_1){x -= 38;}
     }
     
 
