@@ -125,8 +125,10 @@ if file_exists(working_directory+"background_image/back.png"){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if collision_point(mouse_x,mouse_y,object_preview,false,true) = noone{
-    instance_create(mouse_x,mouse_y,object_preview);
+            <string>if mouse_y &lt;= 240{
+    if collision_point(mouse_x,mouse_y,object_preview,false,true) = noone{
+        instance_create(mouse_x,mouse_y,object_preview);
+        }
     }
 </string>
           </argument>
@@ -160,7 +162,7 @@ draw_set_font(font_debug);
 draw_text(room_width/2,room_height/2,"mouse_x= "+string(mouse_x)+" | mouse_y= "+string(mouse_y));
 
 draw_rectangle_colour(0,240,room_width,room_height,c_black,c_black,c_black,c_black,false);
-draw_text(room_width/2,262,"Font N°"+string(global.count));
+draw_text(room_width/2,272,"Font N-"+string(global.count));
 </string>
           </argument>
         </arguments>

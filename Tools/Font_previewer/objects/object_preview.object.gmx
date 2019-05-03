@@ -91,6 +91,30 @@ if dist_x != ""{
         </arguments>
       </action>
     </event>
+    <event eventtype="6" enumb="6">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///On change la font:
+font=global.count;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="6" enumb="5">
       <action>
         <libid>1</libid>
@@ -110,6 +134,7 @@ if dist_x != ""{
             <kind>1</kind>
             <string>///We edit the value inside:
 str=get_string("Que voulez vous marquer ?#Use \# for newline",str);
+
 </string>
           </argument>
         </arguments>
@@ -159,7 +184,7 @@ focus=true;
           <argument>
             <kind>1</kind>
             <string>//draw_rectangle(x-(string_width(str)/2),y-(string_height(str)/2),x+(string_width(str)/2),y+(string_height(str)/2),true);
-draw_set_font(global.font[global.count]);
+draw_set_font(global.font[font]);
 draw_text(x,y,str);
 </string>
           </argument>
