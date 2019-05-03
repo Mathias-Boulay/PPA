@@ -213,16 +213,17 @@ else
     
 //Okay now draw other stuff:
 //goodness:
-draw_sprite(sprite_barre_bonte,0,x+(ceil(sprite_width/2)+ 12),y);
-
 if instance_exists(object_start_overlay_1){
-    if object_start_overlay_1.image_xscale &gt; 1{
-        draw_sprite(sprite_lvbarre_bonte,0,x+(ceil(sprite_width/2)+1),y+((sprite_height/2)-4)-round((object_player.goodness*34)/100));
+    if object_start_overlay_2.image_xscale &gt; 1{
+        draw_sprite(sprite_barre_bonte,0,x+(ceil(sprite_width/2)+ 12),y);
         }
     }
 else{
-    draw_sprite(sprite_lvbarre_bonte,0,x+(ceil(sprite_width/2)+1),y+((sprite_height/2)-4)-round((object_player.goodness*34)/100));
+    draw_sprite(sprite_barre_bonte,0,x+(ceil(sprite_width/2)+ 12),y);
     }
+    
+draw_sprite(sprite_lvbarre_bonte,0,x+(ceil(sprite_width/2)+1),y+((sprite_height/2)-4)-round((object_player.goodness*34)/100));
+    
 
 
 //Time and rionys:

@@ -25,79 +25,14 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Initialise basic font:
-global.font[0] = font_add_sprite_ext(sprite_font_normal,"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ áàâäçéèêëíìîïóòôöúùûü':&lt;&gt;()!?;.-,0123456789",true,1);
-global.font[1] = font_add_sprite_ext(sprite_font_title,"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789* |▯áàâäéèêëíìîïóòôöúùûü",true,1);
-global.font[2] = font_add_sprite_ext(sprite_font_big_title,"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ12345",true,1);
-global.font[3] = font_add_sprite_ext(sprite_font_short,"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/: ",true,1);
-global.font[4] = font_add_sprite_ext(sprite_font_normal,"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ áàâäçéèêëíìîïóòôöúùûü':&lt;&gt;()!?;.-,",true,0);
-global.font[5]=font_add_sprite_ext(sprite_font_goodness,"0123456789/%",true,1);
-global.font[6]=font_add_sprite_ext(sprite_font,'0123456789"/',true,1);
-global.font[7]=font_add_sprite_ext(sprite_font_lv,"0123456789/:",true,1);
-global.font[8]=font_add_sprite_ext(sprite_font_mapping,"abcdefghijklmnopqrstuvwxyz",true,1);
-global.count=0;
-back= -1;
-scale=1;
-
-if !directory_exists(working_directory+"screenshots"){
-    directory_create(working_directory+"screenshots");
-    }
-
-if !directory_exists(working_directory+"background_image"){
-    directory_create(working_directory+"background_image");
-    }
+            <string>str=get_string("Que voulez vous marquer ?#Use \# for newline","NOONE");
+font=global.count;
+dup=sprite_duplicate(sprite_hollow);
+draw_set_font(global.font[global.count]);
+sprite_collision_mask(dup,false,2,212-(string_width(str)/2),120-(string_height(str)/2),212+(string_width(str)/2),120+(string_height(str)/2),1,0);
 
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="3" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>window_set_size(424*scale,240*scale);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="6" enumb="50">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>x=mouse_x;
-y=mouse_y;
-if file_exists(working_directory+"background_image/back.png"){
-    back =sprite_add(working_directory+"background_image/back.png",0,false,false,0,0);
-    }
+
 </string>
           </argument>
         </arguments>
@@ -120,129 +55,8 @@ if file_exists(working_directory+"background_image/back.png"){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_font(global.font[global.count]);
-draw_set_valign(fa_middle);
-draw_set_halign(fa_center);
-if back != -1{
-    draw_sprite(back,0,0,0);
-    }
-
-draw_text(x,y,keyboard_string);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="113">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>screen_save(working_directory+"screenshots/"+string(current_year)+"-"+string(current_month)+"-"+string(current_day)+"-"+string(current_hour)+"-"+string(current_minute)+"-"+string(current_second)+".png");
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="40">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>scale = max(1,scale-1);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="39">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>global.count=min(8,global.count+1);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="38">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>scale= min(scale+1,3);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="37">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>global.count = max(0,global.count-1);
+            <string>draw_rectangle(212-(string_width(str)/2),120-(string_height(str)/2),212+(string_width(str)/2),120+(string_height(str)/2),true);
+draw_set_font(global.font[global.count]);
 </string>
           </argument>
         </arguments>

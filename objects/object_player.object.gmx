@@ -446,8 +446,8 @@ else{
             <kind>1</kind>
             <string>///Module de récupération d'entrées (+debug colisions):
 //Débug:
-next_right = place_meeting(x+2,y,object_wall);
-next_left = place_meeting(x-2,y,object_wall);
+//next_right = place_meeting(x+2,y,object_wall);
+//next_left = place_meeting(x-2,y,object_wall);
 
 //On prend les instructions du joueur:
 key_jump = global.face1[ID];
@@ -1070,6 +1070,8 @@ else{
         
 //Correctif du système de collision en bois:
 if STATUS != "divejumping"{
+    next_right = place_meeting(x+2,y,object_wall);
+    next_left = place_meeting(x-2,y,object_wall);
     if place_meeting(x,y,object_wall){if next_right = true &amp;&amp; next_left != true{x -=2;}else{if next_right != true &amp;&amp; next_left = true{x +=2;}}}
     }
 </string>

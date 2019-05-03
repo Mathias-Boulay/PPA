@@ -16,11 +16,15 @@
     <sprite>sprites\sprite_font_title</sprite>
     <sprite>sprites\sprite_font_mapping</sprite>
     <sprite>sprites\sprite_bouton</sprite>
+    <sprite>sprites\sprite_number</sprite>
+    <sprite>sprites\sprite_deadzone</sprite>
+    <sprite>sprites\sprite_hollow</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <objects name="objects">
     <object>objects\object_preview</object>
+    <object>objects\object_deadzone</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_main</room>
