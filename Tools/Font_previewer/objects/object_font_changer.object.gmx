@@ -26,6 +26,13 @@
           <argument>
             <kind>1</kind>
             <string>y=272;
+if instance_number(object_font_changer) &gt; 1{
+    x=32;
+    image_xscale= -1;
+    }
+else{
+    x=room_width-32;
+    }
 </string>
           </argument>
         </arguments>
@@ -49,7 +56,12 @@
           <argument>
             <kind>1</kind>
             <string>draw_set_font(font_debug);
-x=(room_width/2)+(((string_width("Font N-"+string(global.count))+sprite_width)/2)*image_xscale);
+
+
+
+
+
+
 </string>
           </argument>
         </arguments>
