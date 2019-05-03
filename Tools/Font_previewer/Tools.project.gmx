@@ -19,12 +19,17 @@
     <sprite>sprites\sprite_number</sprite>
     <sprite>sprites\sprite_deadzone</sprite>
     <sprite>sprites\sprite_hollow</sprite>
+    <sprite>sprites\sprite_arrow</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
+  <fonts name="fonts">
+    <font>fonts\font_debug</font>
+  </fonts>
   <objects name="objects">
     <object>objects\object_preview</object>
     <object>objects\object_deadzone</object>
+    <object>objects\object_font_changer</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_main</room>

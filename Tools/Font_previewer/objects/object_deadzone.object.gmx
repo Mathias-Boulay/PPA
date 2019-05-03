@@ -52,7 +52,7 @@ if !directory_exists(working_directory+"background_image"){
     }
     
 draw_set_halign(fa_center);
-draw_set_valign(fa_bottom);
+draw_set_valign(fa_middle);
 </string>
           </argument>
         </arguments>
@@ -155,8 +155,12 @@ if file_exists(working_directory+"background_image/back.png"){
     }
 
 
-
 draw_self();
+draw_set_font(font_debug);
+draw_text(room_width/2,room_height/2,"mouse_x= "+string(mouse_x)+" | mouse_y= "+string(mouse_y));
+
+draw_rectangle_colour(0,240,room_width,room_height,c_black,c_black,c_black,c_black,false);
+draw_text(room_width/2,262,"Font N°"+string(global.count));
 </string>
           </argument>
         </arguments>
