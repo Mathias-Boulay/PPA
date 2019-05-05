@@ -32,15 +32,16 @@ alarm_set(1,2);
 global.back = -1;
 
 ///Initialise basic font:
-global.font[0] = font_add_sprite_ext(sprite_font_normal,"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ áàâäçéèêëíìîïóòôöúùûü':&lt;&gt;()!?;.-,0123456789",true,1);
+global.font[0] = font_add_sprite_ext(sprite_font_normal,"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ áàâäçéèêëíìîïóòôöúùûü':&lt;&gt;()!?;.-,0123456789▯",true,1);
 global.font[1] = font_add_sprite_ext(sprite_font_title,"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789* |▯áàâäéèêëíìîïóòôöúùûü",true,1);
-global.font[2] = font_add_sprite_ext(sprite_font_big_title,"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 12345",true,1);
-global.font[3] = font_add_sprite_ext(sprite_font_short,"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/: ",true,1);
-global.font[4] = font_add_sprite_ext(sprite_font_normal,"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ áàâäçéèêëíìîïóòôöúùûü':&lt;&gt;()!?;.-,",true,0);
-global.font[5]=font_add_sprite_ext(sprite_font_goodness,"0123456789/%",true,1);
-global.font[6]=font_add_sprite_ext(sprite_font,'0123456789"/',true,1);
-global.font[7]=font_add_sprite_ext(sprite_font_lv,"0123456789/:",true,1);
-global.font[8]=font_add_sprite_ext(sprite_font_mapping,"abcdefghijklmnopqrstuvwxyz",true,1);
+global.font[2] = font_add_sprite_ext(sprite_font_big_title,"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 12345▯",true,1);
+global.font[3] = font_add_sprite_ext(sprite_font_short,"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/: ▯",true,1);
+global.font[4] = font_add_sprite_ext(sprite_font_normal,"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ áàâäçéèêëíìîïóòôöúùûü':&lt;&gt;()!?;.-,0123456789▯",true,0);
+global.font[5]=font_add_sprite_ext(sprite_font_goodness,"0123456789/%▯",true,1);
+global.font[6]=font_add_sprite_ext(sprite_font,'0123456789"/▯',true,1);
+global.font[7]=font_add_sprite_ext(sprite_font_lv,"0123456789/:▯",true,1);
+global.font[8]=font_add_sprite_ext(sprite_font_mapping,"abcdefghijklmnopqrstuvwxyz▯",true,1);
+global.font[9]=font_add_sprite_ext(sprite_font_shop,"0123456789▯",true,1);
 global.count=0;
 
 if !directory_exists(working_directory+"screenshots"){
@@ -159,7 +160,7 @@ if file_exists(working_directory+"background_image/back.png"){
     }
 
 
-draw_self();
+//draw_self();
 draw_set_font(font_debug);
 draw_text(room_width/2,room_height/2,"mouse_x= "+string(mouse_x)+" | mouse_y= "+string(mouse_y));
 

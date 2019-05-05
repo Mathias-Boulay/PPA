@@ -116,5 +116,6 @@
     <frame index="93">images\sprite_font_normal_93.png</frame>
     <frame index="94">images\sprite_font_normal_94.png</frame>
     <frame index="95">images\sprite_font_normal_95.png</frame>
+    <frame index="96">images\sprite_font_normal_96.png</frame>
   </frames>
 </sprite>

@@ -85,5 +85,6 @@
     <frame index="62">images\sprite_font_short_62.png</frame>
     <frame index="63">images\sprite_font_short_63.png</frame>
     <frame index="64">images\sprite_font_short_64.png</frame>
+    <frame index="65">images\sprite_font_short_65.png</frame>
   </frames>
 </sprite>

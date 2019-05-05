@@ -30,5 +30,6 @@
     <frame index="7">images\sprite_font_shop_7.png</frame>
     <frame index="8">images\sprite_font_shop_8.png</frame>
     <frame index="9">images\sprite_font_shop_9.png</frame>
+    <frame index="10">images\sprite_font_shop_10.png</frame>
   </frames>
 </sprite>

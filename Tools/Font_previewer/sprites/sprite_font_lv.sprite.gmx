@@ -32,5 +32,6 @@
     <frame index="9">images\sprite_font_lv_9.png</frame>
     <frame index="10">images\sprite_font_lv_10.png</frame>
     <frame index="11">images\sprite_font_lv_11.png</frame>
+    <frame index="12">images\sprite_font_lv_12.png</frame>
   </frames>
 </sprite>
