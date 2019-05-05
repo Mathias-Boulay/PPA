@@ -87,7 +87,7 @@ draw_text(object_fond_shop.x+147,object_fond_shop.y-105,string(my_seller.price_c
 draw_text(object_fond_shop.x+147,object_fond_shop.y-62,string(my_seller.price_case[1]))
 draw_text(object_fond_shop.x+147,object_fond_shop.y-16,string(my_seller.price_case[2]))
 //Les items:
-draw_sprite(asset_get_index("sprite_item_"+string(my_seller.item_case[0])),0,x-182,y-124);
+draw_sprite(asset_get_index("sprite_item_"+string(my_seller.item_case[0])),0,x-182,y-114);
 draw_sprite(asset_get_index("sprite_item_"+string(my_seller.item_case[1])),0,x-182,y-70);
 draw_sprite(asset_get_index("sprite_item_"+string(my_seller.item_case[2])),0,x-182,y-26);
 //Les descriptions

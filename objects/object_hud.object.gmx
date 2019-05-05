@@ -214,7 +214,7 @@ else
 //Okay now draw other stuff:
 //goodness:
 if instance_exists(object_start_overlay_1){
-    if object_start_overlay_2.image_xscale &gt; 1{
+    if abs(object_start_overlay_1.image_xscale) &gt; 1{
         draw_sprite(sprite_barre_bonte,0,x+(ceil(sprite_width/2)+ 12),y);
         }
     }
