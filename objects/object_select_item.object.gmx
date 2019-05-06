@@ -85,8 +85,8 @@ Can_navigate = true;
 //Partie déplacements
 if abs(global.axislh[ID]) &gt; 0.4{
     if Can_navigate{
-        if place_meeting(x+(sign(gamepad_axis_value(ID,gp_axislh))*38),y,object_item_1){
-            x += sign(gamepad_axis_value(ID,gp_axislh))*38;
+        if place_meeting(x+(sign(global.axislh[ID])*38),y,object_item_1){
+            x += sign(global.axislh[ID])*38;
             Can_navigate = false;
             alarm_set(0,13);
             }
@@ -104,8 +104,8 @@ if abs(global.axislh[ID]) &gt; 0.4{
     
 if abs(global.axislv[0]) &gt; 0.4{
     if Can_navigate{
-        if place_meeting(x,y+(sign(gamepad_axis_value(ID,gp_axislv))*38),object_item_1){
-            y += sign(gamepad_axis_value(ID,gp_axislv))*38;
+        if place_meeting(x,y+(sign(global.axislv[ID])*38),object_item_1){
+            y += sign(global.axislv[ID])*38;
             Can_navigate = false;
             alarm_set(0,13);
             }

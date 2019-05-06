@@ -68,7 +68,7 @@ vendor_index = 0;
         if instance_number(object_case) = 0{
             instance_create(view_xview[0]+(view_wview[0]/2),y+148,object_fond_shop);
             object_fond_shop.my_seller=id;
-            instance_create(object_fond_shop.x-203,object_fond_shop.y-133,object_case);
+            instance_create(object_fond_shop.x-203,object_fond_shop.y-134,object_case);
             object_case.my_seller=id;
             }
         }
