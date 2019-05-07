@@ -123,12 +123,22 @@ if object_hud.active_item != 0{
     draw_sprite(sprite_active_case_inventory,0,x-85,y-46,);
     }
 draw_sprite(sprite_inventory_lvbarre_bonte,0,x+40,(y+28)-((object_player.goodness*75)/100));
+//On dessine les items (image alpha fix):
+for(i=1;i&lt;=array_length_1d(object_hud.numberofitems)-1;i++){
+    if instance_exists(asset_get_index("object_item_"+string(i))){
+        with(asset_get_index("object_item_"+string(i))){
+            image_alpha=object_inventory.image_alpha;
+            }
+        }
+    }
 
 //Là on doit dessiner la partie internationalisé)
 //Le bas:
 draw_set_font(global.font_normal_condensed);
 draw_set_valign(fa_bottom);
 draw_set_halign(fa_left);
+
+
 
 draw_text(x-71,y+51,object_pause.texts[5]);
 draw_sprite(sprite_B,0,x-69+string_width(object_pause.texts[5]),y+34);

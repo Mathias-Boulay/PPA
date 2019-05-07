@@ -31,6 +31,7 @@ if !place_meeting(x,y,object_item_1){
     x = object_inventory.x -88;
     y = object_inventory.y -48;
     }
+    
 Can_navigate = false;
 alarm_set(0,13);
 infos = 0;
@@ -178,6 +179,7 @@ else{
             <kind>1</kind>
             <string>///Syncronisation avec l'inventaire +infos
 draw_sprite(sprite_select_item,1,x,y);
+image_alpha=object_inventory.image_alpha;
 if infos = 1{
     //Affiche le sprite sur lequel on écrit
     draw_sprite(sprite_infos,1,object_inventory.x,object_inventory.y+76);

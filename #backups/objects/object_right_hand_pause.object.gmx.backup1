@@ -1,4 +1,4 @@
-// 2019-04-21 21:06:49
+// 2019-05-07 19:14:59
 #event create|Utilisation des status afin d'adapter les animations:
 Can_navigate=true;
 STATUS = "DISPLAY";
@@ -6,8 +6,13 @@ Objective="";
 
 
 #event alarm0
-//Enable the navigation
+///Enable the navigation
 Can_navigate=true;
+
+
+#event alarm1
+///On passe en mode display:
+STATUS="DISPLAY";
 
 #event step_begin
 switch(STATUS){
@@ -34,6 +39,7 @@ switch(STATUS){
                 if abs(global.axislv[0]) > 0.2{
                     if collision_line(x,y+sign(global.axislv[0])*27,object_resume.x,y+sign(global.axislv[0])*27,object_resume,false,false) != noone{
                         objective=y+sign(global.axislv[0])*27;
+                        objective_2=sign(objective)*4;
                         STATUS ="OBJECTIVE";
                         Can_navigate=false;
                         }
@@ -92,14 +98,25 @@ switch(STATUS){
         break;
         
     case "OBJECTIVE":
-        y += ((objective-y)+1)/5;
-        if abs(((y-objective)+1)/5) < 1{
-            y = objective;
-            STATUS = "SELECT"
+        y += (((objective+objective_2)-y)+4)/5;
+        if abs(((y-(objective+objective_2))+4)/5) < 1{
+            y = objective+objective_2;
+            STATUS = "OBJECTIVE_2"
             //le délai me pose problème car en gameplay normal, on attend déjà pour arrivé à la case demandé.
             //alarm_set(0,10);
             Can_navigate=true;
             }
+        break;
+        
+    case "OBJECTIVE_2":
+        //On parcours la petite distance à vitesse fixe pour le moment ?
+        y-= sign(objective_2);
+        if y = objective{
+            STATUS="SELECT";
+            
+        }
+        
+    
         break;
     
     case "UNDERLINE":
@@ -125,26 +142,37 @@ switch(STATUS){
         
     case "OUT-INVENTORY":
         //On sort et l'on invoque l'inventaire.
-        if y-84 < view_yview[0]+view_hview[0]{
-            y += (y-(view_yview[0]+view_hview[0]-107)+6)/17;
+        if y-45 < view_yview[0]+view_hview[0]{
+            y += (((view_yview[0]+view_hview[0])-(y-45))+6)/17;
+            if !instance_exists(object_inventory){
+                instance_create(view_xview[0]+(view_wview[0]/2),view_yview[0]+(view_hview[0]/2),object_inventory);
+                }
             }
         else{
             //On attend que l'inventaire disparaisse pour revenir.
             if !instance_exists(object_inventory){
-                STATUS="DISPLAY";
+                if alarm[1]= -1{
+                    alarm_set(1,10);
+                    }
                 }
             }
         break;
         
     case "OUT-OPTIONS":
         //On sort et l'on invoque le livre.
-        if y-84 < view_yview[0]+view_hview[0]{
-            y += (y-(view_yview[0]+view_hview[0]-107)+6)/17;
+        if y-45 < view_yview[0]+view_hview[0]{
+            y += (((view_yview[0]+view_hview[0])-(y-45))+6)/17;
+            
+            if !instance_exists(object_white_book){
+                instance_create(view_xview[0],view_yview[0]+view_hview[0],object_white_book);
+                }
             }
         else{
             //On attend que le livre disparaisse pour revenir.
             if !instance_exists(object_white_book){
-                STATUS="DISPLAY";
+                if alarm[1]= -1{
+                    alarm_set(1,10);
+                    }
                 }
             }
         break;
@@ -158,3 +186,11 @@ switch(STATUS){
 draw_self();
 draw_text(x,y,string(path_position));
 draw_text(x,y+15,string(path_endaction));
+draw_text(x,y+30,string(STATUS));
+if instance_exists(object_pause){
+    draw_text(x,y+45,string(object_pause.STATUS));
+    }
+
+
+
+

@@ -1,4 +1,4 @@
-// 2019-04-24 13:06:52
+// 2019-05-07 19:40:18
 #event create|Récupération des strings necessaire pour intéragir dans les menus:
 if room = room_title{STATUS = "TITLE";}else{STATUS = "OPTIONS";}
 image_speed = 0;
@@ -14,9 +14,9 @@ texts = script_word_light(0,50);
 if STATUS = "TITLE"{
     if !instance_exists(object_play){
         instance_create(x+248,y+51,object_play);
-        instance_create(x+248,y+87,object_album);
+        instance_create(x+248,y+86,object_album);
         instance_create(x+248,y+123,object_options_main_menu);
-        instance_create(x+248,y+159,object_credits);
+        instance_create(x+248,y+158,object_credits);
         left_title = instance_create(x+242,y+57,object_leftbutton_main_menu);
         }
     }
@@ -32,7 +32,7 @@ else{
         
 if STATUS = "OPTIONS"{
     if !instance_exists(object_video_options){
-        instance_create(x+248,y+51,object_video_options);
+        instance_create(x+248,y+50,object_video_options);
         instance_create(x+248,y+87,object_sound);
         instance_create(x+248,y+123,object_controlles);
         instance_create(x+248,y+159,object_langage);
@@ -240,8 +240,35 @@ if STATUS = "OPTIONS_SEE_CONTROLS"{
         }
     }
 
-
+if room=room_level{
+    //On s'occupe de faire translater le livre (penser à faire translater le reste des objets pour l'entrée/la sortie);
+    if y+sprite_height != view_yview[0]+view_hview[0]{
+        y += ((view_yview[0])-y)/14
         
+        object_video_options.x=x+248;
+        object_video_options.y=y+50;
+        
+        object_sound.x=x+248;
+        object_sound.y=y+87;
+        
+        object_controlles.x=x+248;
+        object_controlles.y=y+123;
+        
+        object_langage.x=x+248;
+        object_langage.y=y+159;
+        
+        object_leftbutton_main_menu.x=x+243;
+        object_leftbutton_main_menu.y=y+57;
+        
+        }
+    }
+
+
+        instance_create(x+248,y+50,object_video_options);
+        instance_create(x+248,y+87,object_sound);
+        instance_create(x+248,y+123,object_controlles);
+        instance_create(x+248,y+159,object_langage);
+        left_options = instance_create(y+243,y+57,object_leftbutton_main_menu);
     
     
         
@@ -311,13 +338,13 @@ else{
                 else{
                     if STATUS = "OPTIONS-MAPPING"{
                         image_index = 0; 
-                        draw_sprite(sprite_cadre,0,x+52,y+18);
+                        draw_sprite(sprite_cadre,0,x+51,y+18);
                         draw_sprite(sprite_cadre,0,x+221,y+18);
                         //Background polaro gauche:
-                        draw_sprite(sprite_background_polaro,0,x+58,y+23);
-                        draw_sprite_ext(sprite_background_polaro,0,x+197,y+23,-1,1,0,c_white,1);
-                        draw_sprite_ext(sprite_background_polaro,0,x+58,y+97,1,-1,0,c_white,1);
-                        draw_sprite_ext(sprite_background_polaro,0,x+197,y+97,-1,-1,0,c_white,1);
+                        draw_sprite(sprite_background_polaro,0,x+57,y+23);
+                        draw_sprite_ext(sprite_background_polaro,0,x+196,y+23,-1,1,0,c_white,1);
+                        draw_sprite_ext(sprite_background_polaro,0,x+57,y+97,1,-1,0,c_white,1);
+                        draw_sprite_ext(sprite_background_polaro,0,x+196,y+97,-1,-1,0,c_white,1);
                         
                         //Background polaro droit:
                         draw_sprite(sprite_background_polaro,0,x+227,y+23);
@@ -325,16 +352,16 @@ else{
                         draw_sprite_ext(sprite_background_polaro,0,x+227,y+97,1,-1,0,c_white,1);
                         draw_sprite_ext(sprite_background_polaro,0,x+366,y+97,-1,-1,0,c_white,1);
                         
-                        draw_sprite(sprite_small_controller,0,x+80,y+27);
+                        draw_sprite(sprite_small_controller,0,x+79,y+27);
                         draw_sprite(sprite_keyboard,0,x+232,y+34);
                         
                         draw_set_font(global.font_title);
                         draw_set_valign(fa_top);
                         draw_set_halign(fa_center);
-                        draw_text(x+126,y+91,texts[3]);
-                        draw_text(x+297,y+91,texts[4]);
+                        draw_text(x+125,y+91,texts[3]);
+                        draw_text(x+296,y+91,texts[4]);
                         draw_set_halign(fa_left);
-                        draw_text(x+53,y+150,texts[5]);
+                        draw_text(x+52,y+150,texts[5]);
                         
                         }
                     else{

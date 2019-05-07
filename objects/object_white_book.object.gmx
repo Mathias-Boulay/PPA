@@ -287,8 +287,29 @@ if STATUS = "OPTIONS_SEE_CONTROLS"{
         }
     }
 
-
+if room=room_level{
+    //On s'occupe de faire translater le livre (penser à faire translater le reste des objets pour l'entrée/la sortie);
+    if y+sprite_height != view_yview[0]+view_hview[0]{
+        y += ((view_yview[0])-y)/14
         
+        object_video_options.x=x+248;
+        object_video_options.y=y+50;
+        
+        object_sound.x=x+248;
+        object_sound.y=y+87;
+        
+        object_controlles.x=x+248;
+        object_controlles.y=y+123;
+        
+        object_langage.x=x+248;
+        object_langage.y=y+159;
+        
+        object_leftbutton_main_menu.x=x+243;
+        object_leftbutton_main_menu.y=y+57;
+        
+        }
+    }
+
     
     
         

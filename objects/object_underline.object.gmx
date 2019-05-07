@@ -82,6 +82,9 @@ if STATUS ="ACTION"{
     STATUS = "";
     if place_meeting(x-10,y-5,object_home){
         //On revient au menu principal.
+        //Pensez plus tard à gérer l'intégration de la non-sauvegarde.
+        instance_create(0,0,object_fade);
+        object_fade.STATUS="TITLE"
         }
     else{
         if place_meeting(x-10,y-5,object_restart){

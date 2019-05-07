@@ -1,38 +1,50 @@
-// 2019-04-21 21:06:46
+// 2019-05-07 19:20:45
 #event create
 STATUS="";
+position=y-object_pause.y;
 
-#event step
-///Déclencher l'action correspondante à l'option choisie.
+#event step|Déclencher l'action correspondante à l'option choisie.
 if STATUS ="ACTION"{
     //Reset le status:
     STATUS = "";
-    if place_meeting(x,y-5,object_home){
+    if place_meeting(x-10,y-5,object_home){
         //On revient au menu principal.
+        //Pensez plus tard à gérer l'intégration de la non-sauvegarde.
+        instance_create(0,0,object_fade);
+        object_fade.STATUS="TITLE"
         }
     else{
-        if place_meeting(x,y-5,object_restart){
+        if place_meeting(x-10,y-5,object_restart){
             //pour le moment, juste un fondu sans pénalité.
             instance_create(x,y,object_respawn);
             }
         else{
-            if place_meeting(x,y-5,object_options){
-            //Apparition du livre qui doit s'autoplacer sans status sup.
-            instance_create(view_xview[0],view_yview[0]+view_hview[0],object_white_book);
+            if place_meeting(x-10,y-5,object_options){
+            //On sort puis on amène le livre.
+            object_right_hand_pause.STATUS="OUT-OPTIONS";
+            object_pause.STATUS="OUT-OPTIONS";
             }
             else{
-                if place_meeting(x,y-5,object_pockets){
+                if place_meeting(x-10,y-5,object_pockets){
                     //Le menu de pause se barre pour l'inventaire. Penser à bouger l'underligne aussi.
                     object_right_hand_pause.STATUS="OUT-INVENTORY";
                     object_pause.STATUS="OUT-INVENTORY";
                     }
                 else{
                     //C'est l'objet resume qui est touché.
-                    object_right_hand_pause.STATUS="OUT-OPTIONS";
-                    object_pause.STATUS="OUT-OPTIONS";
+                    object_right_hand_pause.STATUS="OUT";
+                    object_pause.STATUS="OUT";
+                    
                     }
                 }
             }
         }
     }
 
+
+
+#event step_end|Placement et destruction
+y=object_pause.y+position;
+if y > view_yview[0]+view_hview[0]+10{
+    instance_destroy();
+    }

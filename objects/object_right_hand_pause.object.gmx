@@ -35,6 +35,30 @@ Objective="";
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///On passe en mode display:
+STATUS="DISPLAY";
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="2" enumb="0">
       <action>
         <libid>1</libid>
@@ -52,8 +76,9 @@ Objective="";
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//Enable the navigation
+            <string>///Enable the navigation
 Can_navigate=true;
+
 </string>
           </argument>
         </arguments>
@@ -79,7 +104,7 @@ Can_navigate=true;
             <string>switch(STATUS){
     case "DISPLAY":
         //S'afficher avec une animation de décélération:
-        y -= (y-(view_yview[0]+view_hview[0]-162)+6)/17;
+        y -= (y-(view_yview[0]+view_hview[0]-162)+10)/17;
         if abs(y-(view_yview[0]+view_hview[0]-162)) &lt; 1{
             y = view_yview[0]+view_hview[0]-162;
             STATUS= "SELECT";
@@ -88,7 +113,7 @@ Can_navigate=true;
         
     case "OUT":
         //on sort avec une animatin acceleration:
-        y += (y-(view_yview[0]+view_hview[0]-162)+6)/17;
+        y += (y-(view_yview[0]+view_hview[0]-162)+10)/17;
         if y-46 &gt; view_yview[0]+view_hview[0]{
             instance_destroy();
             }
@@ -100,6 +125,7 @@ Can_navigate=true;
                 if abs(global.axislv[0]) &gt; 0.2{
                     if collision_line(x,y+sign(global.axislv[0])*27,object_resume.x,y+sign(global.axislv[0])*27,object_resume,false,false) != noone{
                         objective=y+sign(global.axislv[0])*27;
+                        objective_2=sign(objective)*4;
                         STATUS ="OBJECTIVE";
                         Can_navigate=false;
                         }
@@ -158,14 +184,25 @@ Can_navigate=true;
         break;
         
     case "OBJECTIVE":
-        y += ((objective-y)+1)/5;
-        if abs(((y-objective)+1)/5) &lt; 1{
-            y = objective;
-            STATUS = "SELECT"
+        y += (((objective+objective_2)-y)+4)/5;
+        if abs(((y-(objective+objective_2))+4)/5) &lt; 1{
+            y = objective+objective_2;
+            STATUS = "OBJECTIVE_2"
             //le délai me pose problème car en gameplay normal, on attend déjà pour arrivé à la case demandé.
             //alarm_set(0,10);
             Can_navigate=true;
             }
+        break;
+        
+    case "OBJECTIVE_2":
+        //On parcours la petite distance à vitesse fixe pour le moment ?
+        y-= sign(objective_2);
+        if y = objective{
+            STATUS="SELECT";
+            
+        }
+        
+    
         break;
     
     case "UNDERLINE":
@@ -192,7 +229,7 @@ Can_navigate=true;
     case "OUT-INVENTORY":
         //On sort et l'on invoque l'inventaire.
         if y-45 &lt; view_yview[0]+view_hview[0]{
-            y += (((view_yview[0]+view_hview[0])-(y-45))+6)/17;
+            y += (((view_yview[0]+view_hview[0])-(y-45))+10)/17;
             if !instance_exists(object_inventory){
                 instance_create(view_xview[0]+(view_wview[0]/2),view_yview[0]+(view_hview[0]/2),object_inventory);
                 }
@@ -200,7 +237,9 @@ Can_navigate=true;
         else{
             //On attend que l'inventaire disparaisse pour revenir.
             if !instance_exists(object_inventory){
-                STATUS="DISPLAY";
+                if alarm[1]= -1{
+                    alarm_set(1,10);
+                    }
                 }
             }
         break;
@@ -208,7 +247,7 @@ Can_navigate=true;
     case "OUT-OPTIONS":
         //On sort et l'on invoque le livre.
         if y-45 &lt; view_yview[0]+view_hview[0]{
-            y += (((view_yview[0]+view_hview[0])-(y-45))+6)/17;
+            y += (((view_yview[0]+view_hview[0])-(y-45))+10)/17;
             
             if !instance_exists(object_white_book){
                 instance_create(view_xview[0],view_yview[0]+view_hview[0],object_white_book);
@@ -217,7 +256,9 @@ Can_navigate=true;
         else{
             //On attend que le livre disparaisse pour revenir.
             if !instance_exists(object_white_book){
-                STATUS="DISPLAY";
+                if alarm[1]= -1{
+                    alarm_set(1,10);
+                    }
                 }
             }
         break;

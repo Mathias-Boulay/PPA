@@ -113,6 +113,8 @@ else{
             }
         }
     }
+    
+image_alpha=object_inventory.image_alpha;
 </string>
           </argument>
         </arguments>
