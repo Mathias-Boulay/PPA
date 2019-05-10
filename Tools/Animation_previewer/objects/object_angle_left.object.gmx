@@ -52,7 +52,7 @@ image_angle=90;
           <argument>
             <kind>1</kind>
             <string>y=object_vision.y;
-x=object_speed2down.x+(object_speed2down.sprite_width/2)+(sprite_width/2);
+x=object_speeddown.x+(object_speeddown.sprite_width/2)+(sprite_width/2);
 </string>
           </argument>
         </arguments>
