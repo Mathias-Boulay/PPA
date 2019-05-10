@@ -211,7 +211,7 @@
     <option_changeresolution>false</option_changeresolution>
     <option_closeesc>true</option_closeesc>
     <option_colordepth>0</option_colordepth>
-    <option_display_name>Font viewer</option_display_name>
+    <option_display_name>Font previewer</option_display_name>
     <option_displayerrors>True</option_displayerrors>
     <option_ecma>0</option_ecma>
     <option_facebook_app_display_name></option_facebook_app_display_name>
@@ -438,7 +438,7 @@
     <option_scaleprogress>true</option_scaleprogress>
     <option_sci_UseSCI>0</option_sci_UseSCI>
     <option_sci_serverLocation></option_sci_serverLocation>
-    <option_screenkey>True</option_screenkey>
+    <option_screenkey>False</option_screenkey>
     <option_screenshotkey>true</option_screenshotkey>
     <option_shortcircuit>True</option_shortcircuit>
     <option_showcursor>True</option_showcursor>
@@ -489,13 +489,13 @@
     <option_use_new_audio>True</option_use_new_audio>
     <option_variableerrors>False</option_variableerrors>
     <option_version>100</option_version>
-    <option_version_build>0</option_version_build>
-    <option_version_company></option_version_company>
-    <option_version_copyright></option_version_copyright>
-    <option_version_description></option_version_description>
-    <option_version_major>1</option_version_major>
-    <option_version_minor>0</option_version_minor>
-    <option_version_product></option_version_product>
+    <option_version_build>4</option_version_build>
+    <option_version_company>Ocho Data</option_version_company>
+    <option_version_copyright>Mine</option_version_copyright>
+    <option_version_description>Noone</option_version_description>
+    <option_version_major>2</option_version_major>
+    <option_version_minor>1</option_version_minor>
+    <option_version_product>Tool</option_version_product>
     <option_version_release>0</option_version_release>
     <option_win8_advertising_appid></option_win8_advertising_appid>
     <option_win8_advertising_enable>0</option_win8_advertising_enable>
@@ -569,18 +569,18 @@
     <option_winUAP_wide_logo>Configs\Default\WindowsUAP\logos\WideLogo.scale-100.png</option_winUAP_wide_logo>
     <option_windowcolor>clBlack</option_windowcolor>
     <option_windows_alternate_sync_method>False</option_windows_alternate_sync_method>
-    <option_windows_build_version>0</option_windows_build_version>
-    <option_windows_company_info></option_windows_company_info>
-    <option_windows_copyright_info></option_windows_copyright_info>
+    <option_windows_build_version>4</option_windows_build_version>
+    <option_windows_company_info>Ocho Data</option_windows_company_info>
+    <option_windows_copyright_info>Mine</option_windows_copyright_info>
     <option_windows_create_textures_on_demand>False</option_windows_create_textures_on_demand>
-    <option_windows_description_info></option_windows_description_info>
+    <option_windows_description_info>Noone</option_windows_description_info>
     <option_windows_enable_steam>0</option_windows_enable_steam>
     <option_windows_game_icon>Configs\Default\windows\runner_icon.ico</option_windows_game_icon>
     <option_windows_license>Configs\Default\windows\License.txt</option_windows_license>
-    <option_windows_mainor_version>0</option_windows_mainor_version>
-    <option_windows_major_version>1</option_windows_major_version>
+    <option_windows_mainor_version>1</option_windows_mainor_version>
+    <option_windows_major_version>2</option_windows_major_version>
     <option_windows_nsis_file>Configs\Default\windows\RunnerInstaller.nsi</option_windows_nsis_file>
-    <option_windows_product_info></option_windows_product_info>
+    <option_windows_product_info>Tool</option_windows_product_info>
     <option_windows_release_version>0</option_windows_release_version>
     <option_windows_runner_finished>Configs\Default\windows\Runner_finish.bmp</option_windows_runner_finished>
     <option_windows_runner_header>Configs\Default\windows\Runner_header.bmp</option_windows_runner_header>
