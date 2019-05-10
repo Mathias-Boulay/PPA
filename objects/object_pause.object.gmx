@@ -122,6 +122,7 @@ switch(STATUS){
             y = view_yview[0]+view_hview[0]-107;
             }
         break;
+        
     case "OUT":
         //Dans le cas ou l'on doit sortir:
         y += (y-(view_yview[0]+view_hview[0]-107)+10)/17;
@@ -129,6 +130,7 @@ switch(STATUS){
             instance_destroy();
             }
         break;
+        
     case "OUT-INVENTORY":
         //On sort et l'on invoque l'inventaire.
         if y-84 &lt; view_yview[0]+view_hview[0]{

@@ -35,6 +35,29 @@ Objective="";
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>object_pause.STATUS = "OUT";
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="2" enumb="1">
       <action>
         <libid>1</libid>
@@ -125,7 +148,7 @@ Can_navigate=true;
                 if abs(global.axislv[0]) &gt; 0.2{
                     if collision_line(x,y+sign(global.axislv[0])*27,object_resume.x,y+sign(global.axislv[0])*27,object_resume,false,false) != noone{
                         objective=y+sign(global.axislv[0])*27;
-                        objective_2=sign(objective)*4;
+                        //objective_2=sign(objective)*4;
                         STATUS ="OBJECTIVE";
                         Can_navigate=false;
                         }
@@ -178,32 +201,33 @@ Can_navigate=true;
                 }   
             if global.face2[0]{
                 STATUS = "OUT";
-                object_pause.STATUS = "OUT";
+                alarm_set(2,15);
                 }
             }
         break;
         
     case "OBJECTIVE":
-        y += (((objective+objective_2)-y)+4)/5;
-        if abs(((y-(objective+objective_2))+4)/5) &lt; 1{
-            y = objective+objective_2;
-            STATUS = "OBJECTIVE_2"
+        y += (objective-y)/5;
+        //y += ((objective-y)+sign(objective)*4)/5;
+        if abs((objective-y))/5 &lt; 0.4{
+            y = objective;
+            STATUS = "SELECT"
             //le délai me pose problème car en gameplay normal, on attend déjà pour arrivé à la case demandé.
             //alarm_set(0,10);
             Can_navigate=true;
             }
         break;
-        
+    
+    /*    
     case "OBJECTIVE_2":
         //On parcours la petite distance à vitesse fixe pour le moment ?
         y-= sign(objective_2);
-        if y = objective{
+        if y = abs(y-objective) &lt; 1{
             STATUS="SELECT";
-            
+            y=abs(y-objective);
         }
-        
-    
         break;
+    */
     
     case "UNDERLINE":
         if !instance_exists(object_underline){

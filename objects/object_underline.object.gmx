@@ -95,6 +95,7 @@ if STATUS ="ACTION"{
             if place_meeting(x-10,y-5,object_options){
             //On sort puis on amène le livre.
             object_right_hand_pause.STATUS="OUT-OPTIONS";
+            alarm_set(0,20);
             object_pause.STATUS="OUT-OPTIONS";
             }
             else{
