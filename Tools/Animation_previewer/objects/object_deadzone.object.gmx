@@ -43,6 +43,104 @@ for(i=1;i&lt;=10;i++){
         directory_create(working_directory+"Png/"+string(i));
         }
     }
+alarm_set(0,room_speed);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Actualisation du container:
+instance_destroy(object_container);
+instance_create(x,y,object_container);
+
+for(i=1;i&lt;=9;i++){
+    file=file_find_first(working_directory+"Png/"+string(i)+"/*.png",0);
+        if file != ""{
+        object_container.sprites[i-1,0]=sprite_add(working_directory+"Png/"+file,0,false,false,0,0);
+        sprite_set_offset(object_container.sprites[i-1,0],sprite_get_width(object_container.sprites[i-1,0])/2,sprite_get_height(object_container.sprites[i-1,0])/2);
+        //The we start the rest
+        for(j=0;j&gt; -1;j++){
+            file=file_find_next();
+            if file !=""{
+                object_container.sprites[i-1,j]=sprite_add(working_directory+"Png/"+file,0,false,false,0,0);
+                sprite_set_offset(object_container.sprites[i-1,j],sprite_get_width(object_container.sprites[i-1,j])/2,sprite_get_height(object_container.sprites[i-1,j])/2);
+                }
+            else{
+                j= -10;
+                }
+            }
+        }
+    }
+    
+    
+alarm_set(1,room_speed);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>instance_destroy(object_back_data);
+instance_destroy(object_sprite);
+instance_destroy(object_container);
+instance_create(x,y,object_container);
+
+
+for(i=1;i&lt;=9;i++){
+    file=file_find_first(working_directory+"Png/"+string(i)+"/*.png",0);
+        if file != ""{
+        object_container.sprites[i-1,0]=sprite_add(working_directory+"Png/"+file,0,false,false,0,0);
+        sprite_set_offset(object_container.sprites[i-1,0],sprite_get_width(object_container.sprites[i-1,0])/2,sprite_get_height(object_container.sprites[i-1,0])/2);
+        //The we start the rest
+        for(j=0;j&gt; -1;j++){
+            file=file_find_next();
+            if file !=""{
+                object_container.sprites[i-1,j]=sprite_add(working_directory+"Png/"+file,0,false,false,0,0);
+                sprite_set_offset(object_container.sprites[i-1,j],sprite_get_width(object_container.sprites[i-1,j])/2,sprite_get_height(object_container.sprites[i-1,j])/2);
+                }
+            else{
+                j= -10;
+                }
+            }
+        }
+    }
+    
+instance_create(room_width/2,room_height/2,object_sprite);
+instance_create(0,0,object_back_data);
+alarm_set(1,room_speed);
 </string>
           </argument>
         </arguments>

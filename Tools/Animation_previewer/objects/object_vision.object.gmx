@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>y=room_height-(sprite_height/2);
-x=sprite_width/2;
+x=-sprite_width/2;
 </string>
           </argument>
         </arguments>
