@@ -72,7 +72,8 @@ x=object_vision.x+(object_vision.sprite_width/2)+(sprite_width/2);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.scale=max(1,global.scale+1);
+            <string>global.scale+=1;
+if global.scale=0{global.scale=1;}
 </string>
           </argument>
         </arguments>

@@ -58,7 +58,7 @@ temp=0;
             <string>image_speed=global.vit;
 image_angle=global.angle;
 image_xscale=global.scale;
-image_yscale=global.scale;
+image_yscale=abs(global.scale);
 
 if image_speed &gt; 0{
     if image_index+image_speed &gt;= 1{

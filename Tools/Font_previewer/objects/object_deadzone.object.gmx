@@ -156,6 +156,7 @@ window_center();
           <argument>
             <kind>1</kind>
             <string>///Actualisation du background:
+sprite_delete(global.back);
 file=file_find_first(working_directory+"background_image/*.png",0);
 if file != ""{
     global.back =sprite_add(working_directory+"background_image/"+file,0,false,false,0,0);

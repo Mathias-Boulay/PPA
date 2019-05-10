@@ -73,14 +73,14 @@ instance_create(x,y,object_container);
 for(i=1;i&lt;=9;i++){
     file=file_find_first(working_directory+"Png/"+string(i)+"/*.png",0);
         if file != ""{
-        object_container.sprites[i-1,0]=sprite_add(working_directory+"Png/"+file,0,false,false,0,0);
-        sprite_set_offset(object_container.sprites[i-1,0],sprite_get_width(object_container.sprites[i-1,0])/2,sprite_get_height(object_container.sprites[i-1,0])/2);
+        object_container.sprites[i-1,0]=sprite_add(working_directory+"Png/"+string(i)+"/"+file,0,false,false,0,0);
+        //sprite_set_offset(object_container.sprites[i-1,0],sprite_get_width(object_container.sprites[i-1,0])/2,sprite_get_height(object_container.sprites[i-1,0])/2);
         //The we start the rest
         for(j=0;j&gt; -1;j++){
             file=file_find_next();
             if file !=""{
-                object_container.sprites[i-1,j]=sprite_add(working_directory+"Png/"+file,0,false,false,0,0);
-                sprite_set_offset(object_container.sprites[i-1,j],sprite_get_width(object_container.sprites[i-1,j])/2,sprite_get_height(object_container.sprites[i-1,j])/2);
+                object_container.sprites[i-1,j]=sprite_add(working_directory+"Png/"+string(i)+"/"+file,0,false,false,0,0);
+                //sprite_set_offset(object_container.sprites[i-1,j],sprite_get_width(object_container.sprites[i-1,j])/2,sprite_get_height(object_container.sprites[i-1,j])/2);
                 }
             else{
                 j= -10;
@@ -122,14 +122,14 @@ instance_create(x,y,object_container);
 for(i=1;i&lt;=9;i++){
     file=file_find_first(working_directory+"Png/"+string(i)+"/*.png",0);
         if file != ""{
-        object_container.sprites[i-1,0]=sprite_add(working_directory+"Png/"+file,0,false,false,0,0);
-        sprite_set_offset(object_container.sprites[i-1,0],sprite_get_width(object_container.sprites[i-1,0])/2,sprite_get_height(object_container.sprites[i-1,0])/2);
+        object_container.sprites[i-1,0]=sprite_add(working_directory+"Png/"+string(i)+"/"+file,0,false,false,0,0);
+        //sprite_set_offset(object_container.sprites[i-1,0],(sprite_get_width(object_container.sprites[i-1,0])/2),(sprite_get_height(object_container.sprites[i-1,0])/2));
         //The we start the rest
         for(j=0;j&gt; -1;j++){
             file=file_find_next();
             if file !=""{
-                object_container.sprites[i-1,j]=sprite_add(working_directory+"Png/"+file,0,false,false,0,0);
-                sprite_set_offset(object_container.sprites[i-1,j],sprite_get_width(object_container.sprites[i-1,j])/2,sprite_get_height(object_container.sprites[i-1,j])/2);
+                object_container.sprites[i-1,j]=sprite_add(working_directory+"Png/"+string(i)+"/"+file,0,false,false,0,0);
+                //sprite_set_offset(object_container.sprites[i-1,j],(sprite_get_width(object_container.sprites[i-1,j])/2),(sprite_get_height(object_container.sprites[i-1,j])/2));
                 }
             else{
                 j= -10;
