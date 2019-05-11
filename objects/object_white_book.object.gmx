@@ -26,7 +26,13 @@
           <argument>
             <kind>1</kind>
             <string>///Récupération des strings necessaire pour intéragir dans les menus:
-if room = room_title{STATUS = "TITLE";}else{STATUS = "OPTIONS";}
+if room = room_title{
+    STATUS = "TITLE";
+    }
+else{
+    STATUS = "OPTIONS";
+    SUB_STATUS="DISPLAY";
+    }
 image_speed = 0;
 page = 0;
 //Cela risque d'être long si mal géré
@@ -288,25 +294,79 @@ if STATUS = "OPTIONS_SEE_CONTROLS"{
     }
 
 if room=room_level{
-    //On s'occupe de faire translater le livre (penser à faire translater le reste des objets pour l'entrée/la sortie);
-    if y+sprite_height != view_yview[0]+view_hview[0]{
-        y += ((view_yview[0])-y)/14
-        
-        object_video_options.x=x+248;
-        object_video_options.y=y+50;
-        
-        object_sound.x=x+248;
-        object_sound.y=y+87;
-        
-        object_controlles.x=x+248;
-        object_controlles.y=y+123;
-        
-        object_langage.x=x+248;
-        object_langage.y=y+159;
-        
-        object_leftbutton_main_menu.x=x+243;
-        object_leftbutton_main_menu.y=y+57;
-        
+    if SUB_STATUS = "DISPLAY"{
+        //On s'occupe de faire translater le livre (penser à faire translater le reste des objets pour l'entrée/la sortie);
+        if abs((view_yview[0]+view_hview[0])-(y+sprite_height)) &lt; 0.4{
+            SUB_STATUS="";
+            y = view_yview[0]+view_hview[0]-sprite_height;
+            
+            object_video_options.x=x+248;
+            object_video_options.y=y+50;
+            
+            object_sound.x=x+248;
+            object_sound.y=y+87;
+            
+            object_controlles.x=x+248;
+            object_controlles.y=y+123;
+            
+            object_langage.x=x+248;
+            object_langage.y=y+159;
+            
+            object_leftbutton_main_menu.x=x+241;
+            object_leftbutton_main_menu.y=y+57;
+            }
+        else{
+            y += ((view_yview[0])-y)/14
+            
+            object_video_options.x=x+248;
+            object_video_options.y=y+50;
+            
+            object_sound.x=x+248;
+            object_sound.y=y+87;
+            
+            object_controlles.x=x+248;
+            object_controlles.y=y+123;
+            
+            object_langage.x=x+248;
+            object_langage.y=y+159;
+            
+            object_leftbutton_main_menu.x=x+238;
+            object_leftbutton_main_menu.y=y+57;
+            }
+        }
+    else{
+        if SUB_STATUS="OUT"{
+            //On sort direct.
+            if y &lt;= view_yview[0]+view_hview[0]{
+                //On continue de se tailler:
+                y += ((y-view_yview[0])+4)/14;
+                
+                object_video_options.x=x+248;
+                object_video_options.y=y+50;
+                
+                object_sound.x=x+248;
+                object_sound.y=y+87;
+                
+                object_controlles.x=x+248;
+                object_controlles.y=y+123;
+                
+                object_langage.x=x+248;
+                object_langage.y=y+159;
+                
+                object_leftbutton_main_menu.x=x+238;
+                object_leftbutton_main_menu.y=y+57;
+                
+                }
+            else{
+                //On meure.
+                instance_destroy();
+                instance_destroy(object_video_options);
+                instance_destroy(object_sound);
+                instance_destroy(object_controlles);
+                instance_destroy(object_langage);
+                instance_destroy(object_leftbutton_main_menu);
+                }
+            }
         }
     }
 
@@ -471,6 +531,12 @@ else{
                 }
             }
         }
+    }
+    
+if room=room_level{
+    //On dessine les deux mains:
+    draw_sprite(sprite_hand_white_book,0,x+63,y+160);
+    draw_sprite_ext(sprite_hand_white_book,0,x+359,y+160,-1,1,0,c_white,1);
     }
         
 

@@ -74,6 +74,58 @@ instance_destroy(object_underline);
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//Création initiale du livre d'options
+if !instance_exists(object_white_book){
+    instance_create(view_xview[0],view_yview[0]+view_hview[0],object_white_book);
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Création initiale de l'objet inventaire.
+if !instance_exists(object_inventory){
+    instance_create(view_xview[0]+(view_wview[0]/2),view_yview[0]+(view_hview[0]/2),object_inventory);
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="2" enumb="0">
       <action>
         <libid>1</libid>
@@ -135,14 +187,11 @@ switch(STATUS){
         //On sort et l'on invoque l'inventaire.
         if y-84 &lt; view_yview[0]+view_hview[0]{
             y += abs(y-(view_yview[0]+view_hview[0]-107)+10)/17;
-            //Création initiale puis on attend que l'objet disparaisse:
-            if !instance_exists(object_inventory){
-                instance_create(view_xview[0]+(view_wview[0]/2),view_yview[0]+(view_hview[0]/2),object_inventory);
-                }
+            alarm_set(1,2);
             }
         else{
             
-            if !instance_exists(object_inventory){
+            if !instance_exists(object_inventory) &amp;&amp; alarm[1] =-1 {
                 STATUS="DISPLAY";
                 }
             }
@@ -152,15 +201,12 @@ switch(STATUS){
         //On sort et l'on invoque le livre.
         if y-84 &lt; view_yview[0]+view_hview[0]{
             y += (((view_yview[0]+view_hview[0])-(y-84))+10)/17;
+            alarm_set(2,2);
             
-            //Création initiale puis on attend que l'objet disparaisse:
-            if !instance_exists(object_white_book){
-                instance_create(view_xview[0],view_yview[0]+view_hview[0],object_white_book);
-                }
             }
         else{
             
-            if !instance_exists(object_white_book){
+            if !instance_exists(object_white_book) &amp;&amp; alarm[2] =-1 {
                 STATUS="DISPLAY";
                 }
             }

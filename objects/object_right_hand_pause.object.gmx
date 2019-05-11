@@ -218,16 +218,6 @@ Can_navigate=true;
             }
         break;
     
-    /*    
-    case "OBJECTIVE_2":
-        //On parcours la petite distance à vitesse fixe pour le moment ?
-        y-= sign(objective_2);
-        if y = abs(y-objective) &lt; 1{
-            STATUS="SELECT";
-            y=abs(y-objective);
-        }
-        break;
-    */
     
     case "UNDERLINE":
         if !instance_exists(object_underline){
@@ -254,13 +244,10 @@ Can_navigate=true;
         //On sort et l'on invoque l'inventaire.
         if y-45 &lt; view_yview[0]+view_hview[0]{
             y += (((view_yview[0]+view_hview[0])-(y-45))+10)/17;
-            if !instance_exists(object_inventory){
-                instance_create(view_xview[0]+(view_wview[0]/2),view_yview[0]+(view_hview[0]/2),object_inventory);
-                }
             }
         else{
             //On attend que l'inventaire disparaisse pour revenir.
-            if !instance_exists(object_inventory){
+            if !instance_exists(object_inventory) &amp;&amp; object_pause.alarm[1] = -1{
                 if alarm[1]= -1{
                     alarm_set(1,10);
                     }
@@ -272,14 +259,10 @@ Can_navigate=true;
         //On sort et l'on invoque le livre.
         if y-45 &lt; view_yview[0]+view_hview[0]{
             y += (((view_yview[0]+view_hview[0])-(y-45))+10)/17;
-            
-            if !instance_exists(object_white_book){
-                instance_create(view_xview[0],view_yview[0]+view_hview[0],object_white_book);
-                }
             }
         else{
             //On attend que le livre disparaisse pour revenir.
-            if !instance_exists(object_white_book){
+            if !instance_exists(object_white_book) &amp;&amp; object_pause.alarm[2] = -1{
                 if alarm[1]= -1{
                     alarm_set(1,10);
                     }

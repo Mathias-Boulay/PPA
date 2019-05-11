@@ -327,6 +327,7 @@
     <sprite>sprites\sprite196</sprite>
     <sprite>sprites\sprite_start_level_overlay_1</sprite>
     <sprite>sprites\sprite_start_level_overlay_2</sprite>
+    <sprite>sprites\sprite_hand_white_book</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background_title</background>

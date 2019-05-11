@@ -209,12 +209,8 @@ else{
                 script_fade_status("TITLE");
                 }
             else{
-                instance_destroy(object_white_book);
-                instance_destroy(object_video_options);
-                instance_destroy(object_sound);
-                instance_destroy(object_controlles);
-                instance_destroy(object_langage);
-                instance_destroy();
+                //On sort pour mourrir:
+                object_white_book.SUB_STATUS="OUT";
                 }
             }    
         }

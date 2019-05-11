@@ -32,6 +32,78 @@ position=y-object_pause.y;
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///On déclenche l'out classique de la pause:
+object_pause.STATUS="OUT";
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///On déclence le out inventory de la pause:
+object_pause.STATUS="OUT-INVENTORY";
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///On déclenche l'out option de la pause
+object_pause.STATUS="OUT-OPTIONS";
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="2">
       <action>
         <libid>1</libid>
@@ -95,20 +167,19 @@ if STATUS ="ACTION"{
             if place_meeting(x-10,y-5,object_options){
             //On sort puis on amène le livre.
             object_right_hand_pause.STATUS="OUT-OPTIONS";
-            alarm_set(0,20);
-            object_pause.STATUS="OUT-OPTIONS";
+            alarm_set(0,15);
+            
             }
             else{
                 if place_meeting(x-10,y-5,object_pockets){
                     //Le menu de pause se barre pour l'inventaire. Penser à bouger l'underligne aussi.
                     object_right_hand_pause.STATUS="OUT-INVENTORY";
-                    object_pause.STATUS="OUT-INVENTORY";
+                    alarm_set(1,15);
                     }
                 else{
                     //C'est l'objet resume qui est touché.
                     object_right_hand_pause.STATUS="OUT";
-                    object_pause.STATUS="OUT";
-                    
+                    alarm_set(2,15);
                     }
                 }
             }

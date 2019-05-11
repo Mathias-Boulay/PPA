@@ -43,6 +43,29 @@ y=round(view_yview[0]+(view_hview[0]/2)-(image_yscale/2));
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Auto-destruction delayé pour éviter les problèmes d'inputs.
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="2" enumb="0">
       <action>
         <libid>1</libid>
@@ -91,7 +114,8 @@ if abs(global.axislh[0]) &gt; 0.2 &amp;&amp; Can_navigate{
     if Choice = 1{Choice=2;}else{Choice=1;}
     }
 if global.face2[0]{
-    instance_destroy();
+    //Destruction de l'instance:
+    alarm_set(1,2);
     }
 if global.face1[0]{
     if Choice = 1{
@@ -100,12 +124,9 @@ if global.face1[0]{
             path_start(temp_path,2,path_action_stop,false);
             STATUS = "UNDERLINE";
             }
-        instance_destroy();
         }
-    else{
-        //On revient dans le menu de pause.
-        instance_destroy();
-        }
+    //Ensuite on détruit l'instance:
+    alarm_set(1,2);
     }
 
 </string>
