@@ -1491,6 +1491,7 @@ for(i=1;i&lt;=Number;i++){
     This_background.Xoffset= Xoffset;
     This_background.Yoffset= Yoffset;
     This_background.sprite_index = asset_get_index("sprite_"+string(Asset));
+    if This_background.sprite_index = -1{This_background.sprite_index = sprite_sample_walls;}
     This_background.image_speed = Speed;
     This_background.htiled = htiled;
     This_background.vtiled = vtiled;
