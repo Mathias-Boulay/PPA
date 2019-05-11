@@ -61,6 +61,7 @@ y=round(view_yview[0]+(view_hview[0]/2)-(image_yscale/2));
           <argument>
             <kind>1</kind>
             <string>///Auto-destruction delayé pour éviter les problèmes d'inputs.
+instance_destroy();
 </string>
           </argument>
         </arguments>

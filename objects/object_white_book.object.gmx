@@ -89,7 +89,7 @@ if STATUS = "OPTIONS"{
         instance_create(x+248,y+87,object_sound);
         instance_create(x+248,y+123,object_controlles);
         instance_create(x+248,y+159,object_langage);
-        left_options = instance_create(y+243,y+57,object_leftbutton_main_menu);
+        left_options = instance_create(x+243,y+57,object_leftbutton_main_menu);
         }
     }
 else{
@@ -533,7 +533,7 @@ else{
         }
     }
     
-if room=room_level{
+if room=room_level &amp;&amp; image_index = 0{
     //On dessine les deux mains:
     draw_sprite(sprite_hand_white_book,0,x+63,y+160);
     draw_sprite_ext(sprite_hand_white_book,0,x+359,y+160,-1,1,0,c_white,1);
