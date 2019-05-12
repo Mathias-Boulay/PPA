@@ -53,7 +53,9 @@ Yoffset="";
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>x=(view_xview[0]/Xaxis)+Xoffset;
+            <string>///PLacement DÉSACTIVÉ
+/*
+x=(view_xview[0]/Xaxis)+Xoffset;
 while(x+sprite_width&lt;view_xview[0]*htiled){
     x+=sprite_width;
     }
@@ -62,7 +64,8 @@ y=(view_yview[0]/Yaxis)+Yoffset;
 while(y+sprite_height&lt;view_yview[0]*vtiled){
     y+=sprite_height;
     }    
-
+*/
+    
 </string>
           </argument>
         </arguments>

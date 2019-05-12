@@ -312,11 +312,11 @@ if room=room_level{
             object_langage.x=x+248;
             object_langage.y=y+159;
             
-            object_leftbutton_main_menu.x=x+241;
+            object_leftbutton_main_menu.x=x+238;
             object_leftbutton_main_menu.y=y+57;
             }
         else{
-            y += ((view_yview[0])-y)/14
+            y +=(((view_yview[0])-y)+4)/12
             
             object_video_options.x=x+248;
             object_video_options.y=y+50;
@@ -535,8 +535,8 @@ else{
     
 if room=room_level &amp;&amp; image_index = 0{
     //On dessine les deux mains:
-    draw_sprite(sprite_hand_white_book,0,x+63,y+160);
-    draw_sprite_ext(sprite_hand_white_book,0,x+359,y+160,-1,1,0,c_white,1);
+    draw_sprite(sprite_hand_white_book,0,x+63,y+180);
+    draw_sprite_ext(sprite_hand_white_book,0,x+359,y+180,-1,1,0,c_white,1);
     }
         
 
