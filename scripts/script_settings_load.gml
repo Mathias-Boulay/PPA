@@ -30,18 +30,22 @@ global.keyboard_shoulderl=ini_read_real("controls","shoulderl",ord("A"));
 
 
 
-//Apply windows_size/fullscreen:
+//Apply windows_size/fullscreen: DISABLED FOR NEW VIEW SYSTEM
+
 if global.fullscreen = "true"{    
     window_set_fullscreen(true);
+    surface_resize(application_surface, display_get_width(), display_get_height());
     }
 else{
     window_set_fullscreen(false);
-    window_set_size(424*global.window_size,240*global.window_size);
+    surface_resize(application_surface, object_deadzone.ideal_width*global.window_size, object_deadzone.ideal_height*global.window_size);
+    window_set_size(object_deadzone.ideal_width*global.window_size, object_deadzone.ideal_height*global.window_size);
     }
 //Center the window
 with(object_deadzone){
     alarm_set(0,1);
     }
+
 
 
 

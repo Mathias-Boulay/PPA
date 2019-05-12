@@ -103,8 +103,57 @@ if !file_exists(working_directory + "\settings\settings.ini"){
     ini_close();
     }
 
+
+//Système de vue dynamique:
+//Défini la meilleur définition:
+ideal_width=0;
+ideal_height=240;
+
+ratio=display_get_width()/display_get_height();
+//Définir la largeur idéale:
+ideal_width=round(ideal_height*ratio)
+    
+
+//Vérification de nombres bizzares.
+if (ideal_width &amp; 1){
+    ideal_width++;
+    }
+
+    
+if (ideal_height &amp; 1){
+    ideal_height++;
+    }
+    
+//Définition de la view:
+for(var i=1; i&lt;=room_last;i++){
+    if room_exists(i){
+        //On défini la view 0 pour chaque room selon les paramètes calculé
+        room_set_view(i,0,true,0,0,ideal_width,ideal_height,0,0,ideal_width,ideal_height,0,0,0,0,-1);
+        room_set_view_enabled(i,true);
+        }
+    }
+
+
+//En cas de plein écran:
+
+if display_get_width() mod ideal_width != 0{
+    //Si on a un nombre de pixel bizzare.
+    var tmp = round(display_get_width()/ideal_width);
+    ideal_width=display_get_width()/tmp;
+    }
+    
+if display_get_height() mod ideal_height != 0{
+    //Si on a un nombre de pixel bizzare.
+    var tmp = round(display_get_height()/ideal_height);
+    ideal_height=display_get_height()/tmp;
+    }
+
 //Load the settings:
 script_settings_load();
+
+room_goto(room_pre_title);
+
+
 
 
 

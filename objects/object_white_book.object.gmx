@@ -28,6 +28,7 @@
             <string>///Récupération des strings necessaire pour intéragir dans les menus:
 if room = room_title{
     STATUS = "TITLE";
+    SUB_STATUS="";
     }
 else{
     STATUS = "OPTIONS";
