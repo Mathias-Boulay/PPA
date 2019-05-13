@@ -296,6 +296,7 @@ if STATUS = "OPTIONS_SEE_CONTROLS"{
 
 if room=room_level{
     if SUB_STATUS = "DISPLAY"{
+        bichour= abs((view_yview[0]+view_hview[0])-(y+sprite_height));
         //On s'occupe de faire translater le livre (penser à faire translater le reste des objets pour l'entrée/la sortie);
         if abs((view_yview[0]+view_hview[0])-(y+sprite_height)) &lt; 0.4{
             SUB_STATUS="";
@@ -317,7 +318,7 @@ if room=room_level{
             object_leftbutton_main_menu.y=y+57;
             }
         else{
-            y +=(((view_yview[0])-y)+4)/12
+            y +=(((view_yview[0])-y)-4)/12;
             
             object_video_options.x=x+248;
             object_video_options.y=y+50;
@@ -340,7 +341,7 @@ if room=room_level{
             //On sort direct.
             if y &lt;= view_yview[0]+view_hview[0]{
                 //On continue de se tailler:
-                y += ((y-view_yview[0])+4)/14;
+                y += ((y-view_yview[0])+4)/12;
                 
                 object_video_options.x=x+248;
                 object_video_options.y=y+50;

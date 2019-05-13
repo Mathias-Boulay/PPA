@@ -25,11 +25,36 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Set image_speed to 0;
-image_speed = 0;
+            <string>///Calcul de la fenêtre max:
+max_size=min(floor(display_get_width()/424), floor(display_get_height()/240));
+play=sprite_duplicate(sprite_resolution);
+sprite_collision_mask(play,false,2,0,0,35,14,1,0);
+sprite_index=play;
 
-//Set the good sprite depending of the settings:
-image_index = global.window_size-1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Libère la mémoire.
+sprite_delete(play);
 </string>
           </argument>
         </arguments>
@@ -52,8 +77,42 @@ image_index = global.window_size-1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Set the good sprite depending of the settings:
-image_index = global.window_size-1;
+            <string>///Définition de la hitbox
+draw_set_font(global.font_title);
+draw_set_valign(fa_bottom);
+draw_set_halign(fa_left);
+
+sprite_collision_mask(play,false,2,0,0,14+string_width(string(global.window_size)),14,1,0);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_self();
+
+draw_set_font(global.font_title);
+draw_set_valign(fa_bottom);
+draw_set_halign(fa_left);
+
+draw_text(x+2,y+sprite_height+4,string(global.window_size));
+
 </string>
           </argument>
         </arguments>

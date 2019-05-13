@@ -59,7 +59,7 @@ STATUS = "";
             room_goto(room_title);
             }
         else{
-            if instance_exists(object_level_selector){
+            if instance_exists(object_level_selector) &amp;&amp; STATUS != "TITLE"{
                 room_goto(room_level);
                 }
             else{

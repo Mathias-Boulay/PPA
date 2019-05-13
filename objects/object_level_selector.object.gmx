@@ -232,7 +232,7 @@ if global.face1[0]{
         }
     }
 if global.face2[0]{
-    script_fade_status("SELECT_SAVE");
+    script_fade_status("TITLE");
     object_white_book.page = 0;
     }
 

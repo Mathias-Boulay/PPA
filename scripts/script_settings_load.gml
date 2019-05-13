@@ -34,12 +34,36 @@ global.keyboard_shoulderl=ini_read_real("controls","shoulderl",ord("A"));
 
 if global.fullscreen = "true"{    
     window_set_fullscreen(true);
+    
+    if (display_get_width() mod object_deadzone.ideal_width != 0){
+        var tmp = round(display_get_width()/object_deadzone.ideal_width);
+        object_deadzone.ideal_width=display_get_width();
+        }
+    if (display_get_width() mod object_deadzone.ideal_height != 0){
+        var tmp = round(display_get_width()/object_deadzone.ideal_height);
+        object_deadzone.ideal_height=display_get_width();
+        }
+    
     surface_resize(application_surface, display_get_width(), display_get_height());
+    for(var i=1; i<=room_last;i++){
+        if room_exists(i){
+            //On défini la view 0 pour chaque room selon les paramètes calculé
+            room_set_view(i,0,true,0,0,object_deadzone.ideal_width,object_deadzone.ideal_height,0,0,display_get_width(),display_get_height(),0,0,0,0,-1);
+            room_set_view_enabled(i,true);
+            }
+        }
     }
 else{
     window_set_fullscreen(false);
-    surface_resize(application_surface, object_deadzone.ideal_width*global.window_size, object_deadzone.ideal_height*global.window_size);
-    window_set_size(object_deadzone.ideal_width*global.window_size, object_deadzone.ideal_height*global.window_size);
+    surface_resize(application_surface, 424*global.window_size, 240*global.window_size);
+    window_set_size(424*global.window_size, 240*global.window_size);
+    for(var i=1; i<=room_last;i++){
+        if room_exists(i){
+            //On défini la view 0 pour chaque room selon les paramètes calculé
+            room_set_view(i,0,true,0,0,424,240,0,0,424,240,0,0,0,0,-1);
+            room_set_view_enabled(i,true);
+            }
+        }
     }
 //Center the window
 with(object_deadzone){

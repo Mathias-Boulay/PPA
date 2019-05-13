@@ -273,8 +273,7 @@ else{
                         }
                     else{
                         //set resolution.
-                        global.window_size += sign(global.axislh[0]);
-                        if global.window_size &lt; 1{global.window_size = 3;}else{if global.window_size &gt; 3{global.window_size = 1;}}
+                        global.window_size= clamp(global.window_size+sign(global.axislh[0]),1,object_resolution.max_size);
                         ini_write_real("video","window_size",global.window_size);
                         }
                     }
@@ -619,7 +618,7 @@ else{
                                             else{
                                                 //Aller sur l'objet modifier
                                                 x = object_white_book.x+251;
-                                                y = object_white_book.y+141;
+                                                y = object_white_book.y+139;
                                                 right_dependency.x = object_white_book.x+342;
                                                 }
                                             }

@@ -175,14 +175,16 @@ draw_sprite_ext(sprite_prompt_upper_middle,0,x,y,image_xscale,1,0,c_white,image_
 
 if Choice=1{
     //On affiche le truc à gauche.
-    draw_sprite(sprite_prompt_left_button,0,floor(x+(image_xscale*0.28)-(string_width(texts[1])/2)-4),round(y+string_height(texts[0])+8));
-    draw_sprite(sprite_prompt_right_button,0,ceil(x+(image_xscale*0.28)+(string_width(texts[1])/2)),round(y+string_height(texts[0])+8));
     draw_sprite_ext(sprite_prompt_mid_button,0,round(x+(image_xscale*0.28)-(string_width(texts[1])/2))+1,round(y+string_height(texts[0])+8),string_width(texts[1]),1,0,c_white,image_alpha);
+    draw_sprite(sprite_prompt_left_button,0,ceil(x+(image_xscale*0.28)-(string_width(texts[1])/2)-4),round(y+string_height(texts[0])+8));
+    draw_sprite(sprite_prompt_right_button,0,ceil(x+(image_xscale*0.28)+(string_width(texts[1])/2)),round(y+string_height(texts[0])+8));
+
     }
 else{
-    draw_sprite(sprite_prompt_left_button,0,floor(x+(image_xscale*0.78)-(string_width(texts[2])/2)-4),round(y+string_height(texts[0])+8));
-    draw_sprite(sprite_prompt_right_button,0,ceil(x+(image_xscale*0.78)+(string_width(texts[2])/2)),round(y+string_height(texts[0])+8));
     draw_sprite_ext(sprite_prompt_mid_button,0,round(x+(image_xscale*0.78)-(string_width(texts[2])/2)),round(y+string_height(texts[0])+8),string_width(texts[2])+1,1,0,c_white,image_alpha);
+    draw_sprite(sprite_prompt_left_button,0,ceil(x+(image_xscale*0.78)-(string_width(texts[2])/2)-4),round(y+string_height(texts[0])+8));
+    draw_sprite(sprite_prompt_right_button,0,ceil(x+(image_xscale*0.78)+(string_width(texts[2])/2)),round(y+string_height(texts[0])+8));
+
     }
     
 //Dessiner le texte des deux boutons.

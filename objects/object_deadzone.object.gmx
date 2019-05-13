@@ -124,14 +124,7 @@ if (ideal_height &amp; 1){
     ideal_height++;
     }
     
-//Définition de la view:
-for(var i=1; i&lt;=room_last;i++){
-    if room_exists(i){
-        //On défini la view 0 pour chaque room selon les paramètes calculé
-        room_set_view(i,0,true,0,0,ideal_width,ideal_height,0,0,ideal_width,ideal_height,0,0,0,0,-1);
-        room_set_view_enabled(i,true);
-        }
-    }
+
 
 
 //En cas de plein écran:
@@ -225,6 +218,7 @@ if !instance_exists(object_fade){
             
             //Version longue: tant que les boutons sont pressés:
             global.face1_long[i]=gamepad_button_check(i,gp_face1);
+            global.face2_long[i]=gamepad_button_check(i,gp_face2);
             
             //joysticks:
             global.axislh[i]=gamepad_axis_value(i,gp_axislh);
@@ -279,6 +273,7 @@ else{ //Reset les valeurs:
         
         //Version longue: tant que les boutons sont pressés
         global.face1_long[i]=false;
+        global.face2_long[i]=false;
         
         //Joysticks
         global.axislh[i]=0;
