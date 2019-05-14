@@ -87,26 +87,10 @@ if !file_exists(working_directory + "\settings\settings.ini"){
     ini_write_real("controls","shoulderr",ord("E"));
     ini_write_real("controls","shoulderl",ord("A"));
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     ini_close();
     }
 
 
-//Système de vue dynamique:
-
-ratio=display_get_width()/display_get_height();
 
 
 //Load the settings:

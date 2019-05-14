@@ -35,10 +35,11 @@ global.keyboard_shoulderl=ini_read_real("controls","shoulderl",ord("A"));
 if global.fullscreen = "true"{    
     window_set_fullscreen(true);
     surface_resize(application_surface, display_get_width(), display_get_height());
+    var ratio=display_get_width()/display_get_height();
     for(var i=1; i<=room_last;i++){
         if room_exists(i){
             //On défini la view 0 en fonction du ratio de l'écran.
-            switch(object_deadzone.ratio){
+            switch(ratio){
             
                 case 16/9:
                     room_set_view(i,0,true,0,0,424,240,0,0,424,240,0,0,0,0,-1);
