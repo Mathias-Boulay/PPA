@@ -105,41 +105,9 @@ if !file_exists(working_directory + "\settings\settings.ini"){
 
 
 //Système de vue dynamique:
-//Défini la meilleur définition:
-ideal_width=0;
-ideal_height=240;
 
 ratio=display_get_width()/display_get_height();
-//Définir la largeur idéale:
-ideal_width=round(ideal_height*ratio)
-    
 
-//Vérification de nombres bizzares.
-if (ideal_width &amp; 1){
-    ideal_width++;
-    }
-
-    
-if (ideal_height &amp; 1){
-    ideal_height++;
-    }
-    
-
-
-
-//En cas de plein écran:
-
-if display_get_width() mod ideal_width != 0{
-    //Si on a un nombre de pixel bizzare.
-    var tmp = round(display_get_width()/ideal_width);
-    ideal_width=display_get_width()/tmp;
-    }
-    
-if display_get_height() mod ideal_height != 0{
-    //Si on a un nombre de pixel bizzare.
-    var tmp = round(display_get_height()/ideal_height);
-    ideal_height=display_get_height()/tmp;
-    }
 
 //Load the settings:
 script_settings_load();
