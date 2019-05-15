@@ -69,10 +69,71 @@ if global.fullscreen = "true"{
             room_set_view_enabled(i,true);
             }
         }
+    //Il faut recentrer l'objet livre.
+    //Cas possible: menu d'options; n'existe pas.
+    if instance_exists(object_white_book){
+        with(object_white_book){
+            //On se replace puis on replace les autres éléments du menu.
+            x= view_xview[0]+(view_wview[0]/2)-(sprite_get_width(sprite_white_book)/2);
+            y= view_yview[0]+(view_hview[0]/2)-(sprite_get_height(sprite_white_book)/2);
+            
+            object_resolution.x= x+269;
+            object_resolution.y=y+86;
+            
+            object_fullscreen.x=x+269;
+            object_fullscreen.y=y+120;
+            
+            object_quality.x=x+269;
+            object_quality.y=y+161;
+            
+            object_retour.x=x+175;
+            object_retour.y=y+200;
+            
+            object_leftbutton_main_menu.x=object_fullscreen.bbox_right+5;
+            object_leftbutton_main_menu.y=object_fullscreen.y+11;
+            
+            
+            object_rightbutton_main_menu.x=object_fullscreen.bbox_left-5;
+            //Le y se place tout seul sur cet objet.
+            
+            }
+        }
        
     }
 else{
-    window_set_fullscreen(false);
+    if window_get_fullscreen(){
+        window_set_fullscreen(false);
+        //Il faut recentrer l'objet livre.
+        //Cas possible: menu d'options; n'existe pas.
+        if instance_exists(object_white_book){
+            with(object_white_book){
+                //On se replace puis on replace les autres éléments du menu.
+                x= view_xview[0]+(view_wview[0]/2)-(sprite_get_width(sprite_white_book)/2);
+                y= view_yview[0]+(view_hview[0]/2)-(sprite_get_height(sprite_white_book)/2);
+                
+                object_resolution.x= x+269;
+                object_resolution.y=y+86;
+                
+                object_fullscreen.x=x+269;
+                object_fullscreen.y=y+120;
+                
+                object_quality.x=x+269;
+                object_quality.y=y+161;
+                
+                object_retour.x=x+175;
+                object_retour.y=y+200;
+                
+                object_leftbutton_main_menu.x=object_fullscreen.bbox_right+5;
+                object_leftbutton_main_menu.y=object_fullscreen.y+11;
+                
+                
+                object_rightbutton_main_menu.x=object_fullscreen.bbox_left-5;
+                //Le y se place tout seul sur cet objet.
+                
+                }
+            }
+        }
+
     surface_resize(application_surface, 424*global.window_size, 240*global.window_size);
     window_set_size(424*global.window_size, 240*global.window_size);
     for(var i=1; i<=room_last;i++){
@@ -83,6 +144,8 @@ else{
             }
         }
     }
+    
+
 //Center the window
 with(object_deadzone){
     alarm_set(0,1);

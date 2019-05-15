@@ -49,9 +49,7 @@ path_start(asset_get_index("path_title"+path),1/4,path_action_stop,true);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>round(x);
-round(y);
-if path_position = 1{
+            <string>if path_position = 1{
     path_start(asset_get_index("path_title"+path),1/4,path_action_stop,true);
     if path=""{path="_reverse"}else{path="";}
     }

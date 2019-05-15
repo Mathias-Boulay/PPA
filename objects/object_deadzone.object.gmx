@@ -266,7 +266,7 @@ if keyboard_check_pressed(vk_f2){
 //Then let the game live !
 if room = room_title{
     if !instance_exists(object_white_book){
-        instance_create(0,0,object_white_book);
+        instance_create(view_xview[0]+(view_wview[0]/2)-(sprite_get_width(sprite_white_book)/2),view_yview[0]+(view_hview[0]/2)-(sprite_get_height(sprite_white_book)/2),object_white_book);
         if variable_global_exists("SELECTED_SAVE"){
             object_white_book.STATUS="TITLE";
             }

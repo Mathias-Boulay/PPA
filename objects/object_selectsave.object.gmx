@@ -135,8 +135,7 @@ Source = "";
             }
         //Stuff to quit the save selecting:
         if global.face2[0]{
-            script_fade_status("TITLE");
-            //room_goto(room_pre_title);
+            script_fade_status("PRE_TITLE");
             }
         }
     else{

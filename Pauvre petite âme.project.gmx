@@ -406,10 +406,56 @@
         <object>objects\object_prompt</object>
       </objects>
       <objects name="mains-menus">
-        <objects name="Title">
+        <objects name="PRE_TITLE">
           <object>objects\object_big_shai</object>
           <object>objects\object_big_shai_hair</object>
           <object>objects\object_camera_title</object>
+        </objects>
+        <objects name="SAVE">
+          <object>objects\object_savepaper</object>
+          <object>objects\object_selectsave</object>
+          <object>objects\object_delete_save</object>
+          <object>objects\object_play_save</object>
+          <object>objects\object_copy_save</object>
+          <object>objects\object_back_save</object>
+          <object>objects\object_confirmation</object>
+        </objects>
+        <objects name="LEVEL">
+          <object>objects\object_levelpaper</object>
+          <object>objects\object_levelboard</object>
+          <object>objects\object_lv</object>
+          <object>objects\object_level_selector</object>
+        </objects>
+        <objects name="OPTIONS-GLOBAL">
+          <objects name="OPTIONS-VIDEO">
+            <object>objects\object_resolution</object>
+            <object>objects\object_fullscreen</object>
+            <object>objects\object_quality</object>
+          </objects>
+          <objects name="OPTIONS-SOUND">
+            <object>objects\object_music_button</object>
+            <object>objects\object_sfx_button</object>
+            <object>objects\object_sound_high</object>
+            <object>objects\object_sound_middle</object>
+            <object>objects\object_sound_low</object>
+          </objects>
+          <objects name="OPTIONS-LANGUE">
+            <object>objects\object_francais</object>
+            <object>objects\object_franglish</object>
+            <object>objects\object_english</object>
+            <object>objects\object_selection_flag</object>
+          </objects>
+          <objects name="OPTIONS-MAPPING">
+            <object>objects\object_voir_controlles</object>
+            <object>objects\object_modifier</object>
+            <object>objects\object_vibrations</object>
+            <object>objects\object_try</object>
+          </objects>
+          <object>objects\object_langage</object>
+          <object>objects\object_controlles</object>
+          <object>objects\object_sound</object>
+          <object>objects\object_video_options</object>
+          <object>objects\object_retour</object>
         </objects>
         <object>objects\object_white_book</object>
         <object>objects\object_play</object>
@@ -418,39 +464,7 @@
         <object>objects\object_credits</object>
         <object>objects\object_leftbutton_main_menu</object>
         <object>objects\object_rightbutton_main_menu</object>
-        <object>objects\object_langage</object>
-        <object>objects\object_controlles</object>
-        <object>objects\object_sound</object>
-        <object>objects\object_video_options</object>
-        <object>objects\object_retour</object>
-        <object>objects\object_resolution</object>
-        <object>objects\object_fullscreen</object>
-        <object>objects\object_quality</object>
-        <object>objects\object_music_button</object>
-        <object>objects\object_sfx_button</object>
-        <object>objects\object_sound_high</object>
-        <object>objects\object_sound_middle</object>
-        <object>objects\object_sound_low</object>
-        <object>objects\object_francais</object>
-        <object>objects\object_franglish</object>
-        <object>objects\object_english</object>
-        <object>objects\object_selection_flag</object>
-        <object>objects\object_savepaper</object>
-        <object>objects\object_selectsave</object>
         <object>objects\object_fade</object>
-        <object>objects\object_levelpaper</object>
-        <object>objects\object_levelboard</object>
-        <object>objects\object_lv</object>
-        <object>objects\object_level_selector</object>
-        <object>objects\object_delete_save</object>
-        <object>objects\object_play_save</object>
-        <object>objects\object_copy_save</object>
-        <object>objects\object_back_save</object>
-        <object>objects\object_confirmation</object>
-        <object>objects\object_voir_controlles</object>
-        <object>objects\object_modifier</object>
-        <object>objects\object_vibrations</object>
-        <object>objects\object_try</object>
       </objects>
       <objects name="shops">
         <object>objects\object_fond_shop</object>
