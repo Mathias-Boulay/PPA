@@ -30,7 +30,7 @@ draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 draw_sprite(sprite_background_title,0,view_xview[0],view_yview[0]);
 draw_self();
-draw_text(view_xview[0]+5,view_yview[0]+view_hview[0]-10,"AUTOBUILD-2019-05-11");
+draw_text(view_xview[0]+5,view_yview[0]+view_hview[0]-10,"AUTOBUILD-2019-15-11");
 
 </string>
           </argument>
