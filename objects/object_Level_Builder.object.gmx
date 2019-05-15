@@ -1453,7 +1453,7 @@ for(i=1;i&lt;=Number;i++){
             show_debug_message("htiled= "+htiled);
             show_debug_message("original= "+original);
             htiled = real(htiled);
-            if htiled = 0{htiled=1;}else{htiled=0;}
+            if htiled = 0{htiled=1;}else{htiled=0;} //Si l'on ne veut pas répéter htiled doit influer dans les calculs. Sinan il est nul donc absorbant.
             j = -10;
             }
         }
@@ -1467,7 +1467,7 @@ for(i=1;i&lt;=Number;i++){
             show_debug_message("vtiled= "+vtiled);
             show_debug_message("original= "+original);
             vtiled = real(vtiled);
-            if vtiled = 0{vtiled=1;}else{vtiled=0;}
+            if vtiled = 0{vtiled=1;}else{vtiled=0;} //Si l'on ne veut pas répéter vtiled doit influer dans les calculs. Sinan il est nul donc absorbant.
             j = -10;
             }
         }
