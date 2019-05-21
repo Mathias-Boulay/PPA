@@ -54,16 +54,6 @@ Yoffset="";
           <argument>
             <kind>1</kind>
             <string>///Dessiner les backgrounds/foregrounds.
-
-//Ancien module:
-/*
-for(j=floor((view_yview[0]-y)/sprite_height)*sprite_height;j&lt;(view_yview[0]+view_hview[0]-y);j+=sprite_height+(vtiled*view_hview[0])){ //y
-    for(i=floor((view_xview[0]-x)/sprite_width)*sprite_width;i&lt;(view_xview[0]+view_wview[0]-x);i+=sprite_width+(htiled*view_wview[0])){ //x
-        draw_sprite(sprite_index,image_index,x+i,y+j);
-        }
-    }
-*/
-
 /*  Ce module est assez complexe donc en voici le fonctionnement en français:
     On calcule le nombre de fois que le background serai répété (pour rien) dans
     la première partie de la boucle for().
@@ -72,14 +62,22 @@ for(j=floor((view_yview[0]-y)/sprite_height)*sprite_height;j&lt;(view_yview[0]+v
     Dans la deuxième partie de la boucle for... attendez.
     */
 
-for(j=y; j&lt; view_yview[0]+view_hview[0]; j += sprite_height+(vtiled*view_hview[0])){
-    for(i=x; i&lt; view_xview[0]+view_wview[0]; i+= sprite_width+(htiled*view_wview[0])){
+for(j=y; j&lt; view_yview[0]+view_hview[0]; j += sprite_height+(vtiled*room_height)){
+    for(i=x; i&lt; view_xview[0]+view_wview[0]; i+= sprite_width+(htiled*room_width)){
         //Dessiner mon back/foreground.
         draw_sprite(sprite_index,image_index,i,j);
         }
     }
+    
+//Test d'une nouvelle version qui doit supporter les ratios et inclure quelques corrections.
+var test = false;
+var j = y;
+var i = x;
 
-//draw_self();
+
+while(!test){
+    //
+    }
     
     
     
