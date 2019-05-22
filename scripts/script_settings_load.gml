@@ -28,7 +28,8 @@ global.keyboard_start=ini_read_real("controls","start",ord("P"));
 global.keyboard_shoulderr=ini_read_real("controls","shoulderr",ord("E"));
 global.keyboard_shoulderl=ini_read_real("controls","shoulderl",ord("A"));
 
-
+global.background_xoffset=0;
+global.background_yoffset=0;
 
 //Apply windows_size/fullscreen: DISABLED FOR NEW VIEW SYSTEM
 
@@ -47,18 +48,22 @@ if global.fullscreen = "true"{
                 
                 case 16/10:
                     room_set_view(i,0,true,0,0,424,265,0,0,424,265,0,0,0,0,-1);
+                    //global.background_yoffset=12;
                 break;
                 
                 case 21/9:
                     room_set_view(i,0,true,0,0,560,240,0,0,560,240,0,0,0,0,-1);
+                    global.background_xoffset=68;
                 break;
                 
                 case 1/1:
                     room_set_view(i,0,true,0,0,424,424,0,0,424,424,0,0,0,0,-1);
+                    //global.background_yoffset=92;
                 break;
                 
                 case 4/3:
                     room_set_view(i,0,true,0,0,424,318,0,0,424,318,0,0,0,0,-1);
+                    //global.background_yoffset=39;
                 break;
                 
                 default: //Fallback en 16:9
