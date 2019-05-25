@@ -108,6 +108,23 @@ La hauteur de la lettre i doit être ajusté. (La hauteur du 0 aussi ?) || Fait
 
 Corriger le uncontrol. ||Fait bien sur il posait problème par rapport à la death
 
+"Overlay" (Bords) ne fait absolument rien, que apparence.
+Le HUD ne montrerait que l'inventaire rapide avec tous les objets permettant de les tester et serait juste sous l'overlay.
+Appuyer sur Start renverrais à l’écran de contrôles.
+"Plateforme" Se déplace de gauche à droite et s'arrête aux abords du sol.
+Tu peux la mettre à la hauteur que tu veux.
+"Dummy" est un bloc pouvent être frappé et déplacé.
+Quand il tombe, il apparaît de nouveau en haut et retombe au milieu et peux écraser Shai si elle est dessous.
+Quand frappé il a le "knockback" d'un ennemi.
+Calques est un mur normal .
+La camera peut être normale ou fixée, comme tu veux.
+Si on tombe, Shai retombe du haut de l’écran.
+Shai aurait ses points de vies normaux mais pas affichés.
+Au bout de 3 "morts" Shai n’apparaît plus et retour a l’écran de contrôles.
+
+Ça serait sympa qu'appuyer sur start depuis une autre manette face apparaître une seconde Shai contrôlée par une autre manette pouvant attaquer et se faire attaquer par l'autre Shai.
+
+https://cdn.discordapp.com/attachments/406832747315724289/544132350540251137/Test_Room.rar
 
 
 
