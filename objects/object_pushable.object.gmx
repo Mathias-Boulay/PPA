@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>vsp = 0;
-grav = 0.3
+image_speed=0;
 </string>
           </argument>
         </arguments>
@@ -50,48 +50,30 @@ grav = 0.3
           <argument>
             <kind>1</kind>
             <string>//Increment vsp
-vsp += grav;
+vsp += global.grav;
 
-//Vertical Collision with a wall (very lightly reformated)
-if (!place_meeting(x,y+(vsp),object_wall))
-    {
-    if (!place_meeting(x,y+sign(vsp),object_wall))
-        {
-        y += vsp;
-        }
-    else
-        {
+// Vertical collision
+repeat(abs(vsp)) {
+    if (!place_meeting(x, y + sign(vsp), object_wall))
+        y += sign(vsp); 
+    else {
         vsp = 0;
-        }
+        break;
     }
-else
-    {
-    if (!place_meeting(x,y+sign(vsp),object_wall))
-        {
-        y += sign(vsp);
-        }
-    else
-        {
-        vsp = 0;
-        }
-    }
+}
 
 //horizontal unoptimized collision
-if (place_meeting(x-1,y,object_player)) &amp;&amp; (place_empty(x+1,y))
-    {
-    if object_player.sprite_index = sprite_pushing
-        {
-        x += 1;
-        object_player.x += 1;
-        }
-    }
-
-if (place_meeting(x+1,y,object_player)) &amp;&amp; (place_empty(x-1,y))
-    {
-    if object_player.sprite_index = sprite_pushing
-        {
-        x -= 1;
-        object_player.x -= 1;
+if instance_exists(object_player){
+    if obejct_player.STATUS ="pushing"{
+        if place_meeting(x-2,y,object_player) &amp;&amp; !place_meeting(x+2,y,object_wall){
+            x+=2;
+            object_player.x += 2;
+            }
+            
+        if place_meeting(x+2,y,object_player) &amp;&amp; !place_meeting(x-2,y,object_wall){
+            x-=2;
+            object_player.x -= 2
+            }
         }
     }
 

@@ -96,7 +96,7 @@ if !file_exists(working_directory + "\settings\settings.ini"){
 //Load the settings:
 script_settings_load();
 
-room_goto(room_pre_title);
+room_goto_next();
 
 
 

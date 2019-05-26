@@ -5,23 +5,6 @@
   </Configs>
   <datafiles number="4" name="datafiles">
     <datafile>
-      <name>Sunset Forest.ini</name>
-      <exists>-1</exists>
-      <size>0</size>
-      <exportAction>2</exportAction>
-      <exportDir></exportDir>
-      <overwrite>0</overwrite>
-      <freeData>-1</freeData>
-      <removeEnd>0</removeEnd>
-      <store>0</store>
-      <ConfigOptions>
-        <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
-        </Config>
-      </ConfigOptions>
-      <filename>Sunset Forest.ini</filename>
-    </datafile>
-    <datafile>
       <name>language.ini</name>
       <exists>-1</exists>
       <size>89</size>
@@ -109,9 +92,9 @@
           <sprite>sprites\sprite_overlay_bar_arrow</sprite>
           <sprite>sprites\sprite_overlay_bar_middle</sprite>
         </sprites>
-        <sprite>sprites\sprite_calques</sprite>
-        <sprite>sprites\sprite_walls</sprite>
-        <sprite>sprites\sprite_dummy</sprite>
+        <sprite>sprites\sprite_Test_room_calques</sprite>
+        <sprite>sprites\sprite_Test_room_walls</sprite>
+        <sprite>sprites\sprite_Test_room_pushable</sprite>
         <sprite>sprites\sprite_test_platform</sprite>
       </sprites>
     </sprites>
@@ -492,10 +475,8 @@
       <objects name="Test-room">
         <object>objects\object_init_room</object>
       </objects>
-      <object>objects\object_LevelBuilder_old</object>
       <object>objects\object_Level_Builder</object>
       <object>objects\object_drawer</object>
-      <object>objects\object_background</object>
     </objects>
     <objects name="players">
       <objects name="players' parts">
@@ -506,7 +487,6 @@
         <object>objects\object_left_leg</object>
         <object>objects\object_right_leg</object>
       </objects>
-      <object>objects\object_player_old</object>
       <object>objects\object_player</object>
     </objects>
     <object>objects\object_wall</object>
@@ -515,12 +495,12 @@
     <object>objects\object_platform</object>
     <object>objects\object_moving_platform</object>
     <object>objects\object_vertical_platform</object>
+    <object>objects\object_uncontrol_platform</object>
+    <object>objects\object_pushable</object>
     <object>objects\object_camera</object>
     <object>objects\object_hud</object>
     <object>objects\object10</object>
     <object>objects\object_riony</object>
-    <object>objects\object_pushable</object>
-    <object>objects\object_uncontrol_platform</object>
     <object>objects\object_heart</object>
     <object>objects\object_hit</object>
     <object>objects\object_hitbox</object>
@@ -533,10 +513,12 @@
     <object>objects\object_test_backgrounds</object>
     <object>objects\object_start_overlay_2</object>
     <object>objects\object_start_overlay_1</object>
+    <object>objects\object_background</object>
     <object>objects\object_tools_font</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_init</room>
+    <room>rooms\room_Test_room</room>
     <room>rooms\room_pre_title</room>
     <room>rooms\room_title</room>
     <room>rooms\room_level</room>

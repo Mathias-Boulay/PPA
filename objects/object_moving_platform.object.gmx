@@ -32,6 +32,8 @@ dir = 1;
 hsp = 0;
 image_index = 0;
 image_speed=0;
+distance=0;
+dist=0;
 </string>
           </argument>
         </arguments>
@@ -61,6 +63,11 @@ image_speed=0;
     //moving
     hsp = dir*movespeed;
             
+    x+= hsp;
+    dist+=x-xprevious;
+    
+    if distance-abs(dist)&lt;=movespeed{dir *= -1;}
+    /*
     if (!place_meeting(x+hsp,y,object_wall_platforms)){
         if (!place_meeting(x+sign(hsp),y,object_wall_platforms)){
             x += hsp;
@@ -77,6 +84,7 @@ image_speed=0;
             dir *= -1;
             }
         }
+        */
     //Making it one way platform
     if (instance_exists(object_player)){
         if round(object_player.y + (object_player.sprite_height/2)) &gt; y || (gamepad_axis_value(object_player.ID,gp_axislv)) &gt; 0.70{

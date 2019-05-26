@@ -870,9 +870,7 @@ for(i=1;i&lt;=Number;i++){
     This_platform.image_index = SubAsset;
     This_platform.dir = dir;
     This_platform.movespeed = movespeed;
-    //Et on place les deux limites en fonction de son sprite.:
-    instance_create(xx+distance+round(This_platform.sprite_width/2),yy,object_wall_platforms);
-    instance_create(xx-distance-round(This_platform.sprite_width/2),yy,object_wall_platforms);
+    This_platform.distance=distance;
     }
 </string>
           </argument>
@@ -1271,6 +1269,94 @@ for(i=1;i&lt;=Number;i++){
         }
      
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Phase pushable object:
+show_debug_message("PHASE PUSHABLE OBJECT----------------------------------------------------");
+Number= ini_read_real(global.selected_part,"PushableNumber",0);
+for(i=1;i&lt;=Number;i++){
+    xx="";
+    yy="";
+    Asset="";
+    SubAsset="";
+    original = ini_read_string(global.selected_part,string(i)+"-createpushable","(0,0,Test_room,0)");
+    original = string_replace(original,"(","");
+    //Définition des variables
+    for(j=1;j&gt;-1;j++){ //For xx:
+        if string_char_at(original,1) != ","{
+            xx += string_copy(original,1,1);
+            original = string_replace(original,string_char_at(original,1),"");
+            }
+        else{
+            original = string_replace(original,",","");
+            show_debug_message("xx= "+xx);
+            show_debug_message("original= "+original);
+            xx = real(xx);
+            j = -10;
+            }
+        }
+    for(j=1;j&gt;-1;j++){ //For yy:
+        if string_char_at(original,1) != ","{
+            yy += string_copy(original,1,1);
+            original = string_replace(original,string_char_at(original,1),"");
+            }
+        else{
+            original = string_replace(original,",","");
+            show_debug_message("yy= "+yy);
+            show_debug_message("original= "+original);
+            yy = real(yy);
+            j = -10;
+            }
+        }
+    for(j=1;j&gt;-1;j++){ //For Asset:
+        if string_char_at(original,1) != ","{
+            Asset += string_copy(original,1,1);
+            original = string_replace(original,string_char_at(original,1),"");
+            }
+        else{
+            original = string_replace(original,",","");
+            show_debug_message("Asset= "+Asset);
+            show_debug_message("original= "+original);
+            j = -10;
+            }
+        }
+    for(j=1;j&gt;-1;j++){ //For SubAsset:
+        if string_char_at(original,1) != ")"{
+            SubAsset += string_copy(original,1,1);
+            original = string_replace(original,string_char_at(original,1),"");
+            }
+        else{
+            original = string_replace(original,")","");
+            show_debug_message("SubAsset= "+SubAsset);
+            show_debug_message("original= "+original);
+            SubAsset = real(SubAsset);
+            j = -10;
+            }
+        }
+    
+    This_pushable=instance_create(xx,yy,object_pushable);
+    This_pushable.sprite_index=asset_get_index("sprite_"+Asset+"_pushable");
+    This_pushable.image_index=SubAsset;
+        
+    }
 </string>
           </argument>
         </arguments>
