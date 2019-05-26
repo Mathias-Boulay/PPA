@@ -2124,7 +2124,7 @@ if !instance_exists(object_pause){
             //object_camera.y = round(object_camera.y);
             //Nouveau système de view, géré avec le code plutôt que par l'UI
             view_xview[ID]=object_camera.x-(view_wview[ID]/2);
-            view_yview[ID]=object_camera.y-(view_hview[ID]/2);
+            view_yview[ID]=floor(object_camera.y-(view_hview[ID]/2));
             
             //Limites:
             view_xview[ID]=clamp(view_xview[ID],0,room_width-view_wview[ID]);
@@ -2160,14 +2160,14 @@ if !instance_exists(object_pause){
 if instance_exists(object_background){
     with(object_background){
         //Placement
-        x=(view_xview[0]/Xaxis)+Xoffset;
+        x=(view_xview[0]/Xaxis)+Xoffset+global.background_xoffset;
         //Si l'on est en dehors sur la gauche de l'écran:
         while(x+sprite_width&lt;view_xview[0]*abs(htiled-1)){
             x+=sprite_width;
             }
         
         //Si l'on est en dehors sur la haut de l'écran:
-        y=(view_yview[0]/Yaxis)+Yoffset;
+        y=(view_yview[0]/Yaxis)+Yoffset+global.background_yoffset;
         while(y+sprite_height&lt;view_yview[0]*abs(vtiled-1)){
             y+=sprite_height;
             }

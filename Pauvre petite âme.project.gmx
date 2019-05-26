@@ -98,6 +98,22 @@
         <sprite>sprites\sprite_LL_flowers</sprite>
         <sprite>sprites\sprite_LL_flocon</sprite>
       </sprites>
+      <sprites name="Test_room">
+        <sprites name="overlay parts">
+          <sprite>sprites\sprite_overlay_upper_left</sprite>
+          <sprite>sprites\sprite_overlay_upper_middle</sprite>
+          <sprite>sprites\sprite_overlay_upper_right</sprite>
+          <sprite>sprites\sprite_overlay_bottom_left</sprite>
+          <sprite>sprites\sprite_overlay_bottom_middle</sprite>
+          <sprite>sprites\sprite_overlay_bottom_right</sprite>
+          <sprite>sprites\sprite_overlay_bar_arrow</sprite>
+          <sprite>sprites\sprite_overlay_bar_middle</sprite>
+        </sprites>
+        <sprite>sprites\sprite_calques</sprite>
+        <sprite>sprites\sprite_walls</sprite>
+        <sprite>sprites\sprite_dummy</sprite>
+        <sprite>sprites\sprite_test_platform</sprite>
+      </sprites>
     </sprites>
     <sprites name="Title-menus">
       <sprite>sprites\sprite_white_book</sprite>
@@ -473,6 +489,9 @@
       </objects>
     </objects>
     <objects name="Construction Stuff">
+      <objects name="Test-room">
+        <object>objects\object_init_room</object>
+      </objects>
       <object>objects\object_LevelBuilder_old</object>
       <object>objects\object_Level_Builder</object>
       <object>objects\object_drawer</object>

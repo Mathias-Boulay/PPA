@@ -26,8 +26,11 @@
           <argument>
             <kind>1</kind>
             <string>///Initialisation de l'environnement:
+/*
 show_debug_message("DRAWER ----------------------------------------------------------------------");
 show_debug_message("INITIALISATION DE L'ENVIRONNEMENT--------------------------------------------");
+*/
+
 </string>
           </argument>
         </arguments>
