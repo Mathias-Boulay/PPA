@@ -75,7 +75,39 @@ y=sprite_height*(0.5+image_index);
         }
     }
 else{
-    //On crée une page standard
+    //On Crée une page standard qui sera une page de fonction.
+        //Titre:
+        This_part=instance_create(room_width-(sprite_width/2),sprite_height*(0.5+instance_number(object_part)),object_part);
+        This_part.value=1;
+        //Sous titre:
+        This_part=instance_create(room_width-(sprite_width/2),sprite_height*(0.5+instance_number(object_part)),object_part);
+        This_part.value=3;
+        //Desc title:
+        This_part=instance_create(room_width-(sprite_width/2),sprite_height*(0.5+instance_number(object_part)),object_part);
+        This_part.value=4;
+        //Syntaxe:
+        This_part=instance_create(room_width-(sprite_width/2),sprite_height*(0.5+instance_number(object_part)),object_part);
+        This_part.value=6;
+        //Tableau:
+        This_part=instance_create(room_width-(sprite_width/2),sprite_height*(0.5+instance_number(object_part)),object_part);
+        This_part.value=7;
+        //petit titre pas violet:
+        This_part=instance_create(room_width-(sprite_width/2),sprite_height*(0.5+instance_number(object_part)),object_part);
+        This_part.value=5;
+        //Paragraphe:
+        This_part=instance_create(room_width-(sprite_width/2),sprite_height*(0.5+instance_number(object_part)),object_part);
+        This_part.value=9;
+        //On passe à l'exemple:
+        //Petit titre violet:
+        This_part=instance_create(room_width-(sprite_width/2),sprite_height*(0.5+instance_number(object_part)),object_part);
+        This_part.value=4;
+        //texte syntaxé:
+        This_part=instance_create(room_width-(sprite_width/2),sprite_height*(0.5+instance_number(object_part)),object_part);
+        This_part.value=6;
+        //Le paragraphe qui explique l'exemple:
+        This_part=instance_create(room_width-(sprite_width/2),sprite_height*(0.5+instance_number(object_part)),object_part);
+        This_part.value=9;
+        
     }
 </string>
           </argument>

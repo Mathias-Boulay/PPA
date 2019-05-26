@@ -18,6 +18,9 @@
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
+  <fonts name="fonts">
+    <font>fonts\font_values</font>
+  </fonts>
   <objects name="objects">
     <object>objects\object_deadzone</object>
     <objects name="Buttons">
