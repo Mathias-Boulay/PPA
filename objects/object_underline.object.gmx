@@ -155,8 +155,7 @@ if STATUS ="ACTION"{
     if place_meeting(x-10,y-5,object_home){
         //On revient au menu principal.
         //Pensez plus tard à gérer l'intégration de la non-sauvegarde.
-        instance_create(0,0,object_fade);
-        object_fade.STATUS="TITLE"
+        script_fade_status("room_title")
         }
     else{
         if place_meeting(x-10,y-5,object_restart){
@@ -165,11 +164,10 @@ if STATUS ="ACTION"{
             }
         else{
             if place_meeting(x-10,y-5,object_options){
-            //On sort puis on amène le livre.
-            object_right_hand_pause.STATUS="OUT-OPTIONS";
-            alarm_set(0,15);
-            
-            }
+                //On sort puis on amène le livre.
+                object_right_hand_pause.STATUS="OUT-OPTIONS";
+                alarm_set(0,15);
+                }
             else{
                 if place_meeting(x-10,y-5,object_pockets){
                     //Le menu de pause se barre pour l'inventaire. Penser à bouger l'underligne aussi.

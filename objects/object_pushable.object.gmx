@@ -55,7 +55,7 @@ image_speed=0;
 vsp += global.grav;
 
 //Friction:
-if hsp = 0{
+if hsp != 0{
     hsp = max(0,abs(hsp)-(global.frict/2))*sign(hsp);
     }
 
@@ -72,20 +72,24 @@ repeat(abs(vsp)) {
 //horizontal unoptimized collision
 if instance_exists(object_player){
     if object_player.STATUS ="pushing"{
-        if place_meeting(x-pushspeed,y,object_player) &amp;&amp; !place_meeting(x+pushspeed,y,object_wall){
-            x+=pushspeed;
-            object_player.x += pushspeed;
+        for(i=1;i&gt;=-1;i-=2){
+            if place_meeting(x+i,y,object_player){
+                repeat(abs(pushspeed)){
+                    if !place_meeting(x+sign(pushspeed),y,object_wall){
+                        x+=sign(pushspeed);
+                        object_player.x+=sign(pushspeed);
+                        }
+                    else{
+                        break;
+                        }
+                    }
+                }
             }
+        }
+    
             
-        if place_meeting(x+pushspeed,y,object_player) &amp;&amp; !place_meeting(x-pushspeed,y,object_wall){
-            x-=pushspeed;
-            object_player.x -= pushspeed;
-            }
-            
-        if place_meeting(x,y,object_hit){
-            hsp=(movespeed+sign(movespeed))*sign(x-object_player.x);
-            }
-            
+    if place_meeting(x,y,object_hit){
+        hsp=(pushspeed+sign(pushspeed))*sign(x-object_player.x);
         }
     
     // Horizontal collision.
@@ -104,6 +108,30 @@ if instance_exists(object_player){
     
   
         
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_self();
+draw_text(x,y,string(hsp));
 </string>
           </argument>
         </arguments>

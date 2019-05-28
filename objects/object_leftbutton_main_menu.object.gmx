@@ -154,7 +154,7 @@ if object_white_book.STATUS = "TITLE"{    //Si l'on est sur ce putin d'écran ti
             }
         }
     if global.face2[0]{
-        room_goto(room_pre_title);
+        script_fade_status("room_pre_title");
         } 
     }
 else{
@@ -660,6 +660,7 @@ else{
                                             //Doit être disponible hors jeu uniquement bien que je ne vois encore aucun moyen de pouvoir imlémenter ceci.
                                             if instance_number(object_player) = 0{
                                                 //Essayer les contrôles;
+                                                script_fade_status("room_Test_room");
                                                 }
                                             else{   
                                                 //Jouer un son de refus

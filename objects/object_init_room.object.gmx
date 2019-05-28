@@ -29,6 +29,8 @@
 room_width=view_wview[0];
 room_height=view_hview[0];
 
+//Je dois créer les paramètres globaux du monde
+
 //On doit créer des murs.
 //Murs hauts:
 ThisWall = instance_create(view_xview[0]+round(view_wview[0]/2)-161,144,object_wall);
@@ -62,6 +64,15 @@ This_platform.my_sprite = sprite_test_platform;
 This_platform.dir = 1;
 This_platform.movespeed = 1;
 This_platform.distance=35;
+
+//Faut faire le dummy:
+This_pushable=instance_create(view_xview[0]+(view_xview[0]/2),0,object_pushable);
+This_pushable.sprite_index=sprite_Test_room_pushable;
+This_pushable.pushspeed=1;
+
+//Puis (et enfin) Shai !
+instance_create(view_xview[0]+(view_xview[0]/3),120,object_player);
+
 
 //On crée la couleur:
 col=make_colour_rgb(48,48,48);

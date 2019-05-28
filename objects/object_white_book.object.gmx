@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>///Récupération des strings necessaire pour intéragir dans les menus:
 if room = room_title{
-    STATUS = "TITLE";
+    if !variable_global_exists("SELECTED_SAVE"){STATUS = "SELECT_SAVE";}else{STATUS="TITLE";}
     SUB_STATUS="";
     }
 else{

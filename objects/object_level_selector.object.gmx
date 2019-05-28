@@ -223,8 +223,7 @@ if global.face1[0]{
             }
         //Then go load the level: Remplacé par le fondu au noir géré par l'objet frame
         //room_goto(room_level);
-        fading=instance_create(x,y,object_fade);
-        fading.STATUS = "lol";
+        script_fade_status("room_level");
         }
     else{
         //Play a deny sound;
