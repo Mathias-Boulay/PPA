@@ -1297,7 +1297,8 @@ for(i=1;i&lt;=Number;i++){
     yy="";
     Asset="";
     SubAsset="";
-    original = ini_read_string(global.selected_part,string(i)+"-createpushable","(0,0,Test_room,0)");
+    movespeed="";
+    original = ini_read_string(global.selected_part,string(i)+"-createpushable","(0,0,Test_room,0,2)");
     original = string_replace(original,"(","");
     //Définition des variables
     for(j=1;j&gt;-1;j++){ //For xx:
@@ -1339,15 +1340,29 @@ for(i=1;i&lt;=Number;i++){
             }
         }
     for(j=1;j&gt;-1;j++){ //For SubAsset:
-        if string_char_at(original,1) != ")"{
+        if string_char_at(original,1) != ","{
             SubAsset += string_copy(original,1,1);
             original = string_replace(original,string_char_at(original,1),"");
             }
         else{
-            original = string_replace(original,")","");
+            original = string_replace(original,",","");
             show_debug_message("SubAsset= "+SubAsset);
             show_debug_message("original= "+original);
             SubAsset = real(SubAsset);
+            j = -10;
+            }
+        }
+        
+    for(j=1;j&gt;-1;j++){ //For movespeed (pushspeed):
+        if string_char_at(original,1) != ")"{
+            movespeed += string_copy(original,1,1);
+            original = string_replace(original,string_char_at(original,1),"");
+            }
+        else{
+            original = string_replace(original,")","");
+            show_debug_message("SubAsset= "+movespeed);
+            show_debug_message("original= "+original);
+            movespeed = real(movespeed);
             j = -10;
             }
         }
@@ -1355,6 +1370,7 @@ for(i=1;i&lt;=Number;i++){
     This_pushable=instance_create(xx,yy,object_pushable);
     This_pushable.sprite_index=asset_get_index("sprite_"+Asset+"_pushable");
     This_pushable.image_index=SubAsset;
+    This_pushable.pushspeed=movespeed;
         
     }
 </string>

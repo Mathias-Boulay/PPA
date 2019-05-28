@@ -53,8 +53,9 @@ if selected_item=""{
 active_item = 0;
 font_hud = font_add_sprite_ext(sprite_font,'0123456789"/',true,1);
 
-//draw_set_font(font_hud);
-alarm_set(0,60);
+if room!=room_Test_room{
+    alarm_set(0,60);
+    }
 </string>
           </argument>
         </arguments>
@@ -185,16 +186,8 @@ draw_set_valign(fa_bottom);
 //Actualise position of the hud
 x = ceil(view_xview[0] + ((sprite_width/2) + 5));
 y = ceil(view_yview[0] + ((sprite_height/2)+ 5));
-//Actualise position of the heart
-for(i=0;i&lt;=2;i++){
-    with(object_player.heart[i+1]){
-        //Position des coeurs
-        x=view_xview[0]+7+(object_hud.i*13)+ceil(sprite_width/2);
-        y=view_yview[0]+47+(sprite_height/2);
-        //Dessiner les coeurs.
-        draw_sprite(asset_get_index("sprite_"+string(state)+"_heart"),0,x,y);
-        }
-    }
+
+
 
 //Choose the good hud background.
 if active_item != 0
@@ -210,31 +203,43 @@ else
         draw_text(x+11,y+16,numberofitems[selected_item]);
         }
     }
-    
-//Okay now draw other stuff:
-//goodness:
-if instance_exists(object_start_overlay_1){
-    if abs(object_start_overlay_1.image_xscale) &gt; 1{
+
+if room!=room_Test_room{
+    //Okay now draw other stuff:
+    //goodness:
+    if instance_exists(object_start_overlay_1){
+        if abs(object_start_overlay_1.image_xscale) &gt; 1{
+            draw_sprite(sprite_barre_bonte,0,x+(ceil(sprite_width/2)+ 12),y);
+            }
+        }
+    else{
         draw_sprite(sprite_barre_bonte,0,x+(ceil(sprite_width/2)+ 12),y);
         }
-    }
-else{
-    draw_sprite(sprite_barre_bonte,0,x+(ceil(sprite_width/2)+ 12),y);
-    }
+        
+    draw_sprite(sprite_lvbarre_bonte,0,x+(ceil(sprite_width/2)+1),y+((sprite_height/2)-4)-round((object_player.goodness*34)/100));
+        
+    //Actualise position of the heart
+    for(i=0;i&lt;=2;i++){
+        with(object_player.heart[i+1]){
+            //Position des coeurs
+            x=view_xview[0]+7+(object_hud.i*13)+ceil(sprite_width/2);
+            y=view_yview[0]+47+(sprite_height/2);
+            //Dessiner les coeurs.
+            draw_sprite(asset_get_index("sprite_"+string(state)+"_heart"),0,x,y);
+            }
+        }
     
-draw_sprite(sprite_lvbarre_bonte,0,x+(ceil(sprite_width/2)+1),y+((sprite_height/2)-4)-round((object_player.goodness*34)/100));
+    //Time and rionys:
+    draw_sprite(sprite_logos,0,view_xview[0]+6,view_yview[0]+59);
+    draw_set_valign(fa_bottom);
+    draw_text(view_xview[0]+22,view_yview[0]+70,string(object_player.rionys));
+    draw_text(view_xview[0]+22,view_yview[0]+83,string(global.time_left));
     
-
-
-//Time and rionys:
-draw_sprite(sprite_logos,0,view_xview[0]+6,view_yview[0]+59);
-draw_set_valign(fa_bottom);
-draw_text(view_xview[0]+22,view_yview[0]+70,string(object_player.rionys));
-draw_text(view_xview[0]+22,view_yview[0]+83,string(global.time_left));
-
-//Now enemies to kill (IIIIIII think I won't make the good end. Or I wanna cheat it.)
-draw_sprite(sprite_ennemies,0,view_xview[0]+5,view_yview[0]+85);
-draw_text(view_xview+22,view_yview+95,'000');
+    //Now enemies to kill (IIIIIII think I won't make the good end. Or I wanna cheat it.)
+    draw_sprite(sprite_ennemies,0,view_xview[0]+5,view_yview[0]+85);
+    draw_text(view_xview+22,view_yview+95,'000');
+    
+    }
 
     
 

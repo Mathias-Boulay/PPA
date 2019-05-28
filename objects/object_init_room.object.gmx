@@ -63,6 +63,12 @@ This_platform.dir = 1;
 This_platform.movespeed = 1;
 This_platform.distance=35;
 
+//On crée la couleur:
+col=make_colour_rgb(48,48,48);
+
+
+
+
 
 </string>
           </argument>
@@ -93,23 +99,27 @@ draw_sprite_ext(sprite_overlay_upper_middle,0,view_xview[0]+sprite_get_width(spr
 draw_sprite(sprite_overlay_upper_right,0,(view_xview[0]+view_wview[0]-1),view_yview[0]);
 
 //Le bas:
-draw_sprite(sprite_overlay_bottom_left,0,view_xview[0],view_yview[0]+view_hview[0]);
-draw_sprite_ext(sprite_overlay_bottom_middle,0,view_xview[0]+sprite_get_width(sprite_overlay_bottom_left),view_yview[0]+view_hview[0],((view_xview[0]+view_wview[0])-sprite_get_width(sprite_overlay_bottom_right))-(view_xview[0]+sprite_get_width(sprite_overlay_bottom_left)),1,0,c_white,1);
-draw_sprite(sprite_overlay_bottom_right,0,(view_xview[0]+view_wview[0]-1),view_yview[0]+view_hview[0]);
+draw_sprite(sprite_overlay_bottom_left,0,view_xview[0],view_yview[0]+view_hview[0]-1);
+draw_sprite_ext(sprite_overlay_bottom_middle,0,view_xview[0]+sprite_get_width(sprite_overlay_bottom_left),view_yview[0]+view_hview[0]-1,((view_xview[0]+view_wview[0])-sprite_get_width(sprite_overlay_bottom_right))-(view_xview[0]+sprite_get_width(sprite_overlay_bottom_left)),1,0,c_white,1);
+draw_sprite(sprite_overlay_bottom_right,0,(view_xview[0]+view_wview[0]-1),view_yview[0]+view_hview[0]-1);
 
 //Bon je n'ai pas dessiné les barres...
 //Barre du bas:
-draw_sprite(sprite_overlay_bar_arrow,0,view_xview[0],view_yview[0]+view_hview[0]-sprite_get_height(sprite_overlay_bottom_left));
-draw_sprite_ext(sprite_overlay_bar_middle,0,view_xview[0]+sprite_get_width(sprite_overlay_bar_arrow),view_yview[0]+view_hview[0]-sprite_get_height(sprite_overlay_bottom_left),(view_xview[0]+view_wview[0]-sprite_get_width(sprite_overlay_bar_arrow)-5)-(view_xview[0]+sprite_get_width(sprite_overlay_bar_arrow)),1,0,c_white,1);
-draw_sprite_ext(sprite_overlay_bar_arrow,0,view_xview[0]+view_wview[0]-5,view_yview[0]+view_hview[0]-sprite_get_height(sprite_overlay_bottom_right),-1,1,0,c_white,1);
+draw_sprite(sprite_overlay_bar_arrow,0,view_xview[0],view_yview[0]+view_hview[0]-sprite_get_height(sprite_overlay_bottom_left)-1);
+draw_sprite_ext(sprite_overlay_bar_middle,0,view_xview[0]+sprite_get_width(sprite_overlay_bar_arrow),view_yview[0]+view_hview[0]-sprite_get_height(sprite_overlay_bottom_left)-1,(view_xview[0]+view_wview[0]-sprite_get_width(sprite_overlay_bar_arrow)-5)-(view_xview[0]+sprite_get_width(sprite_overlay_bar_arrow)),1,0,c_white,1);
+draw_sprite_ext(sprite_overlay_bar_arrow,0,view_xview[0]+view_wview[0]-6,view_yview[0]+view_hview[0]-sprite_get_height(sprite_overlay_bottom_right)-1,-1,1,0,c_white,1);
 
 
 //Barre de droite:
 draw_sprite_ext(sprite_overlay_bar_arrow,0,view_xview[0]+view_wview[0]+1-sprite_get_height(sprite_overlay_bar_arrow),view_yview[0]+sprite_get_height(sprite_overlay_upper_right),1,1,-90,c_white,1);
 draw_sprite_ext(sprite_overlay_bar_middle,0,view_xview[0]+view_wview[0]+1-sprite_get_height(sprite_overlay_bar_arrow),view_yview[0]+sprite_get_height(sprite_overlay_upper_right)+sprite_get_width(sprite_overlay_bar_arrow),(view_yview[0]+view_hview[0]-5-sprite_get_height(sprite_overlay_bottom_right)-sprite_get_width(sprite_overlay_bar_arrow))-(view_yview[0]+sprite_get_height(sprite_overlay_upper_right)+sprite_get_width(sprite_overlay_bar_arrow)),1,-90,c_white,1);
-draw_sprite_ext(sprite_overlay_bar_arrow,0,view_xview[0]+view_wview[0],view_yview[0]+view_hview[0]-5-sprite_get_height(sprite_overlay_bottom_right),1,1,90,c_white,1);
+draw_sprite_ext(sprite_overlay_bar_arrow,0,view_xview[0]+view_wview[0]-1,view_yview[0]+view_hview[0]-5-sprite_get_height(sprite_overlay_bottom_right)-1,1,1,90,c_white,1);
 
+//Dessiner un petit rectangle de merde.
+draw_rectangle_colour(view_xview[0]+view_wview[0]-6,view_yview[0]+view_hview[0]-sprite_get_height(sprite_overlay_bottom_right)-6,view_xview[0]+view_wview[0],view_yview[0]+view_hview[0]-sprite_get_height(sprite_overlay_bottom_right)-1,col,col,col,col,false);
 
+//Dessiner les barres plus foncées. Que en présence du joueur:
+//draw_sprite(sprite_overlay_
 
 
 

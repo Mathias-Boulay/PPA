@@ -75,8 +75,9 @@ instance_create(x,y,object_camera);
 
 
 ini_close();
-ini_open(global.selected_level);
-    
+if room!=room_Test_room{
+    ini_open(global.selected_level);
+    }
 //Debug:
 instance_create(x,y,object_debug);
 </string>
@@ -459,7 +460,7 @@ attack = global.face2[ID];
 pause = global.start[ID] /* || os_is_paused()*/;
 debugbutton = global.stickl[ID];
 
-
+if room=room_Test_room{pause=0;}
 //Appliquer une marge de detection car certaines manettes ne sont pas terriblements fonctionnelles:
 //Ou alors si le joueur effectue une action particulière.
 if abs(move) &lt; 0.1{

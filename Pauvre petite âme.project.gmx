@@ -518,13 +518,13 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\room_init</room>
-    <room>rooms\room_Test_room</room>
     <room>rooms\room_pre_title</room>
     <room>rooms\room_title</room>
     <room>rooms\room_level</room>
     <room>rooms\room_level_1</room>
     <room>rooms\room_test_LevelBuilder</room>
     <room>rooms\room0</room>
+    <room>rooms\room_Test_room</room>
     <room>rooms\room_test</room>
   </rooms>
   <help>

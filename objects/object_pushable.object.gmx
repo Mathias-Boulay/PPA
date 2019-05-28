@@ -26,6 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>vsp = 0;
+hsp = 0;
+pushspeed=0;
 image_speed=0;
 </string>
           </argument>
@@ -52,6 +54,11 @@ image_speed=0;
             <string>//Increment vsp
 vsp += global.grav;
 
+//Friction:
+if hsp = 0{
+    hsp = max(0,abs(hsp)-(global.frict/2))*sign(hsp);
+    }
+
 // Vertical collision
 repeat(abs(vsp)) {
     if (!place_meeting(x, y + sign(vsp), object_wall))
@@ -64,17 +71,34 @@ repeat(abs(vsp)) {
 
 //horizontal unoptimized collision
 if instance_exists(object_player){
-    if obejct_player.STATUS ="pushing"{
-        if place_meeting(x-2,y,object_player) &amp;&amp; !place_meeting(x+2,y,object_wall){
-            x+=2;
-            object_player.x += 2;
+    if object_player.STATUS ="pushing"{
+        if place_meeting(x-pushspeed,y,object_player) &amp;&amp; !place_meeting(x+pushspeed,y,object_wall){
+            x+=pushspeed;
+            object_player.x += pushspeed;
             }
             
-        if place_meeting(x+2,y,object_player) &amp;&amp; !place_meeting(x-2,y,object_wall){
-            x-=2;
-            object_player.x -= 2
+        if place_meeting(x+pushspeed,y,object_player) &amp;&amp; !place_meeting(x-pushspeed,y,object_wall){
+            x-=pushspeed;
+            object_player.x -= pushspeed;
+            }
+            
+        if place_meeting(x,y,object_hit){
+            hsp=(movespeed+sign(movespeed))*sign(x-object_player.x);
+            }
+            
+        }
+    
+    // Horizontal collision.
+    repeat(abs(hsp)) {
+        if (!place_meeting(x + sign(hsp), y, object_wall))
+            x += sign(hsp); 
+        else {
+            hsp = 0;
+            break;
             }
         }
+        
+        
     }
 
     
