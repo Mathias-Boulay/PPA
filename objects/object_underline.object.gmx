@@ -155,7 +155,7 @@ if STATUS ="ACTION"{
     if place_meeting(x-10,y-5,object_home){
         //On revient au menu principal.
         //Pensez plus tard à gérer l'intégration de la non-sauvegarde.
-        script_fade_status("room_title")
+        script_fade_status("room_title","TITLE");
         }
     else{
         if place_meeting(x-10,y-5,object_restart){

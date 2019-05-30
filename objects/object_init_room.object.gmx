@@ -30,6 +30,11 @@ room_width=view_wview[0];
 room_height=view_hview[0];
 
 //Je dois créer les paramètres globaux du monde
+global.grav=0.3;
+global.jumpspeed=6;
+global.movespeed=8;
+global.frict=0.12;
+global.bossfight=0;
 
 //On doit créer des murs.
 //Murs hauts:
@@ -66,12 +71,12 @@ This_platform.movespeed = 1;
 This_platform.distance=35;
 
 //Faut faire le dummy:
-This_pushable=instance_create(view_xview[0]+(view_xview[0]/2),0,object_pushable);
+This_pushable=instance_create(view_xview[0]+(view_wview[0]/2),0,object_pushable);
 This_pushable.sprite_index=sprite_Test_room_pushable;
 This_pushable.pushspeed=1;
 
 //Puis (et enfin) Shai !
-instance_create(view_xview[0]+(view_xview[0]/3),120,object_player);
+instance_create(view_xview[0]+(view_wview[0]/3),100,object_player);
 
 
 //On crée la couleur:

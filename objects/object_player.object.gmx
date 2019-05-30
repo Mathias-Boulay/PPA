@@ -460,7 +460,13 @@ attack = global.face2[ID];
 pause = global.start[ID] /* || os_is_paused()*/;
 debugbutton = global.stickl[ID];
 
-if room=room_Test_room{pause=0;}
+if room=room_Test_room{
+    if global.start[ID]{
+        script_fade_status("room_title","OPTIONS-MAPPING");
+        pause=0;
+        }
+    
+    }
 //Appliquer une marge de detection car certaines manettes ne sont pas terriblements fonctionnelles:
 //Ou alors si le joueur effectue une action particulière.
 if abs(move) &lt; 0.1{

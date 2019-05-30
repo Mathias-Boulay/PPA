@@ -54,8 +54,7 @@ path_start(asset_get_index("path_title"+path),1/4,path_action_stop,true);
     if path=""{path="_reverse"}else{path="";}
     }
 if global.start[0]|| global.face1[0]{
-    fading=instance_create(x,y,object_fade);
-    fading.STATUS="room_title";
+    script_fade_status("room_title","SELECT_SAVE");
     }
 if global.face2[0]{
     game_end();

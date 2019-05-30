@@ -56,7 +56,7 @@ vsp += global.grav;
 
 //Friction:
 if hsp != 0{
-    hsp = max(0,abs(hsp)-(global.frict/2))*sign(hsp);
+    hsp = max(0,abs(hsp)-(global.frict/4))*sign(hsp);
     }
 
 // Vertical collision
@@ -75,9 +75,9 @@ if instance_exists(object_player){
         for(i=1;i&gt;=-1;i-=2){
             if place_meeting(x+i,y,object_player){
                 repeat(abs(pushspeed)){
-                    if !place_meeting(x+sign(pushspeed),y,object_wall){
-                        x+=sign(pushspeed);
-                        object_player.x+=sign(pushspeed);
+                    if !place_meeting(x+(sign(pushspeed)*object_player.image_xscale),y,object_wall){
+                        x+=(sign(pushspeed)*object_player.image_xscale);
+                        object_player.x+=(sign(pushspeed)*object_player.image_xscale);
                         }
                     else{
                         break;

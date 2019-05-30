@@ -488,6 +488,10 @@
         <object>objects\object_right_leg</object>
       </objects>
       <object>objects\object_player</object>
+      <object>objects\object_hud</object>
+      <object>objects\object_heart</object>
+      <object>objects\object_hit</object>
+      <object>objects\object_respawn</object>
     </objects>
     <object>objects\object_wall</object>
     <object>objects\object_deadzone</object>
@@ -498,17 +502,11 @@
     <object>objects\object_uncontrol_platform</object>
     <object>objects\object_pushable</object>
     <object>objects\object_camera</object>
-    <object>objects\object_hud</object>
     <object>objects\object10</object>
     <object>objects\object_riony</object>
-    <object>objects\object_heart</object>
-    <object>objects\object_hit</object>
-    <object>objects\object_hitbox</object>
     <object>objects\object_wall_platforms</object>
     <object>objects\object_death_arm</object>
     <object>objects\object_death_arm_finger</object>
-    <object>objects\object90</object>
-    <object>objects\object_respawn</object>
     <object>objects\object_lag</object>
     <object>objects\object_test_backgrounds</object>
     <object>objects\object_start_overlay_2</object>
