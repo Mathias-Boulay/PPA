@@ -51,6 +51,8 @@ next_right=0;
 ID=(instance_number(object_player)-1);
 temp_jump = false;
 UIBusy = false;
+vibrate=true;
+sacade=1;
 
 
 ini_close();
@@ -201,6 +203,32 @@ uncontrol = 1;
             <kind>1</kind>
             <string>///Invoque l'objet chargé de faire le respawn
 instance_create(x,y,object_respawn);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="6">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///On redonne la possibilité de vibrer !
+//Aucun droit de connotation sexuelle, merci par avance.
+if vibrate{vibrate=false;}else{vibrate=true;}
+alarm_set(6,sacade);
 </string>
           </argument>
         </arguments>
@@ -1504,6 +1532,118 @@ if STATUS = "divejumping" &amp;&amp; vsp &gt; 0{
     }
 else{
     image_angle = 0;
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Module de vibrations des animations: est fait au cas par cas.
+//Doit être recodé pour chaque animation:
+
+switch(STATUS){
+    case "walking":
+        switch(floor(image_index)){
+            case 5:
+            case 6:
+            case 13:
+            case 14:
+                gamepad_set_vibration(ID,0.15,0.15);
+                break;
+            
+            default:
+                gamepad_set_vibration(ID,0,0);
+            }
+        break;
+    
+    case "running":
+        switch(floor(image_index)){
+            case 7:
+            case 8:
+            case 9:
+            case 19:
+            case 20:
+            case 21:
+                gamepad_set_vibration(ID,0.3,0.3);
+                break;
+                
+            default:
+                gamepad_set_vibration(ID,0,0);
+            }
+        break;
+        
+    case "crawling":
+        switch(floor(image_index)){
+            case 2:
+            case 5:
+            case 6:
+                gamepad_set_vibration(ID,0.15,0.15);
+                break;
+                
+            default:
+                gamepad_set_vibration(ID,0,0);
+            }
+        break;
+        
+    case "hurt":
+        gamepad_set_vibration(ID,0.8,0.8);
+        break;
+        
+    case "walljump":
+        sacade=6;
+        gamepad_set_vibration(ID,(sign(vsp)*0.13+(floor(vsp)/3))*vibrate,(sign(vsp)*0.13+(floor(vsp)/3))*vibrate);
+        break;
+        
+    case "stopping":
+        sacade=10;
+        gamepad_set_vibration(ID,0.2*vibrate,0.2*vibrate);
+        break;
+    
+    case "headshot":
+        if floor(image_index) = 5{
+            gamepad_set_vibration(ID,1,1);
+            }
+        else{
+            gamepad_set_vibration(ID,0,0);
+            }
+        break;
+        
+    case "divelanding":
+        switch(floor(image_index)){
+            case 0:
+                gamepad_set_vibration(ID,1,1);
+                break;
+            
+            default:
+                sacade=6;
+                gamepad_set_vibration(ID,0.3,0.3);
+                break;
+            }
+        break;
+        
+        
+    default:
+        sacade=1;
+        gamepad_set_vibration(ID,0,0);
+    
+        
+    
+    
     }
 </string>
           </argument>

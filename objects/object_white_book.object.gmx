@@ -65,283 +65,243 @@ texts = script_word_light(0,50);
           <argument>
             <kind>1</kind>
             <string>///Menu recodé pour être dynamique au livre.
-if STATUS = "TITLE"{
-    if !instance_exists(object_play){
-        instance_create(x+248,y+51,object_play);
-        instance_create(x+248,y+86,object_album);
-        instance_create(x+248,y+123,object_options_main_menu);
-        instance_create(x+248,y+158,object_credits);
-        left_title = instance_create(x+242,y+57,object_leftbutton_main_menu);
-        }
-    }
-else{
-    if instance_exists(object_play){
-        instance_destroy(left_title);
-        instance_destroy(object_play);
-        instance_destroy(object_album);
-        instance_destroy(object_credits);
-        instance_destroy(object_options_main_menu);
-        }
-    }
-        
-if STATUS = "OPTIONS"{
-    if !instance_exists(object_video_options){
-        instance_create(x+248,y+50,object_video_options);
-        instance_create(x+248,y+87,object_sound);
-        instance_create(x+248,y+123,object_controlles);
-        instance_create(x+248,y+159,object_langage);
-        left_options = instance_create(x+243,y+57,object_leftbutton_main_menu);
-        }
-    }
-else{
-    if instance_exists(object_video_options){
-        instance_destroy(left_options);
-        instance_destroy(object_video_options);
-        instance_destroy(object_langage);
-        instance_destroy(object_sound);
-        instance_destroy(object_controlles);
-        }
-    }
-            
-if STATUS = "OPTIONS-VIDEO"{
-    if !instance_exists(object_resolution){
-        instance_create(x+269,y+86,object_resolution);
-        instance_create(x+269,y+120,object_fullscreen);
-        instance_create(x+269,y+161,object_quality);
-        instance_create(x+175,y+200,object_retour);
-        left_video=instance_create(x+286,y+92,object_leftbutton_main_menu);      
-        }
-    }
-else{
-    if instance_exists(object_resolution){
-        instance_destroy(object_resolution);
-        instance_destroy(object_fullscreen);
-        instance_destroy(object_quality);
-        instance_destroy(object_retour);
-        instance_destroy(left_video);
-        }
-    }
-    
-if STATUS = "OPTIONS-SON"{
-    if !instance_exists(object_music_button){
-        instance_create(x+111,y+86,object_music_button);
-        instance_create(x+120,y+143,object_sfx_button);
-        left_son = instance_create(x+101,y+92,object_leftbutton_main_menu);
-        instance_create(x+175,y+200,object_retour);
-        //Create sounds bar
-        //low sounds bar:
-        //music:
-        instance_create(x+174,y+113,object_sound_low);
-        instance_create(x+190,y+113,object_sound_low);
-        instance_create(x+206,y+113,object_sound_low);
-        instance_create(x+222,y+113,object_sound_low);
-        instance_create(x+238,y+113,object_sound_low);
-        instance_create(x+254,y+113,object_sound_low);
-        instance_create(x+270,y+113,object_sound_low);
-        instance_create(x+286,y+113,object_sound_low);
-        instance_create(x+302,y+113,object_sound_low);
-        //sfx:
-        instance_create(x+174,y+170,object_sound_low);
-        instance_create(x+190,y+170,object_sound_low);
-        instance_create(x+206,y+170,object_sound_low);
-        instance_create(x+222,y+170,object_sound_low);
-        instance_create(x+238,y+170,object_sound_low);
-        instance_create(x+254,y+170,object_sound_low);
-        instance_create(x+270,y+170,object_sound_low);
-        instance_create(x+286,y+170,object_sound_low);
-        instance_create(x+302,y+170,object_sound_low);
-        
-        //high sound bar:
-        //music:
-        instance_create(x+174,y+105,object_sound_high);
-        instance_create(x+190,y+102,object_sound_high);
-        instance_create(x+206,y+99,object_sound_high);
-        instance_create(x+222,y+96,object_sound_high);
-        instance_create(x+238,y+93,object_sound_high);
-        instance_create(x+254,y+90,object_sound_high);
-        instance_create(x+270,y+87,object_sound_high);
-        instance_create(x+286,y+84,object_sound_high);
-        instance_create(x+302,y+81,object_sound_high);
-        
-        //sfx:
-        instance_create(x+174,y+162,object_sound_high);
-        instance_create(x+190,y+159,object_sound_high);
-        instance_create(x+206,y+156,object_sound_high);
-        instance_create(x+222,y+153,object_sound_high);
-        instance_create(x+238,y+150,object_sound_high);
-        instance_create(x+254,y+147,object_sound_high);
-        instance_create(x+270,y+144,object_sound_high);
-        instance_create(x+286,y+141,object_sound_high);
-        instance_create(x+302,y+138,object_sound_high);
-        
-        //middle sound bar:
-        //music:
-        instance_create(x+190,y+110,object_sound_middle);
-        instance_create(x+206,y+107,object_sound_middle);
-        instance_create(x+222,y+104,object_sound_middle);
-        instance_create(x+238,y+101,object_sound_middle);
-        instance_create(x+254,y+98,object_sound_middle);
-        instance_create(x+270,y+95,object_sound_middle);
-        instance_create(x+286,y+92,object_sound_middle);
-        instance_create(x+302,y+89,object_sound_middle);
-        
-        //sfx:
-        instance_create(x+190,y+167,object_sound_middle);
-        instance_create(x+206,y+164,object_sound_middle);
-        instance_create(x+222,y+161,object_sound_middle);
-        instance_create(x+238,y+158,object_sound_middle);
-        instance_create(x+254,y+155,object_sound_middle);
-        instance_create(x+270,y+152,object_sound_middle);
-        instance_create(x+286,y+149,object_sound_middle);
-        instance_create(x+302,y+146,object_sound_middle);
-        }
-    }
-else{
-    if instance_exists(object_music_button){
-        instance_destroy(object_music_button);
-        instance_destroy(object_sfx_button);
-        instance_destroy(left_son);
-        instance_destroy(object_sound_low);
-        instance_destroy(object_sound_middle);
-        instance_destroy(object_sound_high);
-        instance_destroy(object_retour);
-        }
-    }
-        
-if STATUS = "OPTIONS-LANGAGE"{
-    if !instance_exists(object_franglish){
-        instance_create(x+85,y+158,object_franglish);
-        instance_create(x+264,y+202,object_english);
-        instance_create(x+260,y+98,object_francais);
-        left_langue = instance_create(x+80,y+164,object_leftbutton_main_menu);
-        instance_create(x,y,object_selection_flag);
-        }
-    }
-else{
-    if instance_exists(object_franglish){
-        instance_destroy(left_langue);
-        instance_destroy(object_franglish);
-        instance_destroy(object_english);
-        instance_destroy(object_francais);
-        instance_destroy(object_retour);
-        instance_destroy(object_selection_flag);
-        }
-    }      
-        
-if STATUS = "SELECT_SAVE"{
-    if !instance_exists(object_selectsave){
-        instance_create(x+51,y+18,object_savepaper);
-        instance_create(x+221,y+18,object_savepaper);
-        instance_create(x+51,y+122,object_savepaper);
-        instance_create(x+221,y+122,object_savepaper);
-        instance_create(x+49,y+16,object_selectsave);
-        }
-    }
-else{
-    if instance_exists(object_selectsave){
-        instance_destroy(object_savepaper);
-        instance_destroy(object_selectsave);
-        instance_destroy(object_back_save);
-        instance_destroy(object_delete_save);
-        instance_destroy(object_copy_save);
-        instance_destroy(object_play_save);
-        instance_destroy(global.sub_left);
-        }
-    }      
-
-if STATUS = "SELECT_LEVEL"{
-    if !instance_exists(object_level_selector){
-        instance_create(x+51,y+19,object_levelpaper);
-        instance_create(x+221,y+19,object_levelpaper);
-        instance_create(x+120,y+124,object_level_selector);
-        }
-    }
-else{
-    if instance_exists(object_level_selector){
-        instance_destroy(object_levelpaper);       
-        instance_destroy(object_levelboard);
-        instance_destroy(object_level_selector);
-        instance_destroy(object_lv);
-        }
-    }
-
-if STATUS = "OPTIONS-MAPPING"{
-    if !instance_exists(object_try){
-        //Then create some objects;
-        instance_create(x+178,y+154,object_vibrations)
-        instance_create(x+126,y+130,object_voir_controlles);
-        instance_create(x+297,y+127,object_modifier);
-        instance_create(x+297,y+158,object_try);
-        instance_create(x+260,y+286,object_retour);
-        left_mapping = instance_create(x+60,y+139,object_leftbutton_main_menu);
-        }
-    }
-else{
-    if instance_exists(object_try){
-        //Then delete everything;
-        instance_destroy(left_mapping);
-        instance_destroy(object_vibrations);
-        instance_destroy(object_voir_controlles);
-        instance_destroy(object_modifier);
-        instance_destroy(object_try);
-        instance_destroy(object_retour);
-        }
-    }
-
-if STATUS = "OPTIONS_SEE_CONTROLS"{
-    if global.face2[0]{
-        script_fade_status("OPTIONS-MAPPING");
-        }
-    }
-
-if room=room_level{
-    if SUB_STATUS = "DISPLAY"{
-        bichour= abs((view_yview[0]+view_hview[0])-(y+sprite_height));
-        //On s'occupe de faire translater le livre (penser à faire translater le reste des objets pour l'entrée/la sortie);
-        if abs((view_yview[0]+view_hview[0])-(y+sprite_height)) &lt; 0.4{
-            SUB_STATUS="";
-            y = view_yview[0]+view_hview[0]-sprite_height;
-            
-            object_video_options.x=x+248;
-            object_video_options.y=y+50;
-            
-            object_sound.x=x+248;
-            object_sound.y=y+87;
-            
-            object_controlles.x=x+248;
-            object_controlles.y=y+123;
-            
-            object_langage.x=x+248;
-            object_langage.y=y+159;
-            
-            object_leftbutton_main_menu.x=x+238;
-            object_leftbutton_main_menu.y=y+57;
-            }
-        else{
-            y +=(((view_yview[0])-y)-4)/12;
-            
-            object_video_options.x=x+248;
-            object_video_options.y=y+50;
-            
-            object_sound.x=x+248;
-            object_sound.y=y+87;
-            
-            object_controlles.x=x+248;
-            object_controlles.y=y+123;
-            
-            object_langage.x=x+248;
-            object_langage.y=y+159;
-            
-            object_leftbutton_main_menu.x=x+238;
-            object_leftbutton_main_menu.y=y+57;
+if variable_instance_exists(id,"STATUS"){
+    if STATUS = "TITLE"{
+        if !instance_exists(object_play){
+            instance_create(x+248,y+51,object_play);
+            instance_create(x+248,y+86,object_album);
+            instance_create(x+248,y+123,object_options_main_menu);
+            instance_create(x+248,y+158,object_credits);
+            left_title = instance_create(x+242,y+57,object_leftbutton_main_menu);
             }
         }
     else{
-        if SUB_STATUS="OUT"{
-            //On sort direct.
-            if y &lt;= view_yview[0]+view_hview[0]{
-                //On continue de se tailler:
-                y += ((y-view_yview[0])+4)/12;
+        if instance_exists(object_play){
+            instance_destroy(left_title);
+            instance_destroy(object_play);
+            instance_destroy(object_album);
+            instance_destroy(object_credits);
+            instance_destroy(object_options_main_menu);
+            }
+        }
+            
+    if STATUS = "OPTIONS"{
+        if !instance_exists(object_video_options){
+            instance_create(x+248,y+50,object_video_options);
+            instance_create(x+248,y+87,object_sound);
+            instance_create(x+248,y+123,object_controlles);
+            instance_create(x+248,y+159,object_langage);
+            left_options = instance_create(x+243,y+57,object_leftbutton_main_menu);
+            }
+        }
+    else{
+        if instance_exists(object_video_options){
+            instance_destroy(left_options);
+            instance_destroy(object_video_options);
+            instance_destroy(object_langage);
+            instance_destroy(object_sound);
+            instance_destroy(object_controlles);
+            }
+        }
+                
+    if STATUS = "OPTIONS-VIDEO"{
+        if !instance_exists(object_resolution){
+            instance_create(x+269,y+86,object_resolution);
+            instance_create(x+269,y+120,object_fullscreen);
+            instance_create(x+269,y+161,object_quality);
+            instance_create(x+175,y+200,object_retour);
+            left_video=instance_create(x+286,y+92,object_leftbutton_main_menu);      
+            }
+        }
+    else{
+        if instance_exists(object_resolution){
+            instance_destroy(object_resolution);
+            instance_destroy(object_fullscreen);
+            instance_destroy(object_quality);
+            instance_destroy(object_retour);
+            instance_destroy(left_video);
+            }
+        }
+        
+    if STATUS = "OPTIONS-SON"{
+        if !instance_exists(object_music_button){
+            instance_create(x+111,y+86,object_music_button);
+            instance_create(x+120,y+143,object_sfx_button);
+            left_son = instance_create(x+101,y+92,object_leftbutton_main_menu);
+            instance_create(x+175,y+200,object_retour);
+            //Create sounds bar
+            //low sounds bar:
+            //music:
+            instance_create(x+174,y+113,object_sound_low);
+            instance_create(x+190,y+113,object_sound_low);
+            instance_create(x+206,y+113,object_sound_low);
+            instance_create(x+222,y+113,object_sound_low);
+            instance_create(x+238,y+113,object_sound_low);
+            instance_create(x+254,y+113,object_sound_low);
+            instance_create(x+270,y+113,object_sound_low);
+            instance_create(x+286,y+113,object_sound_low);
+            instance_create(x+302,y+113,object_sound_low);
+            //sfx:
+            instance_create(x+174,y+170,object_sound_low);
+            instance_create(x+190,y+170,object_sound_low);
+            instance_create(x+206,y+170,object_sound_low);
+            instance_create(x+222,y+170,object_sound_low);
+            instance_create(x+238,y+170,object_sound_low);
+            instance_create(x+254,y+170,object_sound_low);
+            instance_create(x+270,y+170,object_sound_low);
+            instance_create(x+286,y+170,object_sound_low);
+            instance_create(x+302,y+170,object_sound_low);
+            
+            //high sound bar:
+            //music:
+            instance_create(x+174,y+105,object_sound_high);
+            instance_create(x+190,y+102,object_sound_high);
+            instance_create(x+206,y+99,object_sound_high);
+            instance_create(x+222,y+96,object_sound_high);
+            instance_create(x+238,y+93,object_sound_high);
+            instance_create(x+254,y+90,object_sound_high);
+            instance_create(x+270,y+87,object_sound_high);
+            instance_create(x+286,y+84,object_sound_high);
+            instance_create(x+302,y+81,object_sound_high);
+            
+            //sfx:
+            instance_create(x+174,y+162,object_sound_high);
+            instance_create(x+190,y+159,object_sound_high);
+            instance_create(x+206,y+156,object_sound_high);
+            instance_create(x+222,y+153,object_sound_high);
+            instance_create(x+238,y+150,object_sound_high);
+            instance_create(x+254,y+147,object_sound_high);
+            instance_create(x+270,y+144,object_sound_high);
+            instance_create(x+286,y+141,object_sound_high);
+            instance_create(x+302,y+138,object_sound_high);
+            
+            //middle sound bar:
+            //music:
+            instance_create(x+190,y+110,object_sound_middle);
+            instance_create(x+206,y+107,object_sound_middle);
+            instance_create(x+222,y+104,object_sound_middle);
+            instance_create(x+238,y+101,object_sound_middle);
+            instance_create(x+254,y+98,object_sound_middle);
+            instance_create(x+270,y+95,object_sound_middle);
+            instance_create(x+286,y+92,object_sound_middle);
+            instance_create(x+302,y+89,object_sound_middle);
+            
+            //sfx:
+            instance_create(x+190,y+167,object_sound_middle);
+            instance_create(x+206,y+164,object_sound_middle);
+            instance_create(x+222,y+161,object_sound_middle);
+            instance_create(x+238,y+158,object_sound_middle);
+            instance_create(x+254,y+155,object_sound_middle);
+            instance_create(x+270,y+152,object_sound_middle);
+            instance_create(x+286,y+149,object_sound_middle);
+            instance_create(x+302,y+146,object_sound_middle);
+            }
+        }
+    else{
+        if instance_exists(object_music_button){
+            instance_destroy(object_music_button);
+            instance_destroy(object_sfx_button);
+            instance_destroy(left_son);
+            instance_destroy(object_sound_low);
+            instance_destroy(object_sound_middle);
+            instance_destroy(object_sound_high);
+            instance_destroy(object_retour);
+            }
+        }
+            
+    if STATUS = "OPTIONS-LANGAGE"{
+        if !instance_exists(object_franglish){
+            instance_create(x+85,y+158,object_franglish);
+            instance_create(x+264,y+202,object_english);
+            instance_create(x+260,y+98,object_francais);
+            left_langue = instance_create(x+80,y+164,object_leftbutton_main_menu);
+            instance_create(x,y,object_selection_flag);
+            }
+        }
+    else{
+        if instance_exists(object_franglish){
+            instance_destroy(left_langue);
+            instance_destroy(object_franglish);
+            instance_destroy(object_english);
+            instance_destroy(object_francais);
+            instance_destroy(object_retour);
+            instance_destroy(object_selection_flag);
+            }
+        }      
+            
+    if STATUS = "SELECT_SAVE"{
+        if !instance_exists(object_selectsave){
+            instance_create(x+51,y+18,object_savepaper);
+            instance_create(x+221,y+18,object_savepaper);
+            instance_create(x+51,y+122,object_savepaper);
+            instance_create(x+221,y+122,object_savepaper);
+            instance_create(x+49,y+16,object_selectsave);
+            }
+        }
+    else{
+        if instance_exists(object_selectsave){
+            instance_destroy(object_savepaper);
+            instance_destroy(object_selectsave);
+            instance_destroy(object_back_save);
+            instance_destroy(object_delete_save);
+            instance_destroy(object_copy_save);
+            instance_destroy(object_play_save);
+            instance_destroy(global.sub_left);
+            }
+        }      
+    
+    if STATUS = "SELECT_LEVEL"{
+        if !instance_exists(object_level_selector){
+            instance_create(x+51,y+19,object_levelpaper);
+            instance_create(x+221,y+19,object_levelpaper);
+            instance_create(x+120,y+124,object_level_selector);
+            }
+        }
+    else{
+        if instance_exists(object_level_selector){
+            instance_destroy(object_levelpaper);       
+            instance_destroy(object_levelboard);
+            instance_destroy(object_level_selector);
+            instance_destroy(object_lv);
+            }
+        }
+    
+    if STATUS = "OPTIONS-MAPPING"{
+        if !instance_exists(object_try){
+            //Then create some objects;
+            instance_create(x+178,y+154,object_vibrations)
+            instance_create(x+126,y+130,object_voir_controlles);
+            instance_create(x+297,y+127,object_modifier);
+            instance_create(x+297,y+158,object_try);
+            instance_create(x+260,y+286,object_retour);
+            left_mapping = instance_create(x+60,y+139,object_leftbutton_main_menu);
+            }
+        }
+    else{
+        if instance_exists(object_try){
+            //Then delete everything;
+            instance_destroy(left_mapping);
+            instance_destroy(object_vibrations);
+            instance_destroy(object_voir_controlles);
+            instance_destroy(object_modifier);
+            instance_destroy(object_try);
+            instance_destroy(object_retour);
+            }
+        }
+    
+    if STATUS = "OPTIONS_SEE_CONTROLS"{
+        if global.face2[0]{
+            script_fade_status("OPTIONS-MAPPING");
+            }
+        }
+    
+    if room=room_level{
+        if SUB_STATUS = "DISPLAY"{
+            bichour= abs((view_yview[0]+view_hview[0])-(y+sprite_height));
+            //On s'occupe de faire translater le livre (penser à faire translater le reste des objets pour l'entrée/la sortie);
+            if abs((view_yview[0]+view_hview[0])-(y+sprite_height)) &lt; 0.4{
+                SUB_STATUS="";
+                y = view_yview[0]+view_hview[0]-sprite_height;
                 
                 object_video_options.x=x+248;
                 object_video_options.y=y+50;
@@ -357,19 +317,62 @@ if room=room_level{
                 
                 object_leftbutton_main_menu.x=x+238;
                 object_leftbutton_main_menu.y=y+57;
-                
                 }
             else{
-                //On meure.
-                instance_destroy();
-                instance_destroy(object_video_options);
-                instance_destroy(object_sound);
-                instance_destroy(object_controlles);
-                instance_destroy(object_langage);
-                instance_destroy(object_leftbutton_main_menu);
+                y +=(((view_yview[0])-y)-4)/12;
+                
+                object_video_options.x=x+248;
+                object_video_options.y=y+50;
+                
+                object_sound.x=x+248;
+                object_sound.y=y+87;
+                
+                object_controlles.x=x+248;
+                object_controlles.y=y+123;
+                
+                object_langage.x=x+248;
+                object_langage.y=y+159;
+                
+                object_leftbutton_main_menu.x=x+238;
+                object_leftbutton_main_menu.y=y+57;
+                }
+            }
+        else{
+            if SUB_STATUS="OUT"{
+                //On sort direct.
+                if y &lt;= view_yview[0]+view_hview[0]{
+                    //On continue de se tailler:
+                    y += ((y-view_yview[0])+4)/12;
+                    
+                    object_video_options.x=x+248;
+                    object_video_options.y=y+50;
+                    
+                    object_sound.x=x+248;
+                    object_sound.y=y+87;
+                    
+                    object_controlles.x=x+248;
+                    object_controlles.y=y+123;
+                    
+                    object_langage.x=x+248;
+                    object_langage.y=y+159;
+                    
+                    object_leftbutton_main_menu.x=x+238;
+                    object_leftbutton_main_menu.y=y+57;
+                    
+                    }
+                else{
+                    //On meure.
+                    instance_destroy();
+                    instance_destroy(object_video_options);
+                    instance_destroy(object_sound);
+                    instance_destroy(object_controlles);
+                    instance_destroy(object_langage);
+                    instance_destroy(object_leftbutton_main_menu);
+                    }
                 }
             }
         }
+        
     }
 
     
@@ -399,132 +402,134 @@ if room=room_level{
             <kind>1</kind>
             <string>///Afficher les éléments non interactifs.
 draw_self();
-if STATUS = "TITLE"
-    {
-    image_index = 0;
-    draw_sprite(sprite_title,0,x+55,y+36); 
-    draw_sprite(sprite_fast_credits,0,x+57,y+200);
-    draw_sprite(sprite_draw_fairy,0,x+222,y+182);
-    draw_sprite(sprite_draw_toad,0,x+349,y+186);
-    draw_sprite(sprite_draw_cat_bigeyes,0,x+355,y+45);
-    draw_sprite(sprite_draw_cat,0,x+159,y+31);
-    draw_sprite(sprite_draw_flappy_bird,0,x+248,y+26);
-    }
-else{
-    if STATUS = "OPTIONS"{
+if variable_instance_exists(id,"STATUS"){
+    if STATUS = "TITLE"
+        {
         image_index = 0;
-        draw_set_halign(fa_center);
-        draw_set_font(global.font_big_title);
-        draw_text(x+128,y+74,object_white_book.texts[47]);
-        draw_set_halign(fa_left);
-        draw_sprite(sprite_shai_artwork,0,x+62,y+76);
+        draw_sprite(sprite_title,0,x+55,y+36); 
+        draw_sprite(sprite_fast_credits,0,x+57,y+200);
+        draw_sprite(sprite_draw_fairy,0,x+222,y+182);
+        draw_sprite(sprite_draw_toad,0,x+349,y+186);
+        draw_sprite(sprite_draw_cat_bigeyes,0,x+355,y+45);
+        draw_sprite(sprite_draw_cat,0,x+159,y+31);
+        draw_sprite(sprite_draw_flappy_bird,0,x+248,y+26);
         }
     else{
-        if STATUS = "OPTIONS-VIDEO"{
-            image_index = 1;
-            draw_set_font(global.font_big_title);
+        if STATUS = "OPTIONS"{
+            image_index = 0;
             draw_set_halign(fa_center);
-            draw_set_valign(fa_bottom);
-            draw_text(x+188,y+71,texts[48]);
-            draw_sprite(sprite_video_title,0,x+243,y+60);
-            draw_set_font(global.font_title);
-            draw_set_valign(fa_top);
+            draw_set_font(global.font_big_title);
+            draw_text(x+128,y+74,object_white_book.texts[47]);
             draw_set_halign(fa_left);
-            draw_text(x+94,y+78,texts[0]);
-            draw_text(x+94,y+116,texts[1]);
-            draw_text(x+94,y+154,texts[2]);
+            draw_sprite(sprite_shai_artwork,0,x+62,y+76);
             }
         else{
-            if STATUS = "OPTIONS-SON"{
+            if STATUS = "OPTIONS-VIDEO"{
                 image_index = 1;
-                
                 draw_set_font(global.font_big_title);
-                draw_set_valign(fa_bottom);
                 draw_set_halign(fa_center);
-                draw_text(x+185,y+71,texts[49]);
-                draw_sprite(sprite_son_title,0,x+187+(string_width(texts[49])/2),y+27);
+                draw_set_valign(fa_bottom);
+                draw_text(x+188,y+71,texts[48]);
+                draw_sprite(sprite_video_title,0,x+243,y+60);
+                draw_set_font(global.font_title);
+                draw_set_valign(fa_top);
+                draw_set_halign(fa_left);
+                draw_text(x+94,y+78,texts[0]);
+                draw_text(x+94,y+116,texts[1]);
+                draw_text(x+94,y+154,texts[2]);
                 }
             else{
-                if STATUS = "OPTIONS-LANGAGE"{
-                    image_index = 0;
-                    draw_sprite(sprite_cadre,0,x+52,y+78);
-                    draw_sprite(sprite_cadre,0,x+221,y+18);
-                    draw_sprite(sprite_cadre,0,x+221,y+122);
-                    draw_sprite(sprite_english_flag,0,x+227,y+126);
-                    draw_sprite(sprite_drapeau_francais,0,x+227,y+22);
-                    draw_sprite(sprite_franglais_flag,0,x+58,y+82);
-                    draw_sprite(sprite_retour,0,x+91,y+194);
+                if STATUS = "OPTIONS-SON"{
+                    image_index = 1;
+                    
                     draw_set_font(global.font_big_title);
-                    draw_set_halign(fa_center);
                     draw_set_valign(fa_bottom);
-                    draw_text(x+128,y+64,object_white_book.texts[50]);
+                    draw_set_halign(fa_center);
+                    draw_text(x+185,y+71,texts[49]);
+                    draw_sprite(sprite_son_title,0,x+187+(string_width(texts[49])/2),y+27);
                     }
                 else{
-                    if STATUS = "OPTIONS-MAPPING"{
-                        image_index = 0; 
-                        draw_sprite(sprite_cadre,0,x+51,y+18);
+                    if STATUS = "OPTIONS-LANGAGE"{
+                        image_index = 0;
+                        draw_sprite(sprite_cadre,0,x+52,y+78);
                         draw_sprite(sprite_cadre,0,x+221,y+18);
-                        //Background polaro gauche:
-                        draw_sprite(sprite_background_polaro,0,x+57,y+23);
-                        draw_sprite_ext(sprite_background_polaro,0,x+196,y+23,-1,1,0,c_white,1);
-                        draw_sprite_ext(sprite_background_polaro,0,x+57,y+97,1,-1,0,c_white,1);
-                        draw_sprite_ext(sprite_background_polaro,0,x+196,y+97,-1,-1,0,c_white,1);
-                        
-                        //Background polaro droit:
-                        draw_sprite(sprite_background_polaro,0,x+227,y+23);
-                        draw_sprite_ext(sprite_background_polaro,0,x+366,y+23,-1,1,0,c_white,1);
-                        draw_sprite_ext(sprite_background_polaro,0,x+227,y+97,1,-1,0,c_white,1);
-                        draw_sprite_ext(sprite_background_polaro,0,x+366,y+97,-1,-1,0,c_white,1);
-                        
-                        draw_sprite(sprite_small_controller,0,x+79,y+27);
-                        draw_sprite(sprite_keyboard,0,x+232,y+34);
-                        
-                        draw_set_font(global.font_title);
-                        draw_set_valign(fa_top);
+                        draw_sprite(sprite_cadre,0,x+221,y+122);
+                        draw_sprite(sprite_english_flag,0,x+227,y+126);
+                        draw_sprite(sprite_drapeau_francais,0,x+227,y+22);
+                        draw_sprite(sprite_franglais_flag,0,x+58,y+82);
+                        draw_sprite(sprite_retour,0,x+91,y+194);
+                        draw_set_font(global.font_big_title);
                         draw_set_halign(fa_center);
-                        draw_text(x+125,y+91,texts[3]);
-                        draw_text(x+296,y+91,texts[4]);
-                        draw_set_halign(fa_left);
-                        draw_text(x+52,y+150,texts[5]);
-                        
+                        draw_set_valign(fa_bottom);
+                        draw_text(x+128,y+64,object_white_book.texts[50]);
                         }
                     else{
-                        if STATUS = "SELECT_SAVE"{
-                            image_index = 0;
+                        if STATUS = "OPTIONS-MAPPING"{
+                            image_index = 0; 
+                            draw_sprite(sprite_cadre,0,x+51,y+18);
+                            draw_sprite(sprite_cadre,0,x+221,y+18);
+                            //Background polaro gauche:
+                            draw_sprite(sprite_background_polaro,0,x+57,y+23);
+                            draw_sprite_ext(sprite_background_polaro,0,x+196,y+23,-1,1,0,c_white,1);
+                            draw_sprite_ext(sprite_background_polaro,0,x+57,y+97,1,-1,0,c_white,1);
+                            draw_sprite_ext(sprite_background_polaro,0,x+196,y+97,-1,-1,0,c_white,1);
+                            
+                            //Background polaro droit:
+                            draw_sprite(sprite_background_polaro,0,x+227,y+23);
+                            draw_sprite_ext(sprite_background_polaro,0,x+366,y+23,-1,1,0,c_white,1);
+                            draw_sprite_ext(sprite_background_polaro,0,x+227,y+97,1,-1,0,c_white,1);
+                            draw_sprite_ext(sprite_background_polaro,0,x+366,y+97,-1,-1,0,c_white,1);
+                            
+                            draw_sprite(sprite_small_controller,0,x+79,y+27);
+                            draw_sprite(sprite_keyboard,0,x+232,y+34);
+                            
+                            draw_set_font(global.font_title);
+                            draw_set_valign(fa_top);
+                            draw_set_halign(fa_center);
+                            draw_text(x+125,y+91,texts[3]);
+                            draw_text(x+296,y+91,texts[4]);
+                            draw_set_halign(fa_left);
+                            draw_text(x+52,y+150,texts[5]);
+                            
                             }
                         else{
-                            if STATUS = "SELECT_LEVEL"{
-                                image_index =0;
+                            if STATUS = "SELECT_SAVE"{
+                                image_index = 0;
                                 }
                             else{
-                                if STATUS = "OPTIONS_SEE_CONTROLS"{
-                                    image_index = 1;
-                                    draw_sprite(sprite_indications_mapping,0,x+212,y+120);
-                                    draw_sprite(sprite_retour,0,x+175,y+200);
-                                    
-                                    //Afficher le texte en fonction des langues:
-                                    draw_set_font(global.font_short);
-                                    draw_set_halign(fa_center);
-                                    draw_set_valign(fa_bottom);
-                                    
-                                    //Afficher le texte à l'aide d'un script qui se charge de loader dans la bonne langue:
-                                    draw_text(x+98,y+34,texts[6]);
-                                    draw_text(x+98,y+53,texts[7]);
-                                    
-                                    draw_text(x+209,y+40,texts[8]);
-                                    
-                                    draw_text(x+325,y+34,texts[9]);
-                                    draw_text(x+325,y+53,texts[7]);
-                                    
-                                    draw_text(x+345,y+102,texts[10]);
-                                    draw_text(x+345,y+123,texts[11]);
-                                    draw_text(x+345,y+144,texts[12]);
-                                    draw_text(x+345,y+165,texts[13]);
-                                    
-                                    draw_text(x+90,y+142,texts[14]);
-                                    draw_text(x+90,y+169,texts[15]);
-                                    draw_text(x+90,y+199,texts[16]);
-                                    
+                                if STATUS = "SELECT_LEVEL"{
+                                    image_index =0;
+                                    }
+                                else{
+                                    if STATUS = "OPTIONS_SEE_CONTROLS"{
+                                        image_index = 1;
+                                        draw_sprite(sprite_indications_mapping,0,x+212,y+120);
+                                        draw_sprite(sprite_retour,0,x+175,y+200);
+                                        
+                                        //Afficher le texte en fonction des langues:
+                                        draw_set_font(global.font_short);
+                                        draw_set_halign(fa_center);
+                                        draw_set_valign(fa_bottom);
+                                        
+                                        //Afficher le texte à l'aide d'un script qui se charge de loader dans la bonne langue:
+                                        draw_text(x+98,y+34,texts[6]);
+                                        draw_text(x+98,y+53,texts[7]);
+                                        
+                                        draw_text(x+209,y+40,texts[8]);
+                                        
+                                        draw_text(x+325,y+34,texts[9]);
+                                        draw_text(x+325,y+53,texts[7]);
+                                        
+                                        draw_text(x+345,y+102,texts[10]);
+                                        draw_text(x+345,y+123,texts[11]);
+                                        draw_text(x+345,y+144,texts[12]);
+                                        draw_text(x+345,y+165,texts[13]);
+                                        
+                                        draw_text(x+90,y+142,texts[14]);
+                                        draw_text(x+90,y+169,texts[15]);
+                                        draw_text(x+90,y+199,texts[16]);
+                                        
+                                        }
                                     }
                                 }
                             }
@@ -533,12 +538,13 @@ else{
                 }
             }
         }
-    }
-    
-if room=room_level &amp;&amp; image_index = 0{
-    //On dessine les deux mains:
-    draw_sprite(sprite_hand_white_book,0,x+63,y+180);
-    draw_sprite_ext(sprite_hand_white_book,0,x+359,y+180,-1,1,0,c_white,1);
+        
+    if room=room_level &amp;&amp; image_index = 0{
+        //On dessine les deux mains:
+        draw_sprite(sprite_hand_white_book,0,x+63,y+180);
+        draw_sprite_ext(sprite_hand_white_book,0,x+359,y+180,-1,1,0,c_white,1);
+        }
+        
     }
         
 

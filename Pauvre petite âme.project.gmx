@@ -502,7 +502,6 @@
     <object>objects\object_uncontrol_platform</object>
     <object>objects\object_pushable</object>
     <object>objects\object_camera</object>
-    <object>objects\object10</object>
     <object>objects\object_riony</object>
     <object>objects\object_wall_platforms</object>
     <object>objects\object_death_arm</object>
@@ -512,7 +511,6 @@
     <object>objects\object_start_overlay_2</object>
     <object>objects\object_start_overlay_1</object>
     <object>objects\object_background</object>
-    <object>objects\object_tools_font</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_init</room>

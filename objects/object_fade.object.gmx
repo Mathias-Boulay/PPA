@@ -34,6 +34,39 @@ STATUS[0]="";
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>for(i=0;i&lt;array_length_1d(STATUS);i++){
+    if !string_count("room",STATUS[i]) &gt;= 1{
+        object_white_book.STATUS = STATUS[i];   
+        }
+    }
+
+
+
+
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -63,8 +96,11 @@ if STATUS[0] != ""{
             else{
                 if !instance_exists(object_white_book){
                     instance_create(view_xview[0]+(view_wview[0]/2)-(sprite_get_width(sprite_white_book)/2),view_yview[0]+(view_hview[0]/2)-(sprite_get_height(sprite_white_book)/2),object_white_book);
+                    alarm_set(0,2);
                     }
-                object_white_book.STATUS=STATUS[i];
+                else{
+                    object_white_book.STATUS = STATUS[i];
+                    }
                 }
             }
         fade = -1;

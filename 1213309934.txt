@@ -127,6 +127,58 @@ Au bout de 3 "morts" Shai n’apparaît plus et retour a l’écran de contrôle
 https://cdn.discordapp.com/attachments/406832747315724289/544132350540251137/Test_Room.rar
 
 
+Déclencheurs possibles pour les vibrations:
+- if image_index_previous < X <= image_index
+- if floor(image_index) = X && Can_vibrate
+- if image_index = X //Hasardeux, tiens compte de la possibilité que la frame tombe pile.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
