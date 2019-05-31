@@ -51,8 +51,26 @@ next_right=0;
 ID=(instance_number(object_player)-1);
 temp_jump = false;
 UIBusy = false;
+//Variables du système de vibration:
 vibrate=true;
 sacade=1;
+
+walking_frames[0]=5;
+walking_frames[1]=6;
+walking_frames[2]=13;
+walking_frames[3]=14;
+
+running_frames[0]=7;
+running_frames[1]=8;
+running_frames[2]=9;
+running_frames[3]=19;
+running_frames[4]=20;
+running_frames[5]=21;
+
+headshot_frames[0]=5;
+
+jump_frames[0]=1;
+
 
 
 ini_close();
@@ -60,6 +78,7 @@ ini_open(global.SELECTED_SAVE);
 goodness = ini_read_real("Data",string(ID+1)+"-goodness",50);
 rionys = ini_read_real("Data",string(ID+1)+"-rionys",0);
 image_speed = 0.1;
+image_index_previous=image_index;
 
 
 life=ini_read_real("Data",string(ID+1)+"-life",1);
@@ -438,8 +457,8 @@ else{
 //Réinitialiser le jumpcount si necessaire:
 if place_meeting(x,y+1,object_wall) &amp;&amp; Can_jump{
     jumpcount = 0;
-    }
-    
+    }  
+  
 //Réinitialiser le compteur d'attaque:
 if place_meeting(x,y+1,object_wall){attackcount = 0;}
 
@@ -1555,7 +1574,7 @@ else{
             <kind>1</kind>
             <string>///Module de vibrations des animations: est fait au cas par cas.
 //Doit être recodé pour chaque animation:
-
+/*
 switch(STATUS){
     case "walking":
         switch(floor(image_index)){
@@ -1640,11 +1659,44 @@ switch(STATUS){
     default:
         sacade=1;
         gamepad_set_vibration(ID,0,0);
+    } */
     
+switch(STATUS){
+    case "walking":
+        for(i=0;i&lt; array_length_1d(walking_frames);i++){
+            if floor(image_index_previous) &lt; walking_frames[i] &amp;&amp; floor(image_index) = walking_frames[i]{
+                gamepad_vibrate(ID,0.18,0.18,4);
+                }
+            }
+        break;
         
+    case "running":
+        for(i=0;i&lt; array_length_1d(running_frames);i++){
+            if floor(image_index_previous) &lt; running_frames[i] &amp;&amp; floor(image_index) = running_frames[i]{
+                gamepad_vibrate(ID,0.18,0.18,4);
+                }
+            }
+        break;    
+        
+    case "headshot":
+        for(i=0;i&lt; array_length_1d(headshot_frames);i++){
+            if floor(image_index_previous) &lt; headshot_frames[i] &amp;&amp; floor(image_index) = headshot_frames[i]{
+                gamepad_vibrate(ID,1,1,5);
+                }
+            }
+        break;
     
+    case "jumping":
+        for(i=0;i&lt; array_length_1d(jump_frames);i++){
+            if floor(image_index_previous) &lt; jump_frames[i] &amp;&amp; floor(image_index) = jump_frames[i]{
+                gamepad_vibrate(ID,0.35,0.35,5);
+                }
+            }
+        break;
     
-    }
+    }    
+    
+
 </string>
           </argument>
         </arguments>
@@ -2202,6 +2254,10 @@ if debugbutton {
 //The one line animator:
 sprite_index = asset_get_index("sprite_"+STATUS);
 if sprite_index = -1{sprite_index = sprite_TPose;}
+
+//Gérer le image_index_previous:
+image_index_previous=image_index;
+
 </string>
           </argument>
         </arguments>
