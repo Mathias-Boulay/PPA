@@ -80,12 +80,58 @@ instance_create(view_xview[0]+(view_wview[0]/3),100,object_player);
 
 
 //On crée la couleur:
-col=make_colour_rgb(48,48,48);
+col=make_colour_rgb(48,48,48)
+
+//Initialisation des compteurs:
+Shai_out=0;
 
 
 
 
 
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//On place quelque compteurs:
+if instance_exists(object_player){
+    if object_player.y+(object_player.sprite_height/2) &gt; room_height{
+        object_player.x=view_xview[0]+(view_wview[0]/3);
+        object_player.y=100
+        Shai_out ++;
+        }
+    }
+
+if Shai_out = 3{
+    script_fade_status("room_title","OPTIONS-MAPPING");
+    Shai_out=0;
+    }
+
+if instance_exists(object_pushable){
+    if object_pushable.y+(object_pushable.sprite_height/2) &gt; room_height{
+        object_pushable.x=view_xview[0]+(view_wview[0]/2);
+        object_pushable.y=0;
+        }
+    }
 </string>
           </argument>
         </arguments>
@@ -135,6 +181,10 @@ draw_sprite_ext(sprite_overlay_bar_arrow,0,view_xview[0]+view_wview[0]-1,view_yv
 draw_rectangle_colour(view_xview[0]+view_wview[0]-6,view_yview[0]+view_hview[0]-sprite_get_height(sprite_overlay_bottom_right)-6,view_xview[0]+view_wview[0],view_yview[0]+view_hview[0]-sprite_get_height(sprite_overlay_bottom_right)-1,col,col,col,col,false);
 
 //Dessiner les barres plus foncées. Que en présence du joueur:
+if instance_exists(object_player){
+    draw_sprite(sprite_overlay_select_bar,0,clamp(object_player.x,view_xview[0]+sprite_get_width(sprite_overlay_bar_arrow)+(sprite_get_width(sprite_overlay_select_bar)/2),view_xview[0]+view_wview[0]-sprite_get_width(sprite_overlay_bar_arrow)-(sprite_get_width(sprite_overlay_select_bar)/2)-6),view_yview[0]+view_hview[0]-sprite_get_height(sprite_overlay_bottom_left));
+    draw_sprite(sprite_overlay_select_bar_side,0,view_xview[0]+view_wview[0],clamp(object_player.y,view_yview[0]+sprite_get_height(sprite_overlay_upper_right)+sprite_get_width(sprite_overlay_bar_arrow)+(sprite_get_height(sprite_overlay_select_bar_side)/2),view_yview[0]+view_hview[0]-sprite_get_height(sprite_overlay_upper_right)-sprite_get_width(sprite_overlay_bar_arrow)-(sprite_get_height(sprite_overlay_select_bar_side)/2)-5));
+    }
 //draw_sprite(sprite_overlay_
 
 

@@ -35,6 +35,32 @@ Objective="";
         </arguments>
       </action>
     </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Transmet le status out à l'autre main un peu plus tôt vu que l'on disparaît
+if instance_exists(object_pause){
+    object_pause.STATUS = "OUT";
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="2" enumb="2">
       <action>
         <libid>1</libid>
@@ -52,7 +78,8 @@ Objective="";
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>object_pause.STATUS = "OUT";
+            <string>///Transmet le status out à l'autre main:
+object_pause.STATUS = "OUT";
 </string>
           </argument>
         </arguments>
@@ -128,7 +155,7 @@ Can_navigate=true;
     case "DISPLAY":
         //S'afficher avec une animation de décélération:
         y -= (y-(view_yview[0]+view_hview[0]-162)+10)/17;
-        if abs(y-(view_yview[0]+view_hview[0]-162)) &lt; 1{
+        if abs(y-(view_yview[0]+view_hview[0]-162)) &lt; 0.4{
             y = view_yview[0]+view_hview[0]-162;
             STATUS= "SELECT";
             }
@@ -209,7 +236,7 @@ Can_navigate=true;
     case "OBJECTIVE":
         y += (objective-y)/5;
         //y += ((objective-y)+sign(objective)*4)/5;
-        if abs((objective-y))/5 &lt; 0.4{
+        if abs((objective-y))/5 &lt; 0.3{
             y = objective;
             STATUS = "SELECT"
             //le délai me pose problème car en gameplay normal, on attend déjà pour arrivé à la case demandé.
@@ -231,7 +258,7 @@ Can_navigate=true;
             }
         else{
             x+= (((object_pause.x+44)-x)+5)/15
-            if abs((((object_pause.x+44)-x)+5)/15) &lt; 1{
+            if abs(((object_pause.x+44)-x)/15) &lt; 0.5{
                 x = object_pause.x+44;
                 //Après ça l'animation est finie, il convient de passer sur un autre status pour enclencher tout ça.
                 with(object_underline){

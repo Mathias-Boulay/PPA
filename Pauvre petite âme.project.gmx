@@ -91,6 +91,8 @@
           <sprite>sprites\sprite_overlay_bottom_right</sprite>
           <sprite>sprites\sprite_overlay_bar_arrow</sprite>
           <sprite>sprites\sprite_overlay_bar_middle</sprite>
+          <sprite>sprites\sprite_overlay_select_bar</sprite>
+          <sprite>sprites\sprite_overlay_select_bar_side</sprite>
         </sprites>
         <sprite>sprites\sprite_Test_room_calques</sprite>
         <sprite>sprites\sprite_Test_room_walls</sprite>
@@ -383,27 +385,30 @@
     </objects>
     <objects name="Menus">
       <objects name="Pause_menu">
-        <object>objects\object_infos</object>
         <object>objects\object_pause</object>
         <object>objects\object_resume</object>
         <object>objects\object_pockets</object>
         <object>objects\object_options</object>
         <object>objects\object_restart</object>
         <object>objects\object_home</object>
-        <object>objects\object_inventory</object>
-        <object>objects\object_item_1</object>
-        <object>objects\object_item_2</object>
-        <object>objects\object_item_3</object>
-        <object>objects\object_item_4</object>
-        <object>objects\object_item_5</object>
-        <object>objects\object_item_6</object>
-        <object>objects\object_item_7</object>
-        <object>objects\object_select_info</object>
-        <object>objects\object_select_item</object>
-        <object>objects\object_options_menu</object>
         <object>objects\object_right_hand_pause</object>
         <object>objects\object_underline</object>
         <object>objects\object_prompt</object>
+        <objects name="items">
+          <object>objects\object_item_1</object>
+          <object>objects\object_item_2</object>
+          <object>objects\object_item_3</object>
+          <object>objects\object_item_4</object>
+          <object>objects\object_item_5</object>
+          <object>objects\object_item_6</object>
+          <object>objects\object_item_7</object>
+        </objects>
+        <objects name="inventory">
+          <object>objects\object_inventory</object>
+          <object>objects\object_select_info</object>
+          <object>objects\object_select_item</object>
+          <object>objects\object_infos</object>
+        </objects>
       </objects>
       <objects name="mains-menus">
         <objects name="PRE_TITLE">

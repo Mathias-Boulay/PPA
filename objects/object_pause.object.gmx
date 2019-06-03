@@ -170,7 +170,7 @@ if !instance_exists(object_inventory){
 switch(STATUS){
     case "DISPLAY":
         y-= (y-(view_yview[0]+view_hview[0]-107)+10)/18;
-        if abs(y-(view_yview[0]+view_hview[0]-107)) &lt; 1{
+        if abs(y-(view_yview[0]+view_hview[0]-107)) &lt; 0.4{
             y = view_yview[0]+view_hview[0]-107;
             }
         break;
