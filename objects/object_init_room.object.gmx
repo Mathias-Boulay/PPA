@@ -114,7 +114,7 @@ Shai_out=0;
             <kind>1</kind>
             <string>//On place quelque compteurs:
 if instance_exists(object_player){
-    if object_player.y+(object_player.sprite_height/2) &gt; room_height{
+    if object_player.y-(object_player.sprite_height/2) &gt; room_height{
         object_player.x=view_xview[0]+(view_wview[0]/3);
         object_player.y=100
         Shai_out ++;
@@ -127,7 +127,7 @@ if Shai_out = 3{
     }
 
 if instance_exists(object_pushable){
-    if object_pushable.y+(object_pushable.sprite_height/2) &gt; room_height{
+    if object_pushable.y-(object_pushable.sprite_height/2) &gt; room_height{
         object_pushable.x=view_xview[0]+(view_wview[0]/2);
         object_pushable.y=0;
         }

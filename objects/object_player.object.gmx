@@ -51,9 +51,7 @@ next_right=0;
 ID=(instance_number(object_player)-1);
 temp_jump = false;
 UIBusy = false;
-//Variables du système de vibration:
-vibrate=true;
-sacade=1;
+
 
 walking_frames[0]=5;
 walking_frames[1]=6;
@@ -70,6 +68,11 @@ running_frames[5]=21;
 headshot_frames[0]=5;
 
 jump_frames[0]=1;
+
+crawling_frames[0]=2;
+crawling_frames[1]=5;
+crawling_frames[2]=6;
+
 
 
 
@@ -722,7 +725,15 @@ hsp_carry = max(0,abs(hsp_carry)-global.frict/2)*sign(hsp_carry);
 
 //Et voici la gravité !
 //Vsp
-if vsp &lt; 9{vsp+=global.grav}
+
+if vsp &lt; 9{
+    if STATUS = "walljump"{
+        vsp += global.grav/2;
+        }
+    else{
+        vsp += global.grav;
+        }
+    }
 </string>
           </argument>
         </arguments>
@@ -1692,6 +1703,25 @@ switch(STATUS){
                 gamepad_vibrate(ID,0.35,0.35,5);
                 }
             }
+        break;
+        
+    case "crawling":
+        for(i=0;i&lt; array_length_1d(crawling_frames);i++){
+            if floor(image_index_previous) &lt; crawling_frames[i] &amp;&amp; floor(image_index) = crawling_frames[i]{
+                gamepad_vibrate(ID,0.15,0.15,4);
+                }
+            }
+        break;
+    
+    case "walljump":
+        sacade=20;
+        //gamepad_set_vibration(ID,(sign(vsp)*0.13+(floor(vsp)/3))*vibrate,(sign(vsp)*0.13+(floor(vsp)/3))*vibrate);
+        break;
+        
+    
+    
+    default:
+        gamepad_set_vibration(ID,0,0);
         break;
     
     }    

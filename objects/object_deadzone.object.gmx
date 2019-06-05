@@ -95,10 +95,6 @@ if !file_exists(working_directory + "\settings\settings.ini"){
 
 //Load the settings:
 script_settings_load();
-//Load an array for the arguments of the vibration script.
-for(i=0;i&lt;=3;i++){
-    vibrate[i]="";
-    }
 
 room_goto_next();
 
@@ -131,31 +127,6 @@ room_goto_next();
             <kind>1</kind>
             <string>///Fin de la vibration: arrêtez tout !
 gamepad_set_vibration(vibrate[0],0,0);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="10">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///On lance la vibration pendant un temps déterminé:
-gamepad_set_vibration(vibrate[0],vibrate[1],vibrate[2]);
-alarm_set(11,vibrate[3]);
 </string>
           </argument>
         </arguments>

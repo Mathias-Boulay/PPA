@@ -169,9 +169,10 @@ if !instance_exists(object_inventory){
             <string>///On gère le positionnement de la feuille et des boutons qui vont avec.
 switch(STATUS){
     case "DISPLAY":
-        y-= (y-(view_yview[0]+view_hview[0]-107)+10)/18;
-        if abs(y-(view_yview[0]+view_hview[0]-107)) &lt; 0.4{
+        y-= (y-(view_yview[0]+view_hview[0]-107)+5)/18;
+        if abs(y-(view_yview[0]+view_hview[0]-107)) &lt; 0.5{
             y = view_yview[0]+view_hview[0]-107;
+            //STATUS="NOONE";
             }
         break;
         
@@ -205,7 +206,6 @@ switch(STATUS){
             
             }
         else{
-            
             if !instance_exists(object_white_book) &amp;&amp; alarm[2] =-1 {
                 STATUS="DISPLAY";
                 }
@@ -214,9 +214,6 @@ switch(STATUS){
             
         
         
-    
-    
-    
     
     }
 
