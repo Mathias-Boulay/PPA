@@ -53,7 +53,8 @@ y=sprite_height*(0.5+image_index);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if image_index !=0{
+            <string>///Crée un morceau ou execute une action (export)
+if image_index !=0{
     if image_index != 10{
         This_part=instance_create(room_width-(sprite_width/2),sprite_height*(0.5+instance_number(object_part)),object_part);
         This_part.value=image_index;
@@ -61,16 +62,91 @@ y=sprite_height*(0.5+image_index);
     else{
         //On lance l'exportation
         Final=get_string("Quel nom pour la page ?","NOONE");
+        Final_cat=get_string("Quelle catégorie ?#NOONE ou vide pour acune catégorie","NOONE");
+        
+        //Définition des caractères interdits.
+        Forbidden[0]="/";
+        Forbidden[1]="\";
+        Forbidden[2]=":";
+        Forbidden[3]="*";
+        Forbidden[4]="?";
+        Forbidden[5]='"';
+        Forbidden[6]="&lt;";
+        Forbidden[7]="&gt;";
+        Forbidden[8]="|";
+        
+        //Uniformisation des inputs pour le script:
+        //Phase 1: Remove forbidden file's caracters.
+        for(i=0;i&lt;array_length_1d(Forbidden);i++){
+            Final=string_replace_all(Final,Forbidden[i],"");
+            Final_cat=string_replace_all(Final_cat,Forbidden[i],"");
+            }
+        
+        //Phase 2: Reduce broke sensibility.
+        switch(Final_cat){
+            case "NOONE":
+            case "NONE":
+            case "noone":
+            case "none":
+                show_debug_message("Category input uniformised !");
+                Final_cat= "";
+                break;
+                
+            default:
+                show_debug_message("No changes to the Category input !");
+                Final_cat+="/";
+                break;
+            }
+            
+        switch(Final){
+            case "NOONE":
+            case "NONE":
+            case "noone":
+            case "none":
+                show_debug_message("Site's name input uniformised !");
+                Final= "";
+                break;
+                
+            default:
+                show_debug_message("No changes to the Site's name input !");
+                break;
+            }
+            
+            
         global.SiteTitle=Final;
+        global.SiteCat=Final_cat;
+        
+        
         if Final != "NOONE"{
             //un nom de page nous est donné, go écrire.
-            //Création:
-            global.html=file_text_open_write(working_directory+"html/"+Final+".html");
+            //La catégorie (fichier settings):
+            if Final_cat != ""{
+                ini_open(working_directory+"Docs/settings/settings.ini");
+                for(i=1;i&lt; -1;i++){
+                    if ini_key_exists("category",string(i)){
+                        if ini_read_string("category",string(i),"NOONE") = Final_cat{//On vérifie si notre catégorie existe.
+                            i= -10;
+                            }
+                        }
+                    else{//clé vide donc on crée notre catégorie
+                        ini_write_string("category",string(i),Final_cat);
+                        }   
+                    }
+                ini_close();
+                }
+                
+                
+            //Création du html:
+            global.html=file_text_open_write(working_directory+"Docs/html/"+Final_cat+Final+".html");
             //Écriture:
             //Tête de page(compressé pour éviter des problèmes de code en pavé)
             file_text_write_string(global.html,'&lt;DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset="utf-8" /&gt;&lt;link rel="stylesheet" href="../css/css.css" /&gt;&lt;title&gt;'+Final+'-PPA Docs&lt;/title&gt;&lt;/head&gt;&lt;body&gt;');
             //le corps est créé, il faut utiliser la flèche pour parser les arguments.
             arrow=instance_create(x,y,object_arrow);
+                
+            }
+        else{
+            show_message("Exportation annulée !");
             }
         }
     }
