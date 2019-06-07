@@ -44,12 +44,12 @@ global.font[8]=font_add_sprite_ext(sprite_font_mapping,"abcdefghijklmnopqrstuvwx
 global.font[9]=font_add_sprite_ext(sprite_font_shop,"0123456789▯",true,1);
 global.count=0;
 
-if !directory_exists(working_directory+"screenshots"){
-    directory_create(working_directory+"screenshots");
+if !directory_exists(working_directory+"Font_previewer/screenshots"){
+    directory_create(working_directory+"Font_previewer/screenshots");
     }
 
-if !directory_exists(working_directory+"background_image"){
-    directory_create(working_directory+"background_image");
+if !directory_exists(working_directory+"Font_previewer/background_image"){
+    directory_create(working_directory+"Font_previewer/background_image");
     }
     
 draw_set_halign(fa_center);
@@ -102,10 +102,10 @@ instance_create(0,0,object_font_changer);
           <argument>
             <kind>1</kind>
             <string>if global.back != -1{
-    screen_save_part(working_directory+"screenshots/"+string(current_year)+"-"+string(current_month)+"-"+string(current_day)+"-"+string(current_hour)+"-"+string(current_minute)+"-"+string(current_second)+".png",0,0,sprite_get_width(global.back),sprite_get_height(global.back));
+    screen_save_part(working_directory+"Font_previewer/screenshots/"+string(current_year)+"-"+string(current_month)+"-"+string(current_day)+"-"+string(current_hour)+"-"+string(current_minute)+"-"+string(current_second)+".png",0,0,sprite_get_width(global.back),sprite_get_height(global.back));
     }
 else{
-    screen_save_part(working_directory+"screenshots/"+string(current_year)+"-"+string(current_month)+"-"+string(current_day)+"-"+string(current_hour)+"-"+string(current_minute)+"-"+string(current_second)+".png",0,0,424*3,240*3);
+    screen_save_part(working_directory+"Font_previewer/screenshots/"+string(current_year)+"-"+string(current_month)+"-"+string(current_day)+"-"+string(current_hour)+"-"+string(current_minute)+"-"+string(current_second)+".png",0,0,424*3,240*3);
     }
     
 alarm_set(3,room_speed);
@@ -157,9 +157,9 @@ window_center();
             <kind>1</kind>
             <string>///Actualisation du background:
 sprite_delete(global.back);
-file=file_find_first(working_directory+"background_image/*.png",0);
+file=file_find_first(working_directory+"Font_previewer/background_image/*.png",0);
 if file != ""{
-    global.back =sprite_add(working_directory+"background_image/"+file,0,false,false,0,0);
+    global.back =sprite_add(working_directory+"Font_previewer/background_image/"+file,0,false,false,0,0);
     }
     
 alarm_set(0,room_speed);
