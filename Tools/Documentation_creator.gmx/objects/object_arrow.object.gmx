@@ -156,7 +156,7 @@ for(i=1;i&gt; -1;i++){
 //Maintenant on écrit la catégorie par défaut:
 if file_find_first(working_directory+"Docs/html/*.html",0) != ""{
     file_text_write_string(index,'&lt;p class="Category"&gt;Autres:&lt;/p&gt;')
-    file_text_write_string(index,'&lt;ul&gt;&lt;li&gt;&lt;a href="html/'+file_find_first(working_directory+"Docs/html/*.html",0)+'"&gt;'+string_replace(file_find_first(working_directory+"Docs/html/*.html",0),".html","")+'&lt;/a&gt;&lt;/li&gt;');
+    file_text_write_string(index,'&lt;ul&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="html/'+file_find_first(working_directory+"Docs/html/*.html",0)+'"&gt;'+string_replace(file_find_first(working_directory+"Docs/html/*.html",0),".html","")+'&lt;/a&gt;&lt;/li&gt;');
     for(i=1;i&gt;-1;i++){
         temp=file_find_next();
         if temp != ""{
@@ -166,13 +166,48 @@ if file_find_first(working_directory+"Docs/html/*.html",0) != ""{
             i= -40;
             }
         }
-    file_text_write_string(index,'&lt;/ul&gt;&lt;br&gt;');
+    file_text_write_string(index,'&lt;/ul&gt;&lt;/ul&gt;&lt;br&gt;');
     }
 
 //Fin de l'index:
 file_text_write_string(index,'&lt;/body&gt;&lt;/html&gt;');
-
 file_text_close(index);
+
+//Maintenant nous devons récupérer toutes les pages de CHAQUE catégorie afin de générer un pied de page.
+
+for(i=0;i&gt; -1;i++){
+    FoundCat=ini_read_string("category",string(i),"");
+    instance_create(0,0,object_container);
+    
+    if file_find_first(working_directory+"Docs/html/"+FoundCat+"*.html",0) != ""{
+        object_container.Pages[0]=file_find_first(working_directory+"Docs/html/"+FoundCat+"*.html",0);
+        for(j=1;j&gt; -1;j++){    
+            temp=file_find_next();
+            if temp != ""{
+                object_container.Pages[j]=temp;
+                }
+            else{//Plus de fichiers, on arrête la collecte.
+                j= -10;
+                }
+            }
+        }
+    else{//Pas de fichier existant, donc on arrête la collecte:
+        i= -10;
+        }
+    //Maintenant que nous avons collecté des pages pour UNE catégorie, il faut encore pouvoir éditer les fotters.
+    if variable_instance_exists(object_container,"Pages"){
+    
+    
+    
+        }
+    
+    }
+
+
+
+
+
+
 instance_destroy();
     
 </string>
