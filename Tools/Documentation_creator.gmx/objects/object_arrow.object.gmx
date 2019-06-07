@@ -99,17 +99,23 @@ while(collision_point(x,y,object_part,false,true) != noone){
             break;
         
         case 9: //C'est du texte, ou un paragraphe plutôt:
-            file_text_write_string(global.html,This_part.Final);
+            file_text_write_string(global.html,'&lt;p&gt;'+string_replace(This_part.Final,"#",'&lt;br&gt;')+'&lt;/p&gt;');
             break;
         
         }
     y+=object_button.sprite_height;
     }
 
-//NORMALEMENT Il n'y a plus de parties à compiler:fermons le fichier.
+//NORMALEMENT Il n'y a plus de parties à compiler: Fermons le fichier.
 //Bas de page:
-file_text_write_string(global.html,'&lt;p class="foot"&gt;&lt;a href="../index.html"&gt;Back to the index&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;');
+if global.SiteCat = ""{
+    file_text_write_string(global.html,'&lt;p class="foot"&gt;&lt;a href="../index.html"&gt;Back to the index&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;');
+    }
+else{
+    file_text_write_string(global.html,'&lt;p class="foot"&gt;&lt;a href="../../index.html"&gt;Back to the index&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;');
+    }
 file_text_close(global.html);
+
 //Maintenant il faudrait générer un index des pages existantes. On doit supprimer l'index précédent s'il existe.
 if file_exists(working_directory+"Docs/index.html"){
     file_rename(working_directory+"Docs/index.html",working_directory+"Docs/index.txt");
@@ -118,7 +124,38 @@ if file_exists(working_directory+"Docs/index.html"){
 index=file_text_open_write(working_directory+"Docs/index.html");
 //On écrit le haut de page: compressé.
 file_text_write_string(index,'&lt;DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset="utf-8" /&gt;&lt;link rel="stylesheet" href="css/css.css" /&gt;&lt;title&gt;index-PPA Docs&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;p class="BigTitlePurple"&gt;Index-PPA Docs&lt;/p&gt;&lt;p class="SubTitlePurple"&gt;This section shows every page available about this game.&lt;/p&gt;');
+
+ini_open(working_directory+"Docs/settings/settings.ini")
+//On écrit toutes les catégories sauf celle par défaut.
+for(i=1;i&gt; -1;i++){
+    if ini_key_exists("category",string(i)){
+        FoundCat=ini_read_string("category",string(i),"");
+        
+        if file_find_first(working_directory+"Docs/html/"+FoundCat+"*.html",0) != ""{    
+            //On écrit le titre de la catégorie ainsi que le reste.
+            file_text_write_string(index,'&lt;ul&gt;&lt;li&gt;&lt;p class="Category"&gt;'+string_replace(FoundCat,"/",":")+'&lt;/p&gt;&lt;/li&gt;'); //Nom de la catégorie
+            file_text_write_string(index,'&lt;ul&gt;&lt;li&gt;&lt;a href="html/'+FoundCat+file_find_first(working_directory+"Docs/html/"+FoundCat+"*.html",0)+'"&gt;'+string_replace(file_find_first(working_directory+"Docs/html/"+FoundCat+"*.html",0),".html","")+'&lt;/a&gt;&lt;/li&gt;'); //Ouverture du tableau et marquage du premier fichier
+            
+            for(j=1;j&gt; -1; j++){
+                temp=file_find_next();
+                if temp != ""{
+                    file_text_write_string(index,'&lt;li&gt;&lt;a href="html/'+FoundCat+temp+'"&gt;'+string_replace(temp,".html","")+'&lt;/a&gt;&lt;/li&gt;')
+                    }
+                else{
+                    j= -10;
+                    }
+                }
+            file_text_write_string(index,'&lt;/ul&gt;&lt;/ul&gt;&lt;br&gt;'); //Fin de tableau + saut de ligne;
+            }   
+        }
+    else{
+        i= -10;
+        }
+    }
+
+//Maintenant on écrit la catégorie par défaut:
 if file_find_first(working_directory+"Docs/html/*.html",0) != ""{
+    file_text_write_string(index,'&lt;p class="Category"&gt;Autres:&lt;/p&gt;')
     file_text_write_string(index,'&lt;ul&gt;&lt;li&gt;&lt;a href="html/'+file_find_first(working_directory+"Docs/html/*.html",0)+'"&gt;'+string_replace(file_find_first(working_directory+"Docs/html/*.html",0),".html","")+'&lt;/a&gt;&lt;/li&gt;');
     for(i=1;i&gt;-1;i++){
         temp=file_find_next();
@@ -126,12 +163,14 @@ if file_find_first(working_directory+"Docs/html/*.html",0) != ""{
             file_text_write_string(index,'&lt;li&gt;&lt;a href="html/'+temp+'"&gt;'+string_replace(temp,".html","")+'&lt;/a&gt;&lt;/li&gt;');
             }
         else{
-            i = -40;
+            i= -40;
             }
         }
-    //Fin de l'index:
-    file_text_write_string(index,'&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;');
+    file_text_write_string(index,'&lt;/ul&gt;&lt;br&gt;');
     }
+
+//Fin de l'index:
+file_text_write_string(index,'&lt;/body&gt;&lt;/html&gt;');
 
 file_text_close(index);
 instance_destroy();
