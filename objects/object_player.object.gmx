@@ -73,6 +73,9 @@ crawling_frames[0]=2;
 crawling_frames[1]=5;
 crawling_frames[2]=6;
 
+vibrate=false;
+sacade=2;
+alarm_set(6,sacade);
 
 
 
@@ -1715,7 +1718,7 @@ switch(STATUS){
     
     case "walljump":
         sacade=20;
-        //gamepad_set_vibration(ID,(sign(vsp)*0.13+(floor(vsp)/3))*vibrate,(sign(vsp)*0.13+(floor(vsp)/3))*vibrate);
+        gamepad_set_vibration(ID,(sign(vsp)*0.13+(floor(vsp)/3))*vibrate,(sign(vsp)*0.13+(floor(vsp)/3))*vibrate);
         break;
         
     
