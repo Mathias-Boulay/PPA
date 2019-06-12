@@ -176,29 +176,42 @@ file_text_close(index);
 //Maintenant nous devons récupérer toutes les pages de CHAQUE catégorie afin de générer un pied de page.
 
 for(i=0;i&gt; -1;i++){
-    FoundCat=ini_read_string("category",string(i),"");
-    instance_create(0,0,object_container);
-    
-    if file_find_first(working_directory+"Docs/html/"+FoundCat+"*.html",0) != ""{
-        object_container.Pages[0]=file_find_first(working_directory+"Docs/html/"+FoundCat+"*.html",0);
-        for(j=1;j&gt; -1;j++){    
-            temp=file_find_next();
-            if temp != ""{
-                object_container.Pages[j]=temp;
+    FoundCat=ini_read_string("category",string(i),"///");
+    if FoundCat != "///"{
+        instance_create(0,0,object_container);
+        
+        if file_find_first(working_directory+"Docs/html/"+FoundCat+"*.html",0) != ""{
+            object_container.Pages[0]=file_find_first(working_directory+"Docs/html/"+FoundCat+"*.html",0);
+            for(j=1;j&gt; -1;j++){    
+                temp=file_find_next();
+                if temp != ""{
+                    object_container.Pages[j]=temp;
+                    }
+                else{//Plus de fichiers, on arrête la collecte.
+                    j= -10;
+                    }
                 }
-            else{//Plus de fichiers, on arrête la collecte.
-                j= -10;
+            }
+            
+        //Maintenant que nous avons collecté des pages pour UNE catégorie, il faut encore pouvoir éditer les fotters.
+        if variable_instance_exists(object_container,"Pages"){
+            for(k=0;k&lt;array_length_1d(object_container.Pages);k++){
+                //Acquerir le string:
+                file=file_text_open_read(working_directory+"Docs/html/"+FoundCat+Pages[k]);
+                str=file_text_read_string(file);
+                file_text_close(file);
+                
+                //Effacer le reste:
+                start=string_pos('&lt;p class="foot"&gt;',str);
+                stop=string_pos('&lt;/html&gt;',str)+string_length('&lt;/html&gt;'); //Je considère que la page sera toujours correctement fermé sinan c'est la merde.
+                str=string_delete(
+            
+            
                 }
             }
         }
-    else{//Pas de fichier existant, donc on arrête la collecte:
+    else{//Plus de categorie existante, donc on arrête la collecte:
         i= -10;
-        }
-    //Maintenant que nous avons collecté des pages pour UNE catégorie, il faut encore pouvoir éditer les fotters.
-    if variable_instance_exists(object_container,"Pages"){
-    
-    
-    
         }
     
     }
