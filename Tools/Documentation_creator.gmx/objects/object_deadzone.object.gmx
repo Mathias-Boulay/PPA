@@ -26,28 +26,37 @@
           <argument>
             <kind>1</kind>
             <string>///initialisation des dossiers,var et de l'éditeur.
-if !directory_exists(working_directory+"css"){
-    directory_create(working_directory+"css");
+if !directory_exists(working_directory+"Docs/css"){
+    directory_create(working_directory+"Docs/css");
     }
-if !directory_exists(working_directory+"images"){
-    directory_create(working_directory+"images");
+if !directory_exists(working_directory+"Docs/images"){
+    directory_create(working_directory+"Docs/images");
     }
-if !directory_exists(working_directory+"html"){
-    directory_create(working_directory+"html");
+if !directory_exists(working_directory+"Docs/html"){
+    directory_create(working_directory+"Docs/html");
+    }
+if !directory_exists(working_directory+"Docs/settings"){
+    directory_create(working_directory+"Docs/settings");
     }
 //Initialisation des fichiers:
-if !file_exists(working_directory+"css/css.css"){
+if !file_exists(working_directory+"Docs/css/css.css"){
     //Création du fichier css:
-    css=file_text_open_write(working_directory+"css/css.css");
+    css=file_text_open_write(working_directory+"Docs/css/css.css");
     //Écriture dans le fichier css: Le css est en version compressé:
-    file_text_write_string(css,"html{height:100%}body{background-color:#242424;font-family:Arial;color:EEEEEE;min-height:100%;max-height:100%}p{margin:0;padding-left:5px;padding-bottom:10px;padding-top:4px;clear:both}p.foot{margin:0;padding:50px;text-align:center;font-weight:700;font-size:120%}a,a:link,a:visited{color:67B738}a:hover,a:focus,a:active{color:D0E27F}.Syntax{background-color:#333;padding:2px 2px 3px 20px;margin:0}.LittleTitlePurple{color:6F449B;font-size:110%;margin:0;padding:2px 2px 3px 20px;font-weight:700}.LittleTitle{font-size:110%;margin:0;padding:2px 2px 3px 20px;font-weight:700}li{list-style-type:circle}.FunctionTable{background-color:673D8F;border-collapse:separate;border-spacing:5px 3px;box-shadow:2px 2px #000;padding:1px;border-radius:2px;margin:15px 0 15px 45px;width:95%}.FunctionTableTitle{background-color:#000;font-weight:700;font-style:italic}.FunctionTableLineBis{background-color:2D1B3F}.BigTitlePurple{background-color:#362954;border-radius:15px 15px 0 0;text-align:center;font-size:300%;font-weight:700;padding:5px 0;margin:0}.SubTitlePurple{background-color:673D8F;margin:0;text-align:left;font-size:110%;font-weight:700;font-style:italic;padding:2px 0 3px}.SubTitleDark{background-color:1C1C1C;margin:0;text-align:left;font-size:110%;font-weight:700;font-style:italic;padding:2px 0 3px}img{padding-bottom:3px;padding-right:8px;padding-left:8px}.FloatLeft{float:left}.FloatRight{float:right}p.Left{clear:left;text-align:justify}p.Right{clear:right;text-align:justify}");
+    file_text_write_string(css,"html{height:100%}body{background-color:#242424;font-family:Arial;color:EEEEEE;min-height:100%;max-height:100%}p{margin:0;padding-left:5px;padding-bottom:10px;padding-top:4px;clear:both}p.foot{margin:0;padding:50px;text-align:center;font-weight:700;font-size:120%}a,a:link,a:visited{color:67B738;text-decoration:none;text-shadow:1px 1px 2px black}a:hover,a:focus,a:active{color:D0E27F;text-shadow:1px 1px 2px black}.Syntax{background-color:#333;padding:2px 2px 3px 20px;margin:0}.LittleTitlePurple{color:6F449B;font-size:110%;margin:0;padding:2px 2px 3px 20px;font-weight:700;text-shadow:1px 1px 2px black}.LittleTitle{font-size:110%;margin:0;padding:2px 2px 3px 20px;font-weight:700;text-shadow:1px 1px 2px black}li{list-style-type:circle}.FunctionTable{background-color:673D8F;border-collapse:separate;border-spacing:5px 3px;box-shadow:2px 2px #000;padding:1px;border-radius:2px;margin:15px 0 15px 45px;width:95%;text-shadow:1px 1px 2px black}.FunctionTableTitle{background-color:#000;font-weight:700;font-style:italic}.FunctionTableLineBis{background-color:2D1B3F}.BigTitlePurple{background-color:#362954;border-radius:15px 15px 0 0;text-align:center;font-size:300%;font-weight:700;padding:5px 0;margin:0;text-shadow:1px 1px 2px black}.SubTitlePurple{background-color:673D8F;margin:0;text-align:left;font-size:110%;font-weight:700;font-style:italic;padding:2px 0 3px;text-shadow:1px 1px 2px black}.SubTitleDark{background-color:1C1C1C;margin:0;text-align:left;font-size:110%;font-weight:700;font-style:italic;padding:2px 0 3px;text-shadow:1px 1px 2px black}img{padding-bottom:3px;padding-right:8px;padding-left:8px}.FloatLeft{float:left}.FloatRight{float:right}p.Left{clear:left;text-align:justify}p.Right{clear:right;text-align:justify}p.Category{color:6F449B;font-size:200%;margin:0;padding:2px 2px 0px 20px;font-weight:700;text-shadow:1px 1px 2px black}");
     file_text_close(css);
+    }
+if !file_exists(working_directory+"Docs/settings/settings.ini"){
+    ini_open(working_directory+"Docs/settings/settings.ini");
+    ini_write_string("category",0,"");
+    ini_close();
     }
     
 global.pressedID="";
 for(i=1;i&lt;=11;i++){
     instance_create(x,y,object_button);
     }
+draw_set_font(font_values);
 
 </string>
           </argument>
@@ -71,7 +80,8 @@ for(i=1;i&lt;=11;i++){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>x=16;
+            <string>///Placement
+x=16;
 y=16;
 </string>
           </argument>

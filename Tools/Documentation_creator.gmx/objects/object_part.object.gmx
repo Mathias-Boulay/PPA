@@ -83,6 +83,7 @@ if value != 0{
         case 7:
             for(i=0;i&gt;-1;i++){
                 Temp=get_string("Quel Argument ?","NOONE");
+                
                 if Temp != "NOONE"{
                     Final[i,0]=Temp;
                     Final[i,1]=get_string("Quel type d'argument ?","NOONE");
@@ -90,6 +91,7 @@ if value != 0{
                     }
                 else{
                     //On n'a pas mis d'argument, go s'arêtter.
+                    if i=0{instance_destroy();}
                     i= -40;
                     }
                 }
@@ -128,7 +130,8 @@ if value != 0{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if global.pressedID!=id{
+            <string>///Placement
+if global.pressedID!=id{
     y=(sprite_height/2);
     x=room_width-(sprite_width/2);
     

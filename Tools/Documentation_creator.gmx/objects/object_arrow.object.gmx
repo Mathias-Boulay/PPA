@@ -67,11 +67,11 @@ while(collision_point(x,y,object_part,false,true) != noone){
             for(i=1;i&lt;=array_height_2d(This_part.Final);i++){
                 if floor(i/2)*2 = i{
                     //Chiffre pair, penser à changer la couleur du fond de ces lignes:
-                    file_text_write_string(global.html,'&lt;tr class="FunctionTableLineBis"&gt;&lt;td&gt;'+This_part.Final[i-1,0]+'&lt;/td&gt;&lt;td&gt;'+This_part.Final[i-1,1]+'&lt;/td&gt;&lt;td&gt;'+This_part.Final[i-1,0]+'&lt;/td&gt;&lt;/tr&gt;');
+                    file_text_write_string(global.html,'&lt;tr class="FunctionTableLineBis"&gt;&lt;td&gt;'+This_part.Final[i-1,0]+'&lt;/td&gt;&lt;td&gt;'+This_part.Final[i-1,1]+'&lt;/td&gt;&lt;td&gt;'+This_part.Final[i-1,2]+'&lt;/td&gt;&lt;/tr&gt;');
                     }
                 else{
                     //Chiffre impaire ligne de couleur normale:
-                    file_text_write_string(global.html,'&lt;tr&gt;&lt;td&gt;'+This_part.Final[i-1,0]+'&lt;/td&gt;&lt;td&gt;'+This_part.Final[i-1,1]+'&lt;/td&gt;&lt;td&gt;'+This_part.Final[i-1,0]+'&lt;/td&gt;&lt;/tr&gt;');
+                    file_text_write_string(global.html,'&lt;tr&gt;&lt;td&gt;'+This_part.Final[i-1,0]+'&lt;/td&gt;&lt;td&gt;'+This_part.Final[i-1,1]+'&lt;/td&gt;&lt;td&gt;'+This_part.Final[i-1,2]+'&lt;/td&gt;&lt;/tr&gt;');
                     }
                 }
             //Fini le tableau:
@@ -82,8 +82,8 @@ while(collision_point(x,y,object_part,false,true) != noone){
             //Do something now;
             NumbOfImages++;
             //Vérification de la présence du fichier: Que des png
-            if file_exists(working_directory+"images/"+string(NumbOfImages)+".png"){
-                file_rename(working_directory+"images/"+string(NumbOfImages)+".png",working_directory+"images/"+global.SiteTitle+'-'+string(NumbOfImages)+".png");
+            if file_exists(working_directory+"Docs/images/"+string(NumbOfImages)+".png"){
+                file_rename(working_directory+"Docs/images/"+string(NumbOfImages)+".png",working_directory+"Docs/images/"+global.SiteTitle+'-'+string(NumbOfImages)+".png");
                 }
             //Maintenant faut écrire ET l'image ET le texte.
             if This_part.Final[0]=true{
@@ -99,41 +99,128 @@ while(collision_point(x,y,object_part,false,true) != noone){
             break;
         
         case 9: //C'est du texte, ou un paragraphe plutôt:
-            file_text_write_string(global.html,This_part.Final);
+            file_text_write_string(global.html,'&lt;p&gt;'+string_replace(This_part.Final,"#",'&lt;br&gt;')+'&lt;/p&gt;');
             break;
         
         }
     y+=object_button.sprite_height;
     }
 
-//NORMALEMENT Il n'y a plus de parties à compiler:fermons le fichier.
+//NORMALEMENT Il n'y a plus de parties à compiler: Fermons le fichier.
 //Bas de page:
-file_text_write_string(global.html,'&lt;p class="foot"&gt;&lt;a href="../index.html"&gt;Back to the index&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;');
-file_text_close(global.html);
-//Maintenant il faudrait générer un index des pages existantes. On doit supprimer l'index précédent s'il existe.
-if file_exists(working_directory+"index.html"){
-    file_rename(working_directory+"index.html",working_directory+"index.txt");
-    file_delete(working_directory+"index.txt");
+if global.SiteCat = ""{
+    file_text_write_string(global.html,'&lt;p class="foot"&gt;&lt;a href="../index.html"&gt;Back to the index&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;');
     }
-index=file_text_open_write(working_directory+"index.html");
+else{
+    file_text_write_string(global.html,'&lt;p class="foot"&gt;&lt;a href="../../index.html"&gt;Back to the index&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;');
+    }
+file_text_close(global.html);
+
+//Maintenant il faudrait générer un index des pages existantes. On doit supprimer l'index précédent s'il existe.
+if file_exists(working_directory+"Docs/index.html"){
+    file_rename(working_directory+"Docs/index.html",working_directory+"Docs/index.txt");
+    file_delete(working_directory+"Docs/index.txt");
+    }
+index=file_text_open_write(working_directory+"Docs/index.html");
 //On écrit le haut de page: compressé.
 file_text_write_string(index,'&lt;DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset="utf-8" /&gt;&lt;link rel="stylesheet" href="css/css.css" /&gt;&lt;title&gt;index-PPA Docs&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;p class="BigTitlePurple"&gt;Index-PPA Docs&lt;/p&gt;&lt;p class="SubTitlePurple"&gt;This section shows every page available about this game.&lt;/p&gt;');
-if file_find_first(working_directory+"html/*.html",0) != ""{
-    file_text_write_string(index,'&lt;ul&gt;&lt;li&gt;&lt;a href="html/'+file_find_first(working_directory+"html/*.html",0)+'"&gt;'+string_replace(file_find_first(working_directory+"html/*.html",0),".html","")+'&lt;/a&gt;&lt;/li&gt;');
+
+ini_open(working_directory+"Docs/settings/settings.ini")
+//On écrit toutes les catégories sauf celle par défaut.
+for(i=1;i&gt; -1;i++){
+    if ini_key_exists("category",string(i)){
+        FoundCat=ini_read_string("category",string(i),"");
+        
+        if file_find_first(working_directory+"Docs/html/"+FoundCat+"*.html",0) != ""{    
+            //On écrit le titre de la catégorie ainsi que le reste.
+            file_text_write_string(index,'&lt;ul&gt;&lt;li&gt;&lt;p class="Category"&gt;'+string_replace(FoundCat,"/",":")+'&lt;/p&gt;&lt;/li&gt;'); //Nom de la catégorie
+            file_text_write_string(index,'&lt;ul&gt;&lt;li&gt;&lt;a href="html/'+FoundCat+file_find_first(working_directory+"Docs/html/"+FoundCat+"*.html",0)+'"&gt;'+string_replace(file_find_first(working_directory+"Docs/html/"+FoundCat+"*.html",0),".html","")+'&lt;/a&gt;&lt;/li&gt;'); //Ouverture du tableau et marquage du premier fichier
+            
+            for(j=1;j&gt; -1; j++){
+                temp=file_find_next();
+                if temp != ""{
+                    file_text_write_string(index,'&lt;li&gt;&lt;a href="html/'+FoundCat+temp+'"&gt;'+string_replace(temp,".html","")+'&lt;/a&gt;&lt;/li&gt;')
+                    }
+                else{
+                    j= -10;
+                    }
+                }
+            file_text_write_string(index,'&lt;/ul&gt;&lt;/ul&gt;&lt;br&gt;'); //Fin de tableau + saut de ligne;
+            }   
+        }
+    else{
+        i= -10;
+        }
+    }
+
+//Maintenant on écrit la catégorie par défaut:
+if file_find_first(working_directory+"Docs/html/*.html",0) != ""{
+    file_text_write_string(index,'&lt;p class="Category"&gt;Autres:&lt;/p&gt;')
+    file_text_write_string(index,'&lt;ul&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="html/'+file_find_first(working_directory+"Docs/html/*.html",0)+'"&gt;'+string_replace(file_find_first(working_directory+"Docs/html/*.html",0),".html","")+'&lt;/a&gt;&lt;/li&gt;');
     for(i=1;i&gt;-1;i++){
         temp=file_find_next();
         if temp != ""{
             file_text_write_string(index,'&lt;li&gt;&lt;a href="html/'+temp+'"&gt;'+string_replace(temp,".html","")+'&lt;/a&gt;&lt;/li&gt;');
             }
         else{
-            i = -40;
+            i= -40;
             }
         }
-    //Fin de l'index:
-    file_text_write_string(index,'&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;');
+    file_text_write_string(index,'&lt;/ul&gt;&lt;/ul&gt;&lt;br&gt;');
     }
 
+//Fin de l'index:
+file_text_write_string(index,'&lt;/body&gt;&lt;/html&gt;');
 file_text_close(index);
+
+//Maintenant nous devons récupérer toutes les pages de CHAQUE catégorie afin de générer un pied de page.
+
+for(i=0;i&gt; -1;i++){
+    FoundCat=ini_read_string("category",string(i),"///");
+    if FoundCat != "///"{
+        instance_create(0,0,object_container);
+        
+        if file_find_first(working_directory+"Docs/html/"+FoundCat+"*.html",0) != ""{
+            object_container.Pages[0]=file_find_first(working_directory+"Docs/html/"+FoundCat+"*.html",0);
+            for(j=1;j&gt; -1;j++){    
+                temp=file_find_next();
+                if temp != ""{
+                    object_container.Pages[j]=temp;
+                    }
+                else{//Plus de fichiers, on arrête la collecte.
+                    j= -10;
+                    }
+                }
+            }
+            
+        //Maintenant que nous avons collecté des pages pour UNE catégorie, il faut encore pouvoir éditer les fotters.
+        if variable_instance_exists(object_container,"Pages"){
+            for(k=0;k&lt;array_length_1d(object_container.Pages);k++){
+                //Acquerir le string:
+                file=file_text_open_read(working_directory+"Docs/html/"+FoundCat+Pages[k]);
+                str=file_text_read_string(file);
+                file_text_close(file);
+                
+                //Effacer le reste:
+                start=string_pos('&lt;p class="foot"&gt;',str);
+                stop=string_pos('&lt;/html&gt;',str)+string_length('&lt;/html&gt;'); //Je considère que la page sera toujours correctement fermé sinan c'est la merde.
+                str=string_delete(
+            
+            
+                }
+            }
+        }
+    else{//Plus de categorie existante, donc on arrête la collecte:
+        i= -10;
+        }
+    
+    }
+
+
+
+
+
+
 instance_destroy();
     
 </string>

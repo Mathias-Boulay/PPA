@@ -35,12 +35,12 @@ for(i=1;i&lt;=10;i++){
     instance_create(room_width-32,32+(64*(i-1)),object_number)
     }
     
-if !directory_exists(working_directory+"Png"){
-    directory_create(working_directory+"Png");
+if !directory_exists(working_directory+"Animation_previewer/Png"){
+    directory_create(working_directory+"Animation_previewer/Png");
     }
 for(i=1;i&lt;=10;i++){
-    if !directory_exists(working_directory+"Png/"+string(i)){
-        directory_create(working_directory+"Png/"+string(i));
+    if !directory_exists(working_directory+"Animation_previewer/Png/"+string(i)){
+        directory_create(working_directory+"Animation_previewer/Png/"+string(i));
         }
     }
 alarm_set(0,room_speed);
@@ -74,13 +74,11 @@ for(i=1;i&lt;=9;i++){
     file=file_find_first(working_directory+"Png/"+string(i)+"/*.png",0);
         if file != ""{
         object_container.sprites[i-1,0]=sprite_add(working_directory+"Png/"+string(i)+"/"+file,0,false,false,0,0);
-        //sprite_set_offset(object_container.sprites[i-1,0],sprite_get_width(object_container.sprites[i-1,0])/2,sprite_get_height(object_container.sprites[i-1,0])/2);
         //The we start the rest
         for(j=0;j&gt; -1;j++){
             file=file_find_next();
             if file !=""{
                 object_container.sprites[i-1,j]=sprite_add(working_directory+"Png/"+string(i)+"/"+file,0,false,false,0,0);
-                //sprite_set_offset(object_container.sprites[i-1,j],sprite_get_width(object_container.sprites[i-1,j])/2,sprite_get_height(object_container.sprites[i-1,j])/2);
                 }
             else{
                 j= -10;
@@ -113,23 +111,22 @@ alarm_set(1,room_speed);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_destroy(object_back_data);
+            <string>///Récupération des images:
+instance_destroy(object_back_data);
 instance_destroy(object_sprite);
 instance_destroy(object_container);
 instance_create(x,y,object_container);
 
 
 for(i=1;i&lt;=9;i++){
-    file=file_find_first(working_directory+"Png/"+string(i)+"/*.png",0);
+    file=file_find_first(working_directory+"Animation_previewer/Png/"+string(i)+"/*.png",0);
         if file != ""{
-        object_container.sprites[i-1,0]=sprite_add(working_directory+"Png/"+string(i)+"/"+file,0,false,false,0,0);
-        //sprite_set_offset(object_container.sprites[i-1,0],(sprite_get_width(object_container.sprites[i-1,0])/2),(sprite_get_height(object_container.sprites[i-1,0])/2));
+        object_container.sprites[i-1,0]=sprite_add(working_directory+"Animation_previewer/Png/"+string(i)+"/"+file,0,false,false,0,0);
         //The we start the rest
         for(j=0;j&gt; -1;j++){
             file=file_find_next();
             if file !=""{
-                object_container.sprites[i-1,j]=sprite_add(working_directory+"Png/"+string(i)+"/"+file,0,false,false,0,0);
-                //sprite_set_offset(object_container.sprites[i-1,j],(sprite_get_width(object_container.sprites[i-1,j])/2),(sprite_get_height(object_container.sprites[i-1,j])/2));
+                object_container.sprites[i-1,j]=sprite_add(working_directory+"Animation_previewer/Png/"+string(i)+"/"+file,0,false,false,0,0);
                 }
             else{
                 j= -10;
@@ -163,7 +160,8 @@ alarm_set(1,room_speed);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>room_width=window_get_width();
+            <string>
+room_width=window_get_width();
 room_height=window_get_height();
 </string>
           </argument>

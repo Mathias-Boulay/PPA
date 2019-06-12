@@ -55,8 +55,8 @@ instance_destroy(object_container);
 instance_create(x,y,object_container);
 for(i=1;i&lt;=9;i++){
     for(j=1;j&gt;-1;j++){
-        if file_exists(working_directory+"Png/"+string(i)+"/"+string(j)+".png"){
-            object_container.sprites[i-1,j-1]=sprite_add(working_directory+"Png/"+string(i)+"/"+string(j)+".png",1,false,false,0,0);
+        if file_exists(working_directory+"Animation_previewer/Png/"+string(i)+"/"+string(j)+".png"){
+            object_container.sprites[i-1,j-1]=sprite_add(working_directory+"Animation_previewer/Png/"+string(i)+"/"+string(j)+".png",1,false,false,0,0);
             }
         else{
             //Le fichier n'existe pas.
