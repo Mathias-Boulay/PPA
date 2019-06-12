@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Je parse et écris dans le fichier html (compressé)
+            <string>///Je parse et écris dans le fichier html (compressé faut pas déconner c'est vachement plus pratique quand même)
 //Variable temporaire, utilisé pour faire le tri correctement dans les images.
 NumbOfImages=0;
 //Placement initial
@@ -108,12 +108,8 @@ while(collision_point(x,y,object_part,false,true) != noone){
 
 //NORMALEMENT Il n'y a plus de parties à compiler: Fermons le fichier.
 //Bas de page:
-if global.SiteCat = ""{
-    file_text_write_string(global.html,'&lt;p class="foot"&gt;&lt;a href="../index.html"&gt;Back to the index&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;');
-    }
-else{
-    file_text_write_string(global.html,'&lt;p class="foot"&gt;&lt;a href="../../index.html"&gt;Back to the index&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;');
-    }
+file_text_write_string(global.html,'&lt;table class="FooterTable"&gt;&lt;/body&gt;&lt;/html&gt;');
+
 file_text_close(global.html);
 
 //Maintenant il faudrait générer un index des pages existantes. On doit supprimer l'index précédent s'il existe.
@@ -197,30 +193,76 @@ for(i=0;i&gt; -1;i++){//Pour chaque catégorie:
         if variable_instance_exists(object_container,"Pages"){ //Si le container possède des noms de fichiers.
             for(k=0;k&lt;array_length_1d(object_container.Pages);k++){//On parcours le tableau.
                 //Acquerir le string:
-                file=file_text_open_read(working_directory+"Docs/html/"+FoundCat+Pages[k]);
+                file=file_text_open_read(working_directory+"Docs/html/"+FoundCat+object_container.Pages[k]);
                 str=file_text_read_string(file);
+                file_text_close(file);
                 
                 //Effacer le reste:
-                start=string_pos('&lt;table class="FooterTable"&gt;',str);
+                start=string_pos('&lt;table class="FooterTable"&gt;',str);//Je considère que ce morceau sera toujours mis même lors de la creation de la première page
                 stop=string_pos('&lt;/html&gt;',str)+string_length('&lt;/html&gt;'); //Je considère que la page sera toujours correctement fermé sinan c'est la merde.
                 str=string_delete(str,start,stop-start);
                 
                 //Ajouter la table:
-                if (k!= 0) &amp;&amp; (k!= array_length_1d(object_container.Pages)-1){
-                    
-                    }
-                else{
+                if (k= 0) &amp;&amp; (k= array_length_1d(object_container.Pages)-1){//Si la page et la première et la dernière.
                     //On est le premier et le dernier de la catégorie:
                     //On ajoute juste le centre.
-                    str+='&lt;table class="FooterTable"&gt;&lt;tr&gt;';
+                    str+='&lt;table class="FooterTable"&gt;&lt;tr&gt;&lt;th&gt;';
                     if FoundCat=""{
-                        str+='&lt;a href="../index.html"&gt;&lt;p class="FooterCenter"&gt;Back to the Index&lt;/p&gt;&lt;/a&gt;&lt;/tr&gt;';
+                        str+='&lt;a href="../index.html"&gt;&lt;p class="FooterCenter"&gt;Back to the Index&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;&lt;/tr&gt;';
                         }
                     else{
-                        str+='&lt;a href="../../index.html"&gt;&lt;p class="FooterCenter"&gt;Back to the Index&lt;/p&gt;&lt;/a&gt;&lt;/tr&gt;';
+                        str+='&lt;a href="../../index.html"&gt;&lt;p class="FooterCenter"&gt;Back to the Index&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;&lt;/tr&gt;';
                         }
                     }
-            
+                else{
+                    if k=0{//Si l'on est sur la première page.
+                        //On ajoute le centre+ la page suivante.
+                        str+='&lt;table class="FooterTable"&gt;&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;';
+                        if FoundCat=""{
+                            str+='&lt;a href="../index.html"&gt;&lt;p class="FooterCenter"&gt;Back to the Index&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;';
+                            }
+                        else{
+                            str+='&lt;a href="../../index.html"&gt;&lt;p class="FooterCenter"&gt;Back to the Index&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;';
+                            }
+                        str+='&lt;th&gt;&lt;a href="'+object_container.Pages[1]+'"&gt;&lt;p class="FooterRight"&gt;'+string_replace(object_container.Pages[1],'.html','')+'&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;&lt;/tr&gt;';
+                            
+                        }
+                    else{
+                        if k= array_length_1d(object_container.Pages)-1{//Si l'on est le dernier fichier:
+                            //Le fichier précédent plus le retour à l'index:
+                            str+='&lt;table class="FooterTable"&gt;&lt;tr&gt;&lt;th&gt;&lt;a href="'+object_container.Pages[k-1]+'"&gt;&lt;p class="FooterLeft"&gt;'+string_replace(object_container.Pages[k-1],'.html','')+'&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;';
+                            if FoundCat=""{
+                                str+='&lt;th&gt;&lt;a href="../index.html"&gt;&lt;p class="FooterCenter"&gt;Back to the Index&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;';
+                                }
+                            else{
+                                str+='&lt;th&gt;&lt;a href="../../index.html"&gt;&lt;p class="FooterCenter"&gt;Back to the Index&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;';
+                                }
+                            
+                            }
+                        else{
+                            //On est un fichier parmis d'autres, tous les boutons sont disponibles.
+                            str+='&lt;table class="FooterTable"&gt;&lt;tr&gt;&lt;th&gt;&lt;a href="'+object_container.Pages[k-1]+'"&gt;&lt;p class="FooterLeft"&gt;'+string_replace(object_container.Pages[k-1],'.html','')+'&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;';
+                            if FoundCat=""{
+                                str+='&lt;th&gt;&lt;a href="../index.html"&gt;&lt;p class="FooterCenter"&gt;Back to the Index&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;';
+                                }
+                            else{
+                                str+='&lt;th&gt;&lt;a href="../../index.html"&gt;&lt;p class="FooterCenter"&gt;Back to the Index&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;';
+                                }
+                            str+='&lt;th&gt;&lt;a href="'+object_container.Pages[k+1]+'"&gt;&lt;p class="FooterRight"&gt;'+string_replace(object_container.Pages[k+1],'.html','')+'&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;&lt;/tr&gt;';
+                            }
+                        
+                        }
+                    }
+                    
+                //Oki donc là il nous reste plus qu'a fermer et appliquer.
+                str+='&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;';
+                //Supprimer l'ancien fichier
+                file_rename(working_directory+"Docs/html/"+FoundCat+object_container.Pages[k],working_directory+"Docs/html/"+FoundCat+string_replace(object_container.Pages[k],'.html','.txt'));
+                file_delete(working_directory+"Docs/html/"+FoundCat+string_replace(object_container.Pages[k],".html",".txt"));
+                file=file_text_open_write(working_directory+"Docs/html/"+FoundCat+object_container.Pages[k]);
+                file_text_write_string(file,str);
+                file_text_close(file);
+                
             
                 }
             }
@@ -228,7 +270,7 @@ for(i=0;i&gt; -1;i++){//Pour chaque catégorie:
     else{//Plus de categorie existante, donc on arrête la collecte:
         i= -10;
         }
-    
+    instance_destroy(object_container);
     }
 
 
