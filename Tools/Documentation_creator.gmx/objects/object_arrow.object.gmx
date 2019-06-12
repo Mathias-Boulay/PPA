@@ -175,17 +175,17 @@ file_text_close(index);
 
 //Maintenant nous devons récupérer toutes les pages de CHAQUE catégorie afin de générer un pied de page.
 
-for(i=0;i&gt; -1;i++){
+for(i=0;i&gt; -1;i++){//Pour chaque catégorie:
     FoundCat=ini_read_string("category",string(i),"///");
-    if FoundCat != "///"{
-        instance_create(0,0,object_container);
+    if FoundCat != "///"{//Si cette catégorie existe
+        instance_create(0,0,object_container); //On crée notre container qui doit... contenir toutes les variables.
         
-        if file_find_first(working_directory+"Docs/html/"+FoundCat+"*.html",0) != ""{
-            object_container.Pages[0]=file_find_first(working_directory+"Docs/html/"+FoundCat+"*.html",0);
-            for(j=1;j&gt; -1;j++){    
+        if file_find_first(working_directory+"Docs/html/"+FoundCat+"*.html",0) != ""{// Si il y a au moins un fichier dans cette catégorie.
+            object_container.Pages[0]=file_find_first(working_directory+"Docs/html/"+FoundCat+"*.html",0); //On récupère son nom.
+            for(j=1;j&gt; -1;j++){//Si il y a d'autres fichiers dans cette catégorie   
                 temp=file_find_next();
                 if temp != ""{
-                    object_container.Pages[j]=temp;
+                    object_container.Pages[j]=temp; //On stocke leur nom dans le container.
                     }
                 else{//Plus de fichiers, on arrête la collecte.
                     j= -10;
@@ -193,18 +193,33 @@ for(i=0;i&gt; -1;i++){
                 }
             }
             
-        //Maintenant que nous avons collecté des pages pour UNE catégorie, il faut encore pouvoir éditer les fotters.
-        if variable_instance_exists(object_container,"Pages"){
-            for(k=0;k&lt;array_length_1d(object_container.Pages);k++){
+        //Maintenant que nous avons collecté des pages pour UNE catégorie, il faut encore pouvoir éditer les footers.
+        if variable_instance_exists(object_container,"Pages"){ //Si le container possède des noms de fichiers.
+            for(k=0;k&lt;array_length_1d(object_container.Pages);k++){//On parcours le tableau.
                 //Acquerir le string:
                 file=file_text_open_read(working_directory+"Docs/html/"+FoundCat+Pages[k]);
                 str=file_text_read_string(file);
-                file_text_close(file);
                 
                 //Effacer le reste:
-                start=string_pos('&lt;p class="foot"&gt;',str);
+                start=string_pos('&lt;table class="FooterTable"&gt;',str);
                 stop=string_pos('&lt;/html&gt;',str)+string_length('&lt;/html&gt;'); //Je considère que la page sera toujours correctement fermé sinan c'est la merde.
-                str=string_delete(
+                str=string_delete(str,start,stop-start);
+                
+                //Ajouter la table:
+                if (k!= 0) &amp;&amp; (k!= array_length_1d(object_container.Pages)-1){
+                    
+                    }
+                else{
+                    //On est le premier et le dernier de la catégorie:
+                    //On ajoute juste le centre.
+                    str+='&lt;table class="FooterTable"&gt;&lt;tr&gt;';
+                    if FoundCat=""{
+                        str+='&lt;a href="../index.html"&gt;&lt;p class="FooterCenter"&gt;Back to the Index&lt;/p&gt;&lt;/a&gt;&lt;/tr&gt;';
+                        }
+                    else{
+                        str+='&lt;a href="../../index.html"&gt;&lt;p class="FooterCenter"&gt;Back to the Index&lt;/p&gt;&lt;/a&gt;&lt;/tr&gt;';
+                        }
+                    }
             
             
                 }
