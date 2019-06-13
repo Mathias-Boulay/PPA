@@ -12,6 +12,8 @@
     <sprites name="Buttons">
       <sprite>sprites\sprite_buttons</sprite>
       <sprite>sprites\sprite_parts</sprite>
+      <sprite>sprites\sprite_tag</sprite>
+      <sprite>sprites\sprite_reverse_tag</sprite>
     </sprites>
     <sprite>sprites\sprite_arrow</sprite>
     <sprite>sprites\sprite_bin</sprite>
@@ -32,8 +34,10 @@
     <object>objects\object_arrow</object>
     <object>objects\object_bin</object>
     <object>objects\object_container</object>
+    <object>objects\object_init</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\room_init</room>
     <room>rooms\room_main</room>
   </rooms>
   <help>
