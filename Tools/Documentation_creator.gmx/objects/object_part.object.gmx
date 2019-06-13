@@ -31,7 +31,10 @@ Final="";
 value=0;
 ID=0;
 dir_y=0;
-
+pos=0;
+OBJECTIVE="";
+y=(sprite_height/2);
+y+=sprite_height*(instance_number(object_part)-1);
 
 </string>
           </argument>
@@ -133,7 +136,7 @@ if value != 0{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Placement+ changement de couleur si l'on est au dessus de l'élément
+            <string>///Placement
 if global.pressedID =""{
     if mouse_x &gt;= x-(sprite_width/2) &amp;&amp; mouse_x &lt;= x+(sprite_width/2) &amp;&amp; mouse_y &gt;= y-(sprite_height/2) &amp;&amp; mouse_y &lt;= y+(sprite_height/2){
         //La souris est sur notre position:
@@ -171,19 +174,40 @@ else{
     
 ///Vertical
 if global.pressedID!=id{
-    y=(sprite_height/2);
-    while(place_meeting(x,y,all) ){
-        y+=sprite_height;
+    if global.pressedID!=""{//Il y a un élu:
+        tmp=sign(global.pressedID.y-y);
+        if tmp=pos{
+            OBJECTIVE=y-(sprite_height*pos);
+            pos*= -1;
+            }
+        
         }
-    if global.pressedID !=""{
-        if global.pressedID.y &lt;= y{
-            y+=sprite_height;
-            while(place_meeting(x,y,all)){
-                y+=sprite_height;
+    else{
+        //Si on a pas d'élu:
+        repeat(5){
+            if collision_rectangle(x-150,y-(sprite_height/2)-1,view_xview[0]+view_wview[0],y-(sprite_height/2)+1,object_part,false,true) = noone{
+                y--;
+                }
+            tmp=collision_rectangle(x-150,y+(sprite_height/2)-1,view_xview[0]+view_wview[0],y+(sprite_height/2),object_part,false,true);
+            if tmp != noone{
+                tmp.y++;
                 }
             }
         }
+    
+    y=clamp(y,sprite_height/2,view_yview[0]+view_hview[0]-(sprite_height/2));
     }
+    
+if OBJECTIVE != ""{
+    if abs(OBJECTIVE-y) &lt; 0.4{
+        y=OBJECTIVE;
+        OBJECTIVE="";
+        }
+    else{
+        y+= (OBJECTIVE-y)/5;
+        }
+    }
+
 </string>
           </argument>
         </arguments>
@@ -206,24 +230,45 @@ if global.pressedID!=id{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if global.pressedID=id{
-if !place_meeting(x,y,object_bin){
-        //Ensuite:
-        y=(sprite_height/2);
-        x=view_xview[0]+view_wview[0]-60;
-        
-        while(place_meeting(x,y,all)){
-            y+=sprite_height;
-            }
-        global.pressedID="";
-        }
-    else{
-        global.pressedID="";
-        instance_destroy();
-        }
-        
+            <string>///On enlève l'id de l'élu et la corbeille.
+if global.pressedID=id{
+    if place_meeting(x,y,object_bin){instance_destroy();}
+    
+    global.pressedID="";    
     instance_destroy(object_bin);
     dir_y=0;
+    depth=0;
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="53">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Définission de "pos"
+if global.pressedID!=id{
+    if global.pressedID.y&lt;y{
+        pos=1; //L'élu est au dessus du bloc;
+        }
+    else{
+        pos= -1; //L'élu est en dessous du bloc;
+        }
     }
 </string>
           </argument>
@@ -248,8 +293,13 @@ if !place_meeting(x,y,object_bin){
           <argument>
             <kind>1</kind>
             <string>if global.pressedID=id{
-    y=mouse_y+dir_y;
-    x=min(mouse_x,view_xview[0]+view_wview[0]-12);;
+    y=mouse_y-dir_y;
+    if abs((view_xview[0]+view_wview[0]-210)-x) &lt; 0.4{
+        x=(view_xview[0]+view_wview[0]-210);
+        }
+    else{
+        x+=((view_xview[0]+view_wview[0]-210)-x)/8;
+        }
     }
 </string>
           </argument>
@@ -350,6 +400,7 @@ if !place_meeting(x,y,object_bin){
             <kind>1</kind>
             <string>global.pressedID=id;
 dir_y=mouse_y-y;
+depth=10;
 
 instance_create(room_width-(sprite_width*1.5),room_height-32,object_bin)
     
@@ -375,10 +426,22 @@ instance_create(room_width-(sprite_width*1.5),room_height-32,object_bin)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_self();
+            <string>///Affichage des valeurs, choix des couleurs et tags infinis
+draw_self();
 //Choix de la couleur:
-if mouse_x &gt;= x-(sprite_width/2) &amp;&amp; mouse_x &lt;= x+(sprite_width/2) &amp;&amp; mouse_y &gt;= y-(sprite_height/2) &amp;&amp; mouse_y &lt;= y+(sprite_height/2){
-    draw_set_color(c_red);
+if mouse_x &gt;= x-(sprite_width/2) &amp;&amp; mouse_y &gt;= y-(sprite_height/2) &amp;&amp; mouse_y &lt;= y+(sprite_height/2){
+    if global.pressedID= ""{
+        draw_set_color(c_red);
+        }
+    else{
+        if global.pressedID=id{
+            draw_set_color(c_red);
+            }
+        else{
+            draw_set_color(object_deadzone.font_green);
+            }
+        }
+        
     }
 else{
     draw_set_color(object_deadzone.font_green);
@@ -441,16 +504,16 @@ if value = 0{
             }
         }
 //Dessiner la continuité du tag:
-if global.pressedID=id{
+if global.pressedID=id || x &lt; view_xview[0]+view_wview[0]-80{
     //Deux lignes+un rectangle
     draw_set_colour(object_deadzone.line_tag);
-    draw_line(bbox_right,bbox_top,view_xview[0]+view_wview[0],bbox_top);
-    draw_line(bbox_right,bbox_bottom,view_xview[0]+view_wview[0],bbox_bottom);
+    draw_line(bbox_right,bbox_top+4,view_xview[0]+view_wview[0],bbox_top+4);
+    draw_line(bbox_right,bbox_bottom-4,view_xview[0]+view_wview[0],bbox_bottom-4);
     draw_set_color(object_deadzone.second_line_tag);
-    draw_line(bbox_right-2,bbox_bottom+1,view_xview[0]+view_wview[0]-3,bbox_bottom+1);
+    draw_line(bbox_right-2,bbox_bottom-3,view_xview[0]+view_wview[0]-3,bbox_bottom-3);
     
     draw_set_color(c_white);
-    draw_rectangle(bbox_right,bbox_top+1,view_xview[0]+view_wview[0],bbox_bottom-1,false);
+    draw_rectangle(bbox_right,bbox_top+5,view_xview[0]+view_wview[0],bbox_bottom-5,false);
     
     }
         
