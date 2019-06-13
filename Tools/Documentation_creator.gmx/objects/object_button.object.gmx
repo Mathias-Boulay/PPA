@@ -265,8 +265,14 @@ else{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_self();
-draw_set_color(object_deadzone.font_green);
+            <string>///Affichage des valeurs correspondantes
+draw_self();
+if mouse_x &gt;= x-(sprite_width/2) &amp;&amp; mouse_y &gt;= y-(sprite_height/2) &amp;&amp; mouse_y &lt;= y+(sprite_height/2){
+    draw_set_colour(c_red);
+    }
+else{
+    draw_set_color(object_deadzone.font_green);
+    }
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 

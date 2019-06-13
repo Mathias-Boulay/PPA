@@ -323,7 +323,7 @@ if global.pressedID!=id{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>switch(image_index){
+            <string>switch(ID){
     case 1:
         Final=get_string("Quel titre ?",Final);
         break;
