@@ -58,45 +58,58 @@ y+=sprite_height*(instance_number(object_category)-1);
           <argument>
             <kind>1</kind>
             <string>///Placement
-if global.pressedID =""{
-    if mouse_x &gt;= x-(sprite_width/2) &amp;&amp; mouse_x &lt;= x+(sprite_width/2) &amp;&amp; mouse_y &gt;= y-(sprite_height/2) &amp;&amp; mouse_y &lt;= y+(sprite_height/2){
-        //La souris est sur notre position:
-        //Placement horizontal:
-        if abs(view_xview[0]+(view_wview[0]/2)-80-x) &lt; 0.4{
-            x= view_xview[0]+(view_wview[0]/2)-80;
+if object_slider_cat.STATE=""{
+    if global.pressedID =""{
+        if mouse_x &gt;= x-(sprite_width/2) &amp;&amp; mouse_x &lt;= x+(sprite_width/2) &amp;&amp; mouse_y &gt;= y-(sprite_height/2) &amp;&amp; mouse_y &lt;= y+(sprite_height/2){
+            //La souris est sur notre position:
+            //Placement horizontal:
+            if abs(view_xview[0]+(view_wview[0]/2)-80-x) &lt; 0.4{
+                x= view_xview[0]+(view_wview[0]/2)-80;
+                }
+            else{
+                x+= (view_xview[0]+(view_wview[0]/2)-80-x)/8;
+                }
+        
             }
         else{
-            x+= (view_xview[0]+(view_wview[0]/2)-80-x)/8;
+            //La souris n'est pas sur notre position
+            //Placement Horizontal:
+            if abs(view_xview[0]+(view_wview[0]/2)-60-x) &lt; 0.4{
+                x= view_xview[0]+(view_wview[0]/2)-60;
+                }
+            else{
+                x+= (view_xview[0]+(view_wview[0]/2)-60-x)/8;
+                } 
             }
-    
         }
     else{
-        //La souris n'est pas sur notre position
-        //Placement Horizontal:
-        if abs(view_xview[0]+(view_wview[0]/2)-60-x) &lt; 0.4{
-            x= view_xview[0]+(view_wview[0]/2)-60;
+        if global.pressedID!=id{ //On se range lors de la réorganisation.
+            if abs(view_xview[0]+(view_wview[0]/2)-60-x) &lt; 0.4{
+                x= view_xview[0]+(view_wview[0]/2)-60;
+                }
+            else{
+                x+= (view_xview[0]+(view_wview[0]/2)-60-x)/8;
+                }
             }
-        else{
-            x+= (view_xview[0]+(view_wview[0]/2)-60-x)/8;
-            } 
         }
     }
 else{
-    if global.pressedID!=id{ //On se range lors de la réorganisation.
-        if abs(view_xview[0]+(view_wview[0]/2)-60-x) &lt; 0.4{
-            x= view_xview[0]+(view_wview[0]/2)-60;
-            }
-        else{
-            x+= (view_xview[0]+(view_wview[0]/2)-60-x)/8;
-            }
+    //So lazy I'll assume I didn't fuck up the other STATE:
+    if abs(((view_xview[0]+(view_wview[0]/2)+51))-x) &lt; 0.6{
+        instance_destroy();
+        }
+    else{
+        x+=(((view_xview[0]+(view_wview[0]/2)+51))-x)/6;
         }
     }
+    
     
     
 ///Vertical
 if global.pressedID!=id{
     if global.pressedID!=""{//Il y a un élu:
         tmp=sign(global.pressedID.y-y);
+        if tmp=0{tmp=pos;}
         if tmp=pos{
             OBJECTIVE=y-(sprite_height*pos);
             pos*= -1;
@@ -220,6 +233,7 @@ if global.pressedID!=id{
             <string>///Placement de l'élu
 if global.pressedID=id{
     y=mouse_y-dir_y;
+    y=clamp(y,0,view_yview[0]+object_slider_cat.pos-(sprite_height/2));
     if abs((view_xview[0]+(view_wview[0]/2)-210)-x) &lt; 0.4{
         x=(view_xview[0]+(view_wview[0]/2)-210);
         }
@@ -277,8 +291,9 @@ depth=10;
             <kind>1</kind>
             <string>///Je dois dessiner uniquement ce qui dépasse, cela pose un peu problème pour l'apparition du texte:
 
+
 //Dessiner la continuité du tag:
-if global.pressedID=id || x &lt; view_xview[0]+(view_wview[0]/2)-210{
+if global.pressedID=id || x &lt; view_xview[0]+(view_wview[0]/2)-80{
     //Deux lignes+un rectangle
     draw_set_colour(object_deadzone.line_tag);
     draw_line(bbox_right,bbox_top+4,view_xview[0]+(view_wview[0]/2),bbox_top+4);

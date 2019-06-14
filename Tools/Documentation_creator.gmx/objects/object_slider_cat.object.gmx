@@ -29,6 +29,7 @@
 pos=0;
 full=false;
 NumCat=0;
+STATE="";
 
 //Catégories:
 ini_open(working_directory+"Docs/settings/settings.ini");
@@ -65,23 +66,38 @@ for(i=1;i&gt; -1;i++){
           <argument>
             <kind>1</kind>
             <string>///Actualise la position
-if abs((view_yview[0]+(NumCat*sprite_get_height(sprite_reverse_tag))-3)-pos) &lt; 0.4{
-    full=true;
-    pos=view_yview[0]+(NumCat*sprite_get_height(sprite_reverse_tag))-3;
-    }
-else{
-    pos+=((view_yview[0]+(NumCat*sprite_get_height(sprite_reverse_tag))-3)-pos)/8;
-    }
-    
-if full{
+switch(STATE){
+
+    case "":
+        if abs((view_yview[0]+(NumCat*sprite_get_height(sprite_reverse_tag)))-pos) &lt; 0.6{
+            full=true;
+            pos=view_yview[0]+(NumCat*sprite_get_height(sprite_reverse_tag));
+            }
+        else{
+            pos+=((view_yview[0]+(NumCat*sprite_get_height(sprite_reverse_tag)))-pos)/8;
+            }
+            
+        if full{
+            if !instance_exists(object_category){
+                //On a atteint l'objectif:
+                for(i=1;i&lt;=NumCat;i++){
+                    instance_create(x,y,object_category);
+                    }
+                }
+            }
+        break;
+        
+    case "LEAVE":
     if !instance_exists(object_category){
-        //On a atteint l'objectif:
-        for(i=1;i&lt;=NumCat;i++){
-            instance_create(x,y,object_category);
+        if abs(view_yview[0]-pos) &lt; 0.6{
+            instance_destroy();
+            }
+        else{
+            pos+= (view_yview[0]-pos)/8;
             }
         }
+    
     }
-
 </string>
           </argument>
         </arguments>
@@ -105,9 +121,9 @@ if full{
           <argument>
             <kind>1</kind>
             <string>draw_set_color(c_white);
-draw_rectangle(view_xview[0]+(view_wview[0]/2),view_yview[0],view_xview[0]+(view_wview[0]/2)+40,view_yview[0]+pos,false);
+draw_rectangle(view_xview[0]+(view_wview[0]/2),view_yview[0],view_xview[0]+(view_wview[0]/2)+40,view_yview[0]+pos-4,false);
 draw_set_colour(object_deadzone.line_tag);
-draw_rectangle(view_xview[0]+(view_wview[0]/2),view_yview[0],view_xview[0]+(view_wview[0]/2)+40,view_yview[0]+pos,true);
+draw_rectangle(view_xview[0]+(view_wview[0]/2),view_yview[0],view_xview[0]+(view_wview[0]/2)+40,view_yview[0]+pos-4,true);
 
 
 

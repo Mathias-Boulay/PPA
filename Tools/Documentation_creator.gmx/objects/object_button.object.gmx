@@ -170,7 +170,7 @@ if ID != 11{
             global.SiteCat=Final_cat;
             
             
-            if Final != "NOONE"{
+            if Final != ""{
                 //un nom de page nous est donné, go écrire.
                 //La catégorie (fichier settings):
                 if Final_cat != ""{

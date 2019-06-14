@@ -176,10 +176,13 @@ else{
 ///Vertical
 if global.pressedID!=id{
     if global.pressedID!=""{//Il y a un élu:
-        tmp=sign(global.pressedID.y-y);
-        if tmp=pos{
-            OBJECTIVE=y-(sprite_height*pos);
-            pos*= -1;
+        if !instance_exists(object_slider_cat){
+            tmp=sign(global.pressedID.y-y);
+            if tmp=0{tmp=pos;}
+            if tmp=pos{
+                OBJECTIVE=y-(sprite_height*pos);
+                pos*= -1;
+                }
             }
         
         }
@@ -302,6 +305,7 @@ if global.pressedID!=id{
             <kind>1</kind>
             <string>if global.pressedID=id{
     y=mouse_y-dir_y;
+    y=clamp(y,0,view_yview[0]+view_hview[0]-(sprite_height/2));
     if abs((view_xview[0]+view_wview[0]-210)-x) &lt; 0.4{
         x=(view_xview[0]+view_wview[0]-210);
         }
@@ -406,12 +410,13 @@ if global.pressedID!=id{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.pressedID=id;
-dir_y=mouse_y-y;
-depth=10;
-
-instance_create(room_width-(sprite_width*1.5),room_height-32,object_bin)
+            <string>if !instance_exists(object_slider_cat){
+    global.pressedID=id;
+    dir_y=mouse_y-y;
+    depth=10;
     
+    instance_create(room_width-(sprite_width*1.5),room_height-32,object_bin)
+    }
 </string>
           </argument>
         </arguments>
@@ -458,26 +463,28 @@ draw_set_valign(fa_middle);
 draw_set_halign(fa_center);
 //Draw values 
 if value = 0{
-    switch(ID){
-    
-        case 1:
-        case 2:
-        case 3:
-        case 4:
-        case 5:
-        case 6:
-        case 9:
-            draw_text(room_width/2,y,Final);
-            break;
+    if !instance_exists(object_slider_cat){
+        switch(ID){
         
-        case 7:
-            draw_text(room_width/2,y,Final[0,0]+"/"+Final[0,1]+"/"+Final[0,2]);
-            break;
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 9:
+                draw_text(room_width/2,y,Final);
+                break;
             
-        case 8:
-            draw_text(room_width/2,y,Final[0]+Final[1]);
-            break;
-            
+            case 7:
+                draw_text(room_width/2,y,Final[0,0]+"/"+Final[0,1]+"/"+Final[0,2]);
+                break;
+                
+            case 8:
+                draw_text(room_width/2,y,Final[0]+Final[1]);
+                break;
+                
+            }
         }
         
     switch(ID){
