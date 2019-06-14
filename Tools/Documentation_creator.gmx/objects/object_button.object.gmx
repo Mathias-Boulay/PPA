@@ -246,7 +246,12 @@ if ID != 11{
     }
 else{
     //On affiche les catégories:
-    instance_create(view_xview[0]+(view_wview[0]/2),view_yview[0],object_slider_cat);
+    if !instance_exists(object_slider_cat){
+        instance_create(view_xview[0]+(view_wview[0]/2),view_yview[0],object_slider_cat);
+        }
+    else{
+        object_slider_cat.STATE="LEAVE";
+        }
     }
 </string>
           </argument>
@@ -316,7 +321,12 @@ switch(ID){
         draw_text(x,y,"Exporter");
         break;
     case 11:
-        draw_text(x,y,"Afficher#Catégories");
+        if !instance_exists(object_slider_cat){
+            draw_text(x,y,"Afficher#Catégories");
+            }
+        else{
+            draw_text(x,y,"Cacher#Catégories");
+            }
         break;
     }
 </string>

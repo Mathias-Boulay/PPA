@@ -3,7 +3,7 @@
   <spriteName>sprite_reverse_tag</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>1</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>///Initialisation et placement
 ID=instance_number(object_category);
-cat=ini_read_string("category",string(ID),"///");
+cat=string_replace(ini_read_string("category",string(ID),"///"),"/","");
 x=view_xview[0]+(view_wview[0]/2)+61;
 //Piqué du code des parts.
 dir_y=0;
@@ -105,23 +105,25 @@ if global.pressedID!=id{
         }
     else{
         //Si on a pas d'élu:
-        repeat(5){
-            if collision_rectangle(x-150,y-(sprite_height/2)-1,view_xview[0]+view_wview[0],y-(sprite_height/2)+1,object_category,false,true) = noone{
-                y--;
-                }
-            else{
-                if collision_rectangle(x-150,y-(sprite_height/2),view_xview[0]+view_wview[0],y+(sprite_height/2),object_category,false,true) != noone{
-                    y++;
+        if OBJECTIVE=""{
+            repeat(5){
+                if collision_rectangle(x-150,y-(sprite_height/2)-1,view_xview[0]+view_wview[0],y-(sprite_height/2)+1,object_category,false,true) = noone{
+                    y--;
                     }
-                }
-            tmp=collision_rectangle(x-150,y+(sprite_height/2)-1,view_xview[0]+view_wview[0],y+(sprite_height/2),object_category,false,true);
-            if tmp != noone{
-                tmp.y++;
+                else{
+                    if collision_rectangle(x-150,y-(sprite_height/2),view_xview[0]+view_wview[0],y+(sprite_height/2),object_category,false,true) != noone{
+                        y++;
+                        }
+                    }
+                tmp=collision_rectangle(x-150,y+(sprite_height/2)-1,view_xview[0]+view_wview[0],y+(sprite_height/2),object_category,false,true);
+                if tmp != noone{
+                    tmp.y++;
+                    }
                 }
             }
         }
     
-    y=clamp(y,sprite_height/2,view_yview[0]+view_hview[0]-(sprite_height/2));
+    y=clamp(y,sprite_height/2,view_yview[0]+object_slider_cat.pos-(sprite_height/2));
     }
     
 if OBJECTIVE != ""{
@@ -160,7 +162,7 @@ if OBJECTIVE != ""{
 if global.pressedID=id{
     global.pressedID="";    
     dir_y=0;
-    depth=0;
+    depth=1;
     }
 </string>
           </argument>
@@ -247,7 +249,8 @@ if global.pressedID=id{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.pressedID=id;
+            <string>//On change notre profondeur
+global.pressedID=id;
 dir_y=mouse_y-y;
 depth=10;
 </string>
@@ -273,9 +276,52 @@ depth=10;
           <argument>
             <kind>1</kind>
             <string>///Je dois dessiner uniquement ce qui dépasse, cela pose un peu problème pour l'apparition du texte:
+
+//Dessiner la continuité du tag:
+if global.pressedID=id || x &lt; view_xview[0]+(view_wview[0]/2)-210{
+    //Deux lignes+un rectangle
+    draw_set_colour(object_deadzone.line_tag);
+    draw_line(bbox_right,bbox_top+4,view_xview[0]+(view_wview[0]/2),bbox_top+4);
+    draw_line(bbox_right,bbox_bottom-4,view_xview[0]+(view_wview[0]/2),bbox_bottom-4);
+    draw_set_color(object_deadzone.second_line_tag);
+    draw_line(bbox_right-2,bbox_bottom-3,view_xview[0]+(view_wview[0]/2)-3,bbox_bottom-3);
+    
+    draw_set_color(c_white);
+    draw_rectangle(bbox_right,bbox_top+5,view_xview[0]+(view_wview[0]/2),bbox_bottom-5,false);
+    
+    }
+
 //Le sprite:
-draw_self();
-draw_sprite_part(sprite_reverse_tag,0,0,0,(view_xview[0]+(view_wview[0]/2))-bbox_left,sprite_height,x-(sprite_width/2),y-(sprite_height/2));
+draw_sprite_part(sprite_reverse_tag,0,0,0,ceil((view_xview[0]+(view_wview[0]/2))-bbox_left),sprite_height,x-41,y-(sprite_height/2));
+
+//Manque plus que le texte qui va apparaître de manière un peu abrupte:
+//D'abord le choix de couleur:
+if mouse_x &gt;= x-(sprite_width/2) &amp;&amp; mouse_x&lt;= view_xview[0]+(view_wview[0]/2) &amp;&amp; mouse_y &gt;= y-(sprite_height/2) &amp;&amp; mouse_y &lt;= y+(sprite_height/2){
+    if global.pressedID= ""{
+        draw_set_color(c_red);
+        }
+    else{
+        if global.pressedID=id{
+            draw_set_color(c_red);
+            }
+        else{
+            draw_set_color(object_deadzone.font_green);
+            }
+        }
+        
+    }
+else{
+    draw_set_color(object_deadzone.font_green);
+    }
+draw_set_valign(fa_middle);
+draw_set_halign(fa_center);
+
+if x &lt;= view_xview[0]+(view_wview[0]/2)-40{
+    draw_text(x,y,cat);
+    }
+
+
+
 </string>
           </argument>
         </arguments>

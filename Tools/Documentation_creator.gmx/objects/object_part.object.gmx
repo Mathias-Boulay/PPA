@@ -185,18 +185,20 @@ if global.pressedID!=id{
         }
     else{
         //Si on a pas d'élu:
-        repeat(5){
-            if collision_rectangle(x-150,y-(sprite_height/2)-1,view_xview[0]+view_wview[0],y-(sprite_height/2)+1,object_part,false,true) = noone{
-                y--;
-                }
-            else{
-                if collision_rectangle(x-150,y-(sprite_height/2),view_xview[0]+view_wview[0],y+(sprite_height/2),object_category,false,true) != noone{
-                    y++;
+        if OBJECTIVE = ""{
+            repeat(5){
+                if collision_rectangle(x-150,y-(sprite_height/2)-1,view_xview[0]+view_wview[0],y-(sprite_height/2)+1,object_part,false,true) = noone{
+                    y--;
                     }
-                }
-            tmp=collision_rectangle(x-150,y+(sprite_height/2)-1,view_xview[0]+view_wview[0],y+(sprite_height/2),object_part,false,true);
-            if tmp != noone{
-                tmp.y++;
+                else{
+                    if collision_rectangle(x-150,y-(sprite_height/2),view_xview[0]+view_wview[0],y+(sprite_height/2),object_category,false,true) != noone{
+                        y++;
+                        }
+                    }
+                tmp=collision_rectangle(x-150,y+(sprite_height/2)-1,view_xview[0]+view_wview[0],y+(sprite_height/2),object_part,false,true);
+                if tmp != noone{
+                    tmp.y++;
+                    }
                 }
             }
         }

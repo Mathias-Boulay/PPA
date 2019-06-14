@@ -65,12 +65,12 @@ for(i=1;i&gt; -1;i++){
           <argument>
             <kind>1</kind>
             <string>///Actualise la position
-if abs((view_yview[0]+(NumCat*sprite_get_height(sprite_reverse_tag)))-pos) &lt; 0.4{
+if abs((view_yview[0]+(NumCat*sprite_get_height(sprite_reverse_tag))-3)-pos) &lt; 0.4{
     full=true;
-    pos=view_yview[0]+(NumCat*sprite_get_height(sprite_reverse_tag));
+    pos=view_yview[0]+(NumCat*sprite_get_height(sprite_reverse_tag))-3;
     }
 else{
-    pos+=((view_yview[0]+(NumCat*sprite_get_height(sprite_reverse_tag)))-pos)/10;
+    pos+=((view_yview[0]+(NumCat*sprite_get_height(sprite_reverse_tag))-3)-pos)/8;
     }
     
 if full{
