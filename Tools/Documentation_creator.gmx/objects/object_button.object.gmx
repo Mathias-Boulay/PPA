@@ -106,110 +106,111 @@ else{
           <argument>
             <kind>1</kind>
             <string>///Crée un morceau ou execute une action (export)
-if ID !=0{
-    if ID != 10{
-        This_part=instance_create(room_width-(sprite_width/2),sprite_height*(0.5+instance_number(object_part)),object_part);
-        This_part.value=ID;
-        }
-    else{
-        //On lance l'exportation
-        Final=get_string("Quel nom pour la page ?","NOONE");
-        Final_cat=get_string("Quelle catégorie ? NOONE ou vide pour acune catégorie","NOONE");
-        
-        //Définition des caractères interdits.
-        Forbidden[0]="/";
-        Forbidden[1]="\";
-        Forbidden[2]=":";
-        Forbidden[3]="*";
-        Forbidden[4]="?";
-        Forbidden[5]='"';
-        Forbidden[6]="&lt;";
-        Forbidden[7]="&gt;";
-        Forbidden[8]="|";
-        
-        //Uniformisation des inputs pour le script:
-        //Phase 1: Remove forbidden file's caracters.
-        for(i=0;i&lt;array_length_1d(Forbidden);i++){
-            Final=string_replace_all(Final,Forbidden[i],"");
-            Final_cat=string_replace_all(Final_cat,Forbidden[i],"");
-            }
-        
-        //Phase 2: Reduce broke sensibility.
-        switch(Final_cat){
-            case "NOONE":
-            case "NONE":
-            case "noone":
-            case "none":
-                show_debug_message("Category input uniformised !");
-                Final_cat= "";
-                break;
-                
-            default:
-                show_debug_message("No changes to the Category input !");
-                Final_cat+="/";
-                break;
-            }
-            
-        switch(Final){
-            case "NOONE":
-            case "NONE":
-            case "noone":
-            case "none":
-                show_debug_message("Site's name input uniformised !");
-                Final= "";
-                break;
-                
-            default:
-                show_debug_message("No changes to the Site's name input !");
-                break;
-            }
-            
-            
-        global.SiteTitle=Final;
-        global.SiteCat=Final_cat;
-        
-        
-        if Final != "NOONE"{
-            //un nom de page nous est donné, go écrire.
-            //La catégorie (fichier settings):
-            if Final_cat != ""{
-                ini_open(working_directory+"Docs/settings/settings.ini");
-                for(i=1;i&gt; -1;i++){
-                    if ini_key_exists("category",string(i)){
-                        if ini_read_string("category",string(i),"NOONE") = Final_cat{//On vérifie si notre catégorie existe.
-                            i= -10;
-                            }
-                        }
-                    else{//clé vide donc on crée notre catégorie
-                        ini_write_string("category",string(i),Final_cat);
-                        i= -10;
-                        }   
-                    }
-                ini_close();
-                }
-                
-                
-            //Création du html:
-            global.html=file_text_open_write(working_directory+"Docs/html/"+Final_cat+Final+".html");
-            //Écriture:
-            //Tête de page(compressé pour éviter des problèmes de code en pavé)
-            if Final_cat = ""{
-                file_text_write_string(global.html,'&lt;DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset="utf-8" /&gt;&lt;link rel="stylesheet" href="../css/css.css" /&gt;&lt;title&gt;'+Final+'-PPA Docs&lt;/title&gt;&lt;/head&gt;&lt;body&gt;');
-                }
-            else{
-                file_text_write_string(global.html,'&lt;DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset="utf-8" /&gt;&lt;link rel="stylesheet" href="../../css/css.css" /&gt;&lt;title&gt;'+Final+'-PPA Docs&lt;/title&gt;&lt;/head&gt;&lt;body&gt;');                
-                }
-            //le corps est créé, il faut utiliser la flèche pour parser les arguments.
-            arrow=instance_create(x,y,object_arrow);
-                
+if ID != 11{
+    if ID !=0{
+        if ID != 10{
+            This_part=instance_create(room_width-(sprite_width/2),sprite_height*(0.5+instance_number(object_part)),object_part);
+            This_part.value=ID;
             }
         else{
-            show_message("Exportation annulée !");
+            //On lance l'exportation
+            Final=get_string("Quel nom pour la page ?","NOONE");
+            Final_cat=get_string("Quelle catégorie ? NOONE ou vide pour acune catégorie","NOONE");
+            
+            //Définition des caractères interdits.
+            Forbidden[0]="/";
+            Forbidden[1]="\";
+            Forbidden[2]=":";
+            Forbidden[3]="*";
+            Forbidden[4]="?";
+            Forbidden[5]='"';
+            Forbidden[6]="&lt;";
+            Forbidden[7]="&gt;";
+            Forbidden[8]="|";
+            
+            //Uniformisation des inputs pour le script:
+            //Phase 1: Remove forbidden file's caracters.
+            for(i=0;i&lt;array_length_1d(Forbidden);i++){
+                Final=string_replace_all(Final,Forbidden[i],"");
+                Final_cat=string_replace_all(Final_cat,Forbidden[i],"");
+                }
+            
+            //Phase 2: Reduce broke sensibility.
+            switch(Final_cat){
+                case "NOONE":
+                case "NONE":
+                case "noone":
+                case "none":
+                    show_debug_message("Category input uniformised !");
+                    Final_cat= "";
+                    break;
+                    
+                default:
+                    show_debug_message("No changes to the Category input !");
+                    Final_cat+="/";
+                    break;
+                }
+                
+            switch(Final){
+                case "NOONE":
+                case "NONE":
+                case "noone":
+                case "none":
+                    show_debug_message("Site's name input uniformised !");
+                    Final= "";
+                    break;
+                    
+                default:
+                    show_debug_message("No changes to the Site's name input !");
+                    break;
+                }
+                
+                
+            global.SiteTitle=Final;
+            global.SiteCat=Final_cat;
+            
+            
+            if Final != "NOONE"{
+                //un nom de page nous est donné, go écrire.
+                //La catégorie (fichier settings):
+                if Final_cat != ""{
+                    ini_open(working_directory+"Docs/settings/settings.ini");
+                    for(i=1;i&gt; -1;i++){
+                        if ini_key_exists("category",string(i)){
+                            if ini_read_string("category",string(i),"NOONE") = Final_cat{//On vérifie si notre catégorie existe.
+                                i= -10;
+                                }
+                            }
+                        else{//clé vide donc on crée notre catégorie
+                            ini_write_string("category",string(i),Final_cat);
+                            i= -10;
+                            }   
+                        }
+                    ini_close();
+                    }
+                    
+                    
+                //Création du html:
+                global.html=file_text_open_write(working_directory+"Docs/html/"+Final_cat+Final+".html");
+                //Écriture:
+                //Tête de page(compressé pour éviter des problèmes de code en pavé)
+                if Final_cat = ""{
+                    file_text_write_string(global.html,'&lt;DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset="utf-8" /&gt;&lt;link rel="stylesheet" href="../css/css.css" /&gt;&lt;title&gt;'+Final+'-PPA Docs&lt;/title&gt;&lt;/head&gt;&lt;body&gt;');
+                    }
+                else{
+                    file_text_write_string(global.html,'&lt;DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset="utf-8" /&gt;&lt;link rel="stylesheet" href="../../css/css.css" /&gt;&lt;title&gt;'+Final+'-PPA Docs&lt;/title&gt;&lt;/head&gt;&lt;body&gt;');                
+                    }
+                //le corps est créé, il faut utiliser la flèche pour parser les arguments.
+                arrow=instance_create(x,y,object_arrow);
+                    
+                }
+            else{
+                show_message("Exportation annulée !");
+                }
             }
         }
-    }
-else{
-    //On Crée une page standard qui sera une page de fonction.
+    else{
+        //On Crée une page standard qui sera une page de fonction.
         //Titre:
         This_part=instance_create(room_width-(sprite_width/2),sprite_height*(0.5+instance_number(object_part)),object_part);
         This_part.value=1;
@@ -240,8 +241,12 @@ else{
         This_part.value=6;
         //Le paragraphe qui explique l'exemple:
         This_part=instance_create(room_width-(sprite_width/2),sprite_height*(0.5+instance_number(object_part)),object_part);
-        This_part.value=9;
-        
+        This_part.value=9;   
+        }
+    }
+else{
+    //On affiche les catégories:
+    instance_create(view_xview[0]+(view_wview[0]/2),view_yview[0],object_slider_cat);
     }
 </string>
           </argument>
@@ -267,7 +272,7 @@ else{
             <kind>1</kind>
             <string>///Affichage des valeurs correspondantes
 draw_self();
-if mouse_x &gt;= x-(sprite_width/2) &amp;&amp; mouse_y &gt;= y-(sprite_height/2) &amp;&amp; mouse_y &lt;= y+(sprite_height/2){
+if mouse_x &gt;= x-(sprite_width/2) &amp;&amp; mouse_x &lt;= x+(sprite_width/2) &amp;&amp; mouse_y &gt;= y-(sprite_height/2) &amp;&amp; mouse_y &lt;= y+(sprite_height/2){
     draw_set_colour(c_red);
     }
 else{
@@ -310,7 +315,9 @@ switch(ID){
     case 10:
         draw_text(x,y,"Exporter");
         break;
-    
+    case 11:
+        draw_text(x,y,"Afficher#Catégories");
+        break;
     }
 </string>
           </argument>

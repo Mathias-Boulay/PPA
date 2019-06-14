@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_speed=0;
+            <string>///Initialisation et placement
+image_speed=0;
 image_index=0;
 Final="";
 value=0;
@@ -187,6 +188,11 @@ if global.pressedID!=id{
         repeat(5){
             if collision_rectangle(x-150,y-(sprite_height/2)-1,view_xview[0]+view_wview[0],y-(sprite_height/2)+1,object_part,false,true) = noone{
                 y--;
+                }
+            else{
+                if collision_rectangle(x-150,y-(sprite_height/2),view_xview[0]+view_wview[0],y+(sprite_height/2),object_category,false,true) != noone{
+                    y++;
+                    }
                 }
             tmp=collision_rectangle(x-150,y+(sprite_height/2)-1,view_xview[0]+view_wview[0],y+(sprite_height/2),object_part,false,true);
             if tmp != noone{

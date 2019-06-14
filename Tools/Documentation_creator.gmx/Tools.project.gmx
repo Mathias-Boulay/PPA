@@ -17,6 +17,7 @@
     </sprites>
     <sprite>sprites\sprite_arrow</sprite>
     <sprite>sprites\sprite_bin</sprite>
+    <sprite>sprites\sprite_slider_category</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -30,6 +31,10 @@
     </objects>
     <objects name="Parts">
       <object>objects\object_part</object>
+    </objects>
+    <objects name="Categories">
+      <object>objects\object_category</object>
+      <object>objects\object_slider_cat</object>
     </objects>
     <object>objects\object_arrow</object>
     <object>objects\object_bin</object>

@@ -53,7 +53,7 @@ if !file_exists(working_directory+"Docs/settings/settings.ini"){
     }
     
 global.pressedID="";
-for(i=1;i&lt;=11;i++){
+for(i=1;i&lt;=12;i++){
     instance_create(x,y,object_button);
     }
 draw_set_font(font_values);
