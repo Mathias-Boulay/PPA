@@ -36,7 +36,10 @@
       <object>objects\object_category</object>
       <object>objects\object_slider_cat</object>
     </objects>
-    <object>objects\object_arrow</object>
+    <objects name="Arrows">
+      <object>objects\object_arrow</object>
+      <object>objects\object_arrow_cat</object>
+    </objects>
     <object>objects\object_bin</object>
     <object>objects\object_container</object>
     <object>objects\object_init</object>

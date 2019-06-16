@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>///Initialisation et placement
 ID=instance_number(object_category);
-cat=string_replace(ini_read_string("category",string(ID),"///"),"/","");
+cat=ini_read_string("category",string(ID),"///");
 x=view_xview[0]+(view_wview[0]/2)+61;
 //Piqué du code des parts.
 dir_y=0;
@@ -332,7 +332,7 @@ draw_set_valign(fa_middle);
 draw_set_halign(fa_center);
 
 if x &lt;= view_xview[0]+(view_wview[0]/2)-40{
-    draw_text(x,y,cat);
+    draw_text(x,y,string_replace(cat,"/",""));
     }
 
 

@@ -250,7 +250,10 @@ else{
         instance_create(view_xview[0]+(view_wview[0]/2),view_yview[0],object_slider_cat);
         }
     else{
-        object_slider_cat.STATE="LEAVE";
+        if object_slider_cat.STATE != "LEAVE"{
+            instance_create(0,0,object_arrow_cat);
+            object_slider_cat.STATE="LEAVE";
+            }
         }
     }
 </string>
