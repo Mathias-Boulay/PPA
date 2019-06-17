@@ -32,6 +32,13 @@ if !directory_exists(working_directory+"Docs/css"){
 if !directory_exists(working_directory+"Docs/images"){
     directory_create(working_directory+"Docs/images");
     }
+if !directory_exists(working_directory+"Docs/images/tmp"){
+    directory_create(working_directory+"Docs/images/tmp");
+    }
+else{
+    //Alors on va purger son contenu:
+    
+    }
 if !directory_exists(working_directory+"Docs/html"){
     directory_create(working_directory+"Docs/html");
     }

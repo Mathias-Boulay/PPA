@@ -35,7 +35,7 @@ y=object_button.sprite_height/2;
 
 while(collision_point(x,y,object_part,false,true) != noone){
     This_part=collision_point(x,y,object_part,false,true);
-    switch(This_part.image_index){
+    switch(This_part.ID){
         
         case 1: //Écrire un titre:
             file_text_write_string(global.html,'&lt;p class="BigTitlePurple"&gt;'+This_part.Final+'&lt;/p&gt;');
@@ -78,23 +78,17 @@ while(collision_point(x,y,object_part,false,true) != noone){
             file_text_write_string(global.html,"&lt;/table&gt;");
             break;
             
-        case 8: //C'est une image, pas encore bien pris en charge à vrai dire. Faut que je les centre ou que je fasse des versions txt+img
-            //Do something now;
-            NumbOfImages++;
-            //Vérification de la présence du fichier: Que des png
-            if file_exists(working_directory+"Docs/images/"+string(NumbOfImages)+".png"){
-                file_rename(working_directory+"Docs/images/"+string(NumbOfImages)+".png",working_directory+"Docs/images/"+global.SiteTitle+'-'+string(NumbOfImages)+".png");
+        case 8: //Nouveau système d'images. Bien plus user friendly ainsi que compatible avec les changement de positions.
+            //Les .jpg/jpeg,.png,.gif sont maintenant accepté.
+            if file_exists(working_directory+"Docs/images/tmp/"+tmp.Final){
+                file_copy(working_directory+"Docs/images/tmp/"+tmp.Final,working_directory+"Docs/images/"+global.SiteCat+global.SiteTitle+"/"+tmp.Final);
+                
+                
                 }
-            //Maintenant faut écrire ET l'image ET le texte.
+            //Dès ce jour les images seront centrés
             if This_part.Final[0]=true{
-                //Aligner l'image à gauche, le texte à droite:
-                file_text_write_string(global.html,'&lt;img class="FloatLeft" src="../images/'+global.SiteTitle+'-'+string(NumbOfImages)+'.png"/&gt;');
-                file_text_write_string(global.html,'&lt;p class="Right"&gt;'+This_part.Final[1]+'&lt;/p&gt;');
-                }
-            else{   
-                //Aligner l'image à droite, le texte à gauche:
-                file_text_write_string(global.html,'&lt;img class="FloatRight" src="../images/'+global.SiteTitle+'-'+string(NumbOfImages)+'.png"/&gt;');
-                file_text_write_string(global.html,'&lt;p class="Left"&gt;'+This_part.Final[1]+'&lt;/p&gt;');
+                //Ajouter l'image.:
+                file_text_write_string(global.html,'&lt;img class="Center" src="../images/'+global.SiteCat+global.SiteTitle+"/"+tmp.Final+'/&gt;');
                 }
             break;
         

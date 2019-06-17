@@ -104,9 +104,19 @@ if value != 0{
                 }
             break;
         case 8:
-            Final[0]=show_question("L'image doit-elle être aligné à gauche ? # Sinon elle sera aligné sur la droite");
-            Final[1]=get_string("Quel texte à mettre ? (Laisser NOONE pour ne rien mettre","NOONE");
+            Final= get_open_filename("Image files|*.png;*.jpg;*.jpeg;*.gif","");
+            if Final != ""{ //Si l'on a séléctionné un fichier 
+                file_copy(Final,working_directory+"Docs/images/tmp/"+filename_name(Final));
+                Final=filename_name(Final);
+                }
+            else{
+                instance_destroy(); //Si on a pas d'image noter présence ne possède pas d'utilité.
+                }
+            
+            
             break;
+            
+            
         case 9:
             Final=get_string("Quel paragraphe ?","Bichour les gens !");
             break;
