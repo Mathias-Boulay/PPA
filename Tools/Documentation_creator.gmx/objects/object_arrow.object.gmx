@@ -80,16 +80,20 @@ while(collision_point(x,y,object_part,false,true) != noone){
             
         case 8: //Nouveau système d'images. Bien plus user friendly ainsi que compatible avec les changement de positions.
             //Les .jpg/jpeg,.png,.gif sont maintenant accepté.
-            if file_exists(working_directory+"Docs/images/tmp/"+tmp.Final){
-                file_copy(working_directory+"Docs/images/tmp/"+tmp.Final,working_directory+"Docs/images/"+global.SiteCat+global.SiteTitle+"/"+tmp.Final);
+            if file_exists(working_directory+"Docs/images/tmp/"+This_part.Final){
+                file_copy(working_directory+"Docs/images/tmp/"+This_part.Final,working_directory+"Docs/images/"+global.SiteCat+global.SiteTitle+"/"+This_part.Final);
                 
                 
+                
+                //Dès ce jour les images seront centrés
+                if global.SiteCat!=""{
+                    file_text_write_string(global.html,'&lt;img class="Center" src="../../images/'+global.SiteCat+global.SiteTitle+'/'+This_part.Final+'"/&gt;');
+                    }
+                else{
+                    file_text_write_string(global.html,'&lt;img class="Center" src="../images/'+global.SiteTitle+'/'+This_part.Final+'"/&gt;');
+                    }
                 }
-            //Dès ce jour les images seront centrés
-            if This_part.Final[0]=true{
-                //Ajouter l'image.:
-                file_text_write_string(global.html,'&lt;img class="Center" src="../images/'+global.SiteCat+global.SiteTitle+"/"+tmp.Final+'/&gt;');
-                }
+                
             break;
         
         case 9: //C'est du texte, ou un paragraphe plutôt:
@@ -218,13 +222,13 @@ for(i=0;i&gt; -1;i++){//Pour chaque catégorie:
                         else{
                             str+='&lt;a href="../../index.html"&gt;&lt;p class="FooterCenter"&gt;Back to the Index&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;';
                             }
-                        str+='&lt;th&gt;&lt;a href="'+object_container.Pages[1]+'"&gt;&lt;p class="FooterRight"&gt;'+string_replace(object_container.Pages[1],'.html','')+'&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;&lt;/tr&gt;';
+                        str+='&lt;th&gt;&lt;a href="'+object_container.Pages[1]+'"&gt;&lt;p class="FooterRight"&gt;&lt;span class="white"&gt;Next: &lt;/span&gt;'+string_replace(object_container.Pages[1],'.html','')+'&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;&lt;/tr&gt;';
                             
                         }
                     else{
                         if k= array_length_1d(object_container.Pages)-1{//Si l'on est le dernier fichier:
                             //Le fichier précédent plus le retour à l'index:
-                            str+='&lt;table class="FooterTable"&gt;&lt;tr&gt;&lt;th&gt;&lt;a href="'+object_container.Pages[k-1]+'"&gt;&lt;p class="FooterLeft"&gt;'+string_replace(object_container.Pages[k-1],'.html','')+'&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;';
+                            str+='&lt;table class="FooterTable"&gt;&lt;tr&gt;&lt;th&gt;&lt;a href="'+object_container.Pages[k-1]+'"&gt;&lt;p class="FooterLeft"&gt;&lt;span class="white"&gt;Back: &lt;/span&gt;'+string_replace(object_container.Pages[k-1],'.html','')+'&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;';
                             if FoundCat=""{
                                 str+='&lt;th&gt;&lt;a href="../index.html"&gt;&lt;p class="FooterCenter"&gt;Back to the Index&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;';
                                 }
@@ -235,14 +239,14 @@ for(i=0;i&gt; -1;i++){//Pour chaque catégorie:
                             }
                         else{
                             //On est un fichier parmis d'autres, tous les boutons sont disponibles.
-                            str+='&lt;table class="FooterTable"&gt;&lt;tr&gt;&lt;th&gt;&lt;a href="'+object_container.Pages[k-1]+'"&gt;&lt;p class="FooterLeft"&gt;'+string_replace(object_container.Pages[k-1],'.html','')+'&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;';
+                            str+='&lt;table class="FooterTable"&gt;&lt;tr&gt;&lt;th&gt;&lt;a href="'+object_container.Pages[k-1]+'"&gt;&lt;p class="FooterLeft"&gt;&lt;span class="white"&gt;Back: &lt;/span&gt;'+string_replace(object_container.Pages[k-1],'.html','')+'&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;';
                             if FoundCat=""{
                                 str+='&lt;th&gt;&lt;a href="../index.html"&gt;&lt;p class="FooterCenter"&gt;Back to the Index&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;';
                                 }
                             else{
                                 str+='&lt;th&gt;&lt;a href="../../index.html"&gt;&lt;p class="FooterCenter"&gt;Back to the Index&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;';
                                 }
-                            str+='&lt;th&gt;&lt;a href="'+object_container.Pages[k+1]+'"&gt;&lt;p class="FooterRight"&gt;'+string_replace(object_container.Pages[k+1],'.html','')+'&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;&lt;/tr&gt;';
+                            str+='&lt;th&gt;&lt;a href="'+object_container.Pages[k+1]+'"&gt;&lt;p class="FooterRight"&gt;&lt;span class="white"&gt;Next: &lt;/span&gt;'+string_replace(object_container.Pages[k+1],'.html','')+'&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;&lt;/tr&gt;';
                             }
                         
                         }

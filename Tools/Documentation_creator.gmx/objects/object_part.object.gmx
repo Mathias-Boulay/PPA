@@ -112,8 +112,6 @@ if value != 0{
             else{
                 instance_destroy(); //Si on a pas d'image noter présence ne possède pas d'utilité.
                 }
-            
-            
             break;
             
             
@@ -345,7 +343,8 @@ if global.pressedID!=id{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>switch(ID){
+            <string>///Modification de valeur ultérieurement définies.
+switch(ID){
     case 1:
         Final=get_string("Quel titre ?",Final);
         break;
@@ -389,8 +388,14 @@ if global.pressedID!=id{
             }
         break;
     case 8:
-        Final[0]=show_question("L'image doit-elle être aligné à gauche ? # Sinon elle sera aligné sur la droite");
-        Final[1]=get_string("Quel texte à mettre ? (Mettre NOONE pour ne rien mettre",Final[1]);
+        Final= get_open_filename("Image files|*.png;*.jpg;*.jpeg;*.gif","");
+        if Final != ""{ //Si l'on a séléctionné un fichier 
+            file_copy(Final,working_directory+"Docs/images/tmp/"+filename_name(Final));
+            Final=filename_name(Final);
+            }
+        else{
+            instance_destroy(); //Si on a pas d'image noter présence ne possède pas d'utilité.
+            }
         break;
     case 9:
         Final=get_string("Quel paragraphe ?",Final);
@@ -482,16 +487,13 @@ if value = 0{
             case 4:
             case 5:
             case 6:
+            case 8:
             case 9:
                 draw_text(room_width/2,y,Final);
                 break;
             
             case 7:
                 draw_text(room_width/2,y,Final[0,0]+"/"+Final[0,1]+"/"+Final[0,2]);
-                break;
-                
-            case 8:
-                draw_text(room_width/2,y,Final[0]+Final[1]);
                 break;
                 
             }

@@ -127,44 +127,20 @@ if ID != 11{
             Forbidden[6]="&lt;";
             Forbidden[7]="&gt;";
             Forbidden[8]="|";
+            Forbidden[9]="NOONE";
+            Forbidden[10]="NONE";
+            Forbidden[11]="noone";
+            Forbidden[12]="none";
+            Forbidden[13]="&lt;null&gt;";
             
             //Uniformisation des inputs pour le script:
             //Phase 1: Remove forbidden file's caracters.
+            //Phase 2: Reduce broke sensibility.
             for(i=0;i&lt;array_length_1d(Forbidden);i++){
                 Final=string_replace_all(Final,Forbidden[i],"");
                 Final_cat=string_replace_all(Final_cat,Forbidden[i],"");
                 }
-            
-            //Phase 2: Reduce broke sensibility.
-            switch(Final_cat){
-                case "NOONE":
-                case "NONE":
-                case "noone":
-                case "none":
-                    show_debug_message("Category input uniformised !");
-                    Final_cat= "";
-                    break;
-                    
-                default:
-                    show_debug_message("No changes to the Category input !");
-                    Final_cat+="/";
-                    break;
-                }
-                
-            switch(Final){
-                case "NOONE":
-                case "NONE":
-                case "noone":
-                case "none":
-                    show_debug_message("Site's name input uniformised !");
-                    Final= "";
-                    break;
-                    
-                default:
-                    show_debug_message("No changes to the Site's name input !");
-                    break;
-                }
-                
+            if Final_cat != ""{Final_cat+="/";}
                 
             global.SiteTitle=Final;
             global.SiteCat=Final_cat;
