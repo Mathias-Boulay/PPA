@@ -26,8 +26,6 @@
           <argument>
             <kind>1</kind>
             <string>///Je parse et écris dans le fichier html (compressé faut pas déconner c'est vachement plus pratique quand même)
-//Variable temporaire, utilisé pour faire le tri correctement dans les images.
-NumbOfImages=0;
 //Placement initial
 x= room_width-(object_button.sprite_width/2);
 y=object_button.sprite_height/2;
@@ -83,8 +81,6 @@ while(collision_point(x,y,object_part,false,true) != noone){
             if file_exists(working_directory+"Docs/images/tmp/"+This_part.Final){
                 file_copy(working_directory+"Docs/images/tmp/"+This_part.Final,working_directory+"Docs/images/"+global.SiteCat+global.SiteTitle+"/"+This_part.Final);
                 
-                
-                
                 //Dès ce jour les images seront centrés
                 if global.SiteCat!=""{
                     file_text_write_string(global.html,'&lt;img class="Center" src="../../images/'+global.SiteCat+global.SiteTitle+'/'+This_part.Final+'"/&gt;');
@@ -127,7 +123,7 @@ for(i=1;i&gt; -1;i++){
         
         if file_find_first(working_directory+"Docs/html/"+FoundCat+"*.html",0) != ""{    
             //On écrit le titre de la catégorie ainsi que le reste.
-            file_text_write_string(index,'&lt;ul&gt;&lt;li&gt;&lt;p class="Category"&gt;'+string_replace(FoundCat,"/",":")+'&lt;/p&gt;&lt;/li&gt;'); //Nom de la catégorie
+            file_text_write_string(index,'&lt;ul&gt;&lt;li&gt;&lt;p class="Category" id="'+string_replace(FoundCat,"/","")+'"&gt;'+string_replace(FoundCat,"/",":")+'&lt;/p&gt;&lt;/li&gt;'); //Nom de la catégorie
             file_text_write_string(index,'&lt;ul&gt;&lt;li&gt;&lt;a href="html/'+FoundCat+file_find_first(working_directory+"Docs/html/"+FoundCat+"*.html",0)+'"&gt;'+string_replace(file_find_first(working_directory+"Docs/html/"+FoundCat+"*.html",0),".html","")+'&lt;/a&gt;&lt;/li&gt;'); //Ouverture du tableau et marquage du premier fichier
             
             for(j=1;j&gt; -1; j++){
@@ -149,7 +145,7 @@ for(i=1;i&gt; -1;i++){
 
 //Maintenant on écrit la catégorie par défaut:
 if file_find_first(working_directory+"Docs/html/*.html",0) != ""{
-    file_text_write_string(index,'&lt;p class="Category"&gt;Autres:&lt;/p&gt;')
+    file_text_write_string(index,'&lt;p class="Category" id="Others"&gt;Others:&lt;/p&gt;')
     file_text_write_string(index,'&lt;ul&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="html/'+file_find_first(working_directory+"Docs/html/*.html",0)+'"&gt;'+string_replace(file_find_first(working_directory+"Docs/html/*.html",0),".html","")+'&lt;/a&gt;&lt;/li&gt;');
     for(i=1;i&gt;-1;i++){
         temp=file_find_next();
@@ -206,10 +202,10 @@ for(i=0;i&gt; -1;i++){//Pour chaque catégorie:
                     //On ajoute juste le centre.
                     str+='&lt;table class="FooterTable"&gt;&lt;tr&gt;&lt;th&gt;';
                     if FoundCat=""{
-                        str+='&lt;a href="../index.html"&gt;&lt;p class="FooterCenter"&gt;Back to the Index&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;&lt;/tr&gt;';
+                        str+='&lt;a href="../index.html#Others"&gt;&lt;p class="FooterCenter"&gt;Back to the Index&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;&lt;/tr&gt;';
                         }
                     else{
-                        str+='&lt;a href="../../index.html"&gt;&lt;p class="FooterCenter"&gt;Back to the Index&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;&lt;/tr&gt;';
+                        str+='&lt;a href="../../index.html#'+string_replace(FoundCat,"/","")+'"&gt;&lt;p class="FooterCenter"&gt;Back to the Index&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;&lt;/tr&gt;';
                         }
                     }
                 else{
@@ -217,10 +213,10 @@ for(i=0;i&gt; -1;i++){//Pour chaque catégorie:
                         //On ajoute le centre+ la page suivante.
                         str+='&lt;table class="FooterTable"&gt;&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;';
                         if FoundCat=""{
-                            str+='&lt;a href="../index.html"&gt;&lt;p class="FooterCenter"&gt;Back to the Index&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;';
+                            str+='&lt;a href="../index.html#Others"&gt;&lt;p class="FooterCenter"&gt;Back to the Index&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;';
                             }
                         else{
-                            str+='&lt;a href="../../index.html"&gt;&lt;p class="FooterCenter"&gt;Back to the Index&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;';
+                            str+='&lt;a href="../../index.html#'+string_replace(FoundCat,"/","")+'"&gt;&lt;p class="FooterCenter"&gt;Back to the Index&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;';
                             }
                         str+='&lt;th&gt;&lt;a href="'+object_container.Pages[1]+'"&gt;&lt;p class="FooterRight"&gt;&lt;span class="white"&gt;Next: &lt;/span&gt;'+string_replace(object_container.Pages[1],'.html','')+'&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;&lt;/tr&gt;';
                             
@@ -230,10 +226,10 @@ for(i=0;i&gt; -1;i++){//Pour chaque catégorie:
                             //Le fichier précédent plus le retour à l'index:
                             str+='&lt;table class="FooterTable"&gt;&lt;tr&gt;&lt;th&gt;&lt;a href="'+object_container.Pages[k-1]+'"&gt;&lt;p class="FooterLeft"&gt;&lt;span class="white"&gt;Back: &lt;/span&gt;'+string_replace(object_container.Pages[k-1],'.html','')+'&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;';
                             if FoundCat=""{
-                                str+='&lt;th&gt;&lt;a href="../index.html"&gt;&lt;p class="FooterCenter"&gt;Back to the Index&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;';
+                                str+='&lt;th&gt;&lt;a href="../index.html#Others"&gt;&lt;p class="FooterCenter"&gt;Back to the Index&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;';
                                 }
                             else{
-                                str+='&lt;th&gt;&lt;a href="../../index.html"&gt;&lt;p class="FooterCenter"&gt;Back to the Index&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;';
+                                str+='&lt;th&gt;&lt;a href="../../index.html#'+string_replace(FoundCat,"/","")+'"&gt;&lt;p class="FooterCenter"&gt;Back to the Index&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;';
                                 }
                             
                             }
@@ -241,10 +237,10 @@ for(i=0;i&gt; -1;i++){//Pour chaque catégorie:
                             //On est un fichier parmis d'autres, tous les boutons sont disponibles.
                             str+='&lt;table class="FooterTable"&gt;&lt;tr&gt;&lt;th&gt;&lt;a href="'+object_container.Pages[k-1]+'"&gt;&lt;p class="FooterLeft"&gt;&lt;span class="white"&gt;Back: &lt;/span&gt;'+string_replace(object_container.Pages[k-1],'.html','')+'&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;';
                             if FoundCat=""{
-                                str+='&lt;th&gt;&lt;a href="../index.html"&gt;&lt;p class="FooterCenter"&gt;Back to the Index&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;';
+                                str+='&lt;th&gt;&lt;a href="../index.html#Others"&gt;&lt;p class="FooterCenter"&gt;Back to the Index&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;';
                                 }
                             else{
-                                str+='&lt;th&gt;&lt;a href="../../index.html"&gt;&lt;p class="FooterCenter"&gt;Back to the Index&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;';
+                                str+='&lt;th&gt;&lt;a href="../../index.html#'+string_replace(FoundCat,"/","")+'"&gt;&lt;p class="FooterCenter"&gt;Back to the Index&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;';
                                 }
                             str+='&lt;th&gt;&lt;a href="'+object_container.Pages[k+1]+'"&gt;&lt;p class="FooterRight"&gt;&lt;span class="white"&gt;Next: &lt;/span&gt;'+string_replace(object_container.Pages[k+1],'.html','')+'&lt;/p&gt;&lt;/a&gt;&lt;/th&gt;&lt;/tr&gt;';
                             }
