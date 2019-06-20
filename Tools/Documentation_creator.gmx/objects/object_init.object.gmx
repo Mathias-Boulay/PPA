@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>///On configure les paramètres de la room suivante:
 width=display_get_width();
-height=display_get_height();
+height=display_get_height()-38;
 room_set_width(room_main,width);
 room_set_width(room,width);
 room_set_height(room_main,height);

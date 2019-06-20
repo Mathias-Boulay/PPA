@@ -136,7 +136,7 @@ if global.pressedID!=id{
             }
         }
     
-    y=clamp(y,sprite_height/2,view_yview[0]+object_slider_cat.pos-(sprite_height/2));
+    y=clamp(y,sprite_height/2,view_yview[0]+view_hview[0]);
     }
     
 if OBJECTIVE != ""{
@@ -267,6 +267,7 @@ if global.pressedID=id{
 global.pressedID=id;
 dir_y=mouse_y-y;
 depth=10;
+y=clamp(y,sprite_height/2,view_yview[0]+object_slider_cat.pos-(sprite_height/2));
 </string>
           </argument>
         </arguments>
@@ -332,7 +333,7 @@ draw_set_valign(fa_middle);
 draw_set_halign(fa_center);
 
 if x &lt;= view_xview[0]+(view_wview[0]/2)-40{
-    draw_text(x,y,string_replace(cat,"/",""));
+    draw_text(x,y,string_copy(string_replace(cat,"/",""),1,8));
     }
 
 

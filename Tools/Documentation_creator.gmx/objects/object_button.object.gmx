@@ -114,8 +114,8 @@ if ID != 11{
             }
         else{
             //On lance l'exportation
-            Final=get_string("Quel nom pour la page ?","NOONE");
             Final_cat=get_string("Quelle catégorie ? NOONE ou vide pour acune catégorie","NOONE");
+            Final=get_string("Quel nom pour la page ?","NOONE");
             
             //Définition des caractères interdits.
             Forbidden[0]="/";

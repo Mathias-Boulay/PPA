@@ -60,7 +60,7 @@ y+=sprite_height*(instance_number(object_part)-1);
           <argument>
             <kind>1</kind>
             <string>///La valeur à été transmise, il est temps de définir ce qu'il y a à l'intérieur du bouton.
-switch(value){
+switch(ID){
     case 1:
         Final=get_string("Quel titre ?","NOONE");
         break;
@@ -127,7 +127,6 @@ switch(value){
 
 
     }
-value = 0;
 </string>
           </argument>
         </arguments>
@@ -154,6 +153,7 @@ value = 0;
 if value != 0{
     //On tempo juste pour voir le nom charger sur le sprite:
     ID=value;
+    value=0;
     alarm_set(0,2);
     }
 </string>
