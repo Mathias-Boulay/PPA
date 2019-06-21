@@ -372,6 +372,12 @@
     <script>scripts\script_word.gml</script>
     <script>scripts\script_word_light.gml</script>
     <script>scripts\gamepad_vibrate.gml</script>
+    <scripts name="Level Builder">
+      <script>scripts\check_integrity.gml</script>
+      <script>scripts\print_error.gml</script>
+      <script>scripts\extract_real.gml</script>
+      <script>scripts\extract_string.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font_debug</font>
