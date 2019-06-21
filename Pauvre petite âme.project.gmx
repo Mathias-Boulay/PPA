@@ -373,10 +373,13 @@
     <script>scripts\script_word_light.gml</script>
     <script>scripts\gamepad_vibrate.gml</script>
     <scripts name="Level Builder">
-      <script>scripts\check_integrity.gml</script>
       <script>scripts\print_error.gml</script>
+      <script>scripts\print_warning.gml</script>
+      <script>scripts\print_debug.gml</script>
+      <script>scripts\check_integrity.gml</script>
       <script>scripts\extract_real.gml</script>
       <script>scripts\extract_string.gml</script>
+      <script>scripts\real_purify.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
@@ -487,6 +490,7 @@
       <objects name="Test-room">
         <object>objects\object_init_room</object>
       </objects>
+      <object>objects\object_Level_Builder_OLD</object>
       <object>objects\object_Level_Builder</object>
       <object>objects\object_drawer</object>
     </objects>
@@ -504,17 +508,16 @@
       <object>objects\object_heart</object>
       <object>objects\object_hit</object>
       <object>objects\object_respawn</object>
+      <object>objects\object_debug</object>
     </objects>
-    <object>objects\object_wall</object>
     <object>objects\object_deadzone</object>
-    <object>objects\object_debug</object>
+    <object>objects\object_wall</object>
     <object>objects\object_platform</object>
     <object>objects\object_moving_platform</object>
     <object>objects\object_vertical_platform</object>
     <object>objects\object_uncontrol_platform</object>
     <object>objects\object_pushable</object>
     <object>objects\object_camera</object>
-    <object>objects\object_riony</object>
     <object>objects\object_wall_platforms</object>
     <object>objects\object_death_arm</object>
     <object>objects\object_death_arm_finger</object>

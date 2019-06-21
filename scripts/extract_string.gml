@@ -1,6 +1,6 @@
 ///extract_string(ID,StrToExtract)
 if variable_instance_exists(argument0,string(argument1)){
-    extract=string(argument1);
+    extract=variable_instance_get(argument0,string(argument1));
     if string_replace_all(extract,",","") != ""{
         //First step: delete the first character. Should be either "(" or ",".
         extract=string_delete(extract,1,1);
@@ -16,21 +16,22 @@ if variable_instance_exists(argument0,string(argument1)){
             extracted=string_copy(extract,1,stop);
             extract=string_delete(extract,1,stop);
             //Transmettre et mettre à jour les strings:
-            argument0.argument1=extract;
+            print_debug("[EX STR] Argument found: "+extracted);
+            variable_instance_set(argument0,argument1,extract);
             return real(extracted);
             }
         else{
-            print_error("Empty argument found");
+            print_error("[EX STR] Empty argument found");
             return "";
             }
         
         }
     else{
-        print_error("Empty String found");
+        print_error("[EX STR] Empty String found");
         return "";
         }
     }
 else{
-    print_error("No String found");
+    print_error("[EX STR] No String found");
     return "";
     }
