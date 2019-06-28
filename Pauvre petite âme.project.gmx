@@ -46,25 +46,24 @@
           <sprite>sprites\sprite_cat_dead</sprite>
         </sprites>
         <sprites name="back/foregrounds">
-          <sprite>sprites\sprite_sunset_forest_back</sprite>
-          <sprite>sprites\sprite_sunset_forest_moutains</sprite>
-          <sprite>sprites\sprite_sunset_forest_hills_furthest</sprite>
-          <sprite>sprites\sprite_sunset_forest_hills</sprite>
-          <sprite>sprites\sprite_sunset_forest_trees_furthest</sprite>
-          <sprite>sprites\sprite_sunset_forest_trees</sprite>
-          <sprite>sprites\sprite_sunset_forest_leaves</sprite>
-          <sprite>sprites\sprite_sunset_forest_stars</sprite>
-          <sprite>sprites\sprite_sunset_forest_water</sprite>
-          <sprite>sprites\sprite229</sprite>
+          <sprite>sprites\sprite_SF_back</sprite>
+          <sprite>sprites\sprite_SF_moutains</sprite>
+          <sprite>sprites\sprite_SF_hills_furthest</sprite>
+          <sprite>sprites\sprite_SF_hills</sprite>
+          <sprite>sprites\sprite_SF_trees_furthest</sprite>
+          <sprite>sprites\sprite_SF_trees</sprite>
+          <sprite>sprites\sprite_SF_leaves</sprite>
+          <sprite>sprites\sprite_SF_stars</sprite>
+          <sprite>sprites\sprite_SF_water</sprite>
         </sprites>
-        <sprite>sprites\sprite_sunset_forest_platforms</sprite>
-        <sprite>sprites\sprite_sunset_forest_walls</sprite>
-        <sprite>sprites\sprite_sunset_forest_bird</sprite>
-        <sprite>sprites\sprite_sunset_forest_clouds</sprite>
-        <sprite>sprites\sprite_sunset_forest_panels</sprite>
-        <sprite>sprites\sprite_sunset_forest_mushrooms</sprite>
-        <sprite>sprites\sprite_sunset_forests_leaves</sprite>
-        <sprite>sprites\sprite_sunset_forest_luminium</sprite>
+        <sprite>sprites\sprite_SF_platforms</sprite>
+        <sprite>sprites\sprite_SF_walls</sprite>
+        <sprite>sprites\sprite_SF_bird</sprite>
+        <sprite>sprites\sprite_SF_clouds</sprite>
+        <sprite>sprites\sprite_SF_panels</sprite>
+        <sprite>sprites\sprite_SF_mushrooms</sprite>
+        <sprite>sprites\sprite_SF_leave</sprite>
+        <sprite>sprites\sprite_SF_luminium</sprite>
       </sprites>
       <sprites name="LL">
         <sprites name="Back/foregrounds">
@@ -77,7 +76,7 @@
         <sprite>sprites\sprite_LL_platforms</sprite>
         <sprite>sprites\sprite_LL_butterdie</sprite>
         <sprite>sprites\sprite_LL_arbras</sprite>
-        <sprite>sprites\sprite_smile</sprite>
+        <sprite>sprites\sprite_LL_smile</sprite>
         <sprite>sprites\sprite_LL_flowers</sprite>
         <sprite>sprites\sprite_LL_flocon</sprite>
       </sprites>
@@ -514,7 +513,7 @@
     </objects>
     <object>objects\object_deadzone</object>
     <object>objects\object_wall</object>
-    <object>objects\object_platform</object>
+    <object>objects\object_simple_platform</object>
     <object>objects\object_moving_platform</object>
     <object>objects\object_vertical_platform</object>
     <object>objects\object_uncontrol_platform</object>

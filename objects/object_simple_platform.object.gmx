@@ -25,11 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>vsp = 0;
-image_index = 0;
-image_speed=0;
-distance=0;
-dist=0;
+            <string>//Rework:
+image_speed = 0;
+
 </string>
           </argument>
         </arguments>
@@ -52,32 +50,21 @@ dist=0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if !instance_exists(object_pause){
-    //Re-asseting good collision mask for... collisions.
-    mask_index = sprite_index;
+            <string>///Define my solidity according to the player position.
+if (instance_exists(object_player)){
+    if round(object_player.y + (object_player.sprite_height/2)) &gt; y || (gamepad_axis_value(object_player.ID,gp_axislv)) &gt; 0.70{
+        mask_index = -1;
+        }
+    else{
+        mask_index = sprite_index;
+        }
     
-    //Moving
-    y+=min(vsp,distance-abs(dist));
-    dist+=y-yprevious;
-    
-    if distance-abs(dist)&lt;=abs(vsp){vsp *= -1;}       
-    
-    //Making it one way platform
-    if (instance_exists(object_player)){
-        if object_player.life &lt;= 0 || object_player.y + 25 &gt; yprevious || (gamepad_axis_value(object_player.ID,gp_axislv)) &gt; 0.70{
-            mask_index = -1;
-            }
-        else{
-            mask_index = my_sprite;
-            if place_meeting(x,yprevious-1,object_player){
-                object_player.vsp = 0;
-                object_player.y = y-26;
-                }
-            }
+    //Ptit workaround si Shai meure.
+    if object_player.life &lt;= 0{
+        mask_index = -1;
         }
     }
-    
-
+     
 </string>
           </argument>
         </arguments>

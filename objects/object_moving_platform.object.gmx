@@ -25,15 +25,12 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>sprite_index = -1;
-my_sprite="";
-movespeed = 0;
-dir = 1;
-hsp = 0;
+            <string>hsp = 0;
 image_index = 0;
 image_speed=0;
 distance=0;
 dist=0;
+
 </string>
           </argument>
         </arguments>
@@ -58,79 +55,27 @@ dist=0;
             <kind>1</kind>
             <string>if !instance_exists(object_pause){
     //Re-asseting good collision mask for... collisions.
-    mask_index = my_sprite;
+    mask_index = sprite_index;
     
-    //moving
-    hsp = dir*movespeed;
-            
-    x+= hsp;
+    //Moving:       
+    x+= min(hsp,distance-abs(dist));
     dist+=x-xprevious;
     
-    if distance-abs(dist)&lt;=movespeed{dir *= -1;}
-    /*
-    if (!place_meeting(x+hsp,y,object_wall_platforms)){
-        if (!place_meeting(x+sign(hsp),y,object_wall_platforms)){
-            x += hsp;
-            }
-        else{
-            dir *= -1;
-            }
-        }
-    else{
-        if (!place_meeting(x+sign(hsp),y,object_wall_platforms)){
-            x += sign(hsp);
-            }
-        else{
-            dir *= -1;
-            }
-        }
-        */
+    if distance-abs(dist)&lt;=abs(hsp){hsp *= -1;}
     //Making it one way platform
     if (instance_exists(object_player)){
-        if round(object_player.y + (object_player.sprite_height/2)) &gt; y || (gamepad_axis_value(object_player.ID,gp_axislv)) &gt; 0.70{
+        if object_player.life &lt;= 0 || round(object_player.y + (object_player.sprite_height/2)) &gt; y || (gamepad_axis_value(object_player.ID,gp_axislv)) &gt; 0.70{
             mask_index = -1;
-            object_player.hsp_carry = 0;
+            //object_player.hsp_carry = 0;
             }
         else{
-            mask_index = my_sprite;
+            mask_index = sprite_index;
             if place_meeting(xprevious,y-1,object_player){
                 object_player.hsp_carry = (x-xprevious)+(sign(hsp)*global.frict/2);
                 }
             }
-        //Ptit workaround si Shai meure.
-        near = instance_nearest(x,y,object_player);
-        if near != noone{
-            if near.life &lt;= 0{
-                mask_index = -1;
-                }
-            }
         }
     }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///On affiche la plateforme
-draw_sprite(my_sprite,image_index,x,y);
-    
 </string>
           </argument>
         </arguments>

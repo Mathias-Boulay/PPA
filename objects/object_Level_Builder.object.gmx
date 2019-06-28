@@ -376,10 +376,65 @@ for(i=1;i&lt;=Number;i++){//Pour le nombre
         }
     }
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///--------SIMPLE PLATEFORME----------
+print_debug("--------SIMPLE PLATEFORME----------");
+
+//Récupération:
+Number= ini_read_real(global.selected_part,"SPlatformsNumber",0);
+print_debug("[LB] Number Found: "+string(Number));
+for(i=1;i&lt;=Number;i++){//Pour le nombre
     
+    //Variables utilisées:
+    xx="";
+    yy="";
+    Asset="";
+    SubAsset="";
     
+    //Récupération:
+    original=ini_read_string(global.selected_part,string(i)+"-createsplatform","");
+    check_integrity(id,"original",4);
     
-    
+    if integrity{//si le string à l'air bon:
+        xx=extract_real(id,"original");
+        yy=extract_real(id,"original");
+        Asset=extract_string(id,"original");
+        SubAsset=extract_real(id,"original");
+        
+        if integrity{//Si les arguments sont bons:
+            This_plateform=instance_create(xx,yy,object_simple_platform);
+            This_plateform.sprite_index=asset_get("sprite_"+Asset+"_platforms");
+            This_plateform.image_index=SubAsset;
+            }
+        else{
+            print_error("[LB] Wrong arguments for the "+string(i)+"-createsplatform function");
+            print_warning("[LB] Skipping the " +string(i)+"-createsplatform function");
+            }
+        }
+    else{
+        print_warning("[LB] Skipping the " +string(i)+"-createsplatform function");
+        }
+    }
+
 </string>
           </argument>
         </arguments>
