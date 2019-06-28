@@ -99,6 +99,7 @@
         <sprite>sprites\sprite_Test_room_pushable</sprite>
         <sprite>sprites\sprite_test_platform</sprite>
       </sprites>
+      <sprite>sprites\sprite_NT</sprite>
     </sprites>
     <sprites name="Title-menus">
       <sprite>sprites\sprite_white_book</sprite>
@@ -380,6 +381,7 @@
       <script>scripts\extract_real.gml</script>
       <script>scripts\extract_string.gml</script>
       <script>scripts\real_purify.gml</script>
+      <script>scripts\asset_get.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">

@@ -18,7 +18,7 @@ if variable_instance_exists(argument0,string(argument1)){
             //Transmettre et mettre à jour les strings:
             print_debug("[EX STR] Argument found: "+extracted);
             variable_instance_set(argument0,argument1,extract);
-            return real(extracted);
+            return extracted;
             }
         else{
             print_error("[EX STR] Empty argument found");

@@ -69,7 +69,7 @@ global.time_left="";
 global.bossfight="";
 
 if integrity{
-    //Récupération des valeurs:
+    //Récupération des valeurs dans des variables temporaires:
     grav=extract_real(id,"original");
     jumpspeed=extract_real(id,"original");
     movespeed=extract_real(id,"original");
@@ -88,12 +88,298 @@ if integrity{
         }
     else{
         print_error("[LB] Arguments are wrong")
-        print_debug("[LB] Skipping World settings");
+        print_warning("[LB] Skipping World settings");
         }
     }
 else{
-    print_debug("[LB] Skipping World settings definition");
+    print_warning("[LB] Skipping World settings definition");
     }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>----------MODE EXPERT----------</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///--------MUR TOUT SEUL----------
+print_debug("--------MUR TOUT SEUL----------");
+
+//Récupération:
+Number= ini_read_real(global.selected_part,"WallsNumber",0);
+print_debug("[LB] Number Found: "+string(Number));
+for(i=1;i&lt;=Number;i++){//Pour le nombre
+    
+    //Variables utilisées:
+    xx="";
+    yy="";
+    Asset="";
+    SubAsset="";
+    
+    //Récupération:
+    original=ini_read_string(global.selected_part,string(i)+"-createwall","");
+    check_integrity(id,"original",4);
+    
+    if integrity{//si le string à l'air bon:
+        xx=extract_real(id,"original");
+        yy=extract_real(id,"original");
+        Asset=extract_string(id,"original");
+        SubAsset=extract_real(id,"original");
+        
+        if integrity{//Si les arguments sont bons:
+            This_wall=instance_create(xx,yy,object_wall);
+            This_wall.sprite_index=asset_get("sprite_"+Asset+"_walls");
+            This_wall.image_index=SubAsset;
+            }
+        else{
+            print_error("[LB] Wrong arguments for the "+string(i)+"-createwall function");
+            print_warning("[LB] Skipping the " +string(i)+"-createwall function");
+            }
+        }
+    else{
+        print_warning("[LB] Skipping the " +string(i)+"-createwall function");
+        }
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///--------MUR EN LIGNE----------
+print_debug("--------MUR EN LIGNE----------");
+
+//Récupération:
+Number= ini_read_real(global.selected_part,"LinesNumber",0);
+print_debug("[LB] Number Found: "+string(Number));
+for(i=1;i&lt;=Number;i++){//Pour le nombre
+    
+    //Variables utilisées:
+    xx="";
+    yy="";
+    Asset="";
+    SubAsset="";
+    WSpace="";
+    Length="";
+    
+    
+    //Récupération:
+    original=ini_read_string(global.selected_part,string(i)+"-createline","");
+    check_integrity(id,"original",6);
+    
+    if integrity{//si le string à l'air bon:
+        xx=extract_real(id,"original");
+        yy=extract_real(id,"original");
+        Asset=extract_string(id,"original");
+        SubAsset=extract_real(id,"original");
+        WSpace=extract_real(id,"original");
+        Length=extract_real(id,"original");
+        
+        if integrity{//Si les arguments sont bons:
+            for(j=0;j&lt;Lenght;j++){
+                This_wall=instance_create(xx+j*WSpace,yy,object_wall);
+                This_wall.sprite_index=asset_get("sprite_"+Asset+"_walls");
+                This_wall.image_index=SubAsset;
+                }
+            }
+        else{
+            print_error("[LB] Wrong arguments for the "+string(i)+"-createline function");
+            print_warning("[LB] Skipping the " +string(i)+"-createline function");
+            }
+        }
+    else{
+        print_warning("[LB] Skipping the " +string(i)+"-createline function");
+        }
+    }
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///--------MUR EN COLONNE----------
+print_debug("--------MUR EN COLONNE----------");
+
+//Récupération:
+Number= ini_read_real(global.selected_part,"ColumnsNumber",0);
+print_debug("[LB] Number Found: "+string(Number));
+for(i=1;i&lt;=Number;i++){//Pour le nombre
+    
+    //Variables utilisées:
+    xx="";
+    yy="";
+    Asset="";
+    SubAsset="";
+    HSpace="";
+    Length="";
+    
+    
+    //Récupération:
+    original=ini_read_string(global.selected_part,string(i)+"-createcolumn","");
+    check_integrity(id,"original",6);
+    
+    if integrity{//si le string à l'air bon:
+        xx=extract_real(id,"original");
+        yy=extract_real(id,"original");
+        Asset=extract_string(id,"original");
+        SubAsset=extract_real(id,"original");
+        HSpace=extract_real(id,"original");
+        Length=extract_real(id,"original");
+        
+        if integrity{//Si les arguments sont bons:
+            for(j=0;j&lt;Lenght;j++){
+                This_wall=instance_create(xx,yy+j*WSpace,object_wall);
+                This_wall.sprite_index=asset_get("sprite_"+Asset+"_walls");
+                This_wall.image_index=SubAsset;
+                }
+            }
+        else{
+            print_error("[LB] Wrong arguments for the "+string(i)+"-createcolumn function");
+            print_warning("[LB] Skipping the " +string(i)+"-createcolumn function");
+            }
+        }
+    else{
+        print_warning("[LB] Skipping the " +string(i)+"-createcolumn function");
+        }
+    }
+    
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///--------MUR EN RECTANGLE----------
+print_debug("--------MUR EN RECTANGLE----------");
+
+//Récupération:
+Number= ini_read_real(global.selected_part,"RectanglesNumber",0);
+print_debug("[LB] Number Found: "+string(Number));
+for(i=1;i&lt;=Number;i++){//Pour le nombre
+    
+    //Variables utilisées:
+    xx="";
+    yy="";
+    Asset="";
+    SubAsset="";
+    WSpace="";
+    WLength="";
+    HSpace="";
+    HLength="";
+    
+    
+    //Récupération:
+    original=ini_read_string(global.selected_part,string(i)+"-createrectangle","");
+    check_integrity(id,"original",8);
+    
+    if integrity{//si le string à l'air bon:
+        xx=extract_real(id,"original");
+        yy=extract_real(id,"original");
+        Asset=extract_string(id,"original");
+        SubAsset=extract_real(id,"original");
+        WSpace=extract_real(id,"original");
+        WLength=extract_real(id,"original");
+        HSpace=extract_real(id,"original");
+        HLength=extract_real(id,"original");
+        
+        if integrity{//Si les arguments sont bons:
+            for(j=0;j&lt;HLenght;j++){
+                for(k=0;k&lt;WLenght;k++){
+                    This_wall=instance_create(xx+k*WSpace,yy+j*HSpace,object_wall);
+                    This_wall.sprite_index=asset_get("sprite_"+Asset+"_walls");
+                    This_wall.image_index=SubAsset;
+                    }
+                }
+            }
+        else{
+            print_error("[LB] Wrong arguments for the "+string(i)+"-createrectangle function");
+            print_warning("[LB] Skipping the " +string(i)+"-createrectangle function");
+            }
+        }
+    else{
+        print_warning("[LB] Skipping the " +string(i)+"-createrectangle function");
+        }
+    }
+
+    
+    
+    
+    
 </string>
           </argument>
         </arguments>
