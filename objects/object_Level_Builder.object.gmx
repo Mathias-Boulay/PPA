@@ -53,12 +53,12 @@ print_debug("[LB] ----------INITIALISATION DE L'ENVIRONNEMENT----------");
 ini_open(global.selected_level);
 
 //Phase d'initialisation de l'environnement:
-room_width = ini_read_real("Generic Informations",global.selected_part+"XSize",424);
-room_height = ini_read_real("Generic Informations",global.selected_part+"YSize",240);
+room_width = ini_read_real(global.selected_part,"XSize",424);
+room_height = ini_read_real(global.selected_part,"YSize",240);
 
 //Récupération des paramètres de monde.
 original=ini_read_string(global.selected_part,"Worldsettings","(0.3,6,8,0.12,6000,0)");
-integrity=check_integrity(id,"original",6);
+check_integrity(id,"original",6);
 
 //Déclaration des variables utilisés:
 global.grav="";
@@ -69,13 +69,27 @@ global.time_left="";
 global.bossfight="";
 
 if integrity{
-    global.grav=extract_real(id,"original");
-    global.jumpspeed=extract_real(id,"original");
-    global.movespeed=extract_real(id,"original");
-    global.frict=extract_real(id,"original");
-    global.time_left=extract_real(id,"original");
-    global.bossfight=extract_real(id,"original");
+    //Récupération des valeurs:
+    grav=extract_real(id,"original");
+    jumpspeed=extract_real(id,"original");
+    movespeed=extract_real(id,"original");
+    frict=extract_real(id,"original");
+    time_left=extract_real(id,"original");
+    bossfight=extract_real(id,"original");
     
+    if integrity{
+        //Affectation des valeurs
+        global.grav=grav;
+        global.jumpspeed=jumpspeed;
+        global.movespeed=movespeed;
+        global.frict=frict;
+        global.time_left=time_left;
+        global.bossfight=bossfight;
+        }
+    else{
+        print_error("[LB] Arguments are wrong")
+        print_debug("[LB] Skipping World settings");
+        }
     }
 else{
     print_debug("[LB] Skipping World settings definition");

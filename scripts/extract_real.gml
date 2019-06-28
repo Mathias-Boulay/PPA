@@ -21,23 +21,32 @@ if variable_instance_exists(argument0,string(argument1)){
                 print_warning("[EX REAL] "+extracted+" isn't a real number, patching it");
                 extracted=real_purify(id,extracted);
                 }
-            print_debug("[EX REAL] Argument found: "+extracted);
-            variable_instance_set(argument0,string(argument1),extract);
-            return real(extracted);
-                
+            if extracted != ""{
+                print_debug("[EX REAL] Argument found: "+extracted);
+                variable_instance_set(argument0,string(argument1),extract);
+                return real(extracted);
+                }
+            else{
+                print_error(" [EX REAL] Empty argument found");
+                variable_instance_set(argument0,"integrity",false);
+                return "";
+                }
             }
         else{
-            print_error("[EX REAL] Empty argument found");
+            print_error("[EX REAL] No End of argument found");
+            variable_instance_set(argument0,"integrity",false);
             return "";
             }
         
         }
     else{
         print_error("[EX REAL] Empty String found");
+        variable_instance_set(argument0,"integrity",false);
         return "";
         }
     }
 else{
     print_error("[EX REAL] No String found");
+    variable_instance_set(argument0,"integrity",false);
     return "";
     }

@@ -9,29 +9,29 @@ if variable_instance_exists(argument0,string(argument1)){
                 if string_count(",",check)=(argument2-1){
                     //L'intégrité est vérifiée:
                     print_debug("[IT] Integrity Verified");
-                    return true;
+                    variable_instance_set(argument0,"integrity",true);
                     }
                 else{
                     print_error("[IT] Wrong number of arguments");
-                    return false;
+                    variable_instance_set(argument0,"integrity",false);
                     }
                 }
             else{
                 print_error("[IT] Wrong number of closing parentheses");
-                return false;
+                variable_instance_set(argument0,"integrity",false);
                 }
             }
         else{
             print_error("[IT] Wrong number of opening parentheses");
-            return false;
+            variable_instance_set(argument0,"integrity",false);
             }
         }
     else{
         print_error("[IT] Empty string found");
-        return false;
+        variable_instance_set(argument0,"integrity",false);
         }
     }
 else{
     print_error("[IT] No string found");
-    return false;
+    variable_instance_set(argument0,"integrity",false);
     }
