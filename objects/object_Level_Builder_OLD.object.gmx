@@ -1647,7 +1647,7 @@ instance_create(x,y,object_start_overlay_1);
           <argument>
             <kind>1</kind>
             <string>///Phase drawing:
-instance_create(x+sprite_width,y,object_drawer);
+//instance_create(x+sprite_width,y,object_drawer);
 </string>
           </argument>
         </arguments>

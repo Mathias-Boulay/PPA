@@ -439,6 +439,257 @@ for(i=1;i&lt;=Number;i++){//Pour le nombre
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///--------PLATEFORME HORIZONTALE----------
+print_debug("--------PLATEFORME HORIZONTALE----------");
+
+//Récupération:
+Number= ini_read_real(global.selected_part,"HPlatformsNumber",0);
+print_debug("[LB] Number Found: "+string(Number));
+for(i=1;i&lt;=Number;i++){//Pour le nombre
+    
+    //Variables utilisées:
+    xx="";
+    yy="";
+    Asset="";
+    SubAsset="";
+    distance="";
+    spd="";
+    
+    //Récupération:
+    original=ini_read_string(global.selected_part,string(i)+"-createhplatform","");
+    check_integrity(id,"original",6);
+    
+    if integrity{//si le string à l'air bon:
+        xx=extract_real(id,"original");
+        yy=extract_real(id,"original");
+        Asset=extract_string(id,"original");
+        SubAsset=extract_real(id,"original");
+        distance=extract_real(id,"original");
+        spd=extract_real(id,"original");
+        
+        if integrity{//Si les arguments sont bons:
+            This_platform=instance_create(xx,yy,object_horizontal_platform);
+            This_platform.sprite_index=asset_get("sprite_"+Asset+"_platforms");
+            This_platform.image_index=SubAsset;
+            This_platform.distance=distance;
+            This_platform.hsp=spd;
+            }
+        else{
+            print_error("[LB] Wrong arguments for the "+string(i)+"-createhplatform function");
+            print_warning("[LB] Skipping the " +string(i)+"-createhplatform function");
+            }
+        }
+    else{
+        print_warning("[LB] Skipping the " +string(i)+"-createhplatform function");
+        }
+    }
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///--------PLATEFORME VERTICALE----------
+print_debug("--------PLATEFORME VERTICALE----------");
+
+//Récupération:
+Number= ini_read_real(global.selected_part,"VPlatformsNumber",0);
+print_debug("[LB] Number Found: "+string(Number));
+for(i=1;i&lt;=Number;i++){//Pour le nombre
+    
+    //Variables utilisées:
+    xx="";
+    yy="";
+    Asset="";
+    SubAsset="";
+    distance="";
+    spd="";
+    
+    //Récupération:
+    original=ini_read_string(global.selected_part,string(i)+"-createvplatform","");
+    check_integrity(id,"original",6);
+    
+    if integrity{//si le string à l'air bon:
+        xx=extract_real(id,"original");
+        yy=extract_real(id,"original");
+        Asset=extract_string(id,"original");
+        SubAsset=extract_real(id,"original");
+        distance=extract_real(id,"original");
+        spd=extract_real(id,"original");
+        
+        if integrity{//Si les arguments sont bons:
+            This_platform=instance_create(xx,yy,object_vertical_platform);
+            This_platform.sprite_index=asset_get("sprite_"+Asset+"_platforms");
+            This_platform.image_index=SubAsset;
+            This_platform.distance=distance;
+            This_platform.vsp=spd;
+            }
+        else{
+            print_error("[LB] Wrong arguments for the "+string(i)+"-createvplatform function");
+            print_warning("[LB] Skipping the " +string(i)+"-createvplatform function");
+            }
+        }
+    else{
+        print_warning("[LB] Skipping the " +string(i)+"-createvplatform function");
+        }
+    }
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///--------PLATEFORME INCONTROLABLE----------
+print_debug("--------PLATEFORME INCONTROLABLE----------");
+
+//Récupération:
+Number= ini_read_real(global.selected_part,"UPlatformsNumber",0);
+print_debug("[LB] Number Found: "+string(Number));
+for(i=1;i&lt;=Number;i++){//Pour le nombre
+    
+    //Variables utilisées:
+    xx="";
+    yy="";
+    Asset="";
+    SubAsset="";
+    
+    //Récupération:
+    original=ini_read_string(global.selected_part,string(i)+"-createuplatform","");
+    check_integrity(id,"original",4);
+    
+    if integrity{//si le string à l'air bon:
+        xx=extract_real(id,"original");
+        yy=extract_real(id,"original");
+        Asset=extract_string(id,"original");
+        SubAsset=extract_real(id,"original");
+        
+        if integrity{//Si les arguments sont bons:
+            This_platform=instance_create(xx,yy,object_uncontrol_platform);
+            This_platform.sprite_index=asset_get("sprite_"+Asset+"_platforms");
+            This_platform.image_index=SubAsset;
+            }
+        else{
+            print_error("[LB] Wrong arguments for the "+string(i)+"-createuplatform function");
+            print_warning("[LB] Skipping the " +string(i)+"-createuplatform function");
+            }
+        }
+    else{
+        print_warning("[LB] Skipping the " +string(i)+"-createuplatform function");
+        }
+    }
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///--------OBJET POUSSABLE----------
+print_debug("--------OBJET POUSSABLE----------");
+
+//Récupération:
+Number= ini_read_real(global.selected_part,"PushablesNumber",0);
+print_debug("[LB] Number Found: "+string(Number));
+for(i=1;i&lt;=Number;i++){//Pour le nombre
+    
+    //Variables utilisées:
+    xx="";
+    yy="";
+    Asset="";
+    SubAsset="";
+    pushspeed="";
+    
+    //Récupération:
+    original=ini_read_string(global.selected_part,string(i)+"-createpushable","");
+    check_integrity(id,"original",5);
+    
+    if integrity{//si le string à l'air bon:
+        xx=extract_real(id,"original");
+        yy=extract_real(id,"original");
+        Asset=extract_string(id,"original");
+        SubAsset=extract_real(id,"original");
+        pushspeed=extract_real(id,"original");
+        
+        if integrity{//Si les arguments sont bons:
+            This_pushable=instance_create(xx,yy,object_pushable);
+            This_pushable.sprite_index=asset_get("sprite_"+Asset+"_platforms");
+            This_pushable.image_index=SubAsset;
+            This_pushable.pushspeed=pushspeed;
+            }
+        else{
+            print_error("[LB] Wrong arguments for the "+string(i)+"-createpushable function");
+            print_warning("[LB] Skipping the " +string(i)+"-createpushable function");
+            }
+        }
+    else{
+        print_warning("[LB] Skipping the " +string(i)+"-createpushable function");
+        }
+    }
+
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
   </events>
   <PhysicsObject>0</PhysicsObject>

@@ -115,7 +115,7 @@
     <instance objName="object_wall" x="223" y="928" name="inst_ED9E5F5E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="object_wall" x="247" y="926" name="inst_274D9C1C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="object_wall" x="271" y="924" name="inst_677C8B44" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="object_moving_platform" x="1297" y="781" name="inst_8B4445E1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="object_horizontal_platform" x="1297" y="781" name="inst_8B4445E1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="object_wall" x="546" y="729" name="inst_28CCC218" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="object_pushable" x="557" y="698" name="inst_7CB75D0A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="object_uncontrol_platform" x="671" y="781" name="inst_03E1B804" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

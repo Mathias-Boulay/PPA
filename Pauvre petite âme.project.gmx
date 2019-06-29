@@ -493,7 +493,6 @@
       </objects>
       <object>objects\object_Level_Builder_OLD</object>
       <object>objects\object_Level_Builder</object>
-      <object>objects\object_drawer</object>
     </objects>
     <objects name="players">
       <objects name="players' parts">
@@ -514,7 +513,7 @@
     <object>objects\object_deadzone</object>
     <object>objects\object_wall</object>
     <object>objects\object_simple_platform</object>
-    <object>objects\object_moving_platform</object>
+    <object>objects\object_horizontal_platform</object>
     <object>objects\object_vertical_platform</object>
     <object>objects\object_uncontrol_platform</object>
     <object>objects\object_pushable</object>
