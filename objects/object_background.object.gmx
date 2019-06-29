@@ -54,23 +54,8 @@ Yoffset="";
           <argument>
             <kind>1</kind>
             <string>///Dessiner les backgrounds/foregrounds.
-/*  Ce module est assez complexe donc en voici le fonctionnement en français:
-    On calcule le nombre de fois que le background serai répété (pour rien) dans
-    la première partie de la boucle for().
-    Dans cette même partie on calcule la position à laquelle le background ce situerai un fois que l'on se décale le nombre de fois trouvé précédemment.
-    
-    Dans la deuxième partie de la boucle for... attendez.
-    */
-/*
-for(j=y; j&lt; view_yview[0]+view_hview[0]; j += sprite_height+(vtiled*room_height)){
-    for(i=x; i&lt; view_xview[0]+view_wview[0]; i+= sprite_width+(htiled*room_width)){
-        //Dessiner mon back/foreground.
-        draw_sprite(sprite_index,image_index,i,j);
-        }
-    }
-    */
 //Test d'une nouvelle version qui doit supporter les ratios et inclure quelques corrections.
-//Note: l'interpolation y est dans les cartons au cas ou on en aurait besoin.
+//Note: l'interpolation y est dans les cartons au cas où on en aurait besoin.
 for(j=y; j &gt; -1; j += sprite_height+(vtiled*room_height)){
     if (j+sprite_height &gt;= view_yview[0] &amp;&amp; j &lt;= view_yview[0]+view_hview[0]){
         for(i=x; i &gt; -1; i+= sprite_width+(htiled*room_width)){
