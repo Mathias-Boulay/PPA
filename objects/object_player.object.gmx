@@ -1357,6 +1357,11 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                                                 image_index = 0;
                                                                                                 image_speed = 0.5;
                                                                                                 }
+                                                                                            else{//vsp est supérieur à la valeur voulue:
+                                                                                                STATUS="jumping";
+                                                                                                image_index=5;
+                                                                                                image_speed=0;
+                                                                                                }
                                                                                             }
                                                                                         }
                                                                                     }
@@ -1364,38 +1369,58 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                             }
                                                                         else{
                                                                             if !place_meeting(x,y+1,object_wall){
-                                                                                if place_meeting(x-1,y,object_wall) || place_meeting(x+1,y,object_wall){
+                                                                                if place_meeting(x-1,y,object_wall){
                                                                                     STATUS = "walljump";
+                                                                                    image_xscale= -1;
+                                                                                    //Déboguer la collision asymétrique:
+                                                                                    while(place_meeting(x,y,object_wall)){
+                                                                                        x++;
+                                                                                        }
                                                                                     }
                                                                                 else{
-                                                                                    if vsp &gt; 1{
-                                                                                            STATUS = "landing";
-                                                                                            //Sous gestion des animations:
-                                                                                            if move*image_xscale &lt; 0{ //Stick à gauche
-                                                                                                if image_index &lt; 12{
-                                                                                                    image_index = 12;
-                                                                                                    image_speed = 0.5;
+                                                                                    if place_meeting(x+1,y,object_wall){
+                                                                                        STATUS="walljump";
+                                                                                        image_xscale= 1;
+                                                                                        //Déboguer la collision asymétrique:
+                                                                                        while(place_meeting(x,y,object_wall)){
+                                                                                            x--;
+                                                                                            }
+                                                                                        }
+                                                                                    else{
+                                                                                        if vsp &gt; 1{
+                                                                                                STATUS = "landing";
+                                                                                                //Sous gestion des animations:
+                                                                                                if move*image_xscale &lt; 0{ //Stick à gauche
+                                                                                                    if image_index &lt; 12{
+                                                                                                        image_index = 12;
+                                                                                                        image_speed = 0.5;
+                                                                                                        }
+                                                                                                    }
+                                                                                                else{
+                                                                                                    if move*image_xscale &gt; 0{ //Stick à droite
+                                                                                                        if image_index &lt; 6 || image_index &gt; 11{
+                                                                                                            image_index = 6;
+                                                                                                            image_speed = 0.5;
+                                                                                                            }
+                                                                                                        }
+                                                                                                    else{ //Stick au milieu
+                                                                                                        if image_index &gt; 5{
+                                                                                                            image_index = 0;
+                                                                                                            image_speed = 0.5;
+                                                                                                            }
+                                                                                                        }
                                                                                                     }
                                                                                                 }
                                                                                             else{
-                                                                                                if move*image_xscale &gt; 0{ //Stick à droite
-                                                                                                    if image_index &lt; 6 || image_index &gt; 11{
-                                                                                                        image_index = 6;
-                                                                                                        image_speed = 0.5;
-                                                                                                        }
+                                                                                                if abs(vsp) &lt;= 1{
+                                                                                                    STATUS = "pre_landing";
+                                                                                                    image_speed = 0.5;
                                                                                                     }
-                                                                                                else{ //Stick au milieu
-                                                                                                    if image_index &gt; 5{
-                                                                                                        image_index = 0;
-                                                                                                        image_speed = 0.5;
-                                                                                                        }
+                                                                                                else{//On assume qe la valeur est positive.
+                                                                                                    STATUS="jumping";
+                                                                                                    image_index=5;
+                                                                                                    image_speed=0;
                                                                                                     }
-                                                                                                }
-                                                                                            }
-                                                                                        else{
-                                                                                            if abs(vsp) &lt;= 1{
-                                                                                                STATUS = "pre_landing";
-                                                                                                image_speed = 0.5;
                                                                                                 }
                                                                                             }
                                                                                         }
