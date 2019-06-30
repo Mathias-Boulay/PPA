@@ -26,7 +26,9 @@
           <argument>
             <kind>1</kind>
             <string>//Rework:
+sprite_index= -1;
 image_speed = 0;
+spr_index=0;
 
 </string>
           </argument>
@@ -53,10 +55,10 @@ image_speed = 0;
             <string>///Define my solidity according to the player position.
 if (instance_exists(object_player)){
     if round(object_player.y + (object_player.sprite_height/2)) &gt; y || (gamepad_axis_value(object_player.ID,gp_axislv)) &gt; 0.70{
-        mask_index = -1;
+        mask_index= -1;
         }
     else{
-        mask_index = sprite_index;
+        mask_index= spr_index;
         }
     
     //Ptit workaround si Shai meure.
@@ -65,6 +67,29 @@ if (instance_exists(object_player)){
         }
     }
      
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_sprite(spr_index,image_index,x,y);
 </string>
           </argument>
         </arguments>

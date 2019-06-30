@@ -30,7 +30,7 @@
         <sprite>sprites\sprite_sample_walls</sprite>
         <sprite>sprites\sprite_sample_platforms</sprite>
       </sprites>
-      <sprites name="Sunset Forest">
+      <sprites name="SF">
         <sprites name="Animals with an AI">
           <sprite>sprites\sprite_fox_idle</sprite>
           <sprite>sprites\sprite_fox_run</sprite>

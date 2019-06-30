@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>vsp = 0;
+sprite_index= -1;
 image_index = 0;
 image_speed=0;
 distance=0;
@@ -54,7 +55,7 @@ dist=0;
             <kind>1</kind>
             <string>if !instance_exists(object_pause){
     //Re-asseting good collision mask for... collisions.
-    mask_index = sprite_index;
+    mask_index = spr_index;
     
     //Moving
     y+=min(vsp,distance-abs(dist));
@@ -68,7 +69,7 @@ dist=0;
             mask_index = -1;
             }
         else{
-            mask_index = sprite_index;
+            mask_index = spr_index;
             if place_meeting(x,yprevious-1,object_player){
                 object_player.vsp = 0;
                 object_player.y = y-26;
@@ -78,6 +79,29 @@ dist=0;
     }
     
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_sprite(spr_index,image_index,x,y);
 </string>
           </argument>
         </arguments>

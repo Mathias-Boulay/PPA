@@ -17,10 +17,11 @@ if variable_instance_exists(argument0,string(argument1)){
     Allow[10]=".";
     Allow[11]="-";
     
-    for(j=1;j<=length;j++){
-        for(i=0;i<array_length_1d(Allow);i++){
-            if string_char_at(purify,1) = Allow[i]{
+    for(w=1;w<=length;w++){
+        for(z=0;z<array_length_1d(Allow);z++){
+            if string_char_at(purify,1) = Allow[z]{
                 purified+=string_copy(purify,1,1);
+                z=999999;
                 }
             }
         purify=string_delete(purify,1,1);

@@ -91,18 +91,6 @@ if !file_exists(working_directory + "\settings\settings.ini"){
     ini_close();
     }
 
-//PURIFIER LES HÉRÉTIQUES !
-if file_exists(working_directory+"logs/last_logs.txt"){
-    file_delete(working_directory+"logs/last_logs.txt");
-    }
-if file_exists(working_directory+"logs/last_errors.txt"){
-    file_delete(working_directory+"logs/last_errors.txt");
-    }
-if file_exists(working_directory+"logs/last_warnings_and_errors.txt"){
-    file_delete(working_directory+"logs/last_warnings_and_errors.txt");
-    }
-
-
 
 //Load the settings:
 script_settings_load();

@@ -47,6 +47,12 @@
             <kind>1</kind>
             <string>///Initialisation de l'environnement:
 //Var réutilisées: global.SELECTED_SAVE,global.selected_level,global.selected_part.
+
+//Purification des logs précédents:
+file_delete(working_directory+"logs/last_logs.txt");
+file_delete(working_directory+"logs/last_errors.txt");
+file_delete(working_directory+"logs/last_warnings_and_errors.txt");
+
 print_debug("[LB] ----------INITIALISATION DE L'ENVIRONNEMENT----------");
 
 //Ouverture du fichier de niveau correspondant:
@@ -141,6 +147,7 @@ print_debug("--------MUR TOUT SEUL----------");
 Number= ini_read_real(global.selected_part,"WallsNumber",0);
 print_debug("[LB] Number Found: "+string(Number));
 for(i=1;i&lt;=Number;i++){//Pour le nombre
+    print_debug("-----"+string(i)+"-CREATEWALL-----");
     
     //Variables utilisées:
     xx="";
@@ -199,6 +206,7 @@ print_debug("--------MUR EN LIGNE----------");
 Number= ini_read_real(global.selected_part,"LinesNumber",0);
 print_debug("[LB] Number Found: "+string(Number));
 for(i=1;i&lt;=Number;i++){//Pour le nombre
+    print_debug("-----"+string(i)+"-CREATELINE-----");
     
     //Variables utilisées:
     xx="";
@@ -216,15 +224,15 @@ for(i=1;i&lt;=Number;i++){//Pour le nombre
     if integrity{//si le string à l'air bon:
         xx=extract_real(id,"original");
         yy=extract_real(id,"original");
-        Asset=extract_string(id,"original");
+        Asset=asset_get("sprite_"+extract_string(id,"original")+"_walls");
         SubAsset=extract_real(id,"original");
         WSpace=extract_real(id,"original");
         Length=extract_real(id,"original");
         
         if integrity{//Si les arguments sont bons:
-            for(j=0;j&lt;Lenght;j++){
+            for(j=0;j&lt;Length;j++){
                 This_wall=instance_create(xx+j*WSpace,yy,object_wall);
-                This_wall.sprite_index=asset_get("sprite_"+Asset+"_walls");
+                This_wall.sprite_index=Asset;
                 This_wall.image_index=SubAsset;
                 }
             }
@@ -265,6 +273,7 @@ print_debug("--------MUR EN COLONNE----------");
 Number= ini_read_real(global.selected_part,"ColumnsNumber",0);
 print_debug("[LB] Number Found: "+string(Number));
 for(i=1;i&lt;=Number;i++){//Pour le nombre
+    print_debug("-----"+string(i)+"-CREATECOLUMN-----");
     
     //Variables utilisées:
     xx="";
@@ -282,15 +291,15 @@ for(i=1;i&lt;=Number;i++){//Pour le nombre
     if integrity{//si le string à l'air bon:
         xx=extract_real(id,"original");
         yy=extract_real(id,"original");
-        Asset=extract_string(id,"original");
+        Asset=asset_get("sprite_"+extract_string(id,"original")+"_walls");
         SubAsset=extract_real(id,"original");
         HSpace=extract_real(id,"original");
         Length=extract_real(id,"original");
         
         if integrity{//Si les arguments sont bons:
-            for(j=0;j&lt;Lenght;j++){
+            for(j=0;j&lt;Length;j++){
                 This_wall=instance_create(xx,yy+j*WSpace,object_wall);
-                This_wall.sprite_index=asset_get("sprite_"+Asset+"_walls");
+                This_wall.sprite_index=Asset;
                 This_wall.image_index=SubAsset;
                 }
             }
@@ -331,6 +340,7 @@ print_debug("--------MUR EN RECTANGLE----------");
 Number= ini_read_real(global.selected_part,"RectanglesNumber",0);
 print_debug("[LB] Number Found: "+string(Number));
 for(i=1;i&lt;=Number;i++){//Pour le nombre
+    print_debug("-----"+string(i)+"-CREATERECTANGLE-----");
     
     //Variables utilisées:
     xx="";
@@ -350,7 +360,7 @@ for(i=1;i&lt;=Number;i++){//Pour le nombre
     if integrity{//si le string à l'air bon:
         xx=extract_real(id,"original");
         yy=extract_real(id,"original");
-        Asset=extract_string(id,"original");
+        Asset=asset_get("sprite_"+extract_string(id,"original")+"_walls");
         SubAsset=extract_real(id,"original");
         WSpace=extract_real(id,"original");
         WLength=extract_real(id,"original");
@@ -358,10 +368,10 @@ for(i=1;i&lt;=Number;i++){//Pour le nombre
         HLength=extract_real(id,"original");
         
         if integrity{//Si les arguments sont bons:
-            for(j=0;j&lt;HLenght;j++){
-                for(k=0;k&lt;WLenght;k++){
+            for(j=0;j&lt;HLength;j++){
+                for(k=0;k&lt;WLength;k++){
                     This_wall=instance_create(xx+k*WSpace,yy+j*HSpace,object_wall);
-                    This_wall.sprite_index=asset_get("sprite_"+Asset+"_walls");
+                    This_wall.sprite_index=Asset;
                     This_wall.image_index=SubAsset;
                     }
                 }
@@ -403,6 +413,7 @@ print_debug("--------SIMPLE PLATEFORME----------");
 Number= ini_read_real(global.selected_part,"SPlatformsNumber",0);
 print_debug("[LB] Number Found: "+string(Number));
 for(i=1;i&lt;=Number;i++){//Pour le nombre
+    print_debug("-----"+string(i)+"-CREATESPLATFORM-----");
     
     //Variables utilisées:
     xx="";
@@ -421,9 +432,9 @@ for(i=1;i&lt;=Number;i++){//Pour le nombre
         SubAsset=extract_real(id,"original");
         
         if integrity{//Si les arguments sont bons:
-            This_plateform=instance_create(xx,yy,object_simple_platform);
-            This_plateform.sprite_index=asset_get("sprite_"+Asset+"_platforms");
-            This_plateform.image_index=SubAsset;
+            This_platform=instance_create(xx,yy,object_simple_platform);
+            This_platform.spr_index=asset_get("sprite_"+Asset+"_platforms");
+            This_platform.image_index=SubAsset;
             }
         else{
             print_error("[LB] Wrong arguments for the "+string(i)+"-createsplatform function");
@@ -462,6 +473,7 @@ print_debug("--------PLATEFORME HORIZONTALE----------");
 Number= ini_read_real(global.selected_part,"HPlatformsNumber",0);
 print_debug("[LB] Number Found: "+string(Number));
 for(i=1;i&lt;=Number;i++){//Pour le nombre
+    print_debug("-----"+string(i)+"-CREATEHPLATFORM-----");
     
     //Variables utilisées:
     xx="";
@@ -485,7 +497,7 @@ for(i=1;i&lt;=Number;i++){//Pour le nombre
         
         if integrity{//Si les arguments sont bons:
             This_platform=instance_create(xx,yy,object_horizontal_platform);
-            This_platform.sprite_index=asset_get("sprite_"+Asset+"_platforms");
+            This_platform.spr_index=asset_get("sprite_"+Asset+"_platforms");
             This_platform.image_index=SubAsset;
             This_platform.distance=distance;
             This_platform.hsp=spd;
@@ -527,6 +539,7 @@ print_debug("--------PLATEFORME VERTICALE----------");
 Number= ini_read_real(global.selected_part,"VPlatformsNumber",0);
 print_debug("[LB] Number Found: "+string(Number));
 for(i=1;i&lt;=Number;i++){//Pour le nombre
+    print_debug("-----"+string(i)+"-CREATEVPLATFORM-----");
     
     //Variables utilisées:
     xx="";
@@ -550,7 +563,7 @@ for(i=1;i&lt;=Number;i++){//Pour le nombre
         
         if integrity{//Si les arguments sont bons:
             This_platform=instance_create(xx,yy,object_vertical_platform);
-            This_platform.sprite_index=asset_get("sprite_"+Asset+"_platforms");
+            This_platform.spr_index=asset_get("sprite_"+Asset+"_platforms");
             This_platform.image_index=SubAsset;
             This_platform.distance=distance;
             This_platform.vsp=spd;
@@ -592,6 +605,7 @@ print_debug("--------PLATEFORME INCONTROLABLE----------");
 Number= ini_read_real(global.selected_part,"UPlatformsNumber",0);
 print_debug("[LB] Number Found: "+string(Number));
 for(i=1;i&lt;=Number;i++){//Pour le nombre
+    print_debug("-----"+string(i)+"-CREATEUPLATFORM-----");
     
     //Variables utilisées:
     xx="";
@@ -611,7 +625,7 @@ for(i=1;i&lt;=Number;i++){//Pour le nombre
         
         if integrity{//Si les arguments sont bons:
             This_platform=instance_create(xx,yy,object_uncontrol_platform);
-            This_platform.sprite_index=asset_get("sprite_"+Asset+"_platforms");
+            This_platform.spr_index=asset_get("sprite_"+Asset+"_platforms");
             This_platform.image_index=SubAsset;
             }
         else{
@@ -651,6 +665,7 @@ print_debug("--------OBJET POUSSABLE----------");
 Number= ini_read_real(global.selected_part,"PushablesNumber",0);
 print_debug("[LB] Number Found: "+string(Number));
 for(i=1;i&lt;=Number;i++){//Pour le nombre
+    print_debug("-----"+string(i)+"-CREATEPUSHABLE-----");
     
     //Variables utilisées:
     xx="";
@@ -686,6 +701,84 @@ for(i=1;i&lt;=Number;i++){//Pour le nombre
         }
     }
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///--------SHAI----------
+print_debug("--------SHAI----------");
+
+//Récupération:
+Number= ini_read_real(global.selected_part,"ShaiNumber",0);
+print_debug("[LB] Number Found: "+string(Number));
+for(i=1;i&lt;=Number;i++){//Pour le nombre
+    print_debug("-----"+string(i)+"-CREATESHAI-----");
+    
+    //Variables utilisées:
+    xx="";
+    yy="";
+    
+    //Récupération:
+    original=ini_read_string(global.selected_part,string(i)+"-createshai","");
+    check_integrity(id,"original",2);
+    
+    if integrity{//si le string à l'air bon:
+        xx=extract_real(id,"original");
+        yy=extract_real(id,"original");
+        
+        if integrity{//Si les arguments sont bons:
+            This_shai=instance_create(xx,yy,object_player);
+            }
+        else{
+            print_error("[LB] Wrong arguments for the "+string(i)+"-createshai function");
+            print_warning("[LB] Skipping the " +string(i)+"-createshai function");
+            }
+        }
+    else{
+        print_warning("[LB] Skipping the " +string(i)+"-createshai function");
+        }
+    }
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///----------COPY LOGS----------
+print_debug("----------COPY LOGS----------");
+print_debug("[LOGS] saved"+working_directory+"logs/archives/logs_"+string(current_year)+"_"+string(current_month)+"_"+string(current_day)+"_"+string(current_hour)+"_"+string(current_minute)+"_"+string(current_second)+".txt saved into the archives");
+file_copy(working_directory+"logs/last_logs.txt",working_directory+"logs/archives/logs_"+string(current_year)+"_"+string(current_month)+"_"+string(current_day)+"_"+string(current_hour)+"_"+string(current_minute)+"_"+string(current_second)+".txt");
 </string>
           </argument>
         </arguments>
