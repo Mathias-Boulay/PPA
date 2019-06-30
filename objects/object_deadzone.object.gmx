@@ -91,24 +91,12 @@ if !file_exists(working_directory + "\settings\settings.ini"){
     ini_close();
     }
 
-//Purge last logs files:
+//PURIFIER LES HÉRÉTIQUES !
+if file_exists(working_directory+"logs/last_logs.txt"){
+    file_delete(working_directory+"logs/last_logs.txt");
+    }
 if file_exists(working_directory+"logs/last_errors.txt"){
     file_delete(working_directory+"logs/last_errors.txt");
-    }
-if file_exists(working_directory+"logs/last_logs.txt"){
-    if file_find_first(working_directory+"logs/archives/*.txt",0) = ""{
-        file_copy(working_directory+"logs/last_logs.txt",working_directory+"logs/archives/logs_0.txt");
-        }
-    else{
-        for(i=1;i&gt; -1;i++){
-            tmp=file_find_next();
-            if tmp = ""{
-                file_copy(working_directory+"logs/last_logs.txt",working_directory+"logs/archives/logs_"+string(i)+".txt");
-                i= -10;
-                }
-            }
-        }
-    file_delete(working_directory+"logs/last_logs.txt");
     }
 if file_exists(working_directory+"logs/last_warnings_and_errors.txt"){
     file_delete(working_directory+"logs/last_warnings_and_errors.txt");

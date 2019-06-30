@@ -68,7 +68,7 @@ dist=0;
             mask_index = -1;
             }
         else{
-            mask_index = my_sprite;
+            mask_index = sprite_index;
             if place_meeting(x,yprevious-1,object_player){
                 object_player.vsp = 0;
                 object_player.y = y-26;
