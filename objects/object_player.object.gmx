@@ -527,26 +527,31 @@ if abs(move) &lt; 0.1{
     move =0;
     }
 else{
-    if !place_meeting(x,y+1,object_wall){
-        if place_meeting(x+1,y,object_wall){
-            move = 0;
-            }
-        else{
-            if place_meeting(x-1,y,object_wall){
-                move = 0;
-                }
-            }
+    if STATUS = "hurt"{
+        move=0;
         }
     else{
-        switch(STATUS){
-            case "precrawl":
-            case "decrounching":
-            case "headshot":
-            case "divelanding":
-            case "jumpfromdive":
-            case "rolling":
+        if !place_meeting(x,y+1,object_wall){
+            if place_meeting(x+1,y,object_wall){
                 move = 0;
-                break;
+                }
+            else{
+                if place_meeting(x-1,y,object_wall){
+                    move = 0;
+                    }
+                }
+            }
+        else{
+            switch(STATUS){
+                case "precrawl":
+                case "decrounching":
+                case "headshot":
+                case "divelanding":
+                case "jumpfromdive":
+                case "rolling":
+                    move = 0;
+                    break;
+                }
             }
         }
     }
@@ -659,12 +664,13 @@ if abs(hsp) &lt;= 4.20 &amp;&amp; STATUS != "lookup" &amp;&amp; STATUS != "unloo
                 }
             break;
         }
-    
-    //On ajoute la vitesse: dans la cas du crawl,la vitesse doit être fixe.
-    if STATUS != "crawling"{
+    }
+
+//On ajoute la vitesse: dans la cas du crawl,la vitesse doit être fixe.
+if STATUS != "crawling" {
+    if STATUS != "divejumping"{
         hsp += speed_up*accelerate;
         }
-    
     }
     
 //Limitation de vitesse spécifique à certains états:
@@ -728,16 +734,13 @@ walljumppower = max(0,abs(walljumppower)-global.frict)*sign(walljumppower);
 hsp_carry = max(0,abs(hsp_carry)-global.frict/2)*sign(hsp_carry);
 
 //Et voici la gravité !
-//Vsp
-
-if vsp &lt; 9{
-    if STATUS = "walljump"{
-        vsp += global.grav/2;
-        }
-    else{
-        vsp += global.grav;
-        }
+if STATUS = "walljump"{ 
+    vsp += sign(6-vsp)*global.grav;
     }
+else{
+    vsp += sign(9-vsp)*global.grav;
+    }
+
 </string>
           </argument>
         </arguments>
@@ -758,7 +761,7 @@ if vsp &lt; 9{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Module de gestion de la hurt:
+            <string>///Module de prise de dommages:
 //Réagir lorsque un obstacle vous inflige des dommages:
 if abs(hurt) != 0{
     image_speed = 0.4;
@@ -766,7 +769,7 @@ if abs(hurt) != 0{
     vsp = -abs(hurt/2);
     hurt= 0 ;
     image_xscale = sign(hsp) * -1;
-    STATUS = "hurt"
+    STATUS = "hurt" //Changement de status mais le seul moyen de faire un débug de collision maintenant serait de changer le sprite avant l'heure.
     }
 </string>
           </argument>
@@ -833,12 +836,15 @@ if key_jump{
                                                     if jumpcount &lt; 1{
                                                         if Can_jump{
                                                             //Effectuer un saut normal dans les airs.
+                                                            //Plus possible sans item.
+                                                            /*
                                                             vsp = -global.jumpspeed;
                                                             jumpcount ++;
                                                             Can_jump = false;
                                                             alarm_set(11,15);
                                                             STATUS = "double_jumping";
                                                             image_index = 0;
+                                                            */
                                                             }
                                                         }
                                                     }
@@ -897,9 +903,11 @@ if STATUS != "rolling"{
     if STATUS != "jumpfromdive"{
         if STATUS != "divejumping"{
             if STATUS != "hurt"{
-                if vsp &lt; 0{
-                    if !key_jump_held{
-                        vsp = max(vsp,-global.jumpspeed/2);
+                if STATUS!="spinattack"{
+                    if vsp &lt; 0{
+                        if !key_jump_held{
+                            vsp = max(vsp,-global.jumpspeed/2);
+                            }
                         }
                     }
                 }
@@ -945,7 +953,7 @@ if attack{
                                                 if place_meeting(x-1,y,object_wall){
                                                     //Effectuer une attaque dive depuis le mur de gauche:
                                                     vsp = -global.jumpspeed;
-                                                    walljumppower = 4;
+                                                    walljumppower = (global.movespeed/2);
                                                     x=x+2;
                                                     STATUS = "divejumping";
                                                     image_speed = 0.12;
@@ -956,7 +964,7 @@ if attack{
                                                     if place_meeting(x+1,y,object_wall){
                                                         //Effectuer une attaque dive depuis le mur de droite
                                                         vsp = -global.jumpspeed;
-                                                        walljumppower = -4;
+                                                        walljumppower = -(global.movespeed/2);
                                                         x = x-2;
                                                         STATUS = "divejumping";
                                                         image_speed = 0.12;
@@ -966,9 +974,9 @@ if attack{
                                                     else{
                                                         if abs(move) &gt; 0.80 /*&amp;&amp; Can_jump*/{
                                                             //Effectuer un dive jump depuis les airs !
-                                                            vsp = -global.jumpspeed/3;
+                                                            vsp = -global.jumpspeed/2.5;
                                                             if abs(move) != 0{image_xscale= sign(move);}
-                                                            walljumppower = image_xscale*4;
+                                                            walljumppower = image_xscale*(global.movespeed/2);
                                                             STATUS = "divejumping";
                                                             image_index=0;
                                                             image_speed = 0.12;
@@ -976,7 +984,7 @@ if attack{
                                                         else{
                                                             //Do the spin attack;
                                                             vsp = -global.jumpspeed/2;
-                                                            walljumppower +=sign(image_xscale);
+                                                            walljumppower +=(global.movespeed/4)*sign(image_xscale);
                                                             STATUS = "spinattack";
                                                             image_index = 0;
                                                             image_speed = 0.5
@@ -988,8 +996,8 @@ if attack{
                                                 if abs(move) &gt; 0.84 &amp;&amp; Can_jump{
                                                     //Effectuer une roulade:
                                                     STATUS = "rolling";
-                                                    hsp += 1.25*image_xscale;
-                                                    vsp = -1
+                                                    hsp += (global.movespeed*0.156)*image_xscale;
+                                                    vsp = -(global.jumpspeed/6)
                                                     image_speed = 0.5;
                                                     image_index = 0;
                                                     }
@@ -1327,7 +1335,7 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                                             }
                                                                                         }
                                                                                     else{
-                                                                                        if vsp &gt; 1{
+                                                                                        if vsp &gt; global.grav*3.3333{
                                                                                             STATUS = "landing";
                                                                                             //Sous gestion des animations:
                                                                                             if move*image_xscale &lt; 0{ //Stick à gauche
@@ -1352,15 +1360,17 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                                                 }
                                                                                             }
                                                                                         else{
-                                                                                            if abs(vsp) &lt;= 1{
+                                                                                            if abs(vsp) &lt;= global.grav*3.3333{
                                                                                                 STATUS = "pre_landing";
                                                                                                 image_index = 0;
                                                                                                 image_speed = 0.5;
                                                                                                 }
                                                                                             else{//vsp est supérieur à la valeur voulue:
-                                                                                                STATUS="jumping";
-                                                                                                image_index=5;
-                                                                                                image_speed=0;
+                                                                                                if STATUS = "walljump"{
+                                                                                                    STATUS="jumping";
+                                                                                                    image_index=5;
+                                                                                                    image_speed=0;
+                                                                                                    }
                                                                                                 }
                                                                                             }
                                                                                         }
@@ -1387,7 +1397,7 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                                             }
                                                                                         }
                                                                                     else{
-                                                                                        if vsp &gt; 1{
+                                                                                        if vsp &gt; global.grav*3.3333{
                                                                                                 STATUS = "landing";
                                                                                                 //Sous gestion des animations:
                                                                                                 if move*image_xscale &lt; 0{ //Stick à gauche
@@ -1412,14 +1422,16 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                                                     }
                                                                                                 }
                                                                                             else{
-                                                                                                if abs(vsp) &lt;= 1{
+                                                                                                if abs(vsp) &lt;= global.grav*3.3333{
                                                                                                     STATUS = "pre_landing";
                                                                                                     image_speed = 0.5;
                                                                                                     }
                                                                                                 else{//On assume qe la valeur est positive.
-                                                                                                    STATUS="jumping";
-                                                                                                    image_index=5;
-                                                                                                    image_speed=0;
+                                                                                                    if STATUS ="walljump"{
+                                                                                                        STATUS="jumping";
+                                                                                                        image_index=5;
+                                                                                                        image_speed=0;
+                                                                                                        }
                                                                                                     }
                                                                                                 }
                                                                                             }
@@ -1445,14 +1457,14 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                     }
                                                                 }
                                                             else{
-                                                                if place_meeting(x,y+1,object_wall){
-                                                                    STATUS = "divelanding";
-                                                                    image_index = 0;
-                                                                    image_speed = 0.25;
+                                                                if place_meeting(x+(image_xscale*2),y,object_wall){
+                                                                    hurt =(4*-image_xscale);
                                                                     }
-                                                                else{
-                                                                    if place_meeting(x+(image_xscale*2),y,object_wall){
-                                                                        hurt =(abs(hsp+walljumppower)*-image_xscale);
+                                                                else{ 
+                                                                    if place_meeting(x,y+1,object_wall){
+                                                                        STATUS = "divelanding";
+                                                                        image_index = 0;
+                                                                        image_speed = 0.25;
                                                                         }
                                                                     }
                                                                 }
@@ -1474,9 +1486,9 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                 }
                                             }
                                         else{
-                                            if image_index &gt;= 3{
-                                                if !place_meeting(x+(0.5*image_xscale),y,object_wall){
-                                                    x+=0.5*image_xscale;
+                                            if image_index &gt;= 4{
+                                                if !place_meeting(x+(0.6*image_xscale),y,object_wall){
+                                                    x+=0.6*image_xscale;
                                                     }
                                                 }
                                             }
@@ -1511,7 +1523,7 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                         }
                                                         
                                                     
-                                                    if vsp &gt; 1.5{
+                                                    if vsp &gt; global.grav*5{
                                                         STATUS = "pre_landing";
                                                         image_index = 0;
                                                         image_speed = 0.5;
@@ -1612,7 +1624,7 @@ else{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Module de vibrations des animations: est fait au cas par cas.
+            <string>///Module de vibrations : est fait au cas par cas.
 //Doit être recodé pour chaque animation:
 /*
 switch(STATUS){
@@ -2251,7 +2263,7 @@ if keyboard_check_pressed(vk_add){
     }
 
 if keyboard_check_pressed(vk_enter){
-print_debug("[CHEAT] Command triggered:"+keyboard_string);
+print_debug("[CHEAT] Command triggered: "+keyboard_string);
     switch(keyboard_string){
         
         case "leaves":
@@ -2279,8 +2291,9 @@ print_debug("[CHEAT] Command triggered:"+keyboard_string);
                 view_visible[1]=false;
                 }
             break;
-            
-        print_warning("[CHEAT] No command for "+keyboard_string);
+        default:   
+            print_warning("[CHEAT] No command for "+keyboard_string);
+            break;
         }
     }
 

@@ -116,7 +116,7 @@ if abs(global.axislh[0]) &gt; 0.2 &amp;&amp; Can_navigate{
     }
 if global.face2[0]{
     //Destruction de l'instance:
-    alarm_set(1,2);
+    alarm_set(1,1);
     }
 if global.face1[0]{
     if Choice = 1{
@@ -127,7 +127,7 @@ if global.face1[0]{
             }
         }
     //Ensuite on détruit l'instance:
-    alarm_set(1,2);
+    alarm_set(1,1);
     }
 
 </string>
