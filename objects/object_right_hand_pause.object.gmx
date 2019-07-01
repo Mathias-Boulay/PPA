@@ -151,7 +151,8 @@ Can_navigate=true;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>switch(STATUS){
+            <string>///Effectue des actions en fonction des STATUS
+switch(STATUS){
     case "DISPLAY":
         //S'afficher avec une animation de décélération:
         y -= (y-(view_yview[0]+view_hview[0]-162)+10)/17;
@@ -234,7 +235,7 @@ Can_navigate=true;
         break;
         
     case "OBJECTIVE":
-        y += (objective-y)/5;
+        y += ((objective-y)+2*sign(objective-y))/5;
         //y += ((objective-y)+sign(objective)*4)/5;
         if abs((objective-y))/5 &lt; 0.3{
             y = objective;
@@ -257,8 +258,8 @@ Can_navigate=true;
                 }
             }
         else{
-            x+= (((object_pause.x+44)-x)+5)/15
-            if abs(((object_pause.x+44)-x)/15) &lt; 0.5{
+            x+= (((object_pause.x+44)-x)+8)/15
+            if abs(((object_pause.x+44)-x)/15) &lt; 0.4{
                 x = object_pause.x+44;
                 //Après ça l'animation est finie, il convient de passer sur un autre status pour enclencher tout ça.
                 with(object_underline){
