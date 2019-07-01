@@ -548,8 +548,14 @@ else{
                 case "headshot":
                 case "divelanding":
                 case "jumpfromdive":
-                case "rolling":
+                case "rolling": 
                     move = 0;
+                    break;
+                
+                case "divejumping":
+                    if sign(move) != sign(image_xscale){
+                         move=0;
+                        } 
                     break;
                 }
             }
@@ -717,14 +723,14 @@ if STATUS != "rolling"{
     else{
         if STATUS = "divejumping"{
             if place_meeting(x,y+1,object_wall){
-                hsp = max(0,abs(hsp)-global.frict*3)*sign(hsp);
+                hsp = max(0,abs(hsp)-global.frict*2.5)*sign(hsp);
                 }
             }
         }
     }
 else{
     if image_index &gt; 11{
-        hsp = max(0,abs(hsp)-global.frict*3)*sign(hsp);
+        hsp = max(0,abs(hsp)-global.frict*2.5)*sign(hsp);
         }
     }
 //Ajout de friction si l'on possède de la propulsion depuis un mur:
@@ -735,7 +741,7 @@ hsp_carry = max(0,abs(hsp_carry)-global.frict/2)*sign(hsp_carry);
 
 //Et voici la gravité !
 if STATUS = "walljump"{ 
-    vsp += sign(6-vsp)*global.grav;
+    vsp += sign(6-vsp)*(global.grav/2);
     }
 else{
     vsp += sign(9-vsp)*global.grav;
@@ -765,9 +771,9 @@ else{
 //Réagir lorsque un obstacle vous inflige des dommages:
 if abs(hurt) != 0{
     image_speed = 0.4;
-    hsp = hurt;
+    hsp = 2*hurt;
     vsp = -abs(hurt/2);
-    hurt= 0 ;
+    hurt= 0;
     image_xscale = sign(hsp) * -1;
     STATUS = "hurt" //Changement de status mais le seul moyen de faire un débug de collision maintenant serait de changer le sprite avant l'heure.
     }
@@ -935,7 +941,7 @@ if STATUS != "rolling"{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Module de gestion visuel de l'attaque:
+            <string>///----------ATTAQUE VISUEL----------:
 //Ok avec ça Shai devrait pouvoir attaquer(du moins sur la partie visuelle qui déclenchera la partie non-visuelle):
 if attack{
     if attackcount = 0{
@@ -972,7 +978,7 @@ if attack{
                                                         image_xscale = sign(walljumppower);
                                                         }
                                                     else{
-                                                        if abs(move) &gt; 0.80 /*&amp;&amp; Can_jump*/{
+                                                        if abs(move) &gt; 0.80 &amp;&amp; abs(hsp) &gt;= 3{
                                                             //Effectuer un dive jump depuis les airs !
                                                             vsp = -global.jumpspeed/2.5;
                                                             if abs(move) != 0{image_xscale= sign(move);}
@@ -1053,7 +1059,7 @@ if attack{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Test d'un module de colision: prenser à passer le reste en commentaires.
+            <string>///----------COLLISIONS----------
 // Horizontal platform:
 repeat(abs(hsp_carry)) {
     if (!place_meeting(x + sign(hsp_carry), y, object_wall))
@@ -1320,6 +1326,7 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                                 if place_meeting(x-1,y,object_wall){
                                                                                     STATUS = "walljump";
                                                                                     image_xscale= -1;
+                                                                                    vsp=min(-2,vsp);
                                                                                     //Déboguer la collision asymétrique:
                                                                                     while(place_meeting(x,y,object_wall)){
                                                                                         x++;
@@ -1329,6 +1336,7 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                                     if place_meeting(x+1,y,object_wall){
                                                                                         STATUS = "walljump";
                                                                                         image_xscale= 1;
+                                                                                        vsp=min(-2,vsp);
                                                                                         //Déboguer la collision asymétrique:
                                                                                         while(place_meeting(x,y,object_wall)){
                                                                                             x--;
@@ -1382,6 +1390,7 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                                 if place_meeting(x-1,y,object_wall){
                                                                                     STATUS = "walljump";
                                                                                     image_xscale= -1;
+                                                                                    vsp=min(-2,vsp);
                                                                                     //Déboguer la collision asymétrique:
                                                                                     while(place_meeting(x,y,object_wall)){
                                                                                         x++;
@@ -1391,6 +1400,7 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                                     if place_meeting(x+1,y,object_wall){
                                                                                         STATUS="walljump";
                                                                                         image_xscale= 1;
+                                                                                        vsp=min(-2,vsp);
                                                                                         //Déboguer la collision asymétrique:
                                                                                         while(place_meeting(x,y,object_wall)){
                                                                                             x--;
@@ -1458,13 +1468,13 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                 }
                                                             else{
                                                                 if place_meeting(x+(image_xscale*2),y,object_wall){
-                                                                    hurt =(4*-image_xscale);
+                                                                    hurt =(2*hsp*-image_xscale);
                                                                     }
                                                                 else{ 
                                                                     if place_meeting(x,y+1,object_wall){
                                                                         STATUS = "divelanding";
                                                                         image_index = 0;
-                                                                        image_speed = 0.25;
+                                                                        image_speed = 0.28;
                                                                         }
                                                                     }
                                                                 }
@@ -1473,6 +1483,8 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                     else{
                                                         if place_meeting(x,y+1,object_wall){
                                                             STATUS = "divelanding";
+                                                            image_index = 0;
+                                                            image_speed = 0.28;
                                                             }
                                                         }
                                                     }

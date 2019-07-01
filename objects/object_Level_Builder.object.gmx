@@ -777,7 +777,7 @@ for(i=1;i&lt;=Number;i++){//Pour le nombre
             <kind>1</kind>
             <string>///----------COPY LOGS----------
 print_debug("----------COPY LOGS----------");
-print_debug("[LOGS] saved"+working_directory+"logs/archives/logs_"+string(current_year)+"_"+string(current_month)+"_"+string(current_day)+"_"+string(current_hour)+"_"+string(current_minute)+"_"+string(current_second)+".txt saved into the archives");
+print_debug("[LOGS] saved "+"logs_"+string(current_year)+"_"+string(current_month)+"_"+string(current_day)+"_"+string(current_hour)+"_"+string(current_minute)+"_"+string(current_second)+".txt into /archives directory");
 file_copy(working_directory+"logs/last_logs.txt",working_directory+"logs/archives/logs_"+string(current_year)+"_"+string(current_month)+"_"+string(current_day)+"_"+string(current_hour)+"_"+string(current_minute)+"_"+string(current_second)+".txt");
 </string>
           </argument>
