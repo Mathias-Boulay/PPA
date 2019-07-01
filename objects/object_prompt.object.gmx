@@ -111,11 +111,12 @@ Can_navigate=true;
             <string>///Gestion du bouton:
 if abs(global.axislh[0]) &gt; 0.2 &amp;&amp; Can_navigate{
     Can_navigate=false;
-    alarm_set(0,10);
+    alarm_set(0,20);
     if Choice = 1{Choice=2;}else{Choice=1;}
     }
 if global.face2[0]{
-    //Destruction de l'instance:
+    //Destruction de l'instance avec un délai pour éviter un problème d'inputs:
+    id.visible=false;
     alarm_set(1,1);
     }
 if global.face1[0]{
@@ -127,6 +128,7 @@ if global.face1[0]{
             }
         }
     //Ensuite on détruit l'instance:
+    id.visible=false;
     alarm_set(1,1);
     }
 
@@ -153,23 +155,25 @@ if global.face1[0]{
           <argument>
             <kind>1</kind>
             <string>///Dessiner la prompt,incluant les multiples morceaux.
-draw_self();
-draw_set_font(global.font_normal);
-draw_set_halign(fa_center);
-draw_set_valign(fa_top);
-//Texte
-draw_text(round(x+(image_xscale/2)),round(y),texts[0]);
-//Partie de prompt:
-//Les bords:
-draw_sprite_ext(sprite_prompt_upper_left,0,x,y,1,1,0,c_white,image_alpha);
-draw_sprite_ext(sprite_prompt_upper_right,0,x+image_xscale,y,1,1,0,c_white,image_alpha);
-draw_sprite_ext(sprite_prompt_bottom_left,0,x,y+image_yscale,1,1,0,c_white,image_alpha);
-draw_sprite_ext(sprite_prompt_bottom_right,0,x+image_xscale,y+image_yscale,1,1,0,c_white,image_alpha);
-//Les côtés:
-draw_sprite_ext(sprite_prompt_center_left,0,x,y,1,image_yscale,0,c_white,image_alpha);
-draw_sprite_ext(sprite_prompt_center_right,0,x+image_xscale,y,1,image_yscale,0,c_white,image_alpha);
-draw_sprite_ext(sprite_prompt_bottom_middle,0,x,y+image_yscale,image_xscale,1,0,c_white,image_alpha);
-draw_sprite_ext(sprite_prompt_upper_middle,0,x,y,image_xscale,1,0,c_white,image_alpha);
+if id.visible{
+    draw_self();
+    draw_set_font(global.font_normal);
+    draw_set_halign(fa_center);
+    draw_set_valign(fa_top);
+    //Texte
+    draw_text(round(x+(image_xscale/2)),round(y),texts[0]);
+    //Partie de prompt:
+    //Les bords:
+    draw_sprite_ext(sprite_prompt_upper_left,0,x,y,1,1,0,c_white,image_alpha);
+    draw_sprite_ext(sprite_prompt_upper_right,0,x+image_xscale,y,1,1,0,c_white,image_alpha);
+    draw_sprite_ext(sprite_prompt_bottom_left,0,x,y+image_yscale,1,1,0,c_white,image_alpha);
+    draw_sprite_ext(sprite_prompt_bottom_right,0,x+image_xscale,y+image_yscale,1,1,0,c_white,image_alpha);
+    //Les côtés:
+    draw_sprite_ext(sprite_prompt_center_left,0,x,y,1,image_yscale,0,c_white,image_alpha);
+    draw_sprite_ext(sprite_prompt_center_right,0,x+image_xscale,y,1,image_yscale,0,c_white,image_alpha);
+    draw_sprite_ext(sprite_prompt_bottom_middle,0,x,y+image_yscale,image_xscale,1,0,c_white,image_alpha);
+    draw_sprite_ext(sprite_prompt_upper_middle,0,x,y,image_xscale,1,0,c_white,image_alpha);
+    }
 
 
 

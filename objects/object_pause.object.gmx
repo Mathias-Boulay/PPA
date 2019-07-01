@@ -91,7 +91,7 @@ instance_destroy(object_underline);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//Création initiale du livre d'options
+            <string>///Création initiale du livre d'options
 if !instance_exists(object_white_book){
     instance_create(view_xview[0],view_yview[0]+view_hview[0],object_white_book);
     }
@@ -143,7 +143,8 @@ if !instance_exists(object_inventory){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_create(x+44,view_yview[0]+view_hview[0]+46,object_right_hand_pause);
+            <string>///CREA-MAIN
+instance_create(x+44,view_yview[0]+view_hview[0]+46,object_right_hand_pause);
 </string>
           </argument>
         </arguments>
@@ -169,8 +170,8 @@ if !instance_exists(object_inventory){
             <string>///On gère le positionnement de la feuille et des boutons qui vont avec.
 switch(STATUS){
     case "DISPLAY":
-        y-= (y-(view_yview[0]+view_hview[0]-107)+5)/18;
-        if abs(y-(view_yview[0]+view_hview[0]-107)) &lt; 0.5{
+        y-= (y-(view_yview[0]+view_hview[0]-107)+8)/18;
+        if abs(y-(view_yview[0]+view_hview[0]-107)) &lt; 0.3{
             y = view_yview[0]+view_hview[0]-107;
             //STATUS="NOONE";
             }
@@ -178,7 +179,7 @@ switch(STATUS){
         
     case "OUT":
         //Dans le cas ou l'on doit sortir:
-        y += (y-(view_yview[0]+view_hview[0]-107)+10)/17;
+        y += (y-(view_yview[0]+view_hview[0]-107)-12)/17;
         if y-84 &gt; view_yview[0]+view_hview[0]{
             instance_destroy();
             }
