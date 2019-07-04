@@ -1202,7 +1202,7 @@ if STATUS != "stopping"{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Module de gestion des animations de Shai:
+            <string>///----------ANIMATIONS----------
 //Gestion des STATUS de Shai:
 if !life &lt;= 0{ //Si Shai n'est pas re-morte
     if STATUS != "crawling" &amp;&amp; STATUS != "crawlidle"{
