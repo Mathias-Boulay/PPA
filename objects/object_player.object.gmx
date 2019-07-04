@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Définition des variables locales:
+            <string>///----------VARIABLES DEFINIES----------:
 hsp=0;
 hsp_carry=0;
 speed_up=0;
@@ -52,7 +52,24 @@ ID=(instance_number(object_player)-1);
 temp_jump = false;
 UIBusy = false;
 
+//Maximum de pixel théoriques (-10%) pour l'activation du walljump.
+maxjumpheight=0;
+for(i=0;i&gt; -1;i++){
+    maxtemp=global.jumpspeed-(global.grav*i);
+    if maxtemp &gt; 0{
+        maxjumpheight+=maxtemp;
+        }
+    else{
+        i= -10;
+        maxjumpheight*=0.9;
+        }   
+    }
+//Valeur minimale appliqué sur le mur lorsque l'on est sur le mur.
+slipperywall= -max(((global.grav*2.1)/0.4),1.1);
 
+
+
+//Vibrate frames.
 walking_frames[0]=5;
 walking_frames[1]=6;
 walking_frames[2]=13;
@@ -284,10 +301,8 @@ if place_meeting(x,y+1,object_wall){
     Can_jump = false;
     alarm_set(11,15);
 
-/*if hsp &gt;= 3.5{
-    if place_meeting(x,y+1,object_wall){
-        triplejumptampon++;
-        }
+/*if STATUS= "running"{                 
+    triplejumptampon++;      
     }*/ 
 }   
 </string>
@@ -460,11 +475,7 @@ else{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Module de ré-initialisation du jumpcount, attackcount et uncontroll:
-//Réinitialiser le jumpcount si necessaire:
-if place_meeting(x,y+1,object_wall) &amp;&amp; Can_jump{
-    jumpcount = 0;
-    }  
+            <string>///----------ATTACKCOUNT/UNCONTROL----------  
   
 //Réinitialiser le compteur d'attaque:
 if place_meeting(x,y+1,object_wall){attackcount = 0;}
@@ -797,7 +808,7 @@ if abs(hurt) != 0{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Module de saut:
+            <string>///----------SAUTER----------
 //Avec ce code, Shai pourra sauter !
 if key_jump{
     if !place_meeting(x,y-5,object_wall){ //On empêche de sauter dans les endroits exigus.
@@ -875,7 +886,7 @@ if key_jump{
                                                             }
                                                         else{
                                                             //Effectuer un saut normal. Penser à l'incrémentation de la variable tampon de triple saut ?
-                                                            alarm_set(0,4);
+                                                            alarm_set(0,3);
                                                             STATUS = "jumping";
                                                             image_speed = 0.4;
                                                             image_index = 0;
@@ -888,16 +899,7 @@ if key_jump{
                                     //}
                                 }
                             }
-                        }
-                    else{
-                        if jumpcount &lt; 1{
-                            //Effectuer une propulsion pour la spin attack:
-                            vsp = -global.jumpspeed;
-                            jumpcount ++;
-                            Can_jump = false;
-                            alarm_set(11,15);
-                            }
-                        }
+                        }   
                     }
                 }
             }
@@ -941,7 +943,7 @@ if STATUS != "rolling"{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///----------ATTAQUE VISUEL----------:
+            <string>///----------ATTAQUES VISUELLES----------:
 //Ok avec ça Shai devrait pouvoir attaquer(du moins sur la partie visuelle qui déclenchera la partie non-visuelle):
 if attack{
     if attackcount = 0{
@@ -1059,7 +1061,7 @@ if attack{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///----------COLLISIONS----------
+            <string>///----------COLLISIONS+JUMP RESET----------
 // Horizontal platform:
 repeat(abs(hsp_carry)) {
     if (!place_meeting(x + sign(hsp_carry), y, object_wall))
@@ -1067,8 +1069,8 @@ repeat(abs(hsp_carry)) {
     else {
         hsp_carry = 0;
         break;
+        }
     }
-}
 
 // Vertical
 repeat(abs(vsp)) {
@@ -1077,8 +1079,8 @@ repeat(abs(vsp)) {
     else {
         vsp = 0;
         break;
+        }
     }
-}
 
 // Horizontal
 repeat(abs(hsp)) {
@@ -1099,20 +1101,27 @@ repeat(abs(hsp)) {
     if (!place_meeting(x + sign(hsp), y, object_wall))
         x += sign(hsp); 
     else {
-        hsp = 0;
+        hsp = 0;       
         break;
+        }
     }
-}
 
-//Horizontal
-repeat(abs(walljumppower)) {
+repeat(abs(walljumppower)) {    
     if (!place_meeting(x + sign(walljumppower), y, object_wall))
         x += sign(walljumppower); 
     else {
-        walljumppower = 0;
+        walljumppower = 0;       
         break;
+        }
     }
-}
+    
+    
+if !place_meeting(xprevious,yprevious+1,object_wall){
+    if place_meeting(x,y+1,object_wall){
+         Can_jump=true;
+         jumpcount=0;
+        }
+    }  
 </string>
           </argument>
         </arguments>
@@ -1133,7 +1142,7 @@ repeat(abs(walljumppower)) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Module de gestion du sens de Shai:
+            <string>///----------IMAGE XSCALE----------
 //Gestion du sens de Shai, il ne faudrait pas qu'elle soit sens dessus dessous !
 if STATUS != "stopping"{
     if STATUS != "crawlfromdive"{
@@ -1324,22 +1333,30 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                                 }
                                                                             else{ //Si Shai a les jambes en l'air
                                                                                 if place_meeting(x-1,y,object_wall){
-                                                                                    STATUS = "walljump";
-                                                                                    image_xscale= -1;
-                                                                                    vsp=min(-2,vsp);
-                                                                                    //Déboguer la collision asymétrique:
-                                                                                    while(place_meeting(x,y,object_wall)){
-                                                                                        x++;
+                                                                                    if STATUS != "walljump"{
+                                                                                        if !place_meeting(x,y+maxjumpheight+1,object_wall){
+                                                                                            STATUS = "walljump";
+                                                                                            image_xscale= -1;
+                                                                                            vsp=max(slipperywall,vsp);
+                                                                                            //Déboguer la collision asymétrique:
+                                                                                            while(place_meeting(x,y,object_wall)){
+                                                                                                x++;
+                                                                                                }
+                                                                                            }
                                                                                         }
                                                                                     }
                                                                                 else{
                                                                                     if place_meeting(x+1,y,object_wall){
-                                                                                        STATUS = "walljump";
-                                                                                        image_xscale= 1;
-                                                                                        vsp=min(-2,vsp);
-                                                                                        //Déboguer la collision asymétrique:
-                                                                                        while(place_meeting(x,y,object_wall)){
-                                                                                            x--;
+                                                                                        if STATUS != "walljump"{
+                                                                                            if !place_meeting(x,y+maxjumpheight+1,object_wall){
+                                                                                                STATUS = "walljump";
+                                                                                                image_xscale= 1;
+                                                                                                vsp=max(slipperywall,vsp);
+                                                                                                //Déboguer la collision asymétrique:
+                                                                                                while(place_meeting(x,y,object_wall)){
+                                                                                                    x--;
+                                                                                                    }
+                                                                                                }
                                                                                             }
                                                                                         }
                                                                                     else{
@@ -1388,22 +1405,26 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                         else{
                                                                             if !place_meeting(x,y+1,object_wall){
                                                                                 if place_meeting(x-1,y,object_wall){
-                                                                                    STATUS = "walljump";
-                                                                                    image_xscale= -1;
-                                                                                    vsp=min(-2,vsp);
-                                                                                    //Déboguer la collision asymétrique:
-                                                                                    while(place_meeting(x,y,object_wall)){
-                                                                                        x++;
+                                                                                    if STATUS != "walljump"{    
+                                                                                        STATUS = "walljump";
+                                                                                        image_xscale= -1;
+                                                                                        vsp=max(slipperywall,vsp);
+                                                                                        //Déboguer la collision asymétrique:
+                                                                                        while(place_meeting(x,y,object_wall)){
+                                                                                            x++;
+                                                                                            }    
                                                                                         }
                                                                                     }
                                                                                 else{
-                                                                                    if place_meeting(x+1,y,object_wall){
-                                                                                        STATUS="walljump";
-                                                                                        image_xscale= 1;
-                                                                                        vsp=min(-2,vsp);
-                                                                                        //Déboguer la collision asymétrique:
-                                                                                        while(place_meeting(x,y,object_wall)){
-                                                                                            x--;
+                                                                                    if place_meeting(x+1,y,object_wall){                 
+                                                                                        if STATUS != "walljump"{
+                                                                                            STATUS="walljump";
+                                                                                            image_xscale= 1;
+                                                                                            vsp=max(slipperywall,vsp);
+                                                                                            //Déboguer la collision asymétrique:
+                                                                                            while(place_meeting(x,y,object_wall)){
+                                                                                                x--;
+                                                                                                }   
                                                                                             }
                                                                                         }
                                                                                     else{
@@ -1447,12 +1468,12 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                                             }
                                                                                         }
                                                                                     }
-                                                                                }
+                                                                                }  
                                                                             }
                                                                         else{
                                                                             if place_meeting(x,y+1,object_wall){
                                                                                 STATUS="idle";
-                                                                                image_speed = 0.1;
+                                                                                image_speed = 0.225;
                                                                                 }
                                                                             }
                                                                         }
@@ -1551,7 +1572,7 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                     else{
                         if object_camera.y-y=0{
                             STATUS="idle"
-                            image_speed = 0.1;
+                            image_speed = 0.225;
                             }
                         }
                     }
@@ -1576,7 +1597,7 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                             }
                         else{
                             STATUS ="idle";
-                            image_speed = 0.1;
+                            image_speed = 0.225;
                             }
                         }
                     }
@@ -2451,7 +2472,7 @@ if !instance_exists(object_pause){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Parallax background Need to be reworked for aspect ratio:
+            <string>///Parallax background: Need to be reworked for aspect ratio:
 if instance_exists(object_background){
     with(object_background){
         //Placement
@@ -2552,14 +2573,14 @@ if life &lt;=0{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Système de fin d'animation retravaillé avec de meilleur statements:
+            <string>///----------SWITCH ANIMATIONS----------
 switch(STATUS){
     case "waiting":
     case "unlookup":
     case "jumpfromcrawl":
     case "stoppushing":
         STATUS = "idle";
-        image_speed = 0.1;
+        image_speed = 0.225;
         break;
     
     case "divejumping":
@@ -2601,13 +2622,7 @@ switch(STATUS){
         
     case "jumping":
     case "double_jumping":
-        if vsp &lt; 0{
-            image_index = 5;
-            }
-        else{
-            STATUS = "idle";
-            image_speed = 0.1;
-            }
+        image_index = 5;
         break;
             
         case "headshot":
@@ -2657,7 +2672,7 @@ switch(STATUS){
                         }
                     else{
                         STATUS = "idle";
-                        image_speed = 0.1;
+                        image_speed = 0.225;
                         }
                     }
                 }

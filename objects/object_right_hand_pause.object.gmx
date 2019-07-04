@@ -164,7 +164,7 @@ switch(STATUS){
         
     case "OUT":
         //on sort avec une animatin acceleration:
-        y += (y-(view_yview[0]+view_hview[0]-162)-12)/17;
+        y += (y-(view_yview[0]+view_hview[0]-162)+12)/17;
         if y-46 &gt; view_yview[0]+view_hview[0]{
             instance_destroy();
             }
@@ -271,7 +271,7 @@ switch(STATUS){
     case "OUT-INVENTORY":
         //On sort et l'on invoque l'inventaire.
         if y-45 &lt; view_yview[0]+view_hview[0]{
-            y += (((view_yview[0]+view_hview[0])-(y-45))+10)/15;
+            y += (((view_yview[0]+view_hview[0])-(y-65))+12)/15;
             }
         else{
             //On attend que l'inventaire disparaisse pour revenir.
@@ -286,7 +286,7 @@ switch(STATUS){
     case "OUT-OPTIONS":
         //On sort et l'on invoque le livre.
         if y-45 &lt; view_yview[0]+view_hview[0]{
-            y += (((view_yview[0]+view_hview[0])-(y-45))+10)/15;
+            y += (((view_yview[0]+view_hview[0])-(y-65))+12)/15;
             }
         else{
             //On attend que le livre disparaisse pour revenir.
