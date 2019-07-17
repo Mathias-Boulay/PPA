@@ -51,6 +51,7 @@ next_right=0;
 ID=(instance_number(object_player)-1);
 temp_jump = false;
 UIBusy = false;
+angle=image_angle;
 
 //Valeur minimale appliqué sur le mur lorsque l'on est sur le mur.
 slipperywall= -max(((global.grav*2.1)/0.4),1.1);
@@ -545,11 +546,11 @@ else{
         }
     else{
         if !place_meeting(x,y+1,object_wall){
-            if place_meeting(x+1,y,object_wall){
-                move = 0;
-                }
+            if STATUS="jumpfromdive"{
+                move=0;
+                }    
             else{
-                if place_meeting(x-1,y,object_wall){
+                if place_meeting(x+sign(hsp),y,object_wall){
                     move = 0;
                     }
                 }
@@ -561,7 +562,10 @@ else{
                 case "headshot":
                 case "divelanding":
                 case "jumpfromdive":
-                case "rolling": 
+                case "rolling":
+                case "lookup":
+                case "unlookup":
+                case "jumping":
                     move = 0;
                     break;
                 
@@ -951,7 +955,7 @@ if STATUS != "rolling"{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///----------ATTAQUES VISUELLES----------:
+            <string>///----------ATTAQUES VISUELLES----------
 //Ok avec ça Shai devrait pouvoir attaquer(du moins sur la partie visuelle qui déclenchera la partie non-visuelle):
 if attack{
     if attackcount = 0{
@@ -1071,7 +1075,7 @@ if attack{
             <kind>1</kind>
             <string>///----------COLLISIONS+JUMP RESET----------
 // Horizontal platform:
-repeat(abs(hsp_carry)) {
+repeat(floor(abs(hsp_carry))) {
     if (!place_meeting(x + sign(hsp_carry), y, object_wall))
         x += sign(hsp_carry); 
     else {
@@ -1081,7 +1085,7 @@ repeat(abs(hsp_carry)) {
     }
 
 // Vertical
-repeat(abs(vsp)) {
+repeat(floor(abs(vsp))) {
     if (!place_meeting(x, y + sign(vsp), object_wall))
         y += sign(vsp); 
     else {
@@ -1091,7 +1095,7 @@ repeat(abs(vsp)) {
     }
 
 // Horizontal
-repeat(abs(hsp)) {
+repeat(floor(abs(hsp))) {
     /*
     // Move up slope
     if (place_meeting(x + sign(hsp), y, object_wall) &amp;&amp; place_meeting(x + sign(hsp), y - 1, object_wall) &amp;&amp; !place_meeting(x + sign(hsp), y - 2, object_wall))
@@ -1109,12 +1113,12 @@ repeat(abs(hsp)) {
     if (!place_meeting(x + sign(hsp), y, object_wall))
         x += sign(hsp); 
     else {
-        hsp = 0;       
+        hsp = 0;                                        
         break;
         }
     }
 
-repeat(abs(walljumppower)) {    
+repeat(ceil(abs(walljumppower))) {    
     if (!place_meeting(x + sign(walljumppower), y, object_wall))
         x += sign(walljumppower); 
     else {
@@ -1124,6 +1128,13 @@ repeat(abs(walljumppower)) {
     }
     
     
+//Debug comme d'hab:
+while(place_meeting(x,y,object_wall)){
+    x-= image_xscale;
+    }
+            
+
+//Jump reset    
 if !place_meeting(xprevious,yprevious+1,object_wall){
     if place_meeting(x,y+1,object_wall){
          Can_jump=true;
@@ -1340,7 +1351,7 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                                     }
                                                                                 }
                                                                             else{ //Si Shai a les jambes en l'air
-                                                                                if place_meeting(x-1,y,object_wall) &amp;&amp; !place_meeting(x,y+maxjumpheight+1,object_wall){
+                                                                                if place_meeting(x-1,y,object_wall) &amp;&amp; !place_meeting(x+1,y+maxjumpheight+1,object_wall){
                                                                                     if STATUS != "walljump"{  
                                                                                         STATUS = "walljump";
                                                                                         image_xscale= -1;
@@ -1352,7 +1363,7 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                                         }
                                                                                     }
                                                                                 else{
-                                                                                    if place_meeting(x+1,y,object_wall)&amp;&amp; !place_meeting(x,y+maxjumpheight+1,object_wall){
+                                                                                    if place_meeting(x+1,y,object_wall) &amp;&amp; !place_meeting(x-1,y+maxjumpheight+1,object_wall){
                                                                                         if STATUS != "walljump"{                               
                                                                                             STATUS = "walljump";
                                                                                             image_xscale= 1;
@@ -1409,7 +1420,7 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                             }
                                                                         else{
                                                                             if !place_meeting(x,y+1,object_wall){
-                                                                                if place_meeting(x-1,y,object_wall) &amp;&amp; !place_meeting(x,y+maxjumpheight+1,object_wall){
+                                                                                if place_meeting(x-1,y,object_wall) &amp;&amp; !place_meeting(x+1,y+maxjumpheight+1,object_wall){
                                                                                     if STATUS != "walljump"{    
                                                                                         STATUS = "walljump";
                                                                                         image_xscale= -1;
@@ -1421,7 +1432,7 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                                                                         }
                                                                                     }
                                                                                 else{
-                                                                                    if place_meeting(x+1,y,object_wall) &amp;&amp; !place_meeting(x,y+maxjumpheight+1,object_wall){                 
+                                                                                    if place_meeting(x+1,y,object_wall) &amp;&amp; !place_meeting(x-1,y+maxjumpheight+1,object_wall){                 
                                                                                         if STATUS != "walljump"{
                                                                                             STATUS="walljump";
                                                                                             image_xscale= 1;
@@ -1526,18 +1537,23 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
                                             }
                                         else{
                                             if image_index &gt;= 4{
-                                                if !place_meeting(x+(0.6*image_xscale),y,object_wall){
-                                                    x+=0.6*image_xscale;
+                                                if !place_meeting(x+(0.5*image_xscale),y,object_wall){
+                                                    x+=0.5*image_xscale;
                                                     }
                                                 }
                                             }
                                         }
                                     else{
-                                        //Proposer la possibilité de faire un saut dès la fin de la roulade.
+                                        //Proposer la possibilité de faire un saut dès la fin de la roulade. 
                                         if key_jump{
                                             temp_jump = true;
                                             }
                                             
+                                        if (image_index &gt;= 10 &amp;&amp; image_index &lt;11){
+                                            if !place_meeting(x,y+1,object_wall){
+                                                STATUS = "landing";
+                                                }
+                                            }
                                         if image_index &gt;= 19{
                                             if place_meeting(x,y-15,object_wall){
                                                     STATUS ="crawling";
@@ -1627,21 +1643,21 @@ if !life &lt;= 0{ //Si Shai n'est pas re-morte
             
 //angle for dive jumping:
 if STATUS = "divejumping" &amp;&amp; vsp &gt; 0{
-    if image_angle &lt; 45 &amp;&amp; image_xscale = -1{
-        image_angle ++;
+    if angle &lt; 45 &amp;&amp; image_xscale = -1{
+        angle ++;
         }
     else{
-        if image_angle &gt; -45 &amp;&amp; image_xscale = 1{
-            image_angle --;
+        if angle &gt; -45 &amp;&amp; image_xscale = 1{
+            angle --;
             }
         }
-    if abs(image_angle) = 45{
+    if abs(angle) = 45{
         STATUS = "divefall";
-        image_angle = 0;
+        angle = 0;
         }
     }
 else{
-    image_angle = 0;
+    angle = 0;
     }
 </string>
           </argument>
@@ -2734,7 +2750,7 @@ switch(STATUS){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite_ext(sprite_index,image_index,ceil(x),ceil(y),image_xscale,image_yscale,image_angle,c_white,1);
+            <string>draw_sprite_ext(sprite_index,image_index,ceil(x),ceil(y),image_xscale,image_yscale,angle,c_white,1);
 
 //Debug:
 draw_rectangle(bbox_left,bbox_top,bbox_right,bbox_bottom,true);
