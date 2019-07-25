@@ -29,6 +29,9 @@
 if room = room_title{
     //if !variable_global_exists("SELECTED_SAVE"){STATUS = "SELECT_SAVE";}else{STATUS="TITLE";}
     SUB_STATUS="";
+    //Récupérer les éléments du background:
+    ini_open(working_directory+"settings/settings.ini");
+    backgroundSprite=asset_get_index("sprite_"+ini_read_string("others","BackgroundSprite",""));                   
     }
 else{
     STATUS = "OPTIONS";
@@ -401,6 +404,7 @@ if variable_instance_exists(id,"STATUS"){
           <argument>
             <kind>1</kind>
             <string>///Afficher les éléments non interactifs.
+
 draw_self();
 if variable_instance_exists(id,"STATUS"){
     if STATUS = "TITLE"
