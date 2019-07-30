@@ -54,7 +54,7 @@ spr_index=0;
             <kind>1</kind>
             <string>///Define my solidity according to the player position.
 if (instance_exists(object_player)){
-    if round(object_player.y + (object_player.sprite_height/2)) &gt; y || (gamepad_axis_value(object_player.ID,gp_axislv)) &gt; 0.70{
+    if round(object_player.y + (object_player.sprite_height/2)) &gt; y || (gamepad_axis_value(object_player.ID,gp_axislv)) &gt; 0.70 || object_player.bbox_left &gt; bbox_right || object_player.bbox_right &lt; bbox_left{
         mask_index= -1;
         }
     else{

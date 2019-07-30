@@ -65,7 +65,7 @@ dist=0;
     if distance-abs(dist)&lt;=abs(hsp){hsp *= -1;}
     //Making it one way platform
     if (instance_exists(object_player)){
-        if object_player.life &lt;= 0 || round(object_player.y + (object_player.sprite_height/2)) &gt; y || (gamepad_axis_value(object_player.ID,gp_axislv)) &gt; 0.70{
+        if object_player.life &lt;= 0 || round(object_player.y + (object_player.sprite_height/2)) &gt; y || (gamepad_axis_value(object_player.ID,gp_axislv)) &gt; 0.70 || object_player.bbox_left &gt; bbox_right || object_player.bbox_right &lt; bbox_left{
             mask_index = -1;
             //object_player.hsp_carry = 0;
             }

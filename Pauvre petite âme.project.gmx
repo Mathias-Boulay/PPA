@@ -34,7 +34,7 @@
         <sprites name="Animals with an AI">
           <sprite>sprites\sprite_fox_idle</sprite>
           <sprite>sprites\sprite_fox_run</sprite>
-          <sprite>sprites\sprite_fow_dead</sprite>
+          <sprite>sprites\sprite_fox_dead</sprite>
           <sprite>sprites\sprite_panda_idle</sprite>
           <sprite>sprites\sprite_panda_run</sprite>
           <sprite>sprites\sprite_panda_dead</sprite>
@@ -298,7 +298,7 @@
       <sprite>sprites\sprite_sellers</sprite>
       <sprite>sprites\sprite_fond_shop</sprite>
       <sprite>sprites\sprite_select_shop</sprite>
-      <sprite>sprites\sprite_Riony</sprite>
+      <sprite>sprites\sprite_riony</sprite>
     </sprites>
     <sprites name="Fonts">
       <sprite>sprites\sprite_font_mapping</sprite>
@@ -332,21 +332,6 @@
   </sprites>
   <backgrounds name="background">
     <background>background\background_title</background>
-    <backgrounds name="Samples">
-      <background>background\background_sample_mountains</background>
-    </backgrounds>
-    <backgrounds name="Sunset Forest">
-      <background>background\background_sunset_forest_leaves</background>
-      <background>background\background_sunset_forest_trees</background>
-      <background>background\background_sunset_forest_trees_2</background>
-      <background>background\background_sunset_forest_mountains</background>
-      <background>background\background_sunset_forest_mountains_2</background>
-      <background>background\background_sunset_forest_mountains_3</background>
-      <background>background\background_sunset_forest_last</background>
-      <background>background\background_sunset_forest_stars</background>
-      <background>background\background_sunset_forest_stars_2</background>
-      <background>background\background_sunset_forest_stars_3</background>
-    </backgrounds>
   </backgrounds>
   <paths name="paths">
     <paths name="leaves' paths">
@@ -367,11 +352,6 @@
     </paths>
   </paths>
   <scripts name="scripts">
-    <script>scripts\script_settings_load.gml</script>
-    <script>scripts\script_fade_status.gml</script>
-    <script>scripts\script_word.gml</script>
-    <script>scripts\script_word_light.gml</script>
-    <script>scripts\gamepad_vibrate.gml</script>
     <scripts name="Level Builder">
       <script>scripts\print_error.gml</script>
       <script>scripts\print_warning.gml</script>
@@ -382,6 +362,11 @@
       <script>scripts\real_purify.gml</script>
       <script>scripts\asset_get.gml</script>
     </scripts>
+    <script>scripts\script_settings_load.gml</script>
+    <script>scripts\script_fade_status.gml</script>
+    <script>scripts\script_word.gml</script>
+    <script>scripts\script_word_light.gml</script>
+    <script>scripts\gamepad_vibrate.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font_debug</font>
@@ -391,6 +376,7 @@
       <objects name="Sunset_Forest">
         <object>objects\object_bird</object>
         <object>objects\object_leaves</object>
+        <object>objects\object_pet</object>
       </objects>
     </objects>
     <objects name="Menus">
@@ -491,7 +477,6 @@
       <objects name="Test-room">
         <object>objects\object_init_room</object>
       </objects>
-      <object>objects\object_Level_Builder_OLD</object>
       <object>objects\object_Level_Builder</object>
     </objects>
     <objects name="players">
@@ -522,7 +507,6 @@
     <object>objects\object_death_arm</object>
     <object>objects\object_death_arm_finger</object>
     <object>objects\object_lag</object>
-    <object>objects\object_test_backgrounds</object>
     <object>objects\object_start_overlay_2</object>
     <object>objects\object_start_overlay_1</object>
     <object>objects\object_background</object>
@@ -538,6 +522,10 @@
     <room>rooms\room_Test_room</room>
     <room>rooms\room_test</room>
   </rooms>
+  <constants number="2">
+    <constant name="PET_MAX_DIST">32</constant>
+    <constant name="PET_MAX_JUMP">18</constant>
+  </constants>
   <help>
     <rtf>help.rtf</rtf>
   </help>

@@ -31,7 +31,13 @@ if room = room_title{
     SUB_STATUS="";
     //Récupérer les éléments du background:
     ini_open(working_directory+"settings/settings.ini");
-    backgroundSprite=asset_get_index("sprite_"+ini_read_string("others","BackgroundSprite",""));                   
+    background=asset_get_index("sprite_"+ini_read_string("others","TitleScreenBackground","NT"));
+    backgroundSprite=asset_get_index("sprite_"+ini_read_string("others","BackgroundSprite","NT"));
+    ini_close();
+    for(i=0;i&lt;10;i++){   
+        backgroundSpritePositions[i,0] =irandom(view_wview[0]);
+        backgroundSpritePositions[i,1] =irandom(view_hview[0]);    
+        }                         
     }
 else{
     STATUS = "OPTIONS";
@@ -404,6 +410,14 @@ if variable_instance_exists(id,"STATUS"){
           <argument>
             <kind>1</kind>
             <string>///Afficher les éléments non interactifs.
+if variable_instance_exists(id,"background"){
+    draw_sprite(background,0,view_wview[0]/2,view_hview[0]/2);
+    }
+if variable_instance_exists(id,"backgroundSprite"){
+     for(i=0;i&lt;10;i++){
+         draw_sprite(backgroundSprite,0,backgroundSpritePositions[i,0],backgroundSpritePositions[i,1])
+        }
+    }
 
 draw_self();
 if variable_instance_exists(id,"STATUS"){

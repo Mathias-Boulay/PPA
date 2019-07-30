@@ -94,10 +94,6 @@ if !file_exists(working_directory + "\settings\settings.ini"){
 
 //Load the settings:
 script_settings_load();
-//Load backgrounds
-ini_open(working_directory+"/settings/settings.ini");  
-room_set_background(room_title,0,true,false,asset_get_index("background_"+ini_read_string("Others","TitleScreenBackground","title")),0,0,true,true,0,0,1);
-ini_close();
 
 room_goto_next();
 

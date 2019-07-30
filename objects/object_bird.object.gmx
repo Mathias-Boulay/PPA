@@ -3,7 +3,7 @@
   <spriteName>sprite_SF_bird</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>80</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,9 +25,46 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Iniatialisation des variables (penser à définir la direction dans le constructeur)
-destination=0;
+            <string>///Iniatialisation des variables
+destination= -round(view_wview[0]/irandom_range(180,300));
 image_speed=0.16;
+image_xscale=sign(destination);
+alarm[0]=120;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Destruction si en dehors de l'écran.
+alarm[0]=120;
+if destination &gt; 0{
+    if bbox_left &gt; view_xview[0]+view_wview[0]{
+        instance_destroy();
+        }   
+    }
+else{
+     if bbox_right &lt; view_xview[0]{
+        instance_destroy();
+        }
+    }
+
 </string>
           </argument>
         </arguments>
@@ -50,7 +87,8 @@ image_speed=0.16;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>x+=direction
+            <string>///Déplacement
+x+=destination;
 </string>
           </argument>
         </arguments>

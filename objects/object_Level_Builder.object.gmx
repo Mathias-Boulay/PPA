@@ -62,6 +62,18 @@ ini_open(global.selected_level);
 room_width = ini_read_real(global.selected_part,"XSize",424);
 room_height = ini_read_real(global.selected_part,"YSize",240);
 
+//Inscription des nouveaux fonds dans les settings:
+SettingsBackground[0]=ini_read_string("Generic Informations","MainMenuBackground","");
+SettingsBackground[1]=ini_read_string("Generic Informations","addSpriteMainMenuBackground","");
+ini_close();
+
+ini_open(working_directory+"settings/settings.ini");
+ini_write_string("others","TitleScreenBackground",SettingsBackground[0]);
+ini_write_string("others","BackgroundSprite",SettingsBackground[1]);
+ini_close();
+
+ini_open(global.selected_level);
+
 //Récupération des paramètres de monde.
 original=ini_read_string(global.selected_part,"Worldsettings","(0.3,6,8,0.12,6000,0)");
 check_integrity(id,"original",6);
@@ -721,6 +733,63 @@ for(i=1;i&lt;=Number;i++){//Pour le nombre
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///--------OISEAU SUNSET FOREST----------
+print_debug("--------OISEAU SUNSET FOREST----------");
+
+//Récupération:
+Number= ini_read_real(global.selected_part,"BirdsNumber",0);
+print_debug("[LB] Number Found: "+string(Number));
+for(i=1;i&lt;=Number;i++){//Pour le nombre
+    print_debug("-----"+string(i)+"-CREATEBIRD-----");
+    
+    //Variables utilisées:
+    xx="";
+    yy="";
+    destination=""; 
+    
+    //Récupération:
+    original=ini_read_string(global.selected_part,string(i)+"-createbird","");
+    check_integrity(id,"original",3);
+    
+    if integrity{//si le string à l'air bon:
+        xx=extract_real(id,"original");
+        yy=extract_real(id,"original");
+        destination=extract_real(id,"original");
+        
+        if integrity{//Si les arguments sont bons:
+            This_bird=instance_create(xx,yy,object_bird);
+            This_bird.image_xscale=sign(destination)
+            This_bird.destination= round(view_wview[0]/irandom_range(180,300))*destination;
+            }
+        else{
+            print_error("[LB] Wrong arguments for the "+string(i)+"-createbird function");
+            print_warning("[LB] Skipping the " +string(i)+"-createbird function");
+            }
+        }
+    else{
+        print_warning("[LB] Skipping the " +string(i)+"-createbird function");
+        }
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///--------SHAI----------
 print_debug("--------SHAI----------");
 
@@ -755,6 +824,64 @@ for(i=1;i&lt;=Number;i++){//Pour le nombre
         }
     }
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///--------ANIMAUX SUNSET FOREST----------
+print_debug("--------ANIMAUX SUNSET FOREST----------");
+
+//Récupération:
+Number = ini_read_real(global.selected_part,"PetsNumber",0);
+print_debug("[LB] Number Found: "+string(Number));
+for(i=1;i&lt;=Number;i++){//Pour le nombre
+    print_debug("-----"+string(i)+"-CREATEPET-----");
+    
+    //Variables utilisées:
+    xx = "";
+    yy = "";
+    Type = ""; 
+    
+    //Récupération:
+    original=ini_read_string(global.selected_part,string(i)+"-createpet","");
+    check_integrity(id,"original",3);
+    
+    if integrity{//si le string à l'air bon:
+        xx = extract_real(id,"original");
+        yy = extract_real(id,"original");
+        Type=extract_string(id,"original");
+        
+        if integrity{//Si les arguments sont bons:
+            This_pet = instance_create(xx,yy,object_pet);
+            This_pet.idle_sprite = asset_get("sprite_"+Type+"_idle");
+            This_pet.run_sprite = asset_get("sprite_"+Type+"_run");
+            This_pet.dead_sprite = asset_get("sprite_"+Type+"_dead");                                 
+            }
+        else{
+            print_error("[LB] Wrong arguments for the "+string(i)+"-createpet function");
+            print_warning("[LB] Skipping the " +string(i)+"-createpet function");
+            }
+        }
+    else{
+        print_warning("[LB] Skipping the " +string(i)+"-createpet function");
+        }
+    }
 </string>
           </argument>
         </arguments>
