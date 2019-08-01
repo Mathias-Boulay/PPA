@@ -377,6 +377,7 @@
         <object>objects\object_bird</object>
         <object>objects\object_leaves</object>
         <object>objects\object_pet</object>
+        <object>objects\object_pet_panda</object>
       </objects>
     </objects>
     <objects name="Menus">
