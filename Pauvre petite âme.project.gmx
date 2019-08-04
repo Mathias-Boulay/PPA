@@ -374,10 +374,14 @@
   <objects name="objects">
     <objects name="Assets' objects">
       <objects name="Sunset_Forest">
-        <object>objects\object_bird</object>
+        <objects name="Pets">
+          <object>objects\object_pet_fox</object>
+          <object>objects\object_pet_panda</object>
+          <object>objects\object_pet_pig</object>
+          <object>objects\object_pet_cat</object>
+        </objects>
         <object>objects\object_leaves</object>
-        <object>objects\object_pet</object>
-        <object>objects\object_pet_panda</object>
+        <object>objects\object_bird</object>
       </objects>
     </objects>
     <objects name="Menus">
@@ -523,7 +527,8 @@
     <room>rooms\room_Test_room</room>
     <room>rooms\room_test</room>
   </rooms>
-  <constants number="2">
+  <constants number="3">
+    <constant name="PET_STOP_DIST">6</constant>
     <constant name="PET_MAX_DIST">32</constant>
     <constant name="PET_MAX_JUMP">18</constant>
   </constants>

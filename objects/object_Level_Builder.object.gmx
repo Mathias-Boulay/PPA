@@ -844,42 +844,196 @@ for(i=1;i&lt;=Number;i++){//Pour le nombre
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///--------ANIMAUX SUNSET FOREST----------
-print_debug("--------ANIMAUX SUNSET FOREST----------");
+            <string>///--------FOX SUNSET FOREST----------
+print_debug("--------FOX SUNSET FOREST----------");
 
 //Récupération:
-Number = ini_read_real(global.selected_part,"PetsNumber",0);
+Number = ini_read_real(global.selected_part,"FoxNumber",0);
 print_debug("[LB] Number Found: "+string(Number));
 for(i=1;i&lt;=Number;i++){//Pour le nombre
-    print_debug("-----"+string(i)+"-CREATEPET-----");
+    print_debug("-----"+string(i)+"-CREATEFOX-----");
     
     //Variables utilisées:
     xx = "";
-    yy = "";
-    Type = ""; 
+    yy = "";  
     
     //Récupération:
-    original=ini_read_string(global.selected_part,string(i)+"-createpet","");
-    check_integrity(id,"original",3);
+    original=ini_read_string(global.selected_part,string(i)+"-createfox","");
+    check_integrity(id,"original",2);
     
     if integrity{//si le string à l'air bon:
         xx = extract_real(id,"original");
         yy = extract_real(id,"original");
-        Type=extract_string(id,"original");
         
         if integrity{//Si les arguments sont bons:
-            This_pet = instance_create(xx,yy,object_pet);
-            This_pet.idle_sprite = asset_get("sprite_"+Type+"_idle");
-            This_pet.run_sprite = asset_get("sprite_"+Type+"_run");
-            This_pet.dead_sprite = asset_get("sprite_"+Type+"_dead");                                 
+            This_fox = instance_create(xx,yy,object_pet_fox);                                 
             }
         else{
-            print_error("[LB] Wrong arguments for the "+string(i)+"-createpet function");
-            print_warning("[LB] Skipping the " +string(i)+"-createpet function");
+            print_error("[LB] Wrong arguments for the "+string(i)+"-createfox function");
+            print_warning("[LB] Skipping the " +string(i)+"-createfox function");
             }
         }
     else{
-        print_warning("[LB] Skipping the " +string(i)+"-createpet function");
+        print_warning("[LB] Skipping the " +string(i)+"-createfox function");
+        }
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///--------PANDA SUNSET FOREST----------
+print_debug("--------PANDA SUNSET FOREST----------");
+
+//Récupération:
+Number = ini_read_real(global.selected_part,"PandaNumber",0);
+print_debug("[LB] Number Found: "+string(Number));
+for(i=1;i&lt;=Number;i++){//Pour le nombre
+    print_debug("-----"+string(i)+"-CREATEPANDA-----");
+    
+    //Variables utilisées:
+    xx = "";
+    yy = "";  
+    
+    //Récupération:
+    original=ini_read_string(global.selected_part,string(i)+"-createpanda","");
+    check_integrity(id,"original",2);
+    
+    if integrity{//si le string à l'air bon:
+        xx = extract_real(id,"original");
+        yy = extract_real(id,"original");
+        
+        if integrity{//Si les arguments sont bons:
+            This_panda = instance_create(xx,yy,object_pet_panda);                                 
+            }
+        else{
+            print_error("[LB] Wrong arguments for the "+string(i)+"-createpanda function");
+            print_warning("[LB] Skipping the " +string(i)+"-createpanda function");
+            }
+        }
+    else{
+        print_warning("[LB] Skipping the " +string(i)+"-createpanda function");
+        }
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///--------PANDA SUNSET FOREST----------
+print_debug("--------PIG SUNSET FOREST----------");
+
+//Récupération:
+Number = ini_read_real(global.selected_part,"PigNumber",0);
+print_debug("[LB] Number Found: "+string(Number));
+for(i=1;i&lt;=Number;i++){//Pour le nombre
+    print_debug("-----"+string(i)+"-CREATEPIG-----");
+    
+    //Variables utilisées:
+    xx = "";
+    yy = "";  
+    
+    //Récupération:
+    original=ini_read_string(global.selected_part,string(i)+"-createpig","");
+    check_integrity(id,"original",2);
+    
+    if integrity{//si le string à l'air bon:
+        xx = extract_real(id,"original");
+        yy = extract_real(id,"original");
+        
+        if integrity{//Si les arguments sont bons:
+            This_pig = instance_create(xx,yy,object_pet_pig);                                 
+            }
+        else{
+            print_error("[LB] Wrong arguments for the "+string(i)+"-createpig function");
+            print_warning("[LB] Skipping the " +string(i)+"-createpig function");
+            }
+        }
+    else{
+        print_warning("[LB] Skipping the " +string(i)+"-createpig function");
+        }
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///--------CAT SUNSET FOREST----------
+print_debug("--------CAT SUNSET FOREST----------");
+
+//Récupération:
+Number = ini_read_real(global.selected_part,"CatNumber",0);
+print_debug("[LB] Number Found: "+string(Number));
+for(i=1;i&lt;=Number;i++){//Pour le nombre
+    print_debug("-----"+string(i)+"-CREATECAT-----");
+    
+    //Variables utilisées:
+    xx = "";
+    yy = "";  
+    
+    //Récupération:
+    original=ini_read_string(global.selected_part,string(i)+"-createcat","");
+    check_integrity(id,"original",2);
+    
+    if integrity{//si le string à l'air bon:
+        xx = extract_real(id,"original");
+        yy = extract_real(id,"original");
+        
+        if integrity{//Si les arguments sont bons:
+            This_cat = instance_create(xx,yy,object_pet_cat);                                 
+            }
+        else{
+            print_error("[LB] Wrong arguments for the "+string(i)+"-createcat function");
+            print_warning("[LB] Skipping the " +string(i)+"-createcat function");
+            }
+        }
+    else{
+        print_warning("[LB] Skipping the " +string(i)+"-createcat function");
         }
     }
 </string>
