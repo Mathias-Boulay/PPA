@@ -2142,6 +2142,7 @@ else{
             <string>///Module de gestion des frictions/gravité death edition !:
 //Accelérer c'est bien beau mais faut freiner aussi, avec la friction ! :
 if STATUS = "hurt_death" || STATUS = "laying_death"{
+
     //Friction pour la vitesse normale.
     hsp = max(0,abs(hsp)-global.frict*2)*sign(hsp);
         
@@ -2204,71 +2205,53 @@ if STATUS != "hurt_death"{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Module de collisions death edition:
-//Ok maintenant vous devez éviter de passer entre les murs.
+            <string>///----------COLLISIONS WHEN DEAD----------
 if STATUS = "hurt_death" ||STATUS = "laying_death"{
-    //Collision verticale: L'utilisation d'un statement "while" peut conduire à un crash.
-    if (!place_meeting(x,y+(vsp),object_wall)){
-        if (!place_meeting(x,y+sign(vsp),object_wall)){
-            y += vsp;
-            }
-        else{
-            vsp = 0;
+
+    // Horizontal platform:
+    repeat(floor(abs(hsp_carry))) {
+        if (!place_meeting(x + sign(hsp_carry), y, object_wall))
+            x += sign(hsp_carry); 
+        else {
+            hsp_carry = 0;
+            break;
             }
         }
-    else{
-        while (!place_meeting(x,y+sign(vsp),object_wall)){
-            y += sign(vsp);
-            }
-        if place_meeting(x,y+sign(vsp),object_wall){
+    
+    // Vertical
+    repeat(floor(abs(vsp))) {
+        if (!place_meeting(x, y + sign(vsp), object_wall))
+            y += sign(vsp); 
+        else {
             vsp = 0;
+            break;
+            }
+        }
+    
+    // Horizontal
+    repeat(floor(abs(hsp))) {
+        if (!place_meeting(x + sign(hsp), y, object_wall))
+            x += sign(hsp); 
+        else {
+            hsp = 0;                                        
+            break;
+            }
+        }
+    
+    repeat(ceil(abs(walljumppower))) {    
+        if (!place_meeting(x + sign(walljumppower), y, object_wall))
+            x += sign(walljumppower); 
+        else {
+            walljumppower = 0;       
+            break;
             }
         }
         
-    //Collision horizontale: Doit intégrer le support des pentes même si j'ai pas l'impression que cela va être utilisé.
-    if (!place_meeting(x+(hsp+walljumppower),y,object_wall)){
-        if (!place_meeting(x+sign(hsp+walljumppower),y,object_wall)){
-            x += (hsp+walljumppower);
-            }
-        else{
-            hsp = 0;
-            walljumppower =0;
-            }
-        }
-    else{
-        if place_meeting(x,y+1,object_wall){
-            yrealplus = 3;
-            while(place_meeting(x+(hsp+walljumppower),y-yrealplus,object_wall) &amp;&amp; yrealplus &lt; 10){
-                yrealplus += 1;
-                }
-            if (place_meeting(x+(hsp+walljumppower),y-yplus,object_wall)){
-                if (!place_meeting(x+sign(hsp+walljumppower),y-yplus,object_wall)){
-                    x += sign(hsp+walljumppower);
-                    }
-                else{
-                    hsp = 0;
-                    walljumppower = 0;
-                    }
-                }
-            else{
-                x += (hsp+walljumppower);
-                y -= yrealplus;
-                }
-            }
-        else{
-            if (!place_meeting(x+sign(hsp+walljumppower),y,object_wall)){
-                x += sign(hsp+walljumppower);
-                }
-            else{
-                hsp = 0;
-                walljumppower =0;
-                }
-            }
-        }
-            
-    //Correctif du système de collision en bois:
-    if place_meeting(x,y,object_wall){if next_right = true &amp;&amp; next_left != true{x -=2;}else{if next_right != true &amp;&amp; next_left = true{x +=2;}}}
         
+    //Debug comme d'hab:
+    while(place_meeting(x,y,object_wall)){
+        x-= image_xscale;
+        }
     }
 </string>
           </argument>

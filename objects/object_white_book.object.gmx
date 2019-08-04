@@ -35,9 +35,12 @@ if room = room_title{
     backgroundSprite=asset_get_index("sprite_"+ini_read_string("others","BackgroundSprite","NT"));
     ini_close();
     for(i=0;i&lt;10;i++){   
-        backgroundSpritePositions[i,0] =irandom(view_wview[0]);
-        backgroundSpritePositions[i,1] =irandom(view_hview[0]);    
-        }                         
+        backgroundSpritePositions[i,0] = irandom(view_wview[0]);
+        backgroundSpritePositions[i,1] = irandom(view_hview[0]);
+
+        backgroundSpriteAngle[i] = irandom(360);    
+        }
+                      
     }
 else{
     STATUS = "OPTIONS";
@@ -415,7 +418,7 @@ if variable_instance_exists(id,"background"){
     }
 if variable_instance_exists(id,"backgroundSprite"){
      for(i=0;i&lt;10;i++){
-         draw_sprite(backgroundSprite,0,backgroundSpritePositions[i,0],backgroundSpritePositions[i,1])
+         draw_sprite_ext(backgroundSprite,0,backgroundSpritePositions[i,0],backgroundSpritePositions[i,1],1,1,backgroundSpriteAngle[i],c_white,1)
         }
     }
 

@@ -372,17 +372,26 @@
     <font>fonts\font_debug</font>
   </fonts>
   <objects name="objects">
-    <objects name="Assets' objects">
-      <objects name="Sunset_Forest">
-        <objects name="Pets">
-          <object>objects\object_pet_fox</object>
-          <object>objects\object_pet_panda</object>
-          <object>objects\object_pet_pig</object>
-          <object>objects\object_pet_cat</object>
+    <objects name="levels' objects">
+      <objects name="Assets' objects">
+        <objects name="Sunset_Forest">
+          <objects name="Pets">
+            <object>objects\object_pet_fox</object>
+            <object>objects\object_pet_panda</object>
+            <object>objects\object_pet_pig</object>
+            <object>objects\object_pet_cat</object>
+          </objects>
+          <object>objects\object_leaves</object>
+          <object>objects\object_bird</object>
         </objects>
-        <object>objects\object_leaves</object>
-        <object>objects\object_bird</object>
       </objects>
+      <object>objects\object_wall</object>
+      <object>objects\object_fake_wall</object>
+      <object>objects\object_simple_platform</object>
+      <object>objects\object_horizontal_platform</object>
+      <object>objects\object_vertical_platform</object>
+      <object>objects\object_uncontrol_platform</object>
+      <object>objects\object_pushable</object>
     </objects>
     <objects name="Menus">
       <objects name="Pause_menu">
@@ -501,14 +510,7 @@
       <object>objects\object_debug</object>
     </objects>
     <object>objects\object_deadzone</object>
-    <object>objects\object_wall</object>
-    <object>objects\object_simple_platform</object>
-    <object>objects\object_horizontal_platform</object>
-    <object>objects\object_vertical_platform</object>
-    <object>objects\object_uncontrol_platform</object>
-    <object>objects\object_pushable</object>
     <object>objects\object_camera</object>
-    <object>objects\object_wall_platforms</object>
     <object>objects\object_death_arm</object>
     <object>objects\object_death_arm_finger</object>
     <object>objects\object_lag</object>
