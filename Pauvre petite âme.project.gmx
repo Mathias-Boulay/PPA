@@ -56,8 +56,8 @@
           <sprite>sprites\sprite_SF_stars</sprite>
           <sprite>sprites\sprite_SF_water</sprite>
         </sprites>
-        <sprite>sprites\sprite_SF_platforms</sprite>
         <sprite>sprites\sprite_SF_walls</sprite>
+        <sprite>sprites\sprite_SF_platforms</sprite>
         <sprite>sprites\sprite_SF_bird</sprite>
         <sprite>sprites\sprite_SF_clouds</sprite>
         <sprite>sprites\sprite_SF_panels</sprite>
@@ -361,6 +361,7 @@
       <script>scripts\extract_string.gml</script>
       <script>scripts\real_purify.gml</script>
       <script>scripts\asset_get.gml</script>
+      <script>scripts\extract_constant.gml</script>
     </scripts>
     <script>scripts\script_settings_load.gml</script>
     <script>scripts\script_fade_status.gml</script>
