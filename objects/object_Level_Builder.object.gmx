@@ -175,7 +175,7 @@ for(i=1;i&lt;=Number;i++){//Pour le nombre
         xx=extract_real(id,"original");
         yy=extract_real(id,"original");
         Asset=extract_string(id,"original");
-        SubAsset=extract_real(id,"original");
+        SubAsset=extract_constant(id,"original");
         
         if integrity{//Si les arguments sont bons:
             This_wall=instance_create(xx,yy,object_wall);
@@ -231,14 +231,14 @@ for(i=1;i&lt;=Number;i++){//Pour le nombre
     
     //Récupération:
     original=ini_read_string(global.selected_part,string(i)+"-createline","");
-    check_integrity(id,"original",6);
+    check_integrity(id,"original",5);
     
     if integrity{//si le string à l'air bon:
         xx=extract_real(id,"original");
         yy=extract_real(id,"original");
         Asset=asset_get("sprite_"+extract_string(id,"original")+"_walls");
-        SubAsset=extract_real(id,"original");
-        WSpace=extract_real(id,"original");
+        SubAsset=extract_constant(id,"original");
+        WSpace=sprite_get_width(Asset);
         Length=extract_real(id,"original");
         
         if integrity{//Si les arguments sont bons:
@@ -298,14 +298,14 @@ for(i=1;i&lt;=Number;i++){//Pour le nombre
     
     //Récupération:
     original=ini_read_string(global.selected_part,string(i)+"-createcolumn","");
-    check_integrity(id,"original",6);
+    check_integrity(id,"original",5);
     
     if integrity{//si le string à l'air bon:
         xx=extract_real(id,"original");
         yy=extract_real(id,"original");
         Asset=asset_get("sprite_"+extract_string(id,"original")+"_walls");
-        SubAsset=extract_real(id,"original");
-        HSpace=extract_real(id,"original");
+        SubAsset=extract_constant(id,"original");
+        HSpace=sprite_get_height(Asset);
         Length=extract_real(id,"original");
         
         if integrity{//Si les arguments sont bons:
@@ -367,16 +367,16 @@ for(i=1;i&lt;=Number;i++){//Pour le nombre
     
     //Récupération:
     original=ini_read_string(global.selected_part,string(i)+"-createrectangle","");
-    check_integrity(id,"original",8);
+    check_integrity(id,"original",6);
     
     if integrity{//si le string à l'air bon:
         xx=extract_real(id,"original");
         yy=extract_real(id,"original");
         Asset=asset_get("sprite_"+extract_string(id,"original")+"_walls");
-        SubAsset=extract_real(id,"original");
-        WSpace=extract_real(id,"original");
+        SubAsset=extract_constant(id,"original");
+        WSpace=sprite_get_width(Asset);
         WLength=extract_real(id,"original");
-        HSpace=extract_real(id,"original");
+        HSpace=sprite_get_height(Asset);
         HLength=extract_real(id,"original");
         
         if integrity{//Si les arguments sont bons:
@@ -395,6 +395,272 @@ for(i=1;i&lt;=Number;i++){//Pour le nombre
         }
     else{
         print_warning("[LB] Skipping the " +string(i)+"-createrectangle function");
+        }
+    }
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///--------FAUX MUR TOUT SEUL----------
+print_debug("--------FAUX MUR TOUT SEUL----------");
+
+//Récupération:
+Number= ini_read_real(global.selected_part,"FakeWallsNumber",0);
+print_debug("[LB] Number Found: "+string(Number));
+for(i=1;i&lt;=Number;i++){//Pour le nombre
+    print_debug("-----"+string(i)+"-CREATEFAKEWALL-----");
+    
+    //Variables utilisées:
+    xx="";
+    yy="";
+    Asset="";
+    SubAsset="";
+    
+    //Récupération:
+    original=ini_read_string(global.selected_part,string(i)+"-createfakewall","");
+    check_integrity(id,"original",4);
+    
+    if integrity{//si le string à l'air bon:
+        xx=extract_real(id,"original");
+        yy=extract_real(id,"original");
+        Asset=extract_string(id,"original");
+        SubAsset=extract_constant(id,"original");
+        
+        if integrity{//Si les arguments sont bons:
+            This_wall=instance_create(xx,yy,object_fake_wall);
+            This_wall.sprite_index=asset_get("sprite_"+Asset+"_walls");
+            This_wall.image_index=SubAsset;
+            }
+        else{
+            print_error("[LB] Wrong arguments for the "+string(i)+"-createfakewall function");
+            print_warning("[LB] Skipping the " +string(i)+"-createfakewall function");
+            }
+        }
+    else{
+        print_warning("[LB] Skipping the " +string(i)+"-createfakewall function");
+        }
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///--------FAUX MUR EN LIGNE----------
+print_debug("--------FAUX MUR EN LIGNE----------");
+
+//Récupération:
+Number= ini_read_real(global.selected_part,"FakeLinesNumber",0);
+print_debug("[LB] Number Found: "+string(Number));
+for(i=1;i&lt;=Number;i++){//Pour le nombre
+    print_debug("-----"+string(i)+"-CREATEFAKELINE-----");
+    
+    //Variables utilisées:
+    xx="";
+    yy="";
+    Asset="";
+    SubAsset="";
+    WSpace="";
+    Length="";
+    
+    
+    //Récupération:
+    original=ini_read_string(global.selected_part,string(i)+"-createfakeline","");
+    check_integrity(id,"original", 5);
+    
+    if integrity{//si le string à l'air bon:
+        xx=extract_real(id,"original");
+        yy=extract_real(id,"original");
+        Asset=asset_get("sprite_"+extract_string(id,"original")+"_walls");
+        SubAsset=extract_constant(id,"original");
+        WSpace=sprite_get_width(Asset);
+        Length=extract_real(id,"original");
+        
+        if integrity{//Si les arguments sont bons:
+            for(j=0;j&lt;Length;j++){
+                This_wall=instance_create(xx+j*WSpace,yy,object_fake_wall);
+                This_wall.sprite_index=Asset;
+                This_wall.image_index=SubAsset;
+                }
+            }
+        else{
+            print_error("[LB] Wrong arguments for the "+string(i)+"-createfakeline function");
+            print_warning("[LB] Skipping the " +string(i)+"-createfakeline function");
+            }
+        }
+    else{
+        print_warning("[LB] Skipping the " +string(i)+"-createfakeline function");
+        }
+    }
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///--------FAUX MUR EN COLONNE----------
+print_debug("--------FAUX MUR EN COLONNE----------");
+
+//Récupération:
+Number= ini_read_real(global.selected_part,"FakeColumnsNumber",0);
+print_debug("[LB] Number Found: "+string(Number));
+for(i=1;i&lt;=Number;i++){//Pour le nombre
+    print_debug("-----"+string(i)+"-CREATEFAKECOLUMN-----");
+    
+    //Variables utilisées:
+    xx="";
+    yy="";
+    Asset="";
+    SubAsset="";
+    HSpace="";
+    Length="";
+    
+    
+    //Récupération:
+    original=ini_read_string(global.selected_part,string(i)+"-createfakecolumn","");
+    check_integrity(id,"original",5);
+    
+    if integrity{//si le string à l'air bon:
+        xx=extract_real(id,"original");
+        yy=extract_real(id,"original");
+        Asset=asset_get("sprite_"+extract_string(id,"original")+"_walls");
+        SubAsset=extract_constant(id,"original");
+        HSpace=sprite_get_height(Asset);
+        Length=extract_real(id,"original");
+        
+        if integrity{//Si les arguments sont bons:
+            for(j=0;j&lt;Length;j++){
+                This_wall=instance_create(xx,yy+j*WSpace,object_fake_wall);
+                This_wall.sprite_index=Asset;
+                This_wall.image_index=SubAsset;
+                }
+            }
+        else{
+            print_error("[LB] Wrong arguments for the "+string(i)+"-createfakecolumn function");
+            print_warning("[LB] Skipping the " +string(i)+"-createfakecolumn function");
+            }
+        }
+    else{
+        print_warning("[LB] Skipping the " +string(i)+"-createfakecolumn function");
+        }
+    }
+    
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///--------FAUX MUR EN RECTANGLE----------
+print_debug("--------FAUX MUR EN RECTANGLE----------");
+
+//Récupération:
+Number= ini_read_real(global.selected_part,"FakeRectanglesNumber",0);
+print_debug("[LB] Number Found: "+string(Number));
+for(i=1;i&lt;=Number;i++){//Pour le nombre
+    print_debug("-----"+string(i)+"-CREATEFAKERECTANGLE-----");
+    
+    //Variables utilisées:
+    xx="";
+    yy="";
+    Asset="";
+    SubAsset="";
+    WSpace="";
+    WLength="";
+    HSpace="";
+    HLength="";
+    
+    
+    //Récupération:
+    original=ini_read_string(global.selected_part,string(i)+"-createfakerectangle","");
+    check_integrity(id,"original",6);
+    
+    if integrity{//si le string à l'air bon:
+        xx=extract_real(id,"original");
+        yy=extract_real(id,"original");
+        Asset=asset_get("sprite_"+extract_string(id,"original")+"_walls");
+        SubAsset=extract_constant(id,"original");
+        WSpace=sprite_get_width(Asset);
+        WLength=extract_real(id,"original");
+        HSpace=sprite_get_height(Asset);
+        HLength=extract_real(id,"original");
+        
+        if integrity{//Si les arguments sont bons:
+            for(j=0;j&lt;HLength;j++){
+                for(k=0;k&lt;WLength;k++){
+                    This_wall=instance_create(xx+k*WSpace,yy+j*HSpace,object_fake_wall);
+                    This_wall.sprite_index=Asset;
+                    This_wall.image_index=SubAsset;
+                    }
+                }
+            }
+        else{
+            print_error("[LB] Wrong arguments for the "+string(i)+"-createfakerectangle function");
+            print_warning("[LB] Skipping the " +string(i)+"-createfakerectangle function");
+            }
+        }
+    else{
+        print_warning("[LB] Skipping the " +string(i)+"-createfakerectangle function");
         }
     }
 
@@ -950,7 +1216,7 @@ for(i=1;i&lt;=Number;i++){//Pour le nombre
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///--------PANDA SUNSET FOREST----------
+            <string>///--------PIG SUNSET FOREST----------
 print_debug("--------PIG SUNSET FOREST----------");
 
 //Récupération:
