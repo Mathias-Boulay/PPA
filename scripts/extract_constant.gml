@@ -61,6 +61,35 @@ if variable_instance_exists(argument0,string(argument1)){
                     break;
                 
                 
+                //Signs:
+                case("WARNING"):
+                    TranslatedConstant = 0;
+                    break;
+                    
+                case("A"):
+                    TranslatedConstant = 1;
+                    break;
+                    
+                case("B"):
+                    TranslatedConstant = 2;
+                    break;
+                    
+                case("X"):
+                    TranslatedConstant = 3;
+                    break;
+                    
+                case("Y"):
+                    TranslatedConstant = 4;
+                    break;
+                    
+                case("BACK"):
+                    TranslatedConstant = 5;
+                    break;
+                    
+                case("WRITINGS"):
+                    TranslatedConstant = 6;
+                    break;
+                
             
             
             

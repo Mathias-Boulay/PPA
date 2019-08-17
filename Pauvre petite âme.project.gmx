@@ -60,7 +60,7 @@
         <sprite>sprites\sprite_SF_platforms</sprite>
         <sprite>sprites\sprite_SF_bird</sprite>
         <sprite>sprites\sprite_SF_clouds</sprite>
-        <sprite>sprites\sprite_SF_panels</sprite>
+        <sprite>sprites\sprite_SF_signs</sprite>
         <sprite>sprites\sprite_SF_mushrooms</sprite>
         <sprite>sprites\sprite_SF_leave</sprite>
         <sprite>sprites\sprite_SF_luminium</sprite>
@@ -357,11 +357,11 @@
       <script>scripts\print_warning.gml</script>
       <script>scripts\print_debug.gml</script>
       <script>scripts\check_integrity.gml</script>
+      <script>scripts\extract_constant.gml</script>
       <script>scripts\extract_real.gml</script>
       <script>scripts\extract_string.gml</script>
       <script>scripts\real_purify.gml</script>
       <script>scripts\asset_get.gml</script>
-      <script>scripts\extract_constant.gml</script>
     </scripts>
     <script>scripts\script_settings_load.gml</script>
     <script>scripts\script_fade_status.gml</script>
@@ -384,6 +384,7 @@
           </objects>
           <object>objects\object_leaves</object>
           <object>objects\object_bird</object>
+          <object>objects\object_sign</object>
         </objects>
       </objects>
       <object>objects\object_wall</object>

@@ -1056,6 +1056,62 @@ for(i=1;i&lt;=Number;i++){//Pour le nombre
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///--------PANNEAU SUNSET FOREST----------
+print_debug("--------PANNEAU SUNSET FOREST----------");
+
+//Récupération:
+Number= ini_read_real(global.selected_part,"SignsNumber",0);
+print_debug("[LB] Number Found: "+string(Number));
+for(i=1;i&lt;=Number;i++){//Pour le nombre
+    print_debug("-----"+string(i)+"-CREATESIGN-----");
+    
+    //Variables utilisées:
+    xx="";
+    yy="";
+    SubAsset="";
+    
+    //Récupération:
+    original=ini_read_string(global.selected_part,string(i)+"-createsign","");
+    check_integrity(id,"original",3);
+    
+    if integrity{//si le string à l'air bon:
+        xx=extract_real(id,"original");
+        yy=extract_real(id,"original");
+        SubAsset=extract_constant(id,"original");
+        
+        if integrity{//Si les arguments sont bons:
+            This_sign=instance_create(xx,yy,object_sign);
+            This_sign.image_index=SubAsset;
+            }
+        else{
+            print_error("[LB] Wrong arguments for the "+string(i)+"-createsign function");
+            print_warning("[LB] Skipping the " +string(i)+"-createsign function");
+            }
+        }
+    else{
+        print_warning("[LB] Skipping the " +string(i)+"-createsign function");
+        }
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///--------SHAI----------
 print_debug("--------SHAI----------");
 
