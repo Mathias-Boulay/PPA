@@ -35,7 +35,7 @@ PartFive = false;
 Boss = false;
 Name = "No Level";
 
-///Define the ID, grab the image and level infos:
+//Define the ID, grab the image and level infos:
 ID = (instance_number(object_levelpaper)+object_white_book.page);
 if file_exists(working_directory + "\levels-pics\level "+string(ID)+".png"){
     //Then grab it
@@ -175,6 +175,57 @@ instance_create(x+70,y+117,object_levelboard);
 
 
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///-----GRAB DATA FROM THE LEVEL FILE-----
+var Parts;
+LevelName = "No Level";
+LevelImg = sprite_default_level;
+ID = (instance_number(object_levelpaper)+object_white_book.page);
+
+
+if file_exists(LEVELS_DIR + "Level "+ string(ID)){
+    Parts=get_level_parts(string(ID));
+    
+    ini_open(LEVELS_DIR+"Level "+string(ID));
+    LevelName = ini_read_string("Informations","Name","None");
+    
+    for(i=0; i &lt;= array_length_1d(Parts); i++){
+        PartsData[i,0] = get_foes_in_part(Parts[i]);
+        PartsData[i,1] = get_rionys_in_part(Parts[i]);
+        }
+
+    if file_exists(LEVELS_PICS_DIR + "Level "+ string(ID)+".png"){
+        LevelImg = sprite_add(LEVELS_PICS_DIR + "Level "+ string(ID)+".png",1,false,false,0,0);
+        }
+    
+    
+        
+        
+        
+        
+    }
+    
+    
+    
 </string>
           </argument>
         </arguments>
