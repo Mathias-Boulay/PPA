@@ -363,10 +363,16 @@
       <script>scripts\real_purify.gml</script>
       <script>scripts\asset_get.gml</script>
     </scripts>
+    <scripts name="Saves Files Handling">
+      <script>scripts\get_allowed_parts.gml</script>
+      <script>scripts\get_collected_rionys.gml</script>
+      <script>scripts\get_killed_foes.gml</script>
+      <script>scripts\get_completion_times.gml</script>
+    </scripts>
     <scripts name="Level Files Handling">
       <script>scripts\get_level_parts.gml</script>
-      <script>scripts\get_foes_in_part.gml</script>
-      <script>scripts\get_rionys_in_part.gml</script>
+      <script>scripts\get_foes_in_part_level.gml</script>
+      <script>scripts\get_rionys_in_part_level.gml</script>
     </scripts>
     <script>scripts\script_settings_load.gml</script>
     <script>scripts\script_fade_status.gml</script>

@@ -154,6 +154,35 @@ temp.image_index = Third;
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///-----GATHER INFORMATIONS FOR THE BOARD-----
+
+//Initialisation
+texts = script_word_light(60,62);
+ID = (instance_number(object_levelboard)+object_white_book.page);
+font_lv = font_add_sprite_ext(sprite_font_lv,"0123456789/:",true,1);
+MyPaper = instance_nearest(x,y,object_levelpaper);
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="8" enumb="0">
       <action>
@@ -227,6 +256,76 @@ if Third != 6{
 
 
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///-----DRAW LEVEL INFO-----
+draw_set_font(font_lv);
+draw_set_halign(fa_right);
+
+if array_length_1d(MyPaper.LevelParts) &gt; 0 {
+    
+    //Board
+    draw_sprite_part(sprite_board,0,0,0,28,sprite_height,x,y);
+    
+    //Icons
+    draw_sprite(sprite_board_left,0,x-72,y+6);
+    draw_sprite(sprite_board_left,1,x-72,y+32);
+    draw_sprite(sprite_board_left,2,x-73,y+59);
+    
+    //Icons text
+    draw_set_font(global.font_short);
+    draw_set_halign(fa_left);
+    draw_text(x-61,y+21,texts[0]);
+    draw_text(x-61,y+48,texts[1]);
+    draw_text(x-60,y+76,texts[2]);
+    
+    draw_set_font(font_lv);
+    draw_set_halign(fa_right);
+    
+    //First column
+    draw_text(x+14, y+13, string(MyPaper.CollectedRionys[0]));
+    draw_text(x+27, y+27, string(MyPaper.LevelParts[0,1]));
+    
+    draw_text(x+27, y+47, string(floor(MyPaper.CompletionTimes[0]/60)) + ":" + string(frac(MyPaper.CompletionTimes[0]/60)*60));
+    
+    draw_text(x+14, y+67, string(MyPaper.KilledFoes[0]));
+    draw_text(x+27, y+sprite_height+1, string(MyPaper.LevelParts[0,0]));
+    
+    
+    
+    if array_length_1d(MyPaper.LevelParts) &gt;= 1{
+        //Second column    
+        
+        
+    
+        
+        }
+    
+    
+    
+    
+    
+    
+        
+    }
 </string>
           </argument>
         </arguments>

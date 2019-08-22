@@ -7,6 +7,9 @@ PossibleParts[2]="PartThree";
 PossibleParts[1]="PartTwo";
 PossibleParts[0]="PartOne";
 
+var count;
+count = 0;
+
 var AvailableParts;
     
 if file_exists(LEVELS_DIR + "Level " + string(argument0)){
@@ -18,22 +21,26 @@ if file_exists(LEVELS_DIR + "Level " + string(argument0)){
     //Then the bulky part
     for(z=0; z<= 5; z++){
         if ini_section_exists(PossibleParts[z]){
-        
-            for(w=0; w<= 2; w++){
-                if AvailableParts[w] = ""{
-                    AvailableParts[w] = PossibleParts[z];
-                    break;
-                    }
+            if count >= 3{
+                print_warning("[LEVEL PART PARSER] Too many parts !");
+                break; 
                 }
-                
+            AvailableParts[count] = PossibleParts[z];
             
+            count++;
             }
         }
     ini_close();    
     
-    return AvailableParts;
+    if is_array(AvailableParts){
+        return AvailableParts;
+        }
+    else{
+        print_error("[LEVEL PART PARSER] No parts found !");
+        }
     
     }
 else{
-    print_debug("[PART PARSER] File not found ! (Level " +string(argument0))
+    print_error("[LEVEL PART PARSER] File not found ! (Level " +string(argument0));
+    return "";
     }
