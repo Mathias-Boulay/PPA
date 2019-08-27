@@ -25,7 +25,7 @@ if file_exists(LEVELS_DIR + "Level " + string(argument0)){
                 print_warning("[LEVEL PART PARSER] Too many parts !");
                 break; 
                 }
-            AvailableParts[count] = PossibleParts[z];
+            AvailableParts[count] = z;
             
             count++;
             }
@@ -37,6 +37,7 @@ if file_exists(LEVELS_DIR + "Level " + string(argument0)){
         }
     else{
         print_error("[LEVEL PART PARSER] No parts found !");
+        return "";
         }
     
     }

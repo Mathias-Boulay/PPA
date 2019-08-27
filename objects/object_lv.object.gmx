@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_speed = 0;
+            <string>///-----INITIALIZATION-----
+image_speed = 0;
+MyColor = c_white;
 </string>
           </argument>
         </arguments>
@@ -48,7 +50,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_self();
+            <string>///-----DRAW MYSELF-----
+draw_sprite_ext(sprite_index,image_index,x,y,1,1,0,MyColor,1);
 </string>
           </argument>
         </arguments>

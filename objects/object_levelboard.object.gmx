@@ -25,131 +25,15 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Define the ID and grab all necesarry info from the paper just up to it
+            <string>///-----GATHER INFORMATIONS FOR THE BOARD-----
+
+//Initialisation
 texts = script_word_light(60,62);
 ID = (instance_number(object_levelboard)+object_white_book.page);
 font_lv = font_add_sprite_ext(sprite_font_lv,"0123456789/:",true,1);
-MyPaper = collision_point(x+(sprite_width/2),y-(sprite_height/2),object_levelpaper,false,true);
-First = 6;
-Second = 6;
-Third = 6;
+MyPaper = instance_nearest(x,y,object_levelpaper);
 
-//Define first:
-if MyPaper.PartOne{
-    First = 0;
-    MyPaper.PartOne = false;
-    }
-else{
-    if MyPaper.PartTwo{
-    First = 1;
-    MyPaper.PartTwo = false;
-        }
-    else{
-        if MyPaper.PartThree{
-            First = 2;
-            MyPaper.PartThree = false;
-            }
-        else{
-            if MyPaper.PartFour{
-                First = 3;
-                MyPaper.PartFour = false;
-                }
-            else{
-                if MyPaper.PartFive{
-                    MyPaper.PartFive = false;
-                    First = 4;
-                    }
-                else{
-                    if MyPaper.Boss{
-                        MyPaper.Boss = false;
-                        First = 5;
-                        }
-                    }
-                }
-            }
-        }
-    }
 
-//Define Second:
-if MyPaper.PartOne{
-    Second = 0;
-    MyPaper.PartOne = false;
-    }
-else{
-    if MyPaper.PartTwo{
-    Second = 1;
-    MyPaper.PartTwo = false;
-        }
-    else{
-        if MyPaper.PartThree{
-            Second = 2;
-            MyPaper.PartThree = false;
-            }
-        else{
-            if MyPaper.PartFour{
-                Second = 3;
-                MyPaper.PartFour = false;
-                }
-            else{
-                if MyPaper.PartFive{
-                    MyPaper.PartFive = false;
-                    Second = 4;
-                    }
-                else{
-                    if MyPaper.Boss{
-                        MyPaper.Boss = false;
-                        Second = 5;
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-//Define Third:
-if MyPaper.PartOne{
-    Third = 0;
-    MyPaper.PartOne = false;
-    }
-else{
-    if MyPaper.PartTwo{
-    Third = 1;
-    MyPaper.PartTwo = false;
-        }
-    else{
-        if MyPaper.PartThree{
-            Third = 2;
-            MyPaper.PartThree = false;
-            }
-        else{
-            if MyPaper.PartFour{
-                Third = 3;
-                MyPaper.PartFour = false;
-                }
-            else{
-                if MyPaper.PartFive{
-                    MyPaper.PartFive = false;
-                    Third = 4;
-                    }
-                else{
-                    if MyPaper.Boss{
-                        MyPaper.Boss = false;
-                        Third = 5;
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-//Create the up:
-var temp;
-temp = instance_create(x+3,y-9,object_lv);
-temp.image_index = First;
-temp = instance_create(x+31,y-9,object_lv);
-temp.image_index = Second;
-temp = instance_create(x+59,y-9,object_lv);
-temp.image_index = Third;
 </string>
           </argument>
         </arguments>
@@ -170,15 +54,15 @@ temp.image_index = Third;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///-----GATHER INFORMATIONS FOR THE BOARD-----
-
-//Initialisation
-texts = script_word_light(60,62);
-ID = (instance_number(object_levelboard)+object_white_book.page);
-font_lv = font_add_sprite_ext(sprite_font_lv,"0123456789/:",true,1);
-MyPaper = instance_nearest(x,y,object_levelpaper);
-
-
+            <string>///-----CREATE AND COLORIZE LEVEL BUTTONS-----
+var This_button;
+for(i=0; i&lt; array_length_1d(MyPaper.LevelParts); i++){
+    This_button = instance_create( x+3 + (i*28),y - 9, object_lv);
+    This_button.image_index = MyPaper.LevelParts[i];
+    
+    
+    
+    }
 </string>
           </argument>
         </arguments>
@@ -201,88 +85,14 @@ MyPaper = instance_nearest(x,y,object_levelpaper);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_font(font_lv);
-draw_set_halign(fa_right);
-//draw_set_valign(fa_center);
-if First != 6{
-    draw_sprite_part(sprite_board,0,0,0,28,sprite_height,x,y);
-    //Les éléments de gauche:
-    draw_sprite(sprite_board_left,0,x-72,y+6);
-    draw_sprite(sprite_board_left,1,x-72,y+32);
-    draw_sprite(sprite_board_left,2,x-73,y+59);
-    draw_set_font(global.font_short);
-    draw_set_halign(fa_left);
-    draw_text(x-61,y+21,texts[0]);
-    draw_text(x-61,y+48,texts[1]);
-    draw_text(x-60,y+76,texts[2]);
-    
-    draw_set_font(font_lv);
-    draw_set_halign(fa_right);
-    //Première colonne
-    draw_text(x+14,y+13,string(MyPaper.Level[First,2]));
-    draw_text(x+27,y+27,string(MyPaper.Level[First,0]));
-    
-    draw_text(x+27,y+47,string((MyPaper.Level[First,4]/60)- frac((MyPaper.Level[First,4]/60)))+":"+string((MyPaper.Level[First,4]-(((MyPaper.Level[First,4]/60)- frac((MyPaper.Level[First,4]/60)))*60))));
-    
-    draw_text(x+14,y+67,string(MyPaper.Level[First,3]));
-    draw_text(x+27,y+sprite_height+1,string(MyPaper.Level[First,1]));
-    }
-    
-if Second != 6{
-    draw_sprite_part(sprite_board,0,28,0,28,sprite_height,x+28,y);    
-    //Deuxième colonne:
-    draw_text(x+42,y+13,string(MyPaper.Level[Second,2]));
-    draw_text(x+55,y+27,string(MyPaper.Level[Second,0]));
-    
-    draw_text(x+55,y+47,string((MyPaper.Level[Second,4]/60)- frac((MyPaper.Level[Second,4]/60)))+":"+string((MyPaper.Level[Second,4]-(((MyPaper.Level[Second,4]/60)- frac((MyPaper.Level[Second,4]/60)))*60))));
-    
-    draw_text(x+42,y+67,string(MyPaper.Level[Second,3]));
-    draw_text(x+55,y+sprite_height+1,string(MyPaper.Level[Second,1]));
-    }
-    
-if Third != 6{   
-    draw_sprite_part(sprite_board,0,56,0,56,sprite_height,x+56,y); 
-    //Troisième colonne:
-    draw_text(x+70,y+13,string(MyPaper.Level[Third,2]));
-    draw_text(x+83,y+27,string(MyPaper.Level[Third,0]));
-    
-    draw_text(x+84,y+47,string((MyPaper.Level[Third,4]/60)- frac((MyPaper.Level[Third,4]/60)))+":"+string((MyPaper.Level[Third,4]-(((MyPaper.Level[Third,4]/60)- frac((MyPaper.Level[Third,4]/60)))*60))));
-    
-    draw_text(x+70,y+67,string(MyPaper.Level[Third,3]));
-    draw_text(x+83,y+sprite_height+1,string(MyPaper.Level[Third,1]));
-    }
-    
-
-
-
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>///-----DRAW LEVEL INFO-----
+//SIDE NOTE ! The space between each case is 28 pixels. You could use a for loop to optimize the code, however this kind of modification aren't great for future updates.
 draw_set_font(font_lv);
 draw_set_halign(fa_right);
 
 if array_length_1d(MyPaper.LevelParts) &gt; 0 {
     
-    //Board
+    //Board part
     draw_sprite_part(sprite_board,0,0,0,28,sprite_height,x,y);
     
     //Icons
@@ -301,30 +111,45 @@ if array_length_1d(MyPaper.LevelParts) &gt; 0 {
     draw_set_halign(fa_right);
     
     //First column
-    draw_text(x+14, y+13, string(MyPaper.CollectedRionys[0]));
-    draw_text(x+27, y+27, string(MyPaper.LevelParts[0,1]));
+    draw_text(x+14, y+13, string(MyPaper.CollectedRionys[MyPaper.LevelParts[0]]));
+    draw_text(x+27, y+27, string(MyPaper.LevelPartsData[0,1]));
     
-    draw_text(x+27, y+47, string(floor(MyPaper.CompletionTimes[0]/60)) + ":" + string(frac(MyPaper.CompletionTimes[0]/60)*60));
+    draw_text(x+27, y+47, string(floor(MyPaper.CompletionTimes[MyPaper.LevelParts[0]]/60)) + ":" + string(frac(MyPaper.CompletionTimes[MyPaper.LevelParts[0]]/60)*60));
     
-    draw_text(x+14, y+67, string(MyPaper.KilledFoes[0]));
-    draw_text(x+27, y+sprite_height+1, string(MyPaper.LevelParts[0,0]));
+    draw_text(x+14, y+67, string(MyPaper.KilledFoes[MyPaper.LevelParts[0]]));
+    draw_text(x+27, y+sprite_height+1, string(MyPaper.LevelPartsData[0,0]));
     
     
     
-    if array_length_1d(MyPaper.LevelParts) &gt;= 1{
-        //Second column    
+    if array_length_1d(MyPaper.LevelParts) &gt; 1{
+        //Second column
+        draw_sprite_part(sprite_board,0,28,0,28,sprite_height,x+28,y);
         
         
-    
+        draw_text(x+42, y+13, string(MyPaper.CollectedRionys[MyPaper.LevelParts[1]]));
+        draw_text(x+55, y+27, string(MyPaper.LevelPartsData[1,1]));
         
-        }
-    
-    
-    
-    
-    
-    
+        draw_text(x+55, y+47, string(floor(MyPaper.CompletionTimes[MyPaper.LevelParts[1]]/60)) + ":" + string(frac(MyPaper.CompletionTimes[MyPaper.LevelParts[1]]/60)*60));
         
+        draw_text(x+42, y+67, string(MyPaper.KilledFoes[MyPaper.LevelParts[1]]));
+        draw_text(x+55, y+sprite_height+1, string(MyPaper.LevelPartsData[1,0]));
+            
+        
+        if array_length_1d(MyPaper.LevelParts) &gt; 2{
+            //Third column
+            draw_sprite_part(sprite_board,0,56,0,56,sprite_height,x+56,y); 
+            
+            
+            draw_text(x+70, y+13, string(MyPaper.CollectedRionys[MyPaper.LevelParts[2]]));
+            draw_text(x+83, y+27, string(MyPaper.LevelPartsData[2,1]));
+            
+            draw_text(x+84, y+47, string(floor(MyPaper.CompletionTimes[MyPaper.LevelParts[2]]/60)) + ":" + string(frac(MyPaper.CompletionTimes[MyPaper.LevelParts[1]]/60)*60));
+            
+            draw_text(x+70, y+67, string(MyPaper.KilledFoes[MyPaper.LevelParts[2]]));
+            draw_text(x+83, y+sprite_height+1, string(MyPaper.LevelPartsData[2,0]));
+            
+            }
+        } 
     }
 </string>
           </argument>

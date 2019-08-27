@@ -3,6 +3,15 @@
 //*****   This function assumes the    *****\\
 //***** global variable SELECTED_SAVE  *****\\
 //*****   points towards something     *****\\
+var PossibleParts;
+PossibleParts[5]="Boss";
+PossibleParts[4]="PartFive";
+PossibleParts[3]="PartFour";
+PossibleParts[2]="PartThree";
+PossibleParts[1]="PartTwo";
+PossibleParts[0]="PartOne";
+
+
 var PartsToCheck;
 
 //Avoid corruption
@@ -11,6 +20,8 @@ ini_close();
 if variable_global_exists("SELECTED_SAVE"){
     if file_exists(global.SELECTED_SAVE){
         ini_open(global.SELECTED_SAVE);
+        
+        
         
         PartsToCheck[0] = ini_read_real(string(argument0),"PartOneAllowed",0);
         PartsToCheck[1] = ini_read_real(string(argument0),"PartTwoAllowed",0);
