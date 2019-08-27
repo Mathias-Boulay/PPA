@@ -3,6 +3,10 @@
 //*****   This function assumes the    *****\\
 //***** global variable SELECTED_SAVE  *****\\
 //*****   points towards something     *****\\
+
+//*****   This function also assumes the   *****\\
+//*****      array LevelParts exists       *****\\
+//*****     points towards something       *****\\
 var PossibleParts;
 PossibleParts[5]="Boss";
 PossibleParts[4]="PartFive";
@@ -19,30 +23,37 @@ ini_close();
 
 if variable_global_exists("SELECTED_SAVE"){
     if file_exists(global.SELECTED_SAVE){
-        ini_open(global.SELECTED_SAVE);
         
-        
-        
-        PartsToCheck[0] = ini_read_real(string(argument0),"PartOneAllowed",0);
-        PartsToCheck[1] = ini_read_real(string(argument0),"PartTwoAllowed",0);
-        PartsToCheck[2] = ini_read_real(string(argument0),"PartThreeAllowed",0);
-        PartsToCheck[3] = ini_read_real(string(argument0),"PartFourAllowed",0);
-        PartsToCheck[4] = ini_read_real(string(argument0),"PartFiveAllowed",0);
-        PartsToCheck[5] = ini_read_real(string(argument0),"BossAllowed",0); 
-        
-        ini_close();
-        
-        return PartsToCheck;   
-        
+        if variable_instance_exists(id,"LevelParts"){
+            ini_open(global.SELECTED_SAVE);
+            
+            for(i=0; i<array_length_1d(LevelParts); i++){
+                PartsToCheck[i] = ini_read_real(string(argument0),PossibleParts[LevelParts[i]]+"Allowed",0);
+                }
+                
+            ini_close();
+                
+            if is_array(PartsToCheck){
+                return PartsToCheck;
+                }
+            else{
+                print_error("[SAVE PART PARSER] No Parts were checked");
+                return "";
+                }
+            
+            }
+        else{
+            print_error("[SAVE PART PARSER] LevelParts variable doesn't exist, unable to check if the player has allowed parts");
+            return "";
+            }
         }
     else{
-        print_error("[SAVE PART PARSER] Save not found !");
+        print_error("[SAVE PART PARSER] Save not found");
         return "";
         }
-    
     }
 else{
-    print_error("[SAVE PART PARSER] No selected save !");
+    print_error("[SAVE PART PARSER] No selected save");
     return "";
     }
 
