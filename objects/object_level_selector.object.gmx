@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>Can_navigate = true;
+            <string>///-----INITIALIZE-----
+Can_navigate = true;
 image_speed = 0;
 image_index = 1;
 </string>
@@ -50,7 +51,8 @@ image_index = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>Can_navigate = true;
+            <string>///-----ALLOW TO NAVIGATE-----
+Can_navigate = true;
 </string>
           </argument>
         </arguments>
@@ -73,7 +75,7 @@ image_index = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Remise en place de l'objet si l'on est dans la vide.
+            <string>///-----BORDER CHECK-----
 lv_index = collision_point(x+(sprite_width/2),y+(sprite_height/2),object_lv,false,true);
 if lv_index.image_index &gt; 5 {
     x = xprevious;
@@ -100,8 +102,9 @@ if lv_index.image_index &gt; 5 {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Controls:
+            <string>///-----CONTROLS-----
 if Can_navigate{
+
     if global.axislh[0] &gt; 0.5{
         Can_navigate = false;
         alarm_set(0,15);
@@ -120,6 +123,8 @@ if Can_navigate{
                 }
             }
         }
+        
+        
     if global.axislh[0] &lt; -0.5{
         Can_navigate = false;
         alarm_set(0,15);
@@ -138,7 +143,9 @@ if Can_navigate{
                 }
             }
         }
-    }    
+        
+    }   
+     
 if global.shoulderr[0]{
     object_white_book.page += 2;
     visible = true;
@@ -149,6 +156,7 @@ if global.shoulderr[0]{
     instance_create(221,19,object_levelpaper);
     instance_create(121,136,object_levelboard);
     instance_create(291,136,object_levelboard);
+    
     //Calcul position:
     x= object_white_book.x+120;
     if collision_point(x+(sprite_width/2),y+(sprite_height/2),object_lv,false,true).image_index = 6{
@@ -189,47 +197,36 @@ if img_index != noone{
     }
             
 if global.face1[0]{
-    var PartToLoad = collision_point(x+(sprite_width/2),y+(sprite_height/2),object_lv,false,true).image_index;
-    var MyPaper = collision_point(x,y-50,object_levelpaper,false,false);
-    if MyPaper.Level[PartToLoad,5] = 1{
-        global.selected_level = working_directory +"levels\Level "+string(MyPaper.ID);
-        if PartToLoad = 0{
-            global.selected_part = "PartOne";
-            }
-        else{
-            if PartToLoad = 1{
-                global.selected_part = "PartTwo";
-                }
-            else{
-                if PartToLoad = 2{
-                    global.selected_part = "PartThree";
-                    }
-                else{
-                    if PartToLoad = 3{
-                        global.selected_part = "PartFour";
-                        }
-                    else{
-                        if PartToLoad = 4{
-                            global.selected_part = "PartFive";
-                            }
-                        else{
-                            if PartToLoad = 5{
-                                global.selected_part = "Boss";
-                                }
-                            }
-                        }
-                    }
+    var SelectedButton = collision_point(x+(sprite_width/2),y+(sprite_height/2),object_lv,false,true);
+    var PartToLoad = SelectedButton.image_index;
+    var MyPaper = instance_nearest(x,y,object_levelpaper);
+    var PossibleParts;
+    PossibleParts[5]="Boss";
+    PossibleParts[4]="PartFive";
+    PossibleParts[3]="PartFour";
+    PossibleParts[2]="PartThree";
+    PossibleParts[1]="PartTwo";
+    PossibleParts[0]="PartOne";
+    
+    if SelectedButton.MyColor = c_white{
+        global.selected_level = LEVELS_DIR + "Level " + string(MyPaper.ID);
+        
+        for(i=0; i&lt;=5; i++){
+            if i = PartToLoad{
+                global.selected_part = PossibleParts[i];
+                break;
                 }
             }
-        //Then go load the level: Remplacé par le fondu au noir géré par l'objet frame
-        //room_goto(room_level);
-        script_fade_status("room_level");
+        
+            //Then go load the level:
+            script_fade_status("room_level");
         }
     else{
         //Play a deny sound;
-        show_error("Error, MyPaper.level[PartToLoad,5] ="+string(MyPaper.Level[PartToLoad,5]),false);
+        show_error("This level isn't unlocked !" ,false);
         }
     }
+    
 if global.face2[0]{
     script_fade_status("TITLE");
     object_white_book.page = 0;

@@ -56,11 +56,16 @@ MyPaper = instance_nearest(x,y,object_levelpaper);
             <kind>1</kind>
             <string>///-----CREATE AND COLORIZE LEVEL BUTTONS-----
 var This_button;
-for(i=0; i&lt; array_length_1d(MyPaper.LevelParts); i++){
-    This_button = instance_create( x+3 + (i*28),y - 9, object_lv);
+for(i=0; i &lt; array_length_1d(MyPaper.LevelParts); i++){
+    This_button = instance_create( x+3 + (i*28), y - 9, object_lv);
     This_button.image_index = MyPaper.LevelParts[i];
     
-    
+    if MyPaper.AllowedParts[i] = 1{
+        This_button.MyColor = c_white;
+        }
+    else{
+        This_button.MyColor = c_gray;
+        }
     
     }
 </string>

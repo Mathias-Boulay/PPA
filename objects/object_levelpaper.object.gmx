@@ -73,7 +73,7 @@ if file_exists(LEVELS_DIR + "Level "+ string(ID)){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///-----GRAB PLAYER DATA ABOUT THE LEVEL-----
+            <string>///-----GRAB PLAYER DATA-----
 AllowedParts = get_allowed_parts(Name);
 CollectedRionys = get_collected_rionys(Name);
 KilledFoes = get_killed_foes(Name);
