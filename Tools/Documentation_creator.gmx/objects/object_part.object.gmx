@@ -179,7 +179,7 @@ if value != 0{
           <argument>
             <kind>1</kind>
             <string>///Placement
-if global.pressedID =""{
+if global.pressedID = ""{
     if mouse_x &gt;= x-(sprite_width/2) &amp;&amp; mouse_x &lt;= x+(sprite_width/2) &amp;&amp; mouse_y &gt;= y-(sprite_height/2) &amp;&amp; mouse_y &lt;= y+(sprite_height/2){
         //La souris est sur notre position:
         //Placement horizontal:

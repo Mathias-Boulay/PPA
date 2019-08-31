@@ -61,7 +61,7 @@ alarm_set(0,2);
           <argument>
             <kind>1</kind>
             <string>window_set_position(0,0);
-room_goto(room_main);
+room_goto_next();
 </string>
           </argument>
         </arguments>

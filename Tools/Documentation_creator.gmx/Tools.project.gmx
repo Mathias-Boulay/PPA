@@ -43,11 +43,16 @@
     <object>objects\object_bin</object>
     <object>objects\object_container</object>
     <object>objects\object_init</object>
+    <object>objects\object_get_string</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_init</room>
+    <room>rooms\room_island</room>
     <room>rooms\room_main</room>
   </rooms>
+  <constants number="1">
+    <constant name="SETTINGS_FILE">working_directory + "Docs/settings/settings.ini"</constant>
+  </constants>
   <help>
     <rtf>help.rtf</rtf>
   </help>
