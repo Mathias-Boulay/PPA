@@ -22,6 +22,9 @@
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
+    <scripts name="Html pages graber">
+      <script>scripts\extract_webpage.gml</script>
+    </scripts>
     <script>scripts\get_text.gml</script>
   </scripts>
   <fonts name="fonts">

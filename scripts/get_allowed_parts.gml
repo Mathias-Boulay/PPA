@@ -24,7 +24,7 @@ ini_close();
 if variable_global_exists("SELECTED_SAVE"){
     if file_exists(global.SELECTED_SAVE){
         
-        if variable_instance_exists(id,"LevelParts")
+        if variable_instance_exists(id,"LevelParts"){
             ini_open(global.SELECTED_SAVE);
             
             for(i=0; i<array_length_1d(LevelParts); i++){

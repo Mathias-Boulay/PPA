@@ -62,27 +62,27 @@ y+=sprite_height*(instance_number(object_part)-1);
             <string>///La valeur à été transmise, il est temps de définir ce qu'il y a à l'intérieur du bouton.
 switch(ID){
     case 1:
-        get_text("Quel titre ?");
+        get_text("Quel titre ?","NOONE");
         break;
         
     case 2:
-        Final=get_string("Quel sous titre violet ?","NOONE");
+        get_text("Quel sous titre violet ?","NOONE");
         break;
     
     case 3:
-        Final=get_string("Quel sous titre ?","NOONE");
+        get_text("Quel sous titre ?","NOONE");
         break;
         
     case 4:
-        Final=get_string("Quel petit titre violet ?","NOONE");
+        get_text("Quel petit titre violet ?","NOONE");
         break;
         
     case 5:
-        Final=get_string("Quel petit titre ?","NOONE");
+        get_text("Quel petit titre ?","NOONE");
         break;
         
     case 6:
-        Final=get_string("Quelle texte syntaxé ?","NOONE");
+        get_text("Quelle texte syntaxé ?","NOONE");
         break;
     case 7:
         for(i=0;i&gt;-1;i++){
@@ -116,13 +116,13 @@ switch(ID){
             Final=filename_name(Final);
             }
         else{
-            instance_destroy(); //Si on a pas d'image noter présence ne possède pas d'utilité.
+            instance_destroy(); //Si on a pas d'image notre présence ne possède pas d'utilité.
             }
         break;
         
         
     case 9:
-        Final=get_string("Quel paragraphe ?","Bichour les gens !");
+        get_text("Quel paragraphe ?", "NOONE");
         break;
 
 
@@ -344,7 +344,8 @@ if global.pressedID!=id{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if global.pressedID=id{
+            <string>///-----PLACEMENT DE L'ELU-----
+if global.pressedID=id{
     y=mouse_y-dir_y;
     y=clamp(y,0,view_yview[0]+view_hview[0]-(sprite_height/2));
     if abs((view_xview[0]+view_wview[0]-210)-x) &lt; 0.4{
@@ -379,27 +380,27 @@ if global.pressedID!=id{
             <string>///Modification de valeur ultérieurement définies.
 switch(ID){
     case 1:
-        Final=get_string("Quel titre ?",Final);
+        get_text("Quel titre ?",Final);
         break;
         
     case 2:
-        Final=get_string("Quel sous titre violet ?",Final);
+        get_text("Quel sous titre violet ?",Final);
         break;
     
     case 3:
-        Final=get_string("Quel sous titre ?",Final);
+        get_text("Quel sous titre ?",Final);
         break;
         
     case 4:
-        Final=get_string("Quel petit titre violet ?",Final);
+        get_text("Quel petit titre violet ?",Final);
         break;
         
     case 5:
-        Final=get_string("Quel petit titre ?",Final);
+        get_text("Quel petit titre ?",Final);
         break;
         
     case 6:
-        Final=get_string("Quelle texte syntaxé ?",Final);
+        get_text("Quelle texte syntaxé ?",Final);
         break;
     case 7:
         for(i=0;i&gt;-1;i++){
@@ -437,7 +438,7 @@ switch(ID){
             }
         break;
     case 9:
-        Final=get_string("Quel paragraphe ?",Final);
+        get_text("Quel paragraphe ?",Final);
         break;
 
 
@@ -532,7 +533,11 @@ if value = 0{
                 break;
             
             case 7:
-                draw_text(room_width/2,y,Final[0,0]+"/"+Final[0,1]+"/"+Final[0,2]);
+                if is_array(Final){
+                    if array_length_2d(Final,0) = 3{
+                        draw_text(room_width/2,y,Final[0,0]+"/"+Final[0,1]+"/"+Final[0,2]);
+                        }
+                    }
                 break;
                 
             }

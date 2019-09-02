@@ -107,7 +107,9 @@ else{
             <kind>1</kind>
             <string>///Crée un morceau ou execute une action (export)
 if ID != 11{
+
     if ID !=0{
+    
         if ID != 10{
             This_part=instance_create(room_width-(sprite_width/2),sprite_height*(0.5+instance_number(object_part)),object_part);
             This_part.value=ID;
@@ -125,11 +127,16 @@ if ID != 11{
                     i= -10;
                     }
                 }
+                
             ini_close();
+            
             list=""
-            for(i=0;i&lt;array_length_1d(array);i++){
-                list+=array[i]+" # ";
+            if variable_instance_exists(id,"array"){
+                for(i=0;i&lt;array_length_1d(array);i++){
+                    list+=array[i]+" # ";
+                    }
                 }
+                
             list=string_delete(list,string_length(list)-1,2);
             
             Final_cat=get_string("Quelle catégorie ? NOONE ou vide pour acune catégorie. Catégories existantes: "+list,"NOONE");
