@@ -200,12 +200,12 @@ if global.pressedID=id{
           <argument>
             <kind>1</kind>
             <string>///Définission de "pos"
-if global.pressedID!=id{
-    if global.pressedID.y&lt;y{
-        pos=1; //L'élu est au dessus du bloc;
+if global.pressedID != id{
+    if global.pressedID.y &lt; y{
+        pos = 1; //L'élu est au dessus du bloc;
         }
     else{
-        pos= -1; //L'élu est en dessous du bloc;
+        pos = (-1); //L'élu est en dessous du bloc;
         }
     }
 </string>
@@ -263,7 +263,7 @@ if global.pressedID=id{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//On change notre profondeur
+            <string>///On change notre profondeur
 global.pressedID=id;
 dir_y=mouse_y-y;
 depth=10;

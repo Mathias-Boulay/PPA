@@ -21,6 +21,9 @@
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\get_text.gml</script>
+  </scripts>
   <fonts name="fonts">
     <font>fonts\font_values</font>
   </fonts>
@@ -47,8 +50,8 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\room_init</room>
-    <room>rooms\room_island</room>
     <room>rooms\room_main</room>
+    <room>rooms\room_island</room>
   </rooms>
   <constants number="1">
     <constant name="SETTINGS_FILE">working_directory + "Docs/settings/settings.ini"</constant>

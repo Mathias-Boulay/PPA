@@ -62,7 +62,7 @@ y+=sprite_height*(instance_number(object_part)-1);
             <string>///La valeur à été transmise, il est temps de définir ce qu'il y a à l'intérieur du bouton.
 switch(ID){
     case 1:
-        Final=get_string("Quel titre ?","NOONE");
+        get_text("Quel titre ?");
         break;
         
     case 2:

@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-100</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -31,8 +31,97 @@ CursorPosition = 1;
 CursorCharacter = "";
 //Flush current string
 keyboard_string = "";
+c_black_purple = make_color_rgb(71,0,104);
+CallingPart = "";
+Instruction = "INSERT TEXT HERE:";
 
 alarm_set(0,30);
+alarm_set(1,6);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if CallingPart != ""{
+    CallingPart.Final = String;
+    CallingPart.value = 0;
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///-----LONG PRESSING SOME KEYS-----
+alarm_set(1,6);
+
+if !os_is_paused(){
+    
+    if keyboard_check(vk_backspace) ||  keyboard_check(vk_delete){
+        String = string_delete(String, CursorPosition - 1, 1);
+        CursorPosition = max(1, CursorPosition - 1);
+        io_clear();
+        exit;
+        }
+        
+    if keyboard_check(vk_enter){
+        String = string_insert("#", String, CursorPosition);
+        CursorPosition ++;
+        io_clear();
+        exit;
+        }
+        
+    if keyboard_check(vk_right){
+        CursorPosition = min(string_length(String) + 1, CursorPosition + 1);
+        io_clear();
+        exit;
+        }
+        
+    if keyboard_check(vk_left){
+        CursorPosition = max(1, CursorPosition - 1);
+        io_clear();
+        exit;
+        }
+        
+    
+    
+    }
+    
+
+
 </string>
           </argument>
         </arguments>
@@ -112,13 +201,26 @@ if string_length(keyboard_string) &gt; 0{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///-----DRAW THE TEST
+            <string>///-----DRAW THE TEXT-----
+draw_set_colour(c_black_purple);
+draw_rectangle(view_xview[0],view_yview[0],view_xview[0]+view_wview[0],view_yview[0]+view_hview[0],false);
+draw_ellipse_colour(view_xview[0],view_yview[0],view_xview[0]+view_wview[0],view_yview[0]+view_hview[0],c_black,c_black_purple,false);
+
 draw_set_valign(fa_top);
+draw_set_halign(fa_center)
+draw_text_colour(room_width/2,0,Instruction,c_red,c_red,c_red,c_red,1);
+
+
 draw_set_halign(fa_left);
 
+draw_set_font(font_values)
+draw_set_colour(c_white);
 
-draw_text(0,0,string_insert(CursorCharacter, String, CursorPosition));
+
+draw_text(0,50,string_insert(CursorCharacter, String, CursorPosition));
 draw_text(0,500,string(CursorPosition));
+
+
 
 </string>
           </argument>
@@ -144,10 +246,12 @@ draw_text(0,500,string(CursorPosition));
             <kind>1</kind>
             <string>///-----TAKE INPUTS-----
 if !os_is_paused(){
+    alarm_set(1,6);
     
     switch(keyboard_key){
-        
-        case vk_shift:
+    
+        case vk_escape:
+            instance_destroy();
             break;
     
         case vk_backspace:
@@ -170,8 +274,10 @@ if !os_is_paused(){
             break;
         
         default:
-            String = string_insert(keyboard_string, String, CursorPosition);
-            CursorPosition ++;
+            if string_length(keyboard_string) &gt; 0{
+                String = string_insert(keyboard_string, String, CursorPosition);
+                CursorPosition ++;
+                }
             break;
         
         }
