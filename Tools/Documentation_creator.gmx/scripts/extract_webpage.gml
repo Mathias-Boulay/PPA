@@ -3,6 +3,15 @@ webpage = file_text_open_read(argument0);
 String_webpage = file_text_read_string(webpage);
 file_text_close(webpage);
 
+Category_webpage = string_delete(argument0,1,string_pos('html/',argument0)+5);
+if string_count('/',Category_webpage) > 0{
+    Category_webpage = string_copy(Category_webpage,1,string_pos('/',Category_webpage)+1);
+    }
+else{
+    Category_webpage = "";
+    }
+
+
 //Remove useless things:
 String_webpage = string_replace(String_webpage,'<DOCTYPE html><html><head><meta charset="utf-8" />','');
 
@@ -57,15 +66,17 @@ do{
             }
         }
         
+    Part_webpage = "";
+        
     switch(Type){
         
-        case 1:
-        case 2:
-        case 3:
-        case 4:
-        case 5:
-        case 6:
-        case 9:
+        case TITLE:
+        case PURPLE_SUB_TITLE:
+        case SUB_TITLE:
+        case PURPLE_LITTLE_TITLE:
+        case LITTLE_TITLE:
+        case SYNTAX:
+        case TEXT:
             Part_webpage = string_copy(String_webpage,string_pos(String_webpage, TypeString[Type]), (string_pos(String_webpage,'</p>')+4)-string_pos(String_webpage, TypeString[Type]));
             Part_webpage = string_replace(Title_webpage,TypeString[Type],'');
             Part_webpage = string_replace(Title_webpage,'</p>','');
@@ -73,7 +84,38 @@ do{
             String_webpage = string_delete(String_webpage,string_pos(String_webpage,TypeString[Type]),(string_pos(String_webpage,'</p>')+4)-string_pos(String_webpage,TypeString[Type]));
             
         
-        
+        case FUNCTION_TABLE:
+            Part_webpage = string_copy(String_webpage,string_pos(String_webpage, TypeString[Type]), (string_pos(String_webpage,'</table>')+8)-string_pos(String_webpage, TypeString[Type]));
+            Part_webpage = string_replace(Title_webpage,TypeString[Type],'');
+            Part_webpage = string_replace(Title_webpage,'<tr class="FunctionTableTitle"><td>Arguments</td><td>Type</td><td>Description</td></tr>','');
+            
+            for(i=0; i<string_count('<tr',Part_webpage);i++){
+                Part_webpage = string_delete(Part_webpage,1,string_pos('>',Part_webpage)+1);
+                Part_webpage = string_replace(Part_webpage,'</tr>','');
+                
+                
+                for(j=0;j<3; j++){
+                    table_part[i,j] = string_copy(Part_webpage,string_pos('<td>',Part_webpage),string_pos('</td>',Part_webpage)+5);
+                    table_part[i,j] = string_replace(table_part[i,j],'<td>','');
+                    table_part[i,j] = string_replace(table_part[i,j],'</td>','');
+                    }
+                }
+            Part_webpage = string_replace(Title_webpage,'</table>','');
+            
+            String_webpage = string_delete(String_webpage,string_pos(String_webpage,TypeString[Type]),(string_pos(String_webpage,'</table>')+8)-string_pos(String_webpage,TypeString[Type]));
+            break;
+            
+        case PICTURE:
+            Part_webpage = string_copy(String_webpage,string_pos(String_webpage, TypeString[Type]), (string_pos(String_webpage,'/>')+2)-string_pos(String_webpage, TypeString[Type]));
+            Part_webpage = string_replace(Part_webpage,'<img class="Center" src="','');
+            Part_webpage = string_replace(Part_webpage,'"/>','');
+            Part_webpage = string_replace(Part_webpage,'../','');
+            Part_webpage = string_replace(Part_webpage,'../','');
+            Part_webpage = string_replace(Part_webpage,'images/','');
+            
+            if file_exists(IMG_DIR + Part_webpage){
+                file_copy(IMG_DIR + Part_webpage, IMG_DIR +"tmp/"
+            
         
         
         }
