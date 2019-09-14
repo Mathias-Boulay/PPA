@@ -230,6 +230,7 @@ if ID != 11{
             }
         }
     else{
+        /*
         //On Crée une page standard qui sera une page de fonction.
         //Titre:
         This_part=instance_create(room_width-(sprite_width/2),sprite_height*(0.5+instance_number(object_part)),object_part);
@@ -261,7 +262,11 @@ if ID != 11{
         This_part.value=6;
         //Le paragraphe qui explique l'exemple:
         This_part=instance_create(room_width-(sprite_width/2),sprite_height*(0.5+instance_number(object_part)),object_part);
-        This_part.value=9;   
+        This_part.value=9;  */
+        
+        //Test du script:
+        FileToExtract = get_open_filename("Webpage | *.html","");
+         extract_webpage(FileToExtract);
         }
     }
 else{

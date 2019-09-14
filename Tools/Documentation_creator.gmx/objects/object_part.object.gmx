@@ -113,7 +113,7 @@ switch(ID){
     case PICTURE:
         Final= get_open_filename("Image files|*.png;*.jpg;*.jpeg;*.gif","");
         if Final != ""{ //Si l'on a séléctionné un fichier 
-            file_copy(Final,working_directory+"Docs/images/tmp/"+filename_name(Final));
+            file_copy(Final,IMG_DIR + "tmp/"+filename_name(Final));
             Final=filename_name(Final);
             }
         else{
