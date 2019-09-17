@@ -27,7 +27,7 @@ String_webpage = file_text_read_string(webpage);
 file_text_close(webpage);
 
 Category_webpage = string_delete(argument0,1,string_pos('html/',argument0)+5);
-if string_count('/',Category_webpage) > 0{
+if string_count('\',Category_webpage) > 0{
     Category_webpage = string_copy(Category_webpage,1,string_pos('/',Category_webpage)+1);
     }
 else{
@@ -107,12 +107,18 @@ do{
             Part_webpage = string_replace(Part_webpage,'<tr class="FunctionTableTitle"><td>Arguments</td><td>Type</td><td>Description</td></tr>','');
             
             for(i=0; i<string_count('<tr',Part_webpage);i++){
-                Part_webpage = string_delete(Part_webpage,1,string_pos('>',Part_webpage)+1);
+                if string_pos('<tr class="FunctionTableLineBis"',Part_webpage) = 1{
+                    Part_webpage = string_replace(Part_webpage,'<tr class="FunctionTableLineBis">','');
+                    }
+                else{
+                    Part_webpage = string_replace(Part_webpage,'<tr>','');
+                    }
+                //Part_webpage = string_delete(Part_webpage,1,string_pos('>',Part_webpage)+1);
                 Part_webpage = string_replace(Part_webpage,'</tr>','');
                 
                 
                 for(j=0;j<3; j++){
-                    table_part[i,j] = string_copy(Part_webpage,string_pos('<td>',Part_webpage),string_pos('</td>',Part_webpage)+5);
+                    table_part[i,j] = string_copy(Part_webpage,string_pos('<td>',Part_webpage),string_pos('</td>',Part_webpage)+4);
                     table_part[i,j] = string_replace(table_part[i,j],'<td>','');
                     table_part[i,j] = string_replace(table_part[i,j],'</td>','');
                     }

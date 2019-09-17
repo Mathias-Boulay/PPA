@@ -246,31 +246,38 @@ draw_text(0,500,string(CursorPosition));
             <kind>1</kind>
             <string>///-----TAKE INPUTS-----
 if !os_is_paused(){
-    alarm_set(1,6);
+    
     
     switch(keyboard_key){
-    
         case vk_escape:
             instance_destroy();
             break;
     
         case vk_backspace:
         case vk_delete:
-            String = string_delete(String, CursorPosition - 1, 1);
-            CursorPosition = max(1, CursorPosition - 1);
+            if alarm[1] = 0{
+                String = string_delete(String, CursorPosition - 1, 1);
+                CursorPosition = max(1, CursorPosition - 1);
+                }
             break;
             
         case vk_enter:
-            String = string_insert("#", String, CursorPosition);
-            CursorPosition ++;
+                if alarm[1] = 0{
+                String = string_insert("#", String, CursorPosition);
+                CursorPosition ++;
+                }
             break;
             
         case vk_right:
-            CursorPosition = min(string_length(String) + 1, CursorPosition + 1);
+            if alarm[1] = 0{
+                CursorPosition = min(string_length(String) + 1, CursorPosition + 1);
+                }
             break;
             
         case vk_left:
-            CursorPosition = max(1, CursorPosition - 1);
+            if alarm[1] = 0{
+                CursorPosition = max(1, CursorPosition - 1);
+                }
             break;
         
         default:
@@ -281,6 +288,8 @@ if !os_is_paused(){
             break;
         
         }
+        
+        alarm_set(1,6);
     
     }
     

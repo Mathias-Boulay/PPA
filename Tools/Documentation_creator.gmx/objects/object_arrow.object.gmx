@@ -62,6 +62,7 @@ while(collision_point(x,y,object_part,false,true) != noone){
         case 7: //Écrire un tableau:
             //Écrire la tête du tableau
             file_text_write_string(global.html,'&lt;table class="FunctionTable"&gt;&lt;tr class="FunctionTableTitle"&gt;&lt;td&gt;Arguments&lt;/td&gt;&lt;td&gt;Type&lt;/td&gt;&lt;td&gt;Description&lt;/td&gt;&lt;/tr&gt;');
+            
             for(i=1;i&lt;=array_height_2d(This_part.Final);i++){
                 if floor(i/2)*2 = i{
                     //Chiffre pair, penser à changer la couleur du fond de ces lignes:
