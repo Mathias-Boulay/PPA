@@ -15,6 +15,7 @@ PossibleParts[0]="PartOne";
 
 
 var Foes;
+Foes = "";
 
 //Avoid corruption
 ini_close();

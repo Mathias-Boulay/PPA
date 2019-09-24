@@ -17,6 +17,7 @@ PossibleParts[1]="PartTwo";
 PossibleParts[0]="PartOne";
 
 var Collected;
+Collected = "";
 
 //Avoid corruption
 ini_close();

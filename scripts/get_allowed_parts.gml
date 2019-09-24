@@ -17,6 +17,7 @@ PossibleParts[0]="PartOne";
 
 
 var PartsToCheck;
+PartsToCheck = "";
 
 //Avoid corruption
 ini_close();

@@ -11,6 +11,7 @@ var count;
 count = 0;
 
 var AvailableParts;
+AvailableParts = "";
     
 if file_exists(LEVELS_DIR + "Level " + string(argument0)){
     //Avoid corruption

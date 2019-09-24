@@ -547,15 +547,15 @@
     <room>rooms\room_test</room>
   </rooms>
   <constants number="9">
-    <constant name="LEVELS_DIR">working_directory+"levels/"</constant>
-    <constant name="LEVELS_PICS_DIR">working_directory+"level-pics/"</constant>
+    <constant name="LEVELS_DIR">working_directory+"levels\"</constant>
+    <constant name="LEVELS_PICS_DIR">working_directory+"levels-pics\"</constant>
     <constant name="PET_MAX_DIST">32</constant>
     <constant name="PET_MAX_JUMP">18</constant>
     <constant name="PET_STOP_DIST">6</constant>
-    <constant name="SAVES_DIR">working_directory+"saves/"</constant>
-    <constant name="SCREENSHOTS_DIR">working_directory+"screenshots/"</constant>
-    <constant name="SETTINGS_DIR">working_directory+"settings/"</constant>
-    <constant name="SETTINGS_FILE">working_directory+"settings/settings.ini"</constant>
+    <constant name="SAVES_DIR">working_directory+"saves\"</constant>
+    <constant name="SCREENSHOTS_DIR">working_directory+"screenshots\"</constant>
+    <constant name="SETTINGS_DIR">working_directory+"settings\"</constant>
+    <constant name="SETTINGS_FILE">working_directory+"settings\settings.ini"</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>

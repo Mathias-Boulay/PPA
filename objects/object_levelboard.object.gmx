@@ -94,67 +94,68 @@ for(i=0; i &lt; array_length_1d(MyPaper.LevelParts); i++){
 //SIDE NOTE ! The space between each case is 28 pixels. You could use a for loop to optimize the code, however this kind of modification aren't great for future updates.
 draw_set_font(font_lv);
 draw_set_halign(fa_right);
-
-if array_length_1d(MyPaper.LevelParts) &gt; 0 {
-    
-    //Board part
-    draw_sprite_part(sprite_board,0,0,0,28,sprite_height,x,y);
-    
-    //Icons
-    draw_sprite(sprite_board_left,0,x-72,y+6);
-    draw_sprite(sprite_board_left,1,x-72,y+32);
-    draw_sprite(sprite_board_left,2,x-73,y+59);
-    
-    //Icons text
-    draw_set_font(global.font_short);
-    draw_set_halign(fa_left);
-    draw_text(x-61,y+21,texts[0]);
-    draw_text(x-61,y+48,texts[1]);
-    draw_text(x-60,y+76,texts[2]);
-    
-    draw_set_font(font_lv);
-    draw_set_halign(fa_right);
-    
-    //First column
-    draw_text(x+14, y+13, string(MyPaper.CollectedRionys[MyPaper.LevelParts[0]]));
-    draw_text(x+27, y+27, string(MyPaper.LevelPartsData[0,1]));
-    
-    draw_text(x+27, y+47, string(floor(MyPaper.CompletionTimes[MyPaper.LevelParts[0]]/60)) + ":" + string(frac(MyPaper.CompletionTimes[MyPaper.LevelParts[0]]/60)*60));
-    
-    draw_text(x+14, y+67, string(MyPaper.KilledFoes[MyPaper.LevelParts[0]]));
-    draw_text(x+27, y+sprite_height+1, string(MyPaper.LevelPartsData[0,0]));
-    
-    
-    
-    if array_length_1d(MyPaper.LevelParts) &gt; 1{
-        //Second column
-        draw_sprite_part(sprite_board,0,28,0,28,sprite_height,x+28,y);
+if is_array(MyPaper.LevelParts) &amp;&amp; is_array(MyPaper.LevelPartsData){
+    if array_length_1d(MyPaper.LevelParts) &gt; 0 {
+        
+        //Board part
+        draw_sprite_part(sprite_board,0,0,0,28,sprite_height,x,y);
+        
+        //Icons
+        draw_sprite(sprite_board_left,0,x-72,y+6);
+        draw_sprite(sprite_board_left,1,x-72,y+32);
+        draw_sprite(sprite_board_left,2,x-73,y+59);
+        
+        //Icons text
+        draw_set_font(global.font_short);
+        draw_set_halign(fa_left);
+        draw_text(x-61,y+21,texts[0]);
+        draw_text(x-61,y+48,texts[1]);
+        draw_text(x-60,y+76,texts[2]);
+        
+        draw_set_font(font_lv);
+        draw_set_halign(fa_right);
+        
+        //First column
+        draw_text(x+14, y+13, string(MyPaper.CollectedRionys[MyPaper.LevelParts[0]]));
+        draw_text(x+27, y+27, string(MyPaper.LevelPartsData[0,1]));
+        
+        draw_text(x+27, y+47, string(floor(MyPaper.CompletionTimes[MyPaper.LevelParts[0]]/60)) + ":" + string(frac(MyPaper.CompletionTimes[MyPaper.LevelParts[0]]/60)*60));
+        
+        draw_text(x+14, y+67, string(MyPaper.KilledFoes[MyPaper.LevelParts[0]]));
+        draw_text(x+27, y+sprite_height+1, string(MyPaper.LevelPartsData[0,0]));
         
         
-        draw_text(x+42, y+13, string(MyPaper.CollectedRionys[MyPaper.LevelParts[1]]));
-        draw_text(x+55, y+27, string(MyPaper.LevelPartsData[1,1]));
         
-        draw_text(x+55, y+47, string(floor(MyPaper.CompletionTimes[MyPaper.LevelParts[1]]/60)) + ":" + string(frac(MyPaper.CompletionTimes[MyPaper.LevelParts[1]]/60)*60));
-        
-        draw_text(x+42, y+67, string(MyPaper.KilledFoes[MyPaper.LevelParts[1]]));
-        draw_text(x+55, y+sprite_height+1, string(MyPaper.LevelPartsData[1,0]));
-            
-        
-        if array_length_1d(MyPaper.LevelParts) &gt; 2{
-            //Third column
-            draw_sprite_part(sprite_board,0,56,0,56,sprite_height,x+56,y); 
+        if array_length_1d(MyPaper.LevelParts) &gt; 1{
+            //Second column
+            draw_sprite_part(sprite_board,0,28,0,28,sprite_height,x+28,y);
             
             
-            draw_text(x+70, y+13, string(MyPaper.CollectedRionys[MyPaper.LevelParts[2]]));
-            draw_text(x+83, y+27, string(MyPaper.LevelPartsData[2,1]));
+            draw_text(x+42, y+13, string(MyPaper.CollectedRionys[MyPaper.LevelParts[1]]));
+            draw_text(x+55, y+27, string(MyPaper.LevelPartsData[1,1]));
             
-            draw_text(x+84, y+47, string(floor(MyPaper.CompletionTimes[MyPaper.LevelParts[2]]/60)) + ":" + string(frac(MyPaper.CompletionTimes[MyPaper.LevelParts[1]]/60)*60));
+            draw_text(x+55, y+47, string(floor(MyPaper.CompletionTimes[MyPaper.LevelParts[1]]/60)) + ":" + string(frac(MyPaper.CompletionTimes[MyPaper.LevelParts[1]]/60)*60));
             
-            draw_text(x+70, y+67, string(MyPaper.KilledFoes[MyPaper.LevelParts[2]]));
-            draw_text(x+83, y+sprite_height+1, string(MyPaper.LevelPartsData[2,0]));
+            draw_text(x+42, y+67, string(MyPaper.KilledFoes[MyPaper.LevelParts[1]]));
+            draw_text(x+55, y+sprite_height+1, string(MyPaper.LevelPartsData[1,0]));
+                
             
-            }
-        } 
+            if array_length_1d(MyPaper.LevelParts) &gt; 2{
+                //Third column
+                draw_sprite_part(sprite_board,0,56,0,56,sprite_height,x+56,y); 
+                
+                
+                draw_text(x+70, y+13, string(MyPaper.CollectedRionys[MyPaper.LevelParts[2]]));
+                draw_text(x+83, y+27, string(MyPaper.LevelPartsData[2,1]));
+                
+                draw_text(x+84, y+47, string(floor(MyPaper.CompletionTimes[MyPaper.LevelParts[2]]/60)) + ":" + string(frac(MyPaper.CompletionTimes[MyPaper.LevelParts[1]]/60)*60));
+                
+                draw_text(x+70, y+67, string(MyPaper.KilledFoes[MyPaper.LevelParts[2]]));
+                draw_text(x+83, y+sprite_height+1, string(MyPaper.LevelPartsData[2,0]));
+                
+                }
+            } 
+        }
     }
 </string>
           </argument>

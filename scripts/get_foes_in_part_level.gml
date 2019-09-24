@@ -12,7 +12,7 @@ PossibleParts[1]="PartTwo";
 PossibleParts[0]="PartOne";
 
 
-
+var TotalFoes;
 TotalFoes = 0;
 
 

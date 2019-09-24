@@ -28,17 +28,20 @@
             <string>///-----GRAB DATA FROM THE LEVEL FILE-----
 Parts = "";
 LevelName = "No Level";
+LevelParts = ""
+LevelPartsData = "";
 LevelImg = sprite_default_level;
 ID = (instance_number(object_levelpaper)+object_white_book.page);
 
 
+
 if file_exists(LEVELS_DIR + "Level "+ string(ID)){
-    LevelParts=get_level_parts(string(ID));
+    LevelParts = get_level_parts(string(ID));
     
     ini_open(LEVELS_DIR+"Level "+string(ID));
     LevelName = ini_read_string("Informations","Name","None");
     
-    for(i=0; i &lt; array_length_1d(Parts); i++){
+    for(i=0; i &lt; array_length_1d(LevelParts); i++){
         LevelPartsData[i,0] = get_foes_in_part_level(LevelParts[i]);
         LevelPartsData[i,1] = get_rionys_in_part_level(LevelParts[i]);
         }
@@ -74,10 +77,10 @@ if file_exists(LEVELS_DIR + "Level "+ string(ID)){
           <argument>
             <kind>1</kind>
             <string>///-----GRAB PLAYER DATA-----
-AllowedParts = get_allowed_parts(Name);
-CollectedRionys = get_collected_rionys(Name);
-KilledFoes = get_killed_foes(Name);
-CompletionTimes = get_completion_times(Name);
+AllowedParts = get_allowed_parts(LevelName);
+CollectedRionys = get_collected_rionys(LevelName);
+KilledFoes = get_killed_foes(LevelName);
+CompletionTimes = get_completion_times(LevelName);
 
 
     
@@ -130,7 +133,7 @@ draw_self();
 draw_sprite(LevelImg,0,x+6,y+3);
 draw_set_halign(fa_center);
 draw_set_font(global.font_title);
-draw_text(x+(sprite_width/2)-4,y+98,Name);
+draw_text(x+(sprite_width/2)-4,y+98,LevelName);
 </string>
           </argument>
         </arguments>
