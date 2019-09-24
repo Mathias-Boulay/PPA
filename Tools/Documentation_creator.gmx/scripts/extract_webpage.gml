@@ -106,7 +106,8 @@ do{
             Part_webpage = string_replace(Part_webpage,TypeString[Type],'');
             Part_webpage = string_replace(Part_webpage,'<tr class="FunctionTableTitle"><td>Arguments</td><td>Type</td><td>Description</td></tr>','');
             
-            for(i=0; i<string_count('<tr',Part_webpage);i++){
+            rows = string_count('<tr',Part_webpage);
+            for(i=0; i< rows; i++){
                 if string_pos('<tr class="FunctionTableLineBis"',Part_webpage) = 1{
                     Part_webpage = string_replace(Part_webpage,'<tr class="FunctionTableLineBis">','');
                     }
@@ -121,6 +122,8 @@ do{
                     table_part[i,j] = string_copy(Part_webpage,string_pos('<td>',Part_webpage),string_pos('</td>',Part_webpage)+4);
                     table_part[i,j] = string_replace(table_part[i,j],'<td>','');
                     table_part[i,j] = string_replace(table_part[i,j],'</td>','');
+                    
+                    Part_webpage = string_delete(Part_webpage,string_pos('<td>',Part_webpage),string_pos('</td>',Part_webpage)+4);
                     }
                 }
             Part_webpage = string_replace(Part_webpage,'</table>','');
