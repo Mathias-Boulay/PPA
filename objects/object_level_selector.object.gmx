@@ -77,7 +77,12 @@ Can_navigate = true;
             <kind>1</kind>
             <string>///-----BORDER CHECK-----
 lv_index = collision_point(x+(sprite_width/2),y+(sprite_height/2),object_lv,false,true);
-if lv_index.image_index &gt; 5 {
+if lv_index != noone{
+    if lv_index.image_index &gt; 5 {
+        x = xprevious;
+        }
+    }
+else{
     x = xprevious;
     }
 </string>
@@ -159,9 +164,9 @@ if global.shoulderr[0]{
     
     //Calcul position:
     x= object_white_book.x+120;
-    if collision_point(x+(sprite_width/2),y+(sprite_height/2),object_lv,false,true).image_index = 6{
+    if collision_point(x+(sprite_width/2),y+(sprite_height/2),object_lv,false,true) = noone{
         x = object_white_book.x+290;
-        if collision_point(x+(sprite_width/2),y+(sprite_height/2),object_lv,false,true).image_index = 6{
+        if collision_point(x+(sprite_width/2),y+(sprite_height/2),object_lv,false,true) = noone{
             visible = false;
             }
         }    
@@ -176,10 +181,12 @@ if global.shoulderl[0]{
     instance_create(221,19,object_levelpaper);
     instance_create(121,136,object_levelboard);
     instance_create(291,136,object_levelboard);
+    
+    //Calcul position:
     x=object_white_book.x+120;
-    if collision_point(x+(sprite_width/2),y+(sprite_height/2),object_lv,false,true).image_index = 6{
+    if collision_point(x+(sprite_width/2),y+(sprite_height/2),object_lv,false,true) = noone{
         x = object_white_book.x+290;
-        if collision_point(x+(sprite_width/2),y+(sprite_height/2),object_lv,false,true).image_index = 6{
+        if collision_point(x+(sprite_width/2),y+(sprite_height/2),object_lv,false,true) = noone{
             visible = false;
             }
         } 

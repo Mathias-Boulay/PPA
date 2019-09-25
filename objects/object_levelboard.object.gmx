@@ -64,7 +64,7 @@ for(i=0; i &lt; array_length_1d(MyPaper.LevelParts); i++){
         This_button.MyColor = c_white;
         }
     else{
-        This_button.MyColor = c_gray;
+        This_button.MyColor = c_black;
         }
     
     }
