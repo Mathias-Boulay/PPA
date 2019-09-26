@@ -51,9 +51,11 @@ tte_ext_input_create();
           <argument>
             <kind>1</kind>
             <string>///Transit values
-if CallingPart != ""{    
-    CallingPart.Final = string_replace_all(tte_ext_input_get_text(),'#','&lt;br&gt;');
-    CallingPart.value = 0
+if CallingPart != ""{ 
+    if instance_exists(CallingPart){   
+        CallingPart.Final = string_replace_all(tte_ext_input_get_text(),'#','&lt;br&gt;');
+        CallingPart.value = 0
+        }
     }
 </string>
           </argument>

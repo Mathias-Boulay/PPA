@@ -106,178 +106,152 @@ else{
           <argument>
             <kind>1</kind>
             <string>///Crée un morceau ou execute une action (export)
-if ID != 11{
+if !instance_exists(object_get_string){
 
-    if ID !=0{
+    if ID != 11{
     
-        if ID != 10{
-            This_part=instance_create(room_width-(sprite_width/2),sprite_height*(0.5+instance_number(object_part)),object_part);
-            This_part.value=ID;
-            }
-        else{
-            //On lance l'exportation
-            //On fait la liste des catégories existantes:
-            ini_open(working_directory+"Docs/settings/settings.ini");
-            for(i=1;i&gt; -1;i++){
-                tmp=ini_read_string("category",string(i),"///");
-                if tmp != "///"{
-                    array[i-1]=string_replace(tmp,"/","");
-                    }
-                else{
-                    i= -10;
-                    }
+        if ID !=0{
+        
+            if ID != 10{
+                This_part=instance_create(room_width-(sprite_width/2),sprite_height*(0.5+instance_number(object_part)),object_part);
+                This_part.value=ID;
                 }
-                
-            ini_close();
-            
-            list=""
-            if variable_instance_exists(id,"array"){
-                for(i=0;i&lt;array_length_1d(array);i++){
-                    list+=array[i]+" # ";
-                    }
-                }
-                
-            list=string_delete(list,string_length(list)-1,2);
-            
-            Final_cat=get_string("Quelle catégorie ? NOONE ou vide pour acune catégorie. Catégories existantes: "+list,"NOONE");
-            
-            list_cat="";
-            if file_find_first(working_directory+"Docs/html/"+Final_cat+"/*.html",0) != ""{
-                array_cat[0]=string_replace(file_find_first(working_directory+"Docs/html/"+Final_cat+"/*.html",0),".html","");
+            else{
+                //On lance l'exportation
+                //On fait la liste des catégories existantes:
+                ini_open(working_directory+"Docs/settings/settings.ini");
                 for(i=1;i&gt; -1;i++){
-                    tmp=file_find_next();
-                    if tmp != ""{
-                        array_cat[i]=string_replace(tmp,".html","");
+                    tmp=ini_read_string("category",string(i),"///");
+                    if tmp != "///"{
+                        array[i-1]=string_replace(tmp,"/","");
                         }
                     else{
                         i= -10;
                         }
                     }
+                    
+                ini_close();
                 
-                for(i=0;i&lt;array_length_1d(array_cat);i++){
-                    list_cat+=array_cat[i]+" # ";
-                    }
-                list_cat=string_delete(list_cat,string_length(list_cat)-1,2);  
-                }  
-            Final=get_string("Quel nom pour la page ? Pages existantes pour cette catégorie: "+list_cat,"NOONE");
-            
-            //Définition des caractères interdits.
-            Forbidden[0]="/";
-            Forbidden[1]="\";
-            Forbidden[2]=":";
-            Forbidden[3]="*";
-            Forbidden[4]="?";
-            Forbidden[5]='"';
-            Forbidden[6]="&lt;";
-            Forbidden[7]="&gt;";
-            Forbidden[8]="|";
-            Forbidden[9]="NOONE";
-            Forbidden[10]="NONE";
-            Forbidden[11]="noone";
-            Forbidden[12]="none";
-            Forbidden[13]="&lt;null&gt;";
-            
-            //Uniformisation des inputs pour le script:
-            //Phase 1: Remove forbidden file's caracters.
-            //Phase 2: Reduce broke sensibility.
-            for(i=0;i&lt;array_length_1d(Forbidden);i++){
-                Final=string_replace_all(Final,Forbidden[i],"");
-                Final_cat=string_replace_all(Final_cat,Forbidden[i],"");
-                }
-            if Final_cat != ""{Final_cat+="/";}
-                
-            global.SiteTitle=Final;
-            global.SiteCat=Final_cat;
-            
-            
-            if Final != ""{
-                //un nom de page nous est donné, go écrire.
-                //La catégorie (fichier settings):
-                if Final_cat != ""{
-                    ini_open(working_directory+"Docs/settings/settings.ini");
-                    for(i=1;i&gt; -1;i++){
-                        if ini_key_exists("category",string(i)){
-                            if ini_read_string("category",string(i),"NOONE") = Final_cat{//On vérifie si notre catégorie existe.
-                                i= -10;
-                                }
-                            }
-                        else{//clé vide donc on crée notre catégorie
-                            ini_write_string("category",string(i),Final_cat);
-                            i= -10;
-                            }   
+                list=""
+                if variable_instance_exists(id,"array"){
+                    for(i=0;i&lt;array_length_1d(array);i++){
+                        list+=array[i]+" # ";
                         }
-                    ini_close();
                     }
                     
+                list=string_delete(list,string_length(list)-1,2);
+                
+                Final_cat=get_string("Quelle catégorie ? NOONE ou vide pour acune catégorie. Catégories existantes: "+list,"NOONE");
+                
+                list_cat="";
+                if file_find_first(working_directory+"Docs/html/"+Final_cat+"/*.html",0) != ""{
+                    array_cat[0]=string_replace(file_find_first(working_directory+"Docs/html/"+Final_cat+"/*.html",0),".html","");
+                    for(i=1;i&gt; -1;i++){
+                        tmp=file_find_next();
+                        if tmp != ""{
+                            array_cat[i]=string_replace(tmp,".html","");
+                            }
+                        else{
+                            i= -10;
+                            }
+                        }
                     
-                //Création du html:
-                global.html=file_text_open_write(working_directory+"Docs/html/"+Final_cat+Final+".html");
-                //Écriture:
-                //Tête de page(compressé pour éviter des problèmes de code en pavé)
-                if Final_cat = ""{
-                    file_text_write_string(global.html,'&lt;DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset="utf-8" /&gt;&lt;link rel="stylesheet" href="../css/css.css" /&gt;&lt;title&gt;'+Final+'-PPA Docs&lt;/title&gt;&lt;/head&gt;&lt;body&gt;');
+                    for(i=0;i&lt;array_length_1d(array_cat);i++){
+                        list_cat+=array_cat[i]+" # ";
+                        }
+                    list_cat=string_delete(list_cat,string_length(list_cat)-1,2);  
+                    }  
+                Final=get_string("Quel nom pour la page ? Pages existantes pour cette catégorie: "+list_cat,"NOONE");
+                
+                //Définition des caractères interdits.
+                Forbidden[0]="/";
+                Forbidden[1]="\";
+                Forbidden[2]=":";
+                Forbidden[3]="*";
+                Forbidden[4]="?";
+                Forbidden[5]='"';
+                Forbidden[6]="&lt;";
+                Forbidden[7]="&gt;";
+                Forbidden[8]="|";
+                Forbidden[9]="NOONE";
+                Forbidden[10]="NONE";
+                Forbidden[11]="noone";
+                Forbidden[12]="none";
+                Forbidden[13]="&lt;null&gt;";
+                
+                //Uniformisation des inputs pour le script:
+                //Phase 1: Remove forbidden file's caracters.
+                //Phase 2: Reduce broke sensibility.
+                for(i=0;i&lt;array_length_1d(Forbidden);i++){
+                    Final=string_replace_all(Final,Forbidden[i],"");
+                    Final_cat=string_replace_all(Final_cat,Forbidden[i],"");
+                    }
+                if Final_cat != ""{Final_cat+="/";}
+                    
+                global.SiteTitle=Final;
+                global.SiteCat=Final_cat;
+                
+                
+                if Final != ""{
+                    //un nom de page nous est donné, go écrire.
+                    //La catégorie (fichier settings):
+                    if Final_cat != ""{
+                        ini_open(working_directory+"Docs/settings/settings.ini");
+                        for(i=1;i&gt; -1;i++){
+                            if ini_key_exists("category",string(i)){
+                                if ini_read_string("category",string(i),"NOONE") = Final_cat{//On vérifie si notre catégorie existe.
+                                    i= -10;
+                                    }
+                                }
+                            else{//clé vide donc on crée notre catégorie
+                                ini_write_string("category",string(i),Final_cat);
+                                i= -10;
+                                }   
+                            }
+                        ini_close();
+                        }
+                        
+                        
+                    //Création du html:
+                    global.html=file_text_open_write(working_directory+"Docs/html/"+Final_cat+Final+".html");
+                    //Écriture:
+                    //Tête de page(compressé pour éviter des problèmes de code en pavé)
+                    if Final_cat = ""{
+                        file_text_write_string(global.html,'&lt;DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset="utf-8" /&gt;&lt;link rel="stylesheet" href="../css/css.css" /&gt;&lt;title&gt;'+Final+'-PPA Docs&lt;/title&gt;&lt;/head&gt;&lt;body&gt;');
+                        }
+                    else{
+                        file_text_write_string(global.html,'&lt;DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset="utf-8" /&gt;&lt;link rel="stylesheet" href="../../css/css.css" /&gt;&lt;title&gt;'+Final+'-PPA Docs&lt;/title&gt;&lt;/head&gt;&lt;body&gt;');                
+                        }
+                    //le corps est créé, il faut utiliser la flèche pour parser les arguments.
+                    arrow=instance_create(x,y,object_arrow);
+                        
                     }
                 else{
-                    file_text_write_string(global.html,'&lt;DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset="utf-8" /&gt;&lt;link rel="stylesheet" href="../../css/css.css" /&gt;&lt;title&gt;'+Final+'-PPA Docs&lt;/title&gt;&lt;/head&gt;&lt;body&gt;');                
+                    show_message("Exportation annulée !");
                     }
-                //le corps est créé, il faut utiliser la flèche pour parser les arguments.
-                arrow=instance_create(x,y,object_arrow);
-                    
+                }
+            }
+        else{
+            //Test du script:
+            FileToExtract = get_open_filename("Webpage | *.html","");
+            if FileToExtract  != ""{
+                extract_webpage(FileToExtract);
                 }
             else{
-                show_message("Exportation annulée !");
+                show_message("Importation annulée");
                 }
             }
         }
     else{
-        /*
-        //On Crée une page standard qui sera une page de fonction.
-        //Titre:
-        This_part=instance_create(room_width-(sprite_width/2),sprite_height*(0.5+instance_number(object_part)),object_part);
-        This_part.value=1;
-        //Sous titre:
-        This_part=instance_create(room_width-(sprite_width/2),sprite_height*(0.5+instance_number(object_part)),object_part);
-        This_part.value=3;
-        //Desc title:
-        This_part=instance_create(room_width-(sprite_width/2),sprite_height*(0.5+instance_number(object_part)),object_part);
-        This_part.value=4;
-        //Syntaxe:
-        This_part=instance_create(room_width-(sprite_width/2),sprite_height*(0.5+instance_number(object_part)),object_part);
-        This_part.value=6;
-        //Tableau:
-        This_part=instance_create(room_width-(sprite_width/2),sprite_height*(0.5+instance_number(object_part)),object_part);
-        This_part.value=7;
-        //petit titre pas violet:
-        This_part=instance_create(room_width-(sprite_width/2),sprite_height*(0.5+instance_number(object_part)),object_part);
-        This_part.value=5;
-        //Paragraphe:
-        This_part=instance_create(room_width-(sprite_width/2),sprite_height*(0.5+instance_number(object_part)),object_part);
-        This_part.value=9;
-        //On passe à l'exemple:
-        //Petit titre violet:
-        This_part=instance_create(room_width-(sprite_width/2),sprite_height*(0.5+instance_number(object_part)),object_part);
-        This_part.value=4;
-        //texte syntaxé:
-        This_part=instance_create(room_width-(sprite_width/2),sprite_height*(0.5+instance_number(object_part)),object_part);
-        This_part.value=6;
-        //Le paragraphe qui explique l'exemple:
-        This_part=instance_create(room_width-(sprite_width/2),sprite_height*(0.5+instance_number(object_part)),object_part);
-        This_part.value=9;  */
-        
-        //Test du script:
-        FileToExtract = get_open_filename("Webpage | *.html","");
-         extract_webpage(FileToExtract);
-        }
-    }
-else{
-    //On affiche les catégories:
-    if !instance_exists(object_slider_cat){
-        instance_create(view_xview[0]+(view_wview[0]/2),view_yview[0],object_slider_cat);
-        }
-    else{
-        if object_slider_cat.STATE != "LEAVE"{
-            instance_create(0,0,object_arrow_cat);
-            object_slider_cat.STATE="LEAVE";
+        //On affiche les catégories:
+        if !instance_exists(object_slider_cat){
+            instance_create(view_xview[0]+(view_wview[0]/2),view_yview[0],object_slider_cat);
+            }
+        else{
+            if object_slider_cat.STATE != "LEAVE"{
+                instance_create(0,0,object_arrow_cat);
+                object_slider_cat.STATE="LEAVE";
+                }
             }
         }
     }
