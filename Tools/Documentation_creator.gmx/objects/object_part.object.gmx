@@ -558,13 +558,21 @@ if value = 0{
             case 6:
             case 8:
             case 9:
-                draw_text(room_width/2,y,Final);
+                draw_text(room_width/2,y,string_copy(Final,1,100));
                 break;
             
             case 7:
                 if is_array(Final){
                     if array_length_2d(Final,0) = 3{
                         draw_text(room_width/2,y,Final[0,0]+"/"+Final[0,1]+"/"+Final[0,2]);
+                        }
+                    }
+                break;
+                
+            case 10:
+                if is_array(Final){
+                    if array_length_2d(Final,0) = 3{
+                        draw_text(room_width/2,y,Final[0,0]+"/"+Final[0,1]);
                         }
                     }
                 break;
@@ -599,6 +607,9 @@ if value = 0{
             break;
         case 9:
             draw_text(x,y,"Texte#Simple");
+            break;
+        case 10:
+            draw_text(x,y,"Tableau de#Constantes");
             break;
         
             }
