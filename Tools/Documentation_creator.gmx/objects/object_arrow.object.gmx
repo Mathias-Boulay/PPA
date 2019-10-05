@@ -96,6 +96,24 @@ while(collision_point(x,y,object_part,false,true) != noone){
         case 9: //C'est du texte, ou un paragraphe plutôt:
             file_text_write_string(global.html,'&lt;p&gt;'+string_replace(This_part.Final,"#",'&lt;br&gt;')+'&lt;/p&gt;');
             break;
+            
+        case 10: //Écrire un tableau:
+            //Écrire la tête du tableau
+            file_text_write_string(global.html,'&lt;table class="ConstantsTable"&gt;&lt;tr class="ConstantsTableTitle"&gt;&lt;td&gt;Constants&lt;/td&gt;&lt;td&gt;Description&lt;/td&gt;&lt;/tr&gt;');
+            
+            for(i=1;i&lt;=array_height_2d(This_part.Final);i++){
+                if floor(i/2)*2 = i{
+                    //Chiffre pair, penser à changer la couleur du fond de ces lignes:
+                    file_text_write_string(global.html,'&lt;tr class="ConstantsTableLineBis"&gt;&lt;td&gt;'+This_part.Final[i-1,0]+'&lt;/td&gt;&lt;td&gt;'+This_part.Final[i-1,1]+'&lt;/td&gt;&lt;/tr&gt;');
+                    }
+                else{
+                    //Chiffre impaire ligne de couleur normale:
+                    file_text_write_string(global.html,'&lt;tr&gt;&lt;td&gt;'+This_part.Final[i-1,0]+'&lt;/td&gt;&lt;td&gt;'+This_part.Final[i-1,1]+'&lt;/td&gt;&lt;/tr&gt;');
+                    }
+                }
+            //Fini le tableau:
+            file_text_write_string(global.html,"&lt;/table&gt;");
+            break;
         
         }
     y+=object_button.sprite_height;

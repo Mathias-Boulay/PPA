@@ -125,6 +125,31 @@ switch(ID){
     case TEXT:
         get_text("Quel paragraphe ?", "NOONE");
         break;
+        
+    case CONSTANTS_TABLE:
+        for(i=0;i&gt;-1;i++){
+            Temp=get_string("Quelle Constante ?","NOONE");
+            switch(Temp){
+                case "NOONE":
+                case "NONE":
+                case "noone":
+                case "none":
+                case "&lt;null&gt;":
+                    Temp="";
+                    break;
+                }
+            
+            if Temp != ""{
+                Final[i,0]=Temp;
+                Final[i,1]=get_string("Explication ?","NOONE");
+                }
+            else{
+                //On n'a pas mis d'argument, go s'arêtter.
+                if i=0{instance_destroy();}
+                i= -40;
+                }
+            }
+        break;
 
 
     }

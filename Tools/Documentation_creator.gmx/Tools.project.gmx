@@ -100,7 +100,7 @@
     <room>rooms\room_main</room>
     <room>rooms\room_island</room>
   </rooms>
-  <constants number="12">
+  <constants number="13">
     <constant name="SETTINGS_FILE">working_directory + "Docs/settings/settings.ini"</constant>
     <constant name="IMG_DIR">working_directory + "Docs/images/"</constant>
     <constant name="HTML_DIR">working_directory + "Docs/html/"</constant>
@@ -113,6 +113,7 @@
     <constant name="FUNCTION_TABLE">7</constant>
     <constant name="PICTURE">8</constant>
     <constant name="TEXT">9</constant>
+    <constant name="CONSTANTS_TABLE">10</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>

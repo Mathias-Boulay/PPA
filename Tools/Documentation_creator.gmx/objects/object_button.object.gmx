@@ -108,11 +108,11 @@ else{
             <string>///Crée un morceau ou execute une action (export)
 if !instance_exists(object_get_string){
 
-    if ID != 11{
+    if ID != 12{
     
         if ID !=0{
         
-            if ID != 10{
+            if ID != 11{
                 This_part=instance_create(room_width-(sprite_width/2),sprite_height*(0.5+instance_number(object_part)),object_part);
                 This_part.value=ID;
                 }
@@ -320,9 +320,12 @@ switch(ID){
         draw_text(x,y,"Texte#Simple");
         break;
     case 10:
-        draw_text(x,y,"Exporter");
+        draw_text(x,y,"Tableau de#Constantes");
         break;
     case 11:
+        draw_text(x,y,"Exporter");
+        break;
+    case 12:
         if !instance_exists(object_slider_cat){
             draw_text(x,y,"Afficher#Catégories");
             }

@@ -18,6 +18,7 @@ TypeString[6] = '<p class="Syntax">';
 TypeString[7] = '<table class="FunctionTable">';
 TypeString[8] = '<img';
 TypeString[9] = '<p>';
+TypeString[10] = '<table class="ConstantsTable">';
 
 
 File = argument0;
@@ -139,7 +140,6 @@ do{
                 This_part.Final[i,2] = table_part[i,2];
                 }
             
-            
             break;
             
         case PICTURE:
@@ -164,6 +164,46 @@ do{
                 
                 }
             break;
+            
+        case CONSTANTS_TABLE:
+            Part_webpage = string_copy(String_webpage,TypePosition, (string_pos('</table>',String_webpage)+8)-TypePosition);
+            Part_webpage = string_replace(Part_webpage,TypeString[Type],'');
+            Part_webpage = string_replace(Part_webpage,'<tr class="ConstantsTableTitle"><td>Constants</td><td>Description</td></tr>','');
+            
+            rows = string_count('<tr',Part_webpage);
+            for(i=0; i< rows; i++){
+                if string_pos('<tr class="ConstantsTableLineBis"',Part_webpage) = 1{
+                    Part_webpage = string_replace(Part_webpage,'<tr class="ConstantsTableLineBis">','');
+                    }
+                else{
+                    Part_webpage = string_replace(Part_webpage,'<tr>','');
+                    }
+                //Part_webpage = string_delete(Part_webpage,1,string_pos('>',Part_webpage)+1);
+                Part_webpage = string_replace(Part_webpage,'</tr>','');
+                
+                
+                for(j=0;j<2; j++){
+                    table_part[i,j] = string_copy(Part_webpage,string_pos('<td>',Part_webpage),string_pos('</td>',Part_webpage)+4);
+                    table_part[i,j] = string_replace(table_part[i,j],'<td>','');
+                    table_part[i,j] = string_replace(table_part[i,j],'</td>','');
+                    
+                    Part_webpage = string_delete(Part_webpage,string_pos('<td>',Part_webpage),string_pos('</td>',Part_webpage)+4);
+                    }
+                }
+            Part_webpage = string_replace(Part_webpage,'</table>','');
+            
+            String_webpage = string_delete(String_webpage,string_pos(TypeString[Type],String_webpage),(string_pos('</table>',String_webpage)+8)-TypePosition);
+            
+            This_part = instance_create(room_width-(sprite_width/2),sprite_height*(0.5+instance_number(object_part)),object_part);
+            This_part.ID = CONSTANTS_TABLE;
+            
+            for(i=0; i< array_height_2d(table_part); i++){
+                This_part.Final[i,0] = table_part[i,0];
+                This_part.Final[i,1] = table_part[i,1];
+                }
+            
+            break;
+            
         }
 
 
