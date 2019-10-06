@@ -64,9 +64,8 @@ for(i=0;i&lt;=6;i++){
     }
     
 //Vite fait la plateforme horizontale.
-This_platform = instance_create(165,78,object_moving_platform);
-This_platform.my_sprite = sprite_test_platform;
-This_platform.dir = 1;
+This_platform = instance_create(165,78,object_horizontal_platform);
+This_platform.spr_index = sprite_test_platform;
 This_platform.movespeed = 1;
 This_platform.distance=35;
 
