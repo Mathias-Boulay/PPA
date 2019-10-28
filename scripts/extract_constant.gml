@@ -86,8 +86,14 @@ if variable_instance_exists(argument0,string(argument1)){
                 }
                 
             if TranslatedConstant = ""{
-                print_error("[EX CONSTANT] No constant found, are you sure that <" +extracted+ "> is actually a constant ?");
-                variable_instance_set(argument0,"integrity",false);
+                if is_real(real(string_digits(extracted))){
+                    print_warning("[EXT CONSTANT] Found a real instead of a constant, are you sure you want to keep this ?");
+                    TranslatedConstant = real(string_digits(extracted));
+                    }
+                else{
+                    print_error("[EX CONSTANT] No constant found, are you sure that <" +extracted+ "> is actually a constant ?");
+                    variable_instance_set(argument0,"integrity",false);
+                    }
                 }
                 
             return TranslatedConstant;  

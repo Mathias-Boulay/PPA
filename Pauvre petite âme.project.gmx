@@ -64,6 +64,7 @@
         <sprite>sprites\sprite_SF_mushrooms</sprite>
         <sprite>sprites\sprite_SF_leave</sprite>
         <sprite>sprites\sprite_SF_luminium</sprite>
+        <sprite>sprites\sprite_SF_luminium_light</sprite>
       </sprites>
       <sprites name="LL">
         <sprites name="Back/foregrounds">
@@ -320,7 +321,6 @@
     <sprite>sprites\sprite57</sprite>
     <sprite>sprites\sprite58</sprite>
     <sprite>sprites\sprite_hit</sprite>
-    <sprite>sprites\sprite_ghost_spawner</sprite>
     <sprite>sprites\sprite101</sprite>
     <sprite>sprites\sprite_level_builder</sprite>
     <sprite>sprites\sprite_level_drawer</sprite>
@@ -400,6 +400,8 @@
           <object>objects\object_leaves</object>
           <object>objects\object_bird</object>
           <object>objects\object_sign</object>
+          <object>objects\object_mushroom</object>
+          <object>objects\object_luminium</object>
         </objects>
       </objects>
       <object>objects\object_wall</object>

@@ -1112,6 +1112,117 @@ for(i=1;i&lt;=Number;i++){//Pour le nombre
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///--------CHAMPIGNON SUNSET FOREST----------
+print_debug("--------CHAMPIGNON SUNSET FOREST----------");
+
+//Récupération:
+Number= ini_read_real(global.selected_part,"MushroomsNumber",0);
+print_debug("[LB] Number Found: "+string(Number));
+for(i=1;i&lt;=Number;i++){//Pour le nombre
+    print_debug("-----"+string(i)+"-CREATEMUSHROOM-----");
+    
+    //Variables utilisées:
+    xx="";
+    yy="";
+    SubAsset="";
+    
+    //Récupération:
+    original=ini_read_string(global.selected_part,string(i)+"-createmushroom","");
+    check_integrity(id,"original",3);
+    
+    if integrity{//si le string à l'air bon:
+        xx=extract_real(id,"original");
+        yy=extract_real(id,"original");
+        SubAsset=extract_constant(id,"original");
+        
+        if integrity{//Si les arguments sont bons:
+            This_mushroom=instance_create(xx,yy,object_mushroom);
+            This_mushroom.image_index=SubAsset;
+            }
+        else{
+            print_error("[LB] Wrong arguments for the "+string(i)+"-createmushroom function");
+            print_warning("[LB] Skipping the " +string(i)+"-createmushroom function");
+            }
+        }
+    else{
+        print_warning("[LB] Skipping the " +string(i)+"-createmushroom function");
+        }
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///--------LUMINIUM SUNSET FOREST----------
+print_debug("--------LUMINIUM SUNSET FOREST----------");
+
+//Récupération:
+Number= ini_read_real(global.selected_part,"LuminiumsNumber",0);
+print_debug("[LB] Number Found: "+string(Number));
+for(i=1;i&lt;=Number;i++){//Pour le nombre
+    print_debug("-----"+string(i)+"-CREATELUMINIUM-----");
+    
+    //Variables utilisées:
+    xx="";
+    yy="";
+    
+    //Récupération:
+    original=ini_read_string(global.selected_part,string(i)+"-createluminium","");
+    check_integrity(id,"original",2);
+    
+    if integrity{//si le string à l'air bon:
+        xx=extract_real(id,"original");
+        yy=extract_real(id,"original");
+        SubAsset=extract_constant(id,"original");
+        
+        if integrity{//Si les arguments sont bons:
+            This_luminium=instance_create(xx,yy,object_luminium);
+            This_luminium.image_index=SubAsset;
+            }
+        else{
+            print_error("[LB] Wrong arguments for the "+string(i)+"-createluminium function");
+            print_warning("[LB] Skipping the " +string(i)+"-createluminium function");
+            }
+        }
+    else{
+        print_warning("[LB] Skipping the " +string(i)+"-createluminium function");
+        }
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///--------SHAI----------
 print_debug("--------SHAI----------");
 
@@ -1170,7 +1281,7 @@ for(i=1;i&lt;=Number;i++){//Pour le nombre
 print_debug("--------FOX SUNSET FOREST----------");
 
 //Récupération:
-Number = ini_read_real(global.selected_part,"FoxNumber",0);
+Number = ini_read_real(global.selected_part,"FoxesNumber",0);
 print_debug("[LB] Number Found: "+string(Number));
 for(i=1;i&lt;=Number;i++){//Pour le nombre
     print_debug("-----"+string(i)+"-CREATEFOX-----");
@@ -1223,7 +1334,7 @@ for(i=1;i&lt;=Number;i++){//Pour le nombre
 print_debug("--------PANDA SUNSET FOREST----------");
 
 //Récupération:
-Number = ini_read_real(global.selected_part,"PandaNumber",0);
+Number = ini_read_real(global.selected_part,"PandasNumber",0);
 print_debug("[LB] Number Found: "+string(Number));
 for(i=1;i&lt;=Number;i++){//Pour le nombre
     print_debug("-----"+string(i)+"-CREATEPANDA-----");
@@ -1276,7 +1387,7 @@ for(i=1;i&lt;=Number;i++){//Pour le nombre
 print_debug("--------PIG SUNSET FOREST----------");
 
 //Récupération:
-Number = ini_read_real(global.selected_part,"PigNumber",0);
+Number = ini_read_real(global.selected_part,"PigsNumber",0);
 print_debug("[LB] Number Found: "+string(Number));
 for(i=1;i&lt;=Number;i++){//Pour le nombre
     print_debug("-----"+string(i)+"-CREATEPIG-----");
@@ -1329,7 +1440,7 @@ for(i=1;i&lt;=Number;i++){//Pour le nombre
 print_debug("--------CAT SUNSET FOREST----------");
 
 //Récupération:
-Number = ini_read_real(global.selected_part,"CatNumber",0);
+Number = ini_read_real(global.selected_part,"CatsNumber",0);
 print_debug("[LB] Number Found: "+string(Number));
 for(i=1;i&lt;=Number;i++){//Pour le nombre
     print_debug("-----"+string(i)+"-CREATECAT-----");

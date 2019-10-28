@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>Xaxis="";
+            <string>///Déclaration des variables
+Xaxis="";
 Yaxis="";
 htiled="";
 vtiled="";
