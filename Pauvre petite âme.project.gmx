@@ -56,6 +56,11 @@
           <sprite>sprites\sprite_SF_stars</sprite>
           <sprite>sprites\sprite_SF_water</sprite>
         </sprites>
+        <sprites name="Bridge">
+          <sprite>sprites\sprite_SF_bridge_base</sprite>
+          <sprite>sprites\sprite_SF_bridge_rope</sprite>
+          <sprite>sprites\sprite_SF_bridge_platform</sprite>
+        </sprites>
         <sprite>sprites\sprite_SF_walls</sprite>
         <sprite>sprites\sprite_SF_platforms</sprite>
         <sprite>sprites\sprite_SF_bird</sprite>
@@ -396,6 +401,11 @@
             <object>objects\object_pet_panda</object>
             <object>objects\object_pet_pig</object>
             <object>objects\object_pet_cat</object>
+          </objects>
+          <objects name="Bridge">
+            <object>objects\object_bridge_base</object>
+            <object>objects\object_bridge_platform</object>
+            <object>objects\object_bridge_rope</object>
           </objects>
           <object>objects\object_leaves</object>
           <object>objects\object_bird</object>
