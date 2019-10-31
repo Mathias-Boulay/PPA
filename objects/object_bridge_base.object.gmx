@@ -3,7 +3,7 @@
   <spriteName>sprite_SF_bridge_base</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>1</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -79,7 +79,7 @@ XRightBase = X2 - sprite_width;
 YRightBase = Y2 - 6;
 
 SpaceBetweenBases = point_distance(XLeftBase, YLeftBase, XRightBase, YRightBase);
-SpacePerPlatforms = SpaceBetweenPlatforms/max(1, Platforms - 1)
+SpacePerPlatforms = SpaceBetweenBases/max(1, Platforms)
 
 BridgeDirection = point_direction(XLeftBase, YLeftBase, XRightBase, YRightBase);
 
@@ -111,6 +111,7 @@ for(i=1; i&lt;=Platforms; i++){
                     object_bridge_platform
                     );
     This_platform.direction = BridgeDirection;
+    This_platform.image_angle = BridgeDirection;
     
     This_rope.RightConnection = This_platform;
     }
